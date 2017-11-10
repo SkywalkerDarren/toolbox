@@ -4,7 +4,10 @@ import com.ToolBox.currency.Currency;
 import com.ToolBox.currency.ExchangerRateRecord;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,7 +20,7 @@ import java.util.Date;
  *
  * @author —Ó∫Î£¨–ÏœÈ¡¡£¨÷Ïø…–¿
  */
-class ExchangeRateUI extends JPanel {
+class ExchangeRateUI extends JPanel implements MouseListener {
 
     private static final long serialVersionUID = -4791068421614363948L;
     private static JTextField textFieldSource = new JTextField();
@@ -68,16 +71,18 @@ class ExchangeRateUI extends JPanel {
         textFieldSource.setBackground(color);
         textFieldSource.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 16));
         textFieldSource.setBounds(315, 106, 175, 35);
-        add(textFieldSource);
         textFieldSource.setColumns(10);
+        textFieldSource.addMouseListener(this);
+        add(textFieldSource);
 
         textFieldTarget = new JTextField();
         textFieldTarget.setBackground(color);
         textFieldTarget.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.PLAIN, 16));
         textFieldTarget.setEditable(false);
         textFieldTarget.setBounds(315, 333, 175, 35);
-        add(textFieldTarget);
         textFieldTarget.setColumns(10);
+        textFieldTarget.addMouseListener(this);
+        add(textFieldTarget);
 
         JLabel lbSelectCurrency = new JLabel("—°‘Òªı±“");
         lbSelectCurrency.setBounds(86, 58, 175, 35);
@@ -131,5 +136,33 @@ class ExchangeRateUI extends JPanel {
      */
     static void setTempResult(String s) {
         textFieldSource.setText(s);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON3) {
+            RightClickMenu menu = new RightClickMenu((JTextComponent) e.getComponent());
+            menu.show(e.getComponent(), e.getX(), e.getY());
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

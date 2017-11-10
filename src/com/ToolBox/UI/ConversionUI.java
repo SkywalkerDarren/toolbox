@@ -3,7 +3,10 @@ package com.ToolBox.UI;
 import com.ToolBox.measurement.Measurement;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.math.BigDecimal;
 import java.util.Map.Entry;
 
@@ -13,7 +16,7 @@ import java.util.Map.Entry;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class ConversionUI extends JPanel {
+class ConversionUI extends JPanel implements MouseListener {
 
     private static final long serialVersionUID = -1342718738933302379L;
     private static JTextField tfSource = new JTextField();
@@ -122,8 +125,9 @@ class ConversionUI extends JPanel {
         tfSource.setFont(new Font("微软雅黑", Font.PLAIN, 13));
         tfSource.setBackground(color);
         tfSource.setBounds(297, 208, 151, 31);
-        add(tfSource);
         tfSource.setColumns(10);
+        tfSource.addMouseListener(this);
+        add(tfSource);
 
         //第二个
         JTextField tfTarget = new JTextField();
@@ -132,16 +136,17 @@ class ConversionUI extends JPanel {
         tfTarget.setColumns(10);
         tfTarget.setBackground(color);
         tfTarget.setBounds(297, 326, 151, 31);
+        tfTarget.addMouseListener(this);
         add(tfTarget);
 
         //换算类型
-        JLabel lblType = new JLabel("\u8BF7\u9009\u62E9\u6362\u7B97\u7C7B\u578B");
+        JLabel lblType = new JLabel("请选择换算类型");
         lblType.setFont(new Font("宋体", Font.PLAIN, 15));
         lblType.setBounds(103, 40, 150, 30);
         add(lblType);
 
         //换算单位
-        JLabel lblUnit = new JLabel("\u8BF7\u9009\u62E9\u6362\u7B97\u5355\u4F4D");
+        JLabel lblUnit = new JLabel("请选择换算单位");
         lblUnit.setFont(new Font("宋体", Font.PLAIN, 14));
         lblUnit.setBounds(103, 150, 150, 30);
         add(lblUnit);
@@ -174,4 +179,31 @@ class ConversionUI extends JPanel {
         tfSource.setText(s);
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON3) {
+            RightClickMenu menu = new RightClickMenu((JTextComponent) e.getComponent());
+            menu.show(e.getComponent(), e.getX(), e.getY());
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
