@@ -32,7 +32,7 @@ class ExchangeRateUI extends JPanel {
         setOpaque(false);
 
         JComboBox<String> comboBoxSource = new JComboBox<>();
-        comboBoxSource.setToolTipText("\u5E01\u503C");
+        comboBoxSource.setToolTipText("币值");
         Color color = new Color(240, 255, 255);
         comboBoxSource.setBackground(color);
         Font font = new Font("微软雅黑", Font.PLAIN, 15);
