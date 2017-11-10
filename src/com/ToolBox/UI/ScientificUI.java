@@ -4,10 +4,7 @@ import com.ToolBox.evaluate.ScientificCalculator;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 /**
  * 科学计算器，支持结果保存即结果获取
@@ -19,7 +16,7 @@ import java.awt.event.KeyListener;
 class ScientificUI extends JPanel implements ActionListener, KeyListener {
 
     private static final long serialVersionUID = 688567022889591814L;
-    private static JTextArea JtextArea = new JTextArea();
+    private static JTextArea expTextArea = new JTextArea();
     private static StringBuilder number = new StringBuilder();// 用户显示
     private static StringBuilder answer = new StringBuilder();// 后台字符串
     private boolean wasAnswer = false;
@@ -252,15 +249,44 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
         add(buttonDot);
 
         // 文本框
-        JtextArea.setBackground(btnBasicColor);
-        JtextArea.setFont(new Font("微软雅黑", Font.PLAIN, 18));
-        JtextArea.setEditable(false);
-        JtextArea.setLineWrap(true);
-        JtextArea.setColumns(10000);
-        JtextArea.setFocusable(true);
-        JtextArea.setWrapStyleWord(true);
-        JtextArea.addKeyListener(this);
-        JScrollPane jsp = new JScrollPane(JtextArea);
+        expTextArea.setBackground(btnBasicColor);
+        expTextArea.setFont(new Font("微软雅黑", Font.PLAIN, 18));
+        expTextArea.setEditable(false);
+        expTextArea.setLineWrap(true);
+        expTextArea.setColumns(10000);
+        expTextArea.setFocusable(true);
+        expTextArea.setWrapStyleWord(true);
+        expTextArea.addKeyListener(this);
+        expTextArea.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON3) {
+                    RightClickMenu menu = new RightClickMenu(expTextArea);
+                    menu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        JScrollPane jsp = new JScrollPane(expTextArea);
         jsp.setBounds(70, 55, 450, 158);
         add(jsp);
 
@@ -272,7 +298,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
     static void setTempResult(String tempResult) {
         answer.append(tempResult);
         number.append(tempResult);
-        JtextArea.setText(number.toString());
+        expTextArea.setText(number.toString());
     }
 
     /**
@@ -297,13 +323,13 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append(btnName);
                 answer.append(btnName);
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case ".":
                 wasAnswer = false;
                 number.append(".");
                 answer.append(".");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "/":
                 wasAnswer = false;
@@ -312,7 +338,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("÷ ");
                 answer.append("/");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "*":
                 wasAnswer = false;
@@ -321,7 +347,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("× ");
                 answer.append("*");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "-":
             case "+":
@@ -333,7 +359,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append(btnName).append(" ");
                 answer.append(btnName);
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "sin":
                 wasAnswer = false;
@@ -342,7 +368,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("sin( ");
                 answer.append("s(");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "cos":
                 wasAnswer = false;
@@ -351,7 +377,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("cos( ");
                 answer.append("c(");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "tan":
                 wasAnswer = false;
@@ -360,7 +386,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("tan( ");
                 answer.append("t(");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "mod":
                 wasAnswer = false;
@@ -369,7 +395,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("mod ");
                 answer.append("m");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "log":
                 wasAnswer = false;
@@ -378,7 +404,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("log( ");
                 answer.append("l(");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "abs":
                 wasAnswer = false;
@@ -387,7 +413,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("abs( ");
                 answer.append("a(");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "fact":
                 wasAnswer = false;
@@ -396,7 +422,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("fact( ");
                 answer.append("!(");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "^":
             case "x^y":
@@ -406,7 +432,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("^ ");
                 answer.append("^");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "y√x":
                 wasAnswer = false;
@@ -415,7 +441,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 }
                 number.append("√ ");
                 answer.append("q");
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
             case "\n":
             case "=":
@@ -431,7 +457,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 number.append('\n');
                 number.append('\n');
                 number.append(r);
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 answer.replace(0, answer.length(), "");
                 answer.append(r);
                 number.replace(0, number.length(), "");
@@ -444,7 +470,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                     // delete
                     number.deleteCharAt(number.length() - 1);
                     answer.deleteCharAt(answer.length() - 1);
-                    JtextArea.setText(number.toString());
+                    expTextArea.setText(number.toString());
                 }
 
                 break;
@@ -452,7 +478,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 wasAnswer = false;
                 answer.replace(0, answer.length(), "");
                 number.replace(0, number.length(), "");
-                JtextArea.setText("0");
+                expTextArea.setText("0");
                 break;
             case "\b":
             case "←":
@@ -498,7 +524,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                             }
                     }
                 }
-                JtextArea.setText(number.toString());
+                expTextArea.setText(number.toString());
                 break;
         }
 
