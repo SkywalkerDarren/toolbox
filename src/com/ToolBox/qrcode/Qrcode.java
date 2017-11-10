@@ -82,7 +82,8 @@ public class Qrcode {
     public static void generateFile(String content, Path path) throws IOException {
         generateImage(content);
         String FORMAT = "jpg";
-        File qrCodeFile = new File(path.toString() + "\\qrcode" + DateTime.now().toString(" yyyy-MM-dd") + "." + FORMAT);
+        File qrCodeFile = new File(path.toString() + "\\qrcode" +
+                DateTime.now().toString(" yyyy-MM-dd") + "." + FORMAT);
         //将二维码图片作为文件输出
         ImageIO.write(image, FORMAT, qrCodeFile);
     }
