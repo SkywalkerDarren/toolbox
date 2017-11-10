@@ -30,7 +30,7 @@ public class GraphicsUtils {
     /**
      * 将指定图片写入系统剪贴板
      *
-     * @param image
+     * @param image 图片
      */
     public static void setClipboardImage(final Image image) {
         Transferable trans = new Transferable() {
