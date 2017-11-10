@@ -9,7 +9,6 @@ import java.util.Stack;
 //support + - * / log ^ ! mod cos sin tan yroot abs
 
 /**
- * s -> sin c -> cos t -> tan ! -> fact q -> root l -> log a -> abs m -> mod ^ -> power
  * 科学计算器运算方法
  *
  * @author 杨弘
@@ -29,6 +28,20 @@ public class ScientificCalculator extends Calculator {
                 || c == '!' || c == 'a');
     }
 
+    /**
+     * s = sin
+     * c = cos
+     * t = tan
+     * ! = fact
+     * q = root
+     * l = log
+     * a = abs
+     * m = mod
+     * ^ = power
+     *
+     * @param c 一个操作符
+     * @return 优先级
+     */
     protected int getLevel(char c) {
         switch (c) {
             // abs
