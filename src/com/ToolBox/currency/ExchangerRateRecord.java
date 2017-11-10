@@ -10,6 +10,9 @@ import java.util.Map;
 
 /**
  * 记录汇率
+ * 初始为内置汇率
+ * 从网上获取最新汇率
+ *
  * @author 杨弘
  */
 public class ExchangerRateRecord {
