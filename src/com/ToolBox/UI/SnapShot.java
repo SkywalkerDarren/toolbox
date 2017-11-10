@@ -1,5 +1,8 @@
-package com.ToolBox.capture;
+package com.ToolBox.UI;
 
+import com.ToolBox.capture.GraphicsUtils;
+import com.ToolBox.capture.Intent;
+import com.ToolBox.capture.ScreenWindow;
 import org.joda.time.DateTime;
 
 import javax.imageio.ImageIO;
@@ -43,8 +46,8 @@ public class SnapShot extends JFrame {
     private int x, y;   //记录鼠标坐标
     private int startx, starty;
 
-    public SnapShot() {
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    SnapShot() {
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(700, 400);
         setTitle("截图小工具");
         setLocationRelativeTo(null);   //居中
@@ -81,6 +84,9 @@ public class SnapShot extends JFrame {
     }
 
     private void initLayout() {
+        setIconImage(Toolkit.getDefaultToolkit()
+                .getImage(new Resource().toolboxURL));
+
         JPanel pane = new JPanel();
         pane.add(imageLabel);
         JScrollPane imgScrollPane = new JScrollPane(pane);
@@ -109,12 +115,19 @@ public class SnapShot extends JFrame {
 
     private void createAction() {
         snapButton.addActionListener(e -> {
+            setVisible(false);
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
             try {
                 //开启模拟屏幕，将显示截图的目标组件传入
                 JFrame screenShot = new ScreenWindow();
                 screenShot.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
+                        setVisible(true);
                         BufferedImage image = (BufferedImage) Intent.getObj(ScreenWindow.serialVersionUID,
                                 ScreenWindow.imageIntent);
                         imageLabel.setIcon(new ImageIcon(image));
@@ -123,6 +136,8 @@ public class SnapShot extends JFrame {
             } catch (AWTException | InterruptedException e1) {
                 e1.printStackTrace();
             }
+
+
         });
 
         btnOval.addActionListener(e -> flag = OVAL);
@@ -138,7 +153,8 @@ public class SnapShot extends JFrame {
         btnLarge.addActionListener(e -> size = LARGE);
 
         btnCopy.addActionListener(e -> {
-
+            Image image = ((ImageIcon) imageLabel.getIcon()).getImage();
+            GraphicsUtils.setClipboardImage(image);
         });
 
         btnSave.addActionListener(e -> {

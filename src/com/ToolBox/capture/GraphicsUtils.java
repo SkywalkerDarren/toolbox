@@ -12,7 +12,7 @@ import java.io.IOException;
  *
  * @author 杨弘
  */
-class GraphicsUtils {
+public class GraphicsUtils {
     /**
      * 截图屏幕中制定区域的图片
      *

@@ -65,7 +65,6 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
         } catch (AWTException | InterruptedException e1) {
             e1.printStackTrace();
         }
-//        GraphicsUtils.setClipboardImage();
         ScreenWindow.this.dispose();
     }
 

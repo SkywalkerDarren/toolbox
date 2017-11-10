@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -116,7 +118,16 @@ class UserInterFace extends JFrame implements ActionListener {
         mnMenuOpen.setBackground(color);
         mnMenuOpen.setPreferredSize(dimensionStart);
         mnMenuOpen.setOpaque(true);
-        mnMenuOpen.addActionListener(this);
+        mnMenuOpen.addActionListener(e -> {
+            setVisible(false);
+            SnapShot shot = new SnapShot();
+            shot.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    setVisible(true);
+                }
+            });
+        });
 
         // ÍË³ö²Ëµ¥
         JMenuItem menuItemExit = new JMenuItem(" ÍË ³ö ");
