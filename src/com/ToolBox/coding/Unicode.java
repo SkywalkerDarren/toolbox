@@ -4,17 +4,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Unicodeç¼–ç è§£ç æ ¸å¿ƒ
+ * Unicode±àÂë½âÂëºËĞÄ
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public class Unicode {
 
     /**
-     * è§£ç Unicodeå­—ç¬¦ä¸²
+     * ½âÂëUnicode×Ö·û´®
      *
-     * @param str æœªè§£ç çš„å­—ç¬¦ä¸²
-     * @return è§£ç åçš„å­—ç¬¦ä¸²
+     * @param str Î´½âÂëµÄ×Ö·û´®
+     * @return ½âÂëºóµÄ×Ö·û´®
      */
     public static String unicodeToString(String str) {
 
@@ -29,10 +29,10 @@ public class Unicode {
     }
 
     /**
-     * ç”¨unicodeç¼–ç å­—ç¬¦ä¸²ï¼Œ/uXXXXçš„å½¢å¼
+     * ÓÃunicode±àÂë×Ö·û´®£¬/uXXXXµÄĞÎÊ½
      *
-     * @param s è¦ç¼–ç åˆ°å­—ç¬¦ä¸²
-     * @return ç¼–ç åçš„å­—ç¬¦ä¸²
+     * @param s Òª±àÂëµ½×Ö·û´®
+     * @return ±àÂëºóµÄ×Ö·û´®
      */
     public static String stringToUnicode(String s) {
         StringBuilder sb = new StringBuilder(s.length() * 3);

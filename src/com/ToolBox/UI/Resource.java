@@ -3,9 +3,9 @@ package com.ToolBox.UI;
 import java.net.URL;
 
 /**
- * ç”¨ç±»åŠ è½½å™¨åŠ è½½èµ„æºæ–‡ä»¶
+ * ÓÃÀà¼ÓÔØÆ÷¼ÓÔØ×ÊÔ´ÎÄ¼ş
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 class Resource {
     final URL aboutURL = getClass().getResource("/com/ToolBox/UIResource/About.jpg");

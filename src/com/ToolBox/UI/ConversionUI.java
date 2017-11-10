@@ -8,10 +8,10 @@ import java.math.BigDecimal;
 import java.util.Map.Entry;
 
 /**
- * æ¢ç®—å™¨ï¼Œå„å•ä½è¿›è¡Œæ¢ç®—å¹¶ä¿å­˜ç»“æœ
- * æ”¯æŒå†å²è®°å½•åŠŸèƒ½
+ * »»ËãÆ÷£¬¸÷µ¥Î»½øĞĞ»»Ëã²¢±£´æ½á¹û
+ * Ö§³ÖÀúÊ·¼ÇÂ¼¹¦ÄÜ
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
  */
 class ConversionUI extends JPanel {
 
@@ -19,34 +19,34 @@ class ConversionUI extends JPanel {
     private static JTextField tfSource = new JTextField();
 
     /**
-     * åˆå§‹åŒ–æ¢ç®—è®¡ç®—å™¨çš„åŸºæœ¬æ„é€ 
+     * ³õÊ¼»¯»»Ëã¼ÆËãÆ÷µÄ»ù±¾¹¹Ôì
      */
     public ConversionUI() {
 
         setOpaque(false);
 
         Measurement m = new Measurement();
-        //ç¬¬ä¸€ä¸ª
+        //µÚÒ»¸ö
         JComboBox<String> comboBoxType = new JComboBox<>();
         Color color = new Color(240, 255, 255);
         comboBoxType.setBackground(color);
-        comboBoxType.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
+        comboBoxType.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
         comboBoxType.setBounds(103, 95, 150, 30);
         add(comboBoxType);
         for (String type : m.measureType) {
             comboBoxType.addItem(type);
         }
 
-        //ç¬¬äºŒä¸ª
+        //µÚ¶ş¸ö
         JComboBox<String> comboBoxSource = new JComboBox<>();
-        comboBoxSource.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
+        comboBoxSource.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
         comboBoxSource.setBackground(color);
         comboBoxSource.setBounds(103, 207, 150, 30);
         add(comboBoxSource);
 
-        //ç¬¬ä¸‰ä¸ª
+        //µÚÈı¸ö
         JComboBox<String> comboBoxTarget = new JComboBox<>();
-        comboBoxTarget.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
+        comboBoxTarget.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
         comboBoxTarget.setBackground(color);
         comboBoxTarget.setBounds(103, 326, 150, 30);
         add(comboBoxTarget);
@@ -117,39 +117,39 @@ class ConversionUI extends JPanel {
             }
         });
 
-        //ç¬¬ä¸€ä¸ª
+        //µÚÒ»¸ö
 
-        tfSource.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
+        tfSource.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
         tfSource.setBackground(color);
         tfSource.setBounds(297, 208, 151, 31);
         add(tfSource);
         tfSource.setColumns(10);
 
-        //ç¬¬äºŒä¸ª
+        //µÚ¶ş¸ö
         JTextField tfTarget = new JTextField();
         tfTarget.setEditable(false);
-        tfTarget.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
+        tfTarget.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
         tfTarget.setColumns(10);
         tfTarget.setBackground(color);
         tfTarget.setBounds(297, 326, 151, 31);
         add(tfTarget);
 
-        //æ¢ç®—ç±»å‹
+        //»»ËãÀàĞÍ
         JLabel lblType = new JLabel("\u8BF7\u9009\u62E9\u6362\u7B97\u7C7B\u578B");
-        lblType.setFont(new Font("å®‹ä½“", Font.PLAIN, 15));
+        lblType.setFont(new Font("ËÎÌå", Font.PLAIN, 15));
         lblType.setBounds(103, 40, 150, 30);
         add(lblType);
 
-        //æ¢ç®—å•ä½
+        //»»Ëãµ¥Î»
         JLabel lblUnit = new JLabel("\u8BF7\u9009\u62E9\u6362\u7B97\u5355\u4F4D");
-        lblUnit.setFont(new Font("å®‹ä½“", Font.PLAIN, 14));
+        lblUnit.setFont(new Font("ËÎÌå", Font.PLAIN, 14));
         lblUnit.setBounds(103, 150, 150, 30);
         add(lblUnit);
 
-        //æ¢ç®—æŒ‰é’®
+        //»»Ëã°´Å¥
         JButton btnConvert = new JButton("\u6362\u7B97");
         btnConvert.setBackground(new Color(245, 255, 250));
-        btnConvert.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
+        btnConvert.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
         btnConvert.setBounds(338, 268, 70, 35);
         add(btnConvert);
 
@@ -166,9 +166,9 @@ class ConversionUI extends JPanel {
     }
 
     /**
-     * è®¾å®šä»å†å²è®°å½•æ‰€è·å–çš„ç»“æœï¼Œæ˜¾ç¤ºåˆ°UIä¸Šå¹¶åŠ è½½åˆ°è¡¨è¾¾å¼ä¸­
+     * Éè¶¨´ÓÀúÊ·¼ÇÂ¼Ëù»ñÈ¡µÄ½á¹û£¬ÏÔÊ¾µ½UIÉÏ²¢¼ÓÔØµ½±í´ïÊ½ÖĞ
      *
-     * @param s è·å–çš„ç»“æœ
+     * @param s »ñÈ¡µÄ½á¹û
      */
     static void setTempResult(String s) {
         tfSource.setText(s);

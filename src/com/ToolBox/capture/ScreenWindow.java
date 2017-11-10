@@ -8,9 +8,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 /**
- * å…¨å±æ˜¾ç¤ºçš„çª—å£, æŒ‰å³é”®é€€å‡º
+ * È«ÆÁÏÔÊ¾µÄ´°¿Ú, °´ÓÒ¼üÍË³ö
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public class ScreenWindow extends JFrame implements MouseListener, MouseMotionListener {
 
@@ -19,19 +19,19 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
     private JLabel imageLabel;
     private BufferedImage imageFullScreen;
 
-    // å°†æˆªå›¾çš„å›¾åƒåŠ è½½åˆ°çš„ç›®æ ‡ç»„ä»¶ï¼Œç”¨äºä¼ å€¼
-    private int x, y, xEnd, yEnd; // ç”¨äºè®°å½•é¼ æ ‡ç‚¹å‡»å¼€å§‹å’Œç»“æŸçš„åæ ‡
+    // ½«½ØÍ¼µÄÍ¼Ïñ¼ÓÔØµ½µÄÄ¿±ê×é¼ş£¬ÓÃÓÚ´«Öµ
+    private int x, y, xEnd, yEnd; // ÓÃÓÚ¼ÇÂ¼Êó±êµã»÷¿ªÊ¼ºÍ½áÊøµÄ×ø±ê
 
     public ScreenWindow() throws AWTException, InterruptedException {
 
-        // å–å¾—å±å¹•å°ºå¯¸
+        // È¡µÃÆÁÄ»³ß´ç
         Dimension screenDims = Toolkit.getDefaultToolkit().getScreenSize();
-        // å–å¾—å…¨å±å¹•æˆªå›¾
+        // È¡µÃÈ«ÆÁÄ»½ØÍ¼
         imageFullScreen = GraphicsUtils.getScreenImage(0, 0, screenDims.width, screenDims.height);
 
-        // ç”¨äºå…¨å±å±•ç¤ºæˆªå›¾
+        // ÓÃÓÚÈ«ÆÁÕ¹Ê¾½ØÍ¼
         imageLabel = new JLabel(new ImageIcon(imageFullScreen));
-        // å½“é¼ æ ‡åœ¨imageLabelä¸Šæ—¶ï¼Œå±•ç¤ºä¸º åå­—å½¢
+        // µ±Êó±êÔÚimageLabelÉÏÊ±£¬Õ¹Ê¾Îª Ê®×ÖĞÎ
         imageLabel.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 
         imageLabel.addMouseListener(this);
@@ -39,16 +39,16 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
 
         this.getContentPane().add(imageLabel);
 
-        this.setUndecorated(true); // å»æ‰çª—å£è£…é¥°
+        this.setUndecorated(true); // È¥µô´°¿Ú×°ÊÎ
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH); // çª—å£æœ€å¤§åŒ–
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH); // ´°¿Ú×î´ó»¯
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON3) { // é¼ æ ‡å³é”®å•å‡»äº‹ä»¶
-            // é€€å‡ºScreenWindow
+        if (e.getButton() == MouseEvent.BUTTON3) { // Êó±êÓÒ¼üµ¥»÷ÊÂ¼ş
+            // ÍË³öScreenWindow
             ScreenWindow.this.dispose();
         }
     }
@@ -64,18 +64,18 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
         xEnd = e.getX();
         yEnd = e.getY();
 
-        // é¼ æ ‡å¼¹èµ·æ—¶ï¼Œå–å¾—é¼ æ ‡èµ·å§‹ä¸¤ç‚¹ç»„æˆçš„çŸ©å½¢åŒºåŸŸçš„å›¾åƒ
+        // Êó±êµ¯ÆğÊ±£¬È¡µÃÊó±êÆğÊ¼Á½µã×é³ÉµÄ¾ØĞÎÇøÓòµÄÍ¼Ïñ
         try {
-            // å› ä¸º xEnd å¯èƒ½æ¯” x å° ï¼ˆç”±å³ç½‘å·¦ç§»åŠ¨ï¼‰èµ·å§‹åæ ‡å–å…¶ä¸­è¾ƒå°å€¼ï¼ŒxEnd - x å–å…¶ç»å¯¹å€¼ï¼Œ åŒæ ·å¤„ç†y
+            // ÒòÎª xEnd ¿ÉÄÜ±È x Ğ¡ £¨ÓÉÓÒÍø×óÒÆ¶¯£©ÆğÊ¼×ø±êÈ¡ÆäÖĞ½ÏĞ¡Öµ£¬xEnd - x È¡Æä¾ø¶ÔÖµ£¬ Í¬Ñù´¦Àíy
             BufferedImage image = GraphicsUtils.getScreenImage(Math.min(x, xEnd), Math.min(y, yEnd), Math.abs(xEnd - x),
                     Math.abs(yEnd - y));
-            // ç”¨Intentä¼ å€¼
+            // ÓÃIntent´«Öµ
             Intent.setObj(serialVersionUID, imageIntent, image);
         } catch (AWTException | InterruptedException e1) {
             e1.printStackTrace();
         }
 
-        // é€€å‡ºè¯¥ScreenWindow
+        // ÍË³ö¸ÃScreenWindow
         ScreenWindow.this.dispose();
     }
 
@@ -91,25 +91,25 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        // 1. å–å¾—é¼ æ ‡çš„æŒ‰ä¸‹ç‚¹å’Œç§»åŠ¨å½“å‰ç‚¹åæ ‡
+        // 1. È¡µÃÊó±êµÄ°´ÏÂµãºÍÒÆ¶¯µ±Ç°µã×ø±ê
         xEnd = e.getX();
         yEnd = e.getY();
 
-        // 2. åˆ›å»ºä¸€ä¸ªç¼“å†²å›¾å½¢å¯¹è±¡ï¼ˆBufferedImageï¼‰ bi
+        // 2. ´´½¨Ò»¸ö»º³åÍ¼ĞÎ¶ÔÏó£¨BufferedImage£© bi
         BufferedImage bi = new BufferedImage(imageFullScreen.getWidth(), imageFullScreen.getHeight(null),
                 BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = (Graphics2D) bi.getGraphics();
-        // 3. å°†åŸå§‹å›¾å½¢ç”»åˆ° bi ä¸­
+        // 3. ½«Ô­Ê¼Í¼ĞÎ»­µ½ bi ÖĞ
         g2d.drawImage(imageFullScreen, 0, 0, null);
-        g2d.setColor(Color.RED); // è®¾ç½®ç”»ç¬”é¢œè‰²ä¸ºçº¢è‰²
-        // 4. æ ¹æ®å–å¾—çš„åæ ‡ç”»ä¸€ä¸ªçŸ©å½¢åˆ° bi ä¸­
-        // ä»¥é¼ æ ‡æŒ‰ä¸‹ç‚¹åæ ‡å’Œé¼ æ ‡æ‹–åŠ¨çš„å½“å‰ç‚¹åæ ‡ç”»çŸ©å½¢ï¼Œä½œä¸ºæˆªå›¾åŒºåŸŸçš„å±•ç¤º
-        // +1 ä¸ -1 æ˜¯ä¸ºäº†é˜²æ­¢æˆªå›¾æ—¶å°†çŸ©å½¢æ¡†ä¹Ÿæˆªè¿›å»
+        g2d.setColor(Color.RED); // ÉèÖÃ»­±ÊÑÕÉ«ÎªºìÉ«
+        // 4. ¸ù¾İÈ¡µÃµÄ×ø±ê»­Ò»¸ö¾ØĞÎµ½ bi ÖĞ
+        // ÒÔÊó±ê°´ÏÂµã×ø±êºÍÊó±êÍÏ¶¯µÄµ±Ç°µã×ø±ê»­¾ØĞÎ£¬×÷Îª½ØÍ¼ÇøÓòµÄÕ¹Ê¾
+        // +1 Óë -1 ÊÇÎªÁË·ÀÖ¹½ØÍ¼Ê±½«¾ØĞÎ¿òÒ²½Ø½øÈ¥
         g2d.drawRect(Math.min(x, xEnd) - 1, Math.min(y, yEnd) - 1, Math.abs(xEnd - x) + 1,
                 Math.abs(yEnd - y) + 1);
         g2d.dispose();
 
-        // 5. å°† bi ç”»åˆ°å±å¹•ä¸Š
+        // 5. ½« bi »­µ½ÆÁÄ»ÉÏ
         Graphics g = imageLabel.getGraphics();
         g.drawImage(bi, 0, 0, null);
         g.dispose();

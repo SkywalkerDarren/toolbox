@@ -10,18 +10,18 @@ import java.util.Stack;
 
 /**
  * s -> sin c -> cos t -> tan ! -> fact q -> root l -> log a -> abs m -> mod ^ -> power
- * ç§‘å­¦è®¡ç®—å™¨è¿ç®—æ–¹æ³•
+ * ¿ÆÑ§¼ÆËãÆ÷ÔËËã·½·¨
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public class ScientificCalculator extends Calculator {
 
 
     /**
-     * åˆ¤æ–­æ˜¯å¦æ˜¯åˆæ³•çš„é¦–å­—ç¬¦
+     * ÅĞ¶ÏÊÇ·ñÊÇºÏ·¨µÄÊ××Ö·û
      *
-     * @param c ä¸€ä¸ªæ“ä½œç¬¦
-     * @return true å¦‚æœåˆæ³•
+     * @param c Ò»¸ö²Ù×÷·û
+     * @return true Èç¹ûºÏ·¨
      */
     private static boolean isLegalFirstOperator(char c) {
         // ( - + mod cos sin tan log ln sqrt
@@ -133,7 +133,7 @@ public class ScientificCalculator extends Calculator {
                 try {
                     val.push(BigDecimalMath.factorial(b.intValueExact()));
                 } catch (Exception e) {
-                    throw new IllegalArgumentException("é˜¶ä¹˜åº”ä¸ºæ•´æ•°");
+                    throw new IllegalArgumentException("½×³ËÓ¦ÎªÕûÊı");
                 }
                 break;
             case '^':
@@ -142,13 +142,13 @@ public class ScientificCalculator extends Calculator {
                 val.push(BigDecimalMath.pow(a, b, mc));
                 break;
             default:
-                throw new IllegalArgumentException("æ— æ­¤æ“ä½œç¬¦");
+                throw new IllegalArgumentException("ÎŞ´Ë²Ù×÷·û");
         }
     }
 
     protected String[] explain(String s) {
         if (s.isEmpty()) {
-            throw new IllegalArgumentException("è¡¨è¾¾å¼ä¸ºç©º");
+            throw new IllegalArgumentException("±í´ïÊ½Îª¿Õ");
         }
         ArrayList<String> expression = new ArrayList<>();
         StringBuilder digit = new StringBuilder();
@@ -157,17 +157,17 @@ public class ScientificCalculator extends Calculator {
             if (i == 0 || s.charAt(i - 1) == '(') {
                 // check the first char ". - + ("
                 if (!isLegalFirstOperator(s.charAt(i)) && !isDigit(s.charAt(i))) {
-                    throw new IllegalArgumentException("\"" + s.charAt(i) + "\" ä¸åº”åœ¨è¡¨è¾¾å¼çš„å¼€å¤´");
+                    throw new IllegalArgumentException("\"" + s.charAt(i) + "\" ²»Ó¦ÔÚ±í´ïÊ½µÄ¿ªÍ·");
                 } else if (s.charAt(i) == '-' || s.charAt(i) == '+') {
                     try {
                         if (isDigit(s.charAt(i + 1))) {
                             digit.append(s.charAt(i));
                             continue;
                         } else {
-                            throw new IllegalArgumentException("æœ‰å¤šä½™çš„æ­£è´Ÿå·");
+                            throw new IllegalArgumentException("ÓĞ¶àÓàµÄÕı¸ººÅ");
                         }
                     } catch (Exception e) {
-                        throw new IllegalArgumentException("æ­£è´Ÿå·ä¸åº”åœ¨æœ«å°¾");
+                        throw new IllegalArgumentException("Õı¸ººÅ²»Ó¦ÔÚÄ©Î²");
                     }
                 } else if (!isDigit(s.charAt(i))) {
                     expression.add("" + s.charAt(i));
@@ -180,7 +180,7 @@ public class ScientificCalculator extends Calculator {
                     dot++;
                 }
                 if (dot > 1) {
-                    throw new IllegalArgumentException("æœ‰å¤šä½™çš„å°æ•°ç‚¹");
+                    throw new IllegalArgumentException("ÓĞ¶àÓàµÄĞ¡Êıµã");
                 } else {
                     digit.append(s.charAt(i));
                     if (i + 1 >= s.length() || !isDigit(s.charAt(i + 1)) && s.charAt(i + 1) != '.') {

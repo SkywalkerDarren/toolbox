@@ -4,47 +4,47 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * ç¼–ç è§£ç ä¸»ç•Œé¢ï¼Œæ”¾æœ‰Base64åŠ å¯†è§£å¯†ï¼ŒUnicodeç¼–ç è§£ç ï¼ŒMD5ä¿¡æ¯æ‘˜è¦åŠŸèƒ½ã€‚
- * æ–‡æœ¬æ¡†å‡æ”¯æŒå¤åˆ¶ ç²˜è´´ å…¨é€‰ å‰ªåˆ‡çš„å¸¸ç”¨åŠŸèƒ½ã€‚
- * MD5æ”¯æŒå¯¹æ–‡ä»¶æ ¡éªŒï¼Œä»¥åŠæ–‡å­—ä¿¡æ¯æ ¡éªŒ
+ * ±àÂë½âÂëÖ÷½çÃæ£¬·ÅÓĞBase64¼ÓÃÜ½âÃÜ£¬Unicode±àÂë½âÂë£¬MD5ĞÅÏ¢ÕªÒª¹¦ÄÜ¡£
+ * ÎÄ±¾¿ò¾ùÖ§³Ö¸´ÖÆ Õ³Ìù È«Ñ¡ ¼ôÇĞµÄ³£ÓÃ¹¦ÄÜ¡£
+ * MD5Ö§³Ö¶ÔÎÄ¼şĞ£Ñé£¬ÒÔ¼°ÎÄ×ÖĞÅÏ¢Ğ£Ñé
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
  */
 class EncodeAndDecodeUI extends JPanel {
     private static final long serialVersionUID = 8137943111751980202L;
 
     /**
-     * åˆå§‹åŒ–ç¼–ç è§£ç åŠŸèƒ½
-     * æ·»åŠ 
-     * base64åŠ /è§£å¯†, Unicodeä¸­æ–‡äº’è½¬, MD5æ ¡éªŒ
+     * ³õÊ¼»¯±àÂë½âÂë¹¦ÄÜ
+     * Ìí¼Ó
+     * base64¼Ó/½âÃÜ, UnicodeÖĞÎÄ»¥×ª, MD5Ğ£Ñé
      */
     EncodeAndDecodeUI() {
 
         setOpaque(false);
 
-        // æ„é€ æ ‡ç­¾é¡µ
+        // ¹¹Ôì±êÇ©Ò³
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.setBackground(new Color(250, 255, 255));
-        tabbedPane.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 16));
+        tabbedPane.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
         tabbedPane.setBounds(-2, -2, 800, 550);
         tabbedPane.setBorder(BorderFactory.createEtchedBorder());
         add(tabbedPane);
 
-        // Base64åŠ å¯†/è§£å¯†æ ‡ç­¾é¡µ
+        // Base64¼ÓÃÜ/½âÃÜ±êÇ©Ò³
         JPanel panelBase64 = new Base64UI();
         panelBase64.setOpaque(false);
         panelBase64.setLayout(null);
-        tabbedPane.addTab("Base64åŠ å¯†/è§£å¯†", null, panelBase64, null);
+        tabbedPane.addTab("Base64¼ÓÃÜ/½âÃÜ", null, panelBase64, null);
 
-        // Unicodeä¸­æ–‡äº’è½¬
+        // UnicodeÖĞÎÄ»¥×ª
         JPanel panelUnicode = new UnicodeUI();
         panelUnicode.setLayout(null);
         panelBase64.setOpaque(false);
-        tabbedPane.addTab("Unicodeä¸­æ–‡äº’è½¬", null, panelUnicode, null);
+        tabbedPane.addTab("UnicodeÖĞÎÄ»¥×ª", null, panelUnicode, null);
 
-        // MD5æ ¡éªŒæ ‡ç­¾é¡µ
+        // MD5Ğ£Ñé±êÇ©Ò³
         JPanel panelMD5 = new MD5UI();
-        tabbedPane.addTab("MD5æ–‡å­—åŠ å¯†/æ–‡ä»¶æ ¡éªŒ", null, panelMD5, null);
+        tabbedPane.addTab("MD5ÎÄ×Ö¼ÓÃÜ/ÎÄ¼şĞ£Ñé", null, panelMD5, null);
         panelMD5.setOpaque(false);
         panelMD5.setLayout(null);
 

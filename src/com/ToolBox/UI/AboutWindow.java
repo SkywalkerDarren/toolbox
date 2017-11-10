@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * å…³äºçª—å£ï¼Œæ˜¾ç¤ºå½“å‰ç‰ˆæœ¬å·
+ * ¹ØÓÚ´°¿Ú£¬ÏÔÊ¾µ±Ç°°æ±¾ºÅ
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
  */
 class AboutWindow extends JFrame {
 
@@ -14,7 +14,7 @@ class AboutWindow extends JFrame {
     private static final long serialVersionUID = -2467559809056956188L;
 
     /**
-     * åˆå§‹åŒ–å…³äºçª—å£
+     * ³õÊ¼»¯¹ØÓÚ´°¿Ú
      */
     AboutWindow() {
         Resource resource = new Resource();
@@ -34,7 +34,7 @@ class AboutWindow extends JFrame {
         getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lblCopyright = new JLabel("Copyright Â© 2017 - ToolBox. ");
+        JLabel lblCopyright = new JLabel("Copyright 2017 - ToolBox. ");
         setIconImage(new ImageIcon(resource.toolboxURL).getImage());
         lblCopyright.setFont(new Font("Consolas", Font.PLAIN, 15));
         lblCopyright.setBounds(36, 88, 229, 54);

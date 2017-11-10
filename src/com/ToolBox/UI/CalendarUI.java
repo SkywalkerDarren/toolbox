@@ -11,21 +11,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * æ—¥æœŸè®¡ç®—å™¨ï¼Œæ”¯æŒæ—¥æœŸé—´éš”è®¡ç®—åŠæ—¥æœŸå¢å‡å¤©æ•°è®¡ç®—
- * æ˜¾ç¤ºæ€»å¤©æ•°ï¼Œå‘¨æœŸæ—¶é—´
- * ä¸æ”¯æŒå†å²è®°å½•
+ * ÈÕÆÚ¼ÆËãÆ÷£¬Ö§³ÖÈÕÆÚ¼ä¸ô¼ÆËã¼°ÈÕÆÚÔö¼õÌìÊı¼ÆËã
+ * ÏÔÊ¾×ÜÌìÊı£¬ÖÜÆÚÊ±¼ä
+ * ²»Ö§³ÖÀúÊ·¼ÇÂ¼
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
  */
 class CalendarUI extends JPanel {
 
     private static final long serialVersionUID = -4791068421614363948L;
-    private final Font fontPlain = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14);
-    private final Font fontBold = new Font("å¾®è½¯é›…é»‘", Font.BOLD, 14);
+    private final Font fontPlain = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14);
+    private final Font fontBold = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 14);
     private final Color normal = new Color(245, 255, 255);
 
     /**
-     * æ„å»ºæ—¥æœŸè®¡ç®—çš„UIåŸºæœ¬æ¡†æ¶
+     * ¹¹½¨ÈÕÆÚ¼ÆËãµÄUI»ù±¾¿ò¼Ü
      */
     CalendarUI() {
 
@@ -35,13 +35,13 @@ class CalendarUI extends JPanel {
         add(comboBoxYear);
         comboBoxYear.setBackground(normal);
         comboBoxYear.setBounds(97, 72, 160, 40);
-        comboBoxYear.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 13));
-        comboBoxYear.addItem("æ—¥æœŸä¹‹é—´çš„ç›¸éš”æ—¶é—´");
-        comboBoxYear.addItem("æ·»åŠ æˆ–å‡å»å¤©æ•°");
+        comboBoxYear.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 13));
+        comboBoxYear.addItem("ÈÕÆÚÖ®¼äµÄÏà¸ôÊ±¼ä");
+        comboBoxYear.addItem("Ìí¼Ó»ò¼õÈ¥ÌìÊı");
         comboBoxYear.setVisible(true);
 
 
-        //æ—¥æœŸå¢å‡
+        //ÈÕÆÚÔö¼õ
         JPanel panelPlusOrMinus = new PlusOrMinusPanel();
         panelPlusOrMinus.setOpaque(false);
         panelPlusOrMinus.setLayout(null);
@@ -50,7 +50,7 @@ class CalendarUI extends JPanel {
         add(panelPlusOrMinus);
 
 
-        //æ—¥æœŸé—´éš”
+        //ÈÕÆÚ¼ä¸ô
         JPanel panelInterval = new IntervalPanel();
         panelInterval.setOpaque(false);
         panelInterval.setLayout(null);
@@ -80,11 +80,11 @@ class CalendarUI extends JPanel {
 
 
     /**
-     * æ ¹æ®å¹´æœˆè®¾å®šæ—¥æœŸ
+     * ¸ù¾İÄêÔÂÉè¶¨ÈÕÆÚ
      *
-     * @param year  å¹´ä»½
-     * @param month æœˆä»½
-     * @return å¤©æ•°
+     * @param year  Äê·İ
+     * @param month ÔÂ·İ
+     * @return ÌìÊı
      */
     private int setDay(int year, int month) {
         int day;
@@ -130,24 +130,24 @@ class CalendarUI extends JPanel {
                 day = 31;
                 break;
             default:
-                throw new IllegalArgumentException("æ—¥æœŸéæ³•");
+                throw new IllegalArgumentException("ÈÕÆÚ·Ç·¨");
         }
         return day;
     }
 
     /**
-     * åˆ¤æ–­ä¸€ä¸ªå¹´ä»½æ˜¯å¦æ˜¯é—°å¹´
+     * ÅĞ¶ÏÒ»¸öÄê·İÊÇ·ñÊÇÈòÄê
      *
-     * @param year éœ€åˆ¤æ–­çš„å¹´ä»½
-     * @return true å¦‚æœæ˜¯é—°å¹´
+     * @param year ĞèÅĞ¶ÏµÄÄê·İ
+     * @return true Èç¹ûÊÇÈòÄê
      */
     private boolean isLeapYear(int year) {
         return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
     }
 
     /**
-     * æ—¥æœŸè·ç¦»ç±»
-     * è·å¾—ä¸¤ä¸ªæ—¥æœŸçš„é—´éš”æ—¥æœŸåŠæ€»å¤©æ•°
+     * ÈÕÆÚ¾àÀëÀà
+     * »ñµÃÁ½¸öÈÕÆÚµÄ¼ä¸ôÈÕÆÚ¼°×ÜÌìÊı
      */
     private class IntervalPanel extends JPanel {
 
@@ -155,7 +155,7 @@ class CalendarUI extends JPanel {
         private static final long serialVersionUID = 1851775115929217134L;
 
         /**
-         * æ—¥æœŸè·ç¦»çš„UIåˆå§‹åŒ–
+         * ÈÕÆÚ¾àÀëµÄUI³õÊ¼»¯
          */
         IntervalPanel() {
             JComboBox<Integer> comboBoxStartYear = new JComboBox<>();
@@ -270,48 +270,48 @@ class CalendarUI extends JPanel {
             }
             comboBoxEndDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
-            JLabel labelBetweenFrom = new JLabel("è‡ª");
+            JLabel labelBetweenFrom = new JLabel("×Ô");
             labelBetweenFrom.setFont(fontPlain);
 
             labelBetweenFrom.setBounds(97, 122, 42, 25);
             add(labelBetweenFrom);
 
-            JLabel labelStartYear = new JLabel("å¹´ï¼Œ");
+            JLabel labelStartYear = new JLabel("Äê£¬");
             labelStartYear.setFont(fontBold);
             labelStartYear.setBounds(162, 166, 54, 15);
             add(labelStartYear);
 
-            JLabel labelStartMonth = new JLabel("æœˆï¼Œ");
+            JLabel labelStartMonth = new JLabel("ÔÂ£¬");
             labelStartMonth.setFont(fontBold);
             labelStartMonth.setBounds(252, 166, 54, 15);
             add(labelStartMonth);
 
-            JLabel labelStartDay = new JLabel("æ—¥");
+            JLabel labelStartDay = new JLabel("ÈÕ");
             labelStartDay.setFont(fontBold);
             labelStartDay.setBounds(345, 166, 54, 15);
             add(labelStartDay);
 
-            JLabel labelTo = new JLabel("è‡³");
+            JLabel labelTo = new JLabel("ÖÁ");
             labelTo.setFont(fontPlain);
             labelTo.setBounds(97, 212, 54, 15);
             add(labelTo);
 
-            JLabel labelEndYear = new JLabel("å¹´ï¼Œ");
+            JLabel labelEndYear = new JLabel("Äê£¬");
             labelEndYear.setFont(fontBold);
             labelEndYear.setBounds(162, 253, 54, 15);
             add(labelEndYear);
 
-            JLabel labelEndMonth = new JLabel("æœˆï¼Œ");
+            JLabel labelEndMonth = new JLabel("ÔÂ£¬");
             labelEndMonth.setFont(fontBold);
             labelEndMonth.setBounds(252, 253, 54, 15);
             add(labelEndMonth);
 
-            JLabel labelEndDay = new JLabel("æ—¥");
+            JLabel labelEndDay = new JLabel("ÈÕ");
             labelEndDay.setFont(fontBold);
             labelEndDay.setBounds(345, 253, 54, 15);
             add(labelEndDay);
 
-            JLabel labelInterval = new JLabel("é—´éš”å¤©æ•°");
+            JLabel labelInterval = new JLabel("¼ä¸ôÌìÊı");
             labelInterval.setFont(fontPlain);
             labelInterval.setBounds(97, 301, 83, 25);
             add(labelInterval);
@@ -328,35 +328,35 @@ class CalendarUI extends JPanel {
             labelIntervalDay.setBounds(250, 336, 45, 35);
             add(labelIntervalDay);
 
-            // è¿™æ˜¯æœ€ä¸‹é¢é‚£å››ä¸ª
-            JLabel labelBetweenYear = new JLabel("å¹´ï¼Œ");
+            // ÕâÊÇ×îÏÂÃæÄÇËÄ¸ö
+            JLabel labelBetweenYear = new JLabel("Äê£¬");
             labelBetweenYear.setFont(fontBold);
             labelBetweenYear.setBounds(152, 346, 54, 15);
             add(labelBetweenYear);
 
-            // è¿™æ˜¯æœ€ä¸‹é¢é‚£å››ä¸ª
-            JLabel labelBetweenMonth = new JLabel("æœˆï¼Œ");
+            // ÕâÊÇ×îÏÂÃæÄÇËÄ¸ö
+            JLabel labelBetweenMonth = new JLabel("ÔÂ£¬");
             labelBetweenMonth.setFont(fontBold);
             labelBetweenMonth.setBounds(223, 346, 54, 15);
             add(labelBetweenMonth);
 
-            // è¿™æ˜¯æœ€ä¸‹é¢é‚£å››ä¸ª
-            JLabel labelBetweenDay = new JLabel("æ—¥");
+            // ÕâÊÇ×îÏÂÃæÄÇËÄ¸ö
+            JLabel labelBetweenDay = new JLabel("ÈÕ");
             labelBetweenDay.setFont(fontBold);
             labelBetweenDay.setBounds(303, 346, 54, 15);
             add(labelBetweenDay);
 
-            // è¿™æ˜¯æœ€ä¸‹é¢é‚£å››ä¸ª
+            // ÕâÊÇ×îÏÂÃæÄÇËÄ¸ö
             JLabel textFieldTotalDay = new JLabel("", JLabel.CENTER);
             textFieldTotalDay.setBounds(99, 398, 45, 35);
             add(textFieldTotalDay);
 
-            JLabel labelTotalDay = new JLabel("å¤©");
+            JLabel labelTotalDay = new JLabel("Ìì");
             labelTotalDay.setFont(fontPlain);
             labelTotalDay.setBounds(152, 406, 54, 15);
             add(labelTotalDay);
 
-            JButton buttonClac = new JButton("è®¡ç®—");
+            JButton buttonClac = new JButton("¼ÆËã");
             buttonClac.setFont(fontPlain);
             buttonClac.setBackground(normal);
             buttonClac.setBounds(223, 396, 75, 35);
@@ -380,8 +380,8 @@ class CalendarUI extends JPanel {
     }
 
     /**
-     * æ—¥æœŸå¢å‡ç±»
-     * ä»ä¸€ä¸ªå·²çŸ¥æ—¥æœŸå¢å‡ä¸€å®šçš„æ—¥æœŸï¼Œæ¥è·å¾—ç›®æ ‡æ—¥æœŸ
+     * ÈÕÆÚÔö¼õÀà
+     * ´ÓÒ»¸öÒÑÖªÈÕÆÚÔö¼õÒ»¶¨µÄÈÕÆÚ£¬À´»ñµÃÄ¿±êÈÕÆÚ
      */
     private class PlusOrMinusPanel extends JPanel {
 
@@ -390,42 +390,42 @@ class CalendarUI extends JPanel {
         private boolean isAdd = true;
 
         /**
-         * æ—¥æœŸå¢å‡é¡µé¢çš„UIæ„é€ 
+         * ÈÕÆÚÔö¼õÒ³ÃæµÄUI¹¹Ôì
          */
         PlusOrMinusPanel() {
-            JLabel labelFrom = new JLabel("è‡ª");
+            JLabel labelFrom = new JLabel("×Ô");
             labelFrom.setFont(fontPlain);
             labelFrom.setBounds(97, 122, 42, 25);
             add(labelFrom);
 
-            JLabel labelYear = new JLabel("å¹´ï¼Œ");
+            JLabel labelYear = new JLabel("Äê£¬");
             labelYear.setFont(fontBold);
             labelYear.setBounds(162, 274, 54, 15);
             add(labelYear);
 
-            JLabel labelMonth = new JLabel("æœˆï¼Œ");
+            JLabel labelMonth = new JLabel("ÔÂ£¬");
             labelMonth.setFont(fontBold);
             labelMonth.setBounds(251, 274, 54, 15);
             add(labelMonth);
 
-            JLabel labelDay = new JLabel("æ—¥");
+            JLabel labelDay = new JLabel("ÈÕ");
             labelDay.setFont(fontBold);
             labelDay.setBounds(345, 274, 54, 15);
             add(labelDay);
 
-            JLabel labelDate = new JLabel("æ—¥æœŸ");
+            JLabel labelDate = new JLabel("ÈÕÆÚ");
             labelDate.setFont(fontPlain);
             labelDate.setBounds(97, 336, 54, 15);
             add(labelDate);
 
-            JRadioButton radioButtonAdd = new JRadioButton("æ·»åŠ ", true);
+            JRadioButton radioButtonAdd = new JRadioButton("Ìí¼Ó", true);
             radioButtonAdd.setSelected(true);
             radioButtonAdd.setFont(fontPlain);
             radioButtonAdd.setBounds(162, 219, 87, 23);
             add(radioButtonAdd);
             radioButtonAdd.addActionListener(e -> isAdd = true);
 
-            JRadioButton radioButtonMinus = new JRadioButton("å‡å»");
+            JRadioButton radioButtonMinus = new JRadioButton("¼õÈ¥");
             radioButtonMinus.setFont(fontPlain);
             radioButtonMinus.setBounds(251, 219, 121, 23);
             add(radioButtonMinus);
@@ -435,17 +435,17 @@ class CalendarUI extends JPanel {
             group.add(radioButtonAdd);
             group.add(radioButtonMinus);
 
-            JLabel labelFromYear = new JLabel("å¹´ï¼Œ");
+            JLabel labelFromYear = new JLabel("Äê£¬");
             labelFromYear.setFont(fontBold);
             labelFromYear.setBounds(162, 166, 54, 15);
             add(labelFromYear);
 
-            JLabel labelFromMonth = new JLabel("æœˆï¼Œ");
+            JLabel labelFromMonth = new JLabel("ÔÂ£¬");
             labelFromMonth.setFont(fontBold);
             labelFromMonth.setBounds(252, 166, 54, 15);
             add(labelFromMonth);
 
-            JLabel labelFromDay = new JLabel("æ—¥");
+            JLabel labelFromDay = new JLabel("ÈÕ");
             labelFromDay.setFont(fontBold);
             labelFromDay.setBounds(345, 166, 54, 15);
             add(labelFromDay);
@@ -529,40 +529,40 @@ class CalendarUI extends JPanel {
             }
             comboBoxFromDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
-            // è¿™ä¸ªæ˜¯æœ€ä¸‹é¢é‚£å››ä¸ªæˆ–ä¸‰ä¸ª
+            // Õâ¸öÊÇ×îÏÂÃæÄÇËÄ¸ö»òÈı¸ö
             JLabel plusOrMinusYear = new JLabel("", JLabel.CENTER);
             plusOrMinusYear.setBackground(new Color(224, 255, 255));
             plusOrMinusYear.setBounds(97, 368, 65, 35);
             add(plusOrMinusYear);
 
-            // è¿™ä¸ªæ˜¯æœ€ä¸‹é¢é‚£å››ä¸ªæˆ–ä¸‰ä¸ª
+            // Õâ¸öÊÇ×îÏÂÃæÄÇËÄ¸ö»òÈı¸ö
             JLabel plusOrMinusMonth = new JLabel("", JLabel.CENTER);
             plusOrMinusMonth.setBackground(new Color(224, 255, 255));
             plusOrMinusMonth.setBounds(187, 368, 65, 35);
             add(plusOrMinusMonth);
 
-            // è¿™ä¸ªæ˜¯æœ€ä¸‹é¢é‚£å››ä¸ªæˆ–ä¸‰ä¸ª
+            // Õâ¸öÊÇ×îÏÂÃæÄÇËÄ¸ö»òÈı¸ö
             JLabel plusOrMinusDay = new JLabel("", JLabel.CENTER);
             plusOrMinusDay.setBackground(new Color(224, 255, 255));
             plusOrMinusDay.setBounds(280, 368, 65, 35);
             add(plusOrMinusDay);
 
-            JLabel labelyear = new JLabel("å¹´ï¼Œ");
+            JLabel labelyear = new JLabel("Äê£¬");
             labelyear.setFont(fontBold);
             labelyear.setBounds(162, 377, 54, 15);
             add(labelyear);
 
-            JLabel labelmonth = new JLabel("æœˆï¼Œ");
+            JLabel labelmonth = new JLabel("ÔÂ£¬");
             labelmonth.setFont(fontBold);
             labelmonth.setBounds(251, 377, 54, 15);
             add(labelmonth);
 
-            JLabel labelday = new JLabel("æ—¥");
+            JLabel labelday = new JLabel("ÈÕ");
             labelday.setFont(fontBold);
             labelday.setBounds(345, 377, 54, 15);
             add(labelday);
 
-            JButton buttonCalc = new JButton("è®¡ç®—");
+            JButton buttonCalc = new JButton("¼ÆËã");
             buttonCalc.setFont(fontPlain);
             buttonCalc.setBackground(normal);
             buttonCalc.setBounds(197, 326, 75, 35);

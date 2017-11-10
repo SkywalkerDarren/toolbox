@@ -10,23 +10,23 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * ç§‘å­¦è®¡ç®—å™¨ï¼Œæ”¯æŒç»“æžœä¿å­˜å³ç»“æžœèŽ·å–
- * æ”¯æŒå¸¦ä¼˜å…ˆçº§çš„å››åˆ™è¿ç®—ï¼Œä»¥åŠé«˜çº§è¿ç®—ç¬¦
- * æ”¯æŒé«˜ç²¾åº¦è®¡ç®—
+ * ¿ÆÑ§¼ÆËãÆ÷£¬Ö§³Ö½á¹û±£´æ¼´½á¹û»ñÈ¡
+ * Ö§³Ö´øÓÅÏÈ¼¶µÄËÄÔòÔËËã£¬ÒÔ¼°¸ß¼¶ÔËËã·û
+ * Ö§³Ö¸ß¾«¶È¼ÆËã
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ÐìÏéÁÁ£¬Öì¿ÉÐÀ
  */
 class ScientificUI extends JPanel implements ActionListener, KeyListener {
 
     private static final long serialVersionUID = 688567022889591814L;
     private static JTextArea JtextArea = new JTextArea();
-    private static StringBuilder number = new StringBuilder();// ç”¨æˆ·æ˜¾ç¤º
-    private static StringBuilder answer = new StringBuilder();// åŽå°å­—ç¬¦ä¸²
+    private static StringBuilder number = new StringBuilder();// ÓÃ»§ÏÔÊ¾
+    private static StringBuilder answer = new StringBuilder();// ºóÌ¨×Ö·û´®
     private boolean wasAnswer = false;
 
     /**
-     * æž„é€ å¸ƒå±€
-     * æŒ‰é’®ï¼Œæ–‡æœ¬æ¡†
+     * ¹¹Ôì²¼¾Ö
+     * °´Å¥£¬ÎÄ±¾¿ò
      */
     ScientificUI() {
 
@@ -34,12 +34,12 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
         setBackground(new Color(248, 248, 255));
         Color btnBasicColor = new Color(240, 255, 250);
         Color btnNumberColor = new Color(225, 255, 250);
-        Font font = new Font("å¾®è½¯é›…é»‘", Font.BOLD, 13);
-        Font fontBasic = new Font("å¾®è½¯é›…é»‘", Font.BOLD, 14);
+        Font font = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 13);
+        Font fontBasic = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 14);
         setForeground(btnBasicColor);
         setLayout(null);
 
-        // æŒ‰é’®ç»„
+        // °´Å¥×é
         JButton btn0 = new JButton("0");
         btn0.addActionListener(this);
         btn0.setBackground(btnNumberColor);
@@ -181,7 +181,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
         btnC.setBounds(295, 285, 75, 35);
         add(btnC);
 
-        JButton buttonBackSpace = new JButton("â†");
+        JButton buttonBackSpace = new JButton("¡û");
         buttonBackSpace.addActionListener(this);
         buttonBackSpace.setBackground(btnBasicColor);
         buttonBackSpace.setFont(font);
@@ -237,7 +237,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
         btnPower.setBounds(147, 421, 75, 35);
         add(btnPower);
 
-        JButton btnRoot = new JButton("yâˆšx");
+        JButton btnRoot = new JButton("y¡Ìx");
         btnRoot.addActionListener(this);
         btnRoot.setBackground(btnAdvanceColor);
         btnRoot.setFont(font);
@@ -251,9 +251,9 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
         buttonDot.setBounds(369, 421, 75, 35);
         add(buttonDot);
 
-        // æ–‡æœ¬æ¡†
+        // ÎÄ±¾¿ò
         JtextArea.setBackground(btnBasicColor);
-        JtextArea.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 18));
+        JtextArea.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
         JtextArea.setEditable(false);
         JtextArea.setLineWrap(true);
         JtextArea.setColumns(10000);
@@ -276,7 +276,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
     }
 
     /**
-     * å„ä¸ªæŒ‰é’®äº‹ä»¶
+     * ¸÷¸ö°´Å¥ÊÂ¼þ
      */
     private void action(String btnName) {
         switch (btnName) {
@@ -310,7 +310,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("Ã· ");
+                number.append("¡Â ");
                 answer.append("/");
                 JtextArea.setText(number.toString());
                 break;
@@ -319,7 +319,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("Ã— ");
+                number.append("¡Á ");
                 answer.append("*");
                 JtextArea.setText(number.toString());
                 break;
@@ -408,12 +408,12 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 answer.append("^");
                 JtextArea.setText(number.toString());
                 break;
-            case "yâˆšx":
+            case "y¡Ìx":
                 wasAnswer = false;
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("âˆš ");
+                number.append("¡Ì ");
                 answer.append("q");
                 JtextArea.setText(number.toString());
                 break;
@@ -425,7 +425,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                     r = new ScientificCalculator().getResult(answer.toString());
                     HistoryUI.updateRecord(r);
                 } catch (Exception error) {
-                    r = "è¡¨è¾¾å¼æ— æ•ˆ";
+                    r = "±í´ïÊ½ÎÞÐ§";
                     error.printStackTrace();
                 }
                 number.append('\n');
@@ -455,7 +455,7 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
                 JtextArea.setText("0");
                 break;
             case "\b":
-            case "â†":
+            case "¡û":
                 wasAnswer = false;
                 if (number.length() == 0) {
                     return;
@@ -506,19 +506,19 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
 
 
     /**
-     * åˆ¤æ–­æ˜¯å¦ä¸ºæ•°å­—çš„ä¸€éƒ¨åˆ†
+     * ÅÐ¶ÏÊÇ·ñÎªÊý×ÖµÄÒ»²¿·Ö
      *
-     * @param c åˆ¤æ–­çš„å­—ç¬¦
-     * @return true å¦‚æžœæ˜¯æ•°å­—çš„ä¸€éƒ¨åˆ†
+     * @param c ÅÐ¶ÏµÄ×Ö·û
+     * @return true Èç¹ûÊÇÊý×ÖµÄÒ»²¿·Ö
      */
     private boolean isDigit(char c) {
         return (c == '.' || c >= '0' && c <= '9');
     }
 
     /**
-     * åˆ¤æ–­å‰ä¸€å­—ç¬¦æ˜¯å¦ä¸ºç©ºæ ¼
+     * ÅÐ¶ÏÇ°Ò»×Ö·ûÊÇ·ñÎª¿Õ¸ñ
      *
-     * @return true å¦‚æžœå‰ä¸€å­—ç¬¦æ˜¯ç©ºæ ¼
+     * @return true Èç¹ûÇ°Ò»×Ö·ûÊÇ¿Õ¸ñ
      */
     private boolean prevIsSpace() {
         return (number.charAt(number.length() - 1) == ' ');

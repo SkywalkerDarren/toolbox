@@ -3,16 +3,16 @@ package com.ToolBox.coding;
 import java.io.UnsupportedEncodingException;
 
 /**
- * base64åŠ å¯†è§£å¯†æ ¸å¿ƒ
+ * base64¼ÓÃÜ½âÃÜºËĞÄ
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public class Base64 {
     /**
-     * ç”¨Base64ç¼–ç å­—ç¬¦ä¸²
+     * ÓÃBase64±àÂë×Ö·û´®
      *
-     * @param string è¦ç¼–ç çš„å­—ç¬¦ä¸²
-     * @return ç¼–ç åçš„å­—ç¬¦ä¸²
+     * @param string Òª±àÂëµÄ×Ö·û´®
+     * @return ±àÂëºóµÄ×Ö·û´®
      */
     public static String stringToBase64(String string) {
         byte[] src = new byte[0];
@@ -25,10 +25,10 @@ public class Base64 {
     }
 
     /**
-     * ç”¨Base64è§£ç å­—ç¬¦ä¸²
+     * ÓÃBase64½âÂë×Ö·û´®
      *
-     * @param string æœªè§£ç çš„å­—ç¬¦ä¸²
-     * @return è§£ç åçš„å­—ç¬¦ä¸²
+     * @param string Î´½âÂëµÄ×Ö·û´®
+     * @return ½âÂëºóµÄ×Ö·û´®
      */
     public static String base64ToString(String string) {
         try {
@@ -37,7 +37,7 @@ public class Base64 {
             return new String(tar, "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            return "æ— æ³•è½¬æ¢";
+            return "ÎŞ·¨×ª»»";
         }
     }
 }

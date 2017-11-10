@@ -4,22 +4,22 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * å¯åŠ¨æ¬¢è¿ç•Œé¢
+ * Æô¶¯»¶Ó­½çÃæ
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public class Splash extends JWindow implements Runnable {
 
     private static final long serialVersionUID = -6853365720969173394L;
     private JProgressBar progress;
-    private String waiting = "æ¨å¼˜æ­£åœ¨ç¼–å†™åå°ã€‚ã€‚ã€‚ ";
+    private String waiting = "ÑîºëÕıÔÚ±àĞ´ºóÌ¨¡£¡£¡£ ";
 
     public Splash() {
         Container container = getContentPane();
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         progress = new JProgressBar(1, 100);
         progress.setStringPainted(true);
-        progress.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 13));
+        progress.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 13));
         progress.setBackground(Color.white);
         container.add(new JLabel(new ImageIcon(new Resource().splashURL)));
         container.add(progress, BorderLayout.SOUTH);
@@ -46,13 +46,13 @@ public class Splash extends JWindow implements Runnable {
                 progress.setValue(i);
                 switch (i) {
                     case 40:
-                        waiting = "å¾ç¥¥äº®æ­£åœ¨ç¼–å†™å‰ç«¯ã€‚ã€‚ã€‚ ";
+                        waiting = "ĞìÏéÁÁÕıÔÚ±àĞ´Ç°¶Ë¡£¡£¡£ ";
                         break;
                     case 70:
-                        waiting = "æœ±å¯æ¬£æ­£åœ¨ç”»æœ€åçš„èƒŒæ™¯ç´ æã€‚ã€‚ã€‚ ";
+                        waiting = "Öì¿ÉĞÀÕıÔÚ»­×îºóµÄ±³¾°ËØ²Ä¡£¡£¡£ ";
                         break;
                     case 99:
-                        waiting = "æœ€åå¡ä½äº†ã€‚ã€‚ã€‚ ";
+                        waiting = "×îºó¿¨×¡ÁË¡£¡£¡£ ";
                         progress.setString(waiting + i + "%");
                         Thread.sleep(800);
                         break;
@@ -60,7 +60,7 @@ public class Splash extends JWindow implements Runnable {
                         break;
                 }
             }
-            waiting = "æ˜¯ä¸å¯èƒ½çš„ ";
+            waiting = "ÊÇ²»¿ÉÄÜµÄ ";
             progress.setString(waiting + "100%");
             Thread.sleep(300);
         } catch (InterruptedException e) {

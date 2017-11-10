@@ -6,20 +6,20 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * base64è§£ç çš„ä¸»é¢æ¿ï¼Œå¯ä»¥å¯¹ç¼–ç è¿›è¡Œbase64ç¼–ç ä¸Žè§£ç 
+ * base64½âÂëµÄÖ÷Ãæ°å£¬¿ÉÒÔ¶Ô±àÂë½øÐÐbase64±àÂëÓë½âÂë
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ÐìÏéÁÁ£¬Öì¿ÉÐÀ
  */
 class Base64UI extends JPanel {
 
     private static final long serialVersionUID = -4621043278294486022L;
-    private final static String leftTips = "è¾“å…¥è¦è½¬æ¢çš„å­—ç¬¦ä¸²";
-    private final static String rightTips = "è¾“å…¥è¦è§£ç çš„å­—ç¬¦ä¸²";
+    private final static String leftTips = "ÊäÈëÒª×ª»»µÄ×Ö·û´®";
+    private final static String rightTips = "ÊäÈëÒª½âÂëµÄ×Ö·û´®";
     private final TextBox textAreaLeft = new TextBox(leftTips);
     private final TextBox textAreaRight = new TextBox(rightTips);
 
     /**
-     * æž„é€ ç¼–ç å™¨æ¡†æž¶
+     * ¹¹Ôì±àÂëÆ÷¿ò¼Ü
      */
     Base64UI() {
         setOpaque(false);
@@ -38,7 +38,7 @@ class Base64UI extends JPanel {
         jspTextRight.setViewportView(textAreaRight);
         add(jspTextRight);
 
-        JButton buttonRecode = new JButton(" BASE64ç¼–ç  > ");
+        JButton buttonRecode = new JButton(" BASE64±àÂë > ");
         buttonRecode.setVisible(true);
         buttonRecode.setBackground(normal);
         buttonRecode.setBounds(328, 150, 140, 30);
@@ -51,7 +51,7 @@ class Base64UI extends JPanel {
         });
         add(buttonRecode);
 
-        JButton buttonDecode = new JButton(" < BASE64è§£ç  ");
+        JButton buttonDecode = new JButton(" < BASE64½âÂë ");
         buttonDecode.setVisible(true);
         buttonDecode.setBackground(normal);
         buttonDecode.setBounds(328, 225, 140, 30);

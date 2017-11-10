@@ -3,43 +3,43 @@ package com.ToolBox.history;
 import java.util.ArrayList;
 
 /**
- * å†å²è®°å½•
- * å­˜å–æ ¸å¿ƒ
+ * ÀúÊ·¼ÇÂ¼
+ * ´æÈ¡ºËĞÄ
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public class HistoryRecord {
     private static ArrayList<String> result = new ArrayList<>();
 
     /**
-     * è·å¾—å†å²è®°å½•ç»“æœ
+     * »ñµÃÀúÊ·¼ÇÂ¼½á¹û
      *
-     * @return å†å²è®°å½•ç»“æœçš„åˆ—è¡¨
+     * @return ÀúÊ·¼ÇÂ¼½á¹ûµÄÁĞ±í
      */
     public static ArrayList<String> getRecord() {
         return result;
     }
 
     /**
-     * ä¸ºå†å²è®°å½•å¢åŠ ä¸€ä¸ªç»“æœ
+     * ÎªÀúÊ·¼ÇÂ¼Ôö¼ÓÒ»¸ö½á¹û
      *
-     * @param s æ–°ç»“æœ
+     * @param s ĞÂ½á¹û
      */
     public static void addResult(String s) {
         result.add(s);
     }
 
     /**
-     * è¿”å›å†å²è®°å½•æ‰€åŒ…å«çš„å†å²è®°å½•ä¸ªæ•°
+     * ·µ»ØÀúÊ·¼ÇÂ¼Ëù°üº¬µÄÀúÊ·¼ÇÂ¼¸öÊı
      *
-     * @return æ€»å†å²è®°å½•ä¸ªæ•°
+     * @return ×ÜÀúÊ·¼ÇÂ¼¸öÊı
      */
     public static int getSize() {
         return result.size();
     }
 
     /**
-     * æ¸…ç©ºå†å²è®°å½•
+     * Çå¿ÕÀúÊ·¼ÇÂ¼
      */
     public static void clear() {
         result.clear();

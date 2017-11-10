@@ -6,20 +6,20 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * ç¼–ç è§£ç Unicodeï¼Œæ”¯æŒä¸­æ–‡Unicodeäº’ç›¸è½¬æ¢
+ * ±àÂë½âÂëUnicode£¬Ö§³ÖÖÐÎÄUnicode»¥Ïà×ª»»
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ÐìÏéÁÁ£¬Öì¿ÉÐÀ
  */
 class UnicodeUI extends JPanel {
 
     private static final long serialVersionUID = 7188547339103719919L;
-    private static final String leftTip = "ä¸­æ–‡ç»“æžœ";
-    private static final String rightTip = "Unicodeç»“æžœ";
+    private static final String leftTip = "ÖÐÎÄ½á¹û";
+    private static final String rightTip = "Unicode½á¹û";
     private final TextBox textAreaLeft = new TextBox(leftTip);
     private final TextBox textAreaRight = new TextBox(rightTip);
 
     /**
-     * æž„é€ Unicodeä¸­æ–‡äº’è½¬æ¡†æž¶
+     * ¹¹ÔìUnicodeÖÐÎÄ»¥×ª¿ò¼Ü
      */
     UnicodeUI() {
         setOpaque(false);
@@ -39,7 +39,7 @@ class UnicodeUI extends JPanel {
         jspTextRight.setViewportView(textAreaRight);
         add(jspTextRight);
 
-        JButton buttonUnicodeToCHN = new JButton(" ä¸­æ–‡ è½¬ Unicode > ");
+        JButton buttonUnicodeToCHN = new JButton(" ÖÐÎÄ ×ª Unicode > ");
         buttonUnicodeToCHN.setVisible(true);
         buttonUnicodeToCHN.setBackground(normal);
         buttonUnicodeToCHN.setBounds(328, 150, 140, 30);
@@ -52,7 +52,7 @@ class UnicodeUI extends JPanel {
         });
         add(buttonUnicodeToCHN);
 
-        JButton buttonCHNToUnicode = new JButton(" < Unicode è½¬ ä¸­æ–‡ ");
+        JButton buttonCHNToUnicode = new JButton(" < Unicode ×ª ÖÐÎÄ ");
         buttonCHNToUnicode.setVisible(true);
         buttonCHNToUnicode.setBackground(normal);
         buttonCHNToUnicode.setBounds(328, 225, 140, 30);

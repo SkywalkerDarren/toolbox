@@ -11,11 +11,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * æ±‡ç‡è½¬æ¢ï¼Œé»˜è®¤ä½¿ç”¨å†…ç½®æ±‡ç‡ï¼Œå¯ä»¥ä»ç½‘ä¸Šè·å–æœ€æ–°æ±‡ç‡
- * æ”¯æŒè¿‘ç™¾ç§è´§å¸çš„æ¢ç®—
- * æ”¯æŒç»“æœä¿å­˜ä¸ç»“æœè¯»å–
+ * »ãÂÊ×ª»»£¬Ä¬ÈÏÊ¹ÓÃÄÚÖÃ»ãÂÊ£¬¿ÉÒÔ´ÓÍøÉÏ»ñÈ¡×îĞÂ»ãÂÊ
+ * Ö§³Ö½ü°ÙÖÖ»õ±ÒµÄ»»Ëã
+ * Ö§³Ö½á¹û±£´æÓë½á¹û¶ÁÈ¡
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
  */
 class ExchangeRateUI extends JPanel {
 
@@ -25,17 +25,17 @@ class ExchangeRateUI extends JPanel {
     private ExchangerRateRecord exchange = new ExchangerRateRecord();
 
     /**
-     * æ„é€ æ±‡ç‡å…‘æ¢å¸ƒå±€
+     * ¹¹Ôì»ãÂÊ¶Ò»»²¼¾Ö
      */
     public ExchangeRateUI() {
 
         setOpaque(false);
 
         JComboBox<String> comboBoxSource = new JComboBox<>();
-        comboBoxSource.setToolTipText("å¸å€¼");
+        comboBoxSource.setToolTipText("±ÒÖµ");
         Color color = new Color(240, 255, 255);
         comboBoxSource.setBackground(color);
-        Font font = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 15);
+        Font font = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15);
         comboBoxSource.setFont(font);
         comboBoxSource.setLocation(86, 106);
         Currency[] cur = exchange.getRates();
@@ -62,24 +62,24 @@ class ExchangeRateUI extends JPanel {
 
         Date today = new Date();
         today.getTime();
-        DateFormat format = new SimpleDateFormat("yyyyå¹´MMæœˆddæ—¥ æ›´æ–°æˆåŠŸ");
+        DateFormat format = new SimpleDateFormat("yyyyÄêMMÔÂddÈÕ ¸üĞÂ³É¹¦");
         format.format(today);
 
         textFieldSource.setBackground(color);
-        textFieldSource.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 16));
+        textFieldSource.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
         textFieldSource.setBounds(315, 106, 175, 35);
         add(textFieldSource);
         textFieldSource.setColumns(10);
 
         textFieldTarget = new JTextField();
         textFieldTarget.setBackground(color);
-        textFieldTarget.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 16));
+        textFieldTarget.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
         textFieldTarget.setEditable(false);
         textFieldTarget.setBounds(315, 333, 175, 35);
         add(textFieldTarget);
         textFieldTarget.setColumns(10);
 
-        JLabel lbSelectCurrency = new JLabel("é€‰æ‹©è´§å¸");
+        JLabel lbSelectCurrency = new JLabel("Ñ¡Ôñ»õ±Ò");
         lbSelectCurrency.setBounds(86, 58, 175, 35);
         add(lbSelectCurrency);
 
@@ -87,7 +87,7 @@ class ExchangeRateUI extends JPanel {
         lbDate.setBounds(86, 253, 175, 35);
         add(lbDate);
 
-        JLabel lbMuch = new JLabel("è¾“å…¥é‡‘é¢");
+        JLabel lbMuch = new JLabel("ÊäÈë½ğ¶î");
         lbMuch.setBounds(315, 58, 175, 35);
         add(lbMuch);
 
@@ -95,22 +95,22 @@ class ExchangeRateUI extends JPanel {
         lbRate.setBounds(315, 283, 175, 35);
         add(lbRate);
 
-        JButton btnUpdate = new JButton("æ›´æ–°æ±‡ç‡");
+        JButton btnUpdate = new JButton("¸üĞÂ»ãÂÊ");
         btnUpdate.setBackground(new Color(224, 255, 255));
-        btnUpdate.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
+        btnUpdate.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
         btnUpdate.setBounds(86, 217, 174, 35);
         add(btnUpdate);
         btnUpdate.addActionListener(e -> {
             if (exchange.update()) {
                 lbDate.setText(format.format(today));
             } else {
-                lbDate.setText("æ›´æ–°å¤±è´¥");
+                lbDate.setText("¸üĞÂÊ§°Ü");
             }
         });
 
-        JButton btnExchange = new JButton("å…‘æ¢");
+        JButton btnExchange = new JButton("¶Ò»»");
         btnExchange.setBackground(new Color(224, 255, 255));
-        btnExchange.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
+        btnExchange.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
         btnExchange.setBounds(315, 217, 174, 35);
         btnExchange.addActionListener(e -> {
             Currency source = exchange.getRecord((String) comboBoxSource.getSelectedItem());
@@ -119,15 +119,15 @@ class ExchangeRateUI extends JPanel {
             BigDecimal money = exchange.calcRate(source, much, target);
             textFieldTarget.setText(money.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString());
             HistoryUI.updateRecord(money.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString());
-            lbRate.setText("å½“å‰æ±‡ç‡ä¸º: " + target.getRateToUSD() / source.getRateToUSD());
+            lbRate.setText("µ±Ç°»ãÂÊÎª: " + target.getRateToUSD() / source.getRateToUSD());
         });
         add(btnExchange);
     }
 
     /**
-     * è®¾å®šä»å†å²è®°å½•æ‰€è·å–çš„ç»“æœï¼Œæ˜¾ç¤ºåˆ°UIä¸Šå¹¶åŠ è½½åˆ°è¡¨è¾¾å¼ä¸­
+     * Éè¶¨´ÓÀúÊ·¼ÇÂ¼Ëù»ñÈ¡µÄ½á¹û£¬ÏÔÊ¾µ½UIÉÏ²¢¼ÓÔØµ½±í´ïÊ½ÖĞ
      *
-     * @param s è·å–çš„ç»“æœ
+     * @param s »ñÈ¡µÄ½á¹û
      */
     static void setTempResult(String s) {
         textFieldSource.setText(s);

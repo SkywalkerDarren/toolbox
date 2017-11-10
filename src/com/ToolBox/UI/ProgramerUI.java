@@ -9,10 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * ç¨‹åºå‘˜è®¡ç®—å™¨ï¼Œæ”¯æŒäºŒè¿›åˆ¶é”®ç›˜ï¼Œå¯¹æ•°å€¼è¿›è¡Œè¿›åˆ¶è½¬æ¢ï¼Œä½è¿ç®—ç­‰
- * å…¨é”®ç›˜å¯ä»¥å¯¹æ•°å€¼è¿›è¡Œå¿«é€Ÿç¼–è¾‘ï¼Œä½†æ•°å€¼ä¸€æ—¦ç¼–è¾‘ï¼Œå°†é‡ç½®ç»“æœ
+ * ³ÌĞòÔ±¼ÆËãÆ÷£¬Ö§³Ö¶ş½øÖÆ¼üÅÌ£¬¶ÔÊıÖµ½øĞĞ½øÖÆ×ª»»£¬Î»ÔËËãµÈ
+ * È«¼üÅÌ¿ÉÒÔ¶ÔÊıÖµ½øĞĞ¿ìËÙ±à¼­£¬µ«ÊıÖµÒ»µ©±à¼­£¬½«ÖØÖÃ½á¹û
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
  */
 class ProgramerUI extends JPanel implements ActionListener {
 
@@ -26,7 +26,7 @@ class ProgramerUI extends JPanel implements ActionListener {
     private static StringBuilder expression = new StringBuilder();
     private static StringBuilder expUI = new StringBuilder();
     private final Color color = new Color(240, 255, 255);
-    private final Font font = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13);
+    private final Font font = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13);
     private Long result = 0L;
     private JButton[] btnBit = new JButton[64];
     private JButton btnRol = new JButton("RoL");
@@ -70,33 +70,33 @@ class ProgramerUI extends JPanel implements ActionListener {
     private JRadioButton btnHexadecimal = new JRadioButton("HEX");
 
     /**
-     * åˆå§‹åŒ–UIçª—å£ï¼Œæ‘†æ”¾æ§ä»¶ä½ç½®åŠè®¾å®šåŸºæœ¬é…ç½®
+     * ³õÊ¼»¯UI´°¿Ú£¬°Ú·Å¿Ø¼şÎ»ÖÃ¼°Éè¶¨»ù±¾ÅäÖÃ
      */
     public ProgramerUI() {
 
         setOpaque(false);
 
-        //æœ€ä¸Šæ–¹æ˜¾ç¤ºåŒºåŸŸ
+        //×îÉÏ·½ÏÔÊ¾ÇøÓò
         textAreaTop.setEditable(false);
         textAreaTop.setBackground(new Color(250, 255, 255));
-        textAreaTop.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
+        textAreaTop.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
         textAreaTop.setBounds(13, 12, 570, 60);
         add(textAreaTop);
         textAreaTop.setColumns(1000);
 
-        //äºŒè¿›åˆ¶
+        //¶ş½øÖÆ
         btnBinary.setBounds(13, 89, 51, 23);
         add(btnBinary);
 
-        //å…«è¿›åˆ¶
+        //°Ë½øÖÆ
         btnOctonary.setBounds(13, 140, 51, 23);
         add(btnOctonary);
 
-        //åè¿›åˆ¶
+        //Ê®½øÖÆ
         btnDecimal.setBounds(13, 191, 51, 23);
         add(btnDecimal);
 
-        //åå…­è¿›åˆ¶
+        //Ê®Áù½øÖÆ
         btnHexadecimal.setBounds(13, 244, 51, 23);
         add(btnHexadecimal);
 
@@ -107,68 +107,68 @@ class ProgramerUI extends JPanel implements ActionListener {
         buttonGroup.add(btnBinary);
 
 
-        //äºŒè¿›åˆ¶æ–‡æœ¬æ¡†
+        //¶ş½øÖÆÎÄ±¾¿ò
         textFieldBinary.setEditable(false);
         textFieldBinary.setBackground(new Color(250, 255, 255));
-        textFieldBinary.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
+        textFieldBinary.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
         textFieldBinary.setBounds(83, 85, 500, 30);
         add(textFieldBinary);
         textFieldBinary.setColumns(100);
 
-        //å…«è¿›åˆ¶æ–‡æœ¬æ¡†
+        //°Ë½øÖÆÎÄ±¾¿ò
         textFieldOctonary.setEditable(false);
         textFieldOctonary.setBackground(new Color(250, 255, 255));
-        textFieldOctonary.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
+        textFieldOctonary.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
         textFieldOctonary.setColumns(100);
         textFieldOctonary.setBounds(83, 136, 500, 30);
         add(textFieldOctonary);
 
-        //åè¿›åˆ¶æ–‡æœ¬æ¡†
+        //Ê®½øÖÆÎÄ±¾¿ò
         textFieldDecimal.setEditable(false);
         textFieldDecimal.setBackground(new Color(250, 255, 255));
-        textFieldDecimal.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
+        textFieldDecimal.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
         textFieldDecimal.setColumns(100);
         textFieldDecimal.setBounds(83, 187, 500, 30);
         add(textFieldDecimal);
 
 
-        //åå…­è¿›åˆ¶æ–‡æœ¬æ¡†
+        //Ê®Áù½øÖÆÎÄ±¾¿ò
         textFieldHexadecimal.setEditable(false);
         textFieldHexadecimal.setBackground(new Color(250, 255, 255));
-        textFieldHexadecimal.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
+        textFieldHexadecimal.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
         textFieldHexadecimal.setColumns(100);
         textFieldHexadecimal.setBounds(83, 240, 500, 30);
         add(textFieldHexadecimal);
 
-        //æœ€ä¸‹æ–¹æ ‡ç­¾é¡µ
+        //×îÏÂ·½±êÇ©Ò³
         JTabbedPane tabbedPaneDisplay = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPaneDisplay.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
+        tabbedPaneDisplay.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
         tabbedPaneDisplay.setBounds(13, 275, 567, 214);
         add(tabbedPaneDisplay);
 
-        /*å…¨é”®ç›˜æ ‡ç­¾****************************************************************************************************/
+        /*È«¼üÅÌ±êÇ©****************************************************************************************************/
         JPanel fullKeyPanel = new JPanel();
         fullKeyPanel.setOpaque(false);
         fullKeyPanel.setBorder(BorderFactory.createEtchedBorder());
         fullKeyPanel.setBackground(new Color(245, 255, 255));
-        tabbedPaneDisplay.addTab("å…¨é”®ç›˜", null, fullKeyPanel, null);
+        tabbedPaneDisplay.addTab("È«¼üÅÌ", null, fullKeyPanel, null);
         fullKeyPanel.setLayout(null);
         fullKeyboard(fullKeyPanel);
 
-        /*æ¯”ç‰¹é”®ç›˜æ ‡ç­¾*************************************************************************************************/
+        /*±ÈÌØ¼üÅÌ±êÇ©*************************************************************************************************/
         JPanel bitKeyPanel = new JPanel();
         bitKeyPanel.setOpaque(false);
         bitKeyPanel.setBorder(BorderFactory.createEtchedBorder());
         bitKeyPanel.setBackground(new Color(245, 255, 255));
-        tabbedPaneDisplay.addTab("æ¯”ç‰¹é”®ç›˜", null, bitKeyPanel, null);
+        tabbedPaneDisplay.addTab("±ÈÌØ¼üÅÌ", null, bitKeyPanel, null);
         bitKeyPanel.setLayout(null);
         bitKeyboard(bitKeyPanel);
     }
 
     /**
-     * è®¾å®šä»å†å²è®°å½•æ‰€è·å–çš„ç»“æœï¼Œæ˜¾ç¤ºåˆ°UIä¸Šå¹¶åŠ è½½åˆ°è¡¨è¾¾å¼ä¸­
+     * Éè¶¨´ÓÀúÊ·¼ÇÂ¼Ëù»ñÈ¡µÄ½á¹û£¬ÏÔÊ¾µ½UIÉÏ²¢¼ÓÔØµ½±í´ïÊ½ÖĞ
      *
-     * @param tempResult è·å–çš„ç»“æœ
+     * @param tempResult »ñÈ¡µÄ½á¹û
      */
     static void setTempResult(String tempResult) {
         if (tempResult.contains(".")) {
@@ -418,7 +418,7 @@ class ProgramerUI extends JPanel implements ActionListener {
 
     private void bitKeyboard(JPanel panel) {
         JLabel[] lblIndex = new JLabel[16];
-        final Font bitFont = new Font("å¾®è½¯é›…é»‘", Font.BOLD, 10);
+        final Font bitFont = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 10);
         int index = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -468,16 +468,16 @@ class ProgramerUI extends JPanel implements ActionListener {
                 textAreaTop.setText(textFieldHexadecimal.getText());
                 break;
             default:
-                throw new IllegalArgumentException("æ— æ­¤è¿›åˆ¶");
+                throw new IllegalArgumentException("ÎŞ´Ë½øÖÆ");
         }
         expression.append(Long.toString(result, radix));
         expUI.append(Long.toString(result, radix));
     }
 
     /**
-     * åˆ¤æ–­å‰ä¸€å­—ç¬¦æ˜¯å¦ä¸ºæ•°å­—
+     * ÅĞ¶ÏÇ°Ò»×Ö·ûÊÇ·ñÎªÊı×Ö
      *
-     * @return true å¦‚æœå‰ä¸€å­—ç¬¦æ˜¯æ•°å­—
+     * @return true Èç¹ûÇ°Ò»×Ö·ûÊÇÊı×Ö
      */
     private boolean prevIsDigit() {
         char c = expUI.charAt(expUI.length() - 1);
@@ -495,7 +495,7 @@ class ProgramerUI extends JPanel implements ActionListener {
         }
         String btnName = e.getActionCommand();
         switch (btnName) {
-            //**************è¿›åˆ¶é€‰æ‹©*********************
+            //**************½øÖÆÑ¡Ôñ*********************
             case "BIN":
                 btn2.setEnabled(false);
                 btn3.setEnabled(false);
@@ -584,7 +584,7 @@ class ProgramerUI extends JPanel implements ActionListener {
                 expUI.append(textFieldHexadecimal.getText());
                 expression.append(textFieldHexadecimal.getText());
                 break;
-            //***************************æ•°å€¼è¾“å…¥***********
+            //***************************ÊıÖµÊäÈë***********
             case "0":
             case "1":
             case "2":
@@ -605,7 +605,7 @@ class ProgramerUI extends JPanel implements ActionListener {
                 expUI.append(btnName);
                 textAreaTop.setText(expUI.toString());
                 break;
-            //*************************è¿ç®—ç¬¦*************
+            //*************************ÔËËã·û*************
             case "RoL":
                 if (expUI.length() > 0 && prevIsDigit()) {
                     expUI.append(" ");
@@ -691,7 +691,7 @@ class ProgramerUI extends JPanel implements ActionListener {
                 expUI.append(btnName).append(" ");
                 textAreaTop.setText(expUI.toString());
                 break;
-            //*************************æ§åˆ¶ç¬¦***********
+            //*************************¿ØÖÆ·û***********
             case "\n":
             case "=":
                 String r;
@@ -718,7 +718,7 @@ class ProgramerUI extends JPanel implements ActionListener {
                     expUI.append(Long.toString(result, radix));
                     expression.append(Long.toString(result, radix));
                 } catch (Exception e2) {
-                    r = "è¡¨è¾¾å¼æ— æ•ˆ";
+                    r = "±í´ïÊ½ÎŞĞ§";
                     textAreaTop.setText(r);
                     textFieldBinary.setText("");
                     textFieldOctonary.setText("");
@@ -742,7 +742,7 @@ class ProgramerUI extends JPanel implements ActionListener {
                 textAreaTop.setText(expUI.toString());
                 break;
             case "\b":
-            case "â†":
+            case "¡û":
                 if (expUI.length() == 0) {
                     return;
                 }
@@ -767,7 +767,7 @@ class ProgramerUI extends JPanel implements ActionListener {
                 textAreaTop.setText(expUI.toString());
                 break;
             default:
-                throw new IllegalArgumentException("æ— æ­¤æ“ä½œç¬¦");
+                throw new IllegalArgumentException("ÎŞ´Ë²Ù×÷·û");
         }
     }
 }

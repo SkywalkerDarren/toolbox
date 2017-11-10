@@ -6,9 +6,9 @@ import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * è®¡ç®—å™¨æ ¸å¿ƒç®—æ³•
+ * ¼ÆËãÆ÷ºËĞÄËã·¨
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public abstract class Calculator {
     public final static int HEX = 16;
@@ -20,8 +20,8 @@ public abstract class Calculator {
     private int radix = NORMAL;
 
     /**
-     * @param exp è¡¨è¾¾å¼æ„æˆçš„å­—ç¬¦ä¸²
-     * @return è¡¨è¾¾å¼çš„ç»“æœ
+     * @param exp ±í´ïÊ½¹¹³ÉµÄ×Ö·û´®
+     * @return ±í´ïÊ½µÄ½á¹û
      */
     public String getResult(String exp) {
         String[] expression = explain(exp);
@@ -40,14 +40,14 @@ public abstract class Calculator {
     }
 
     /**
-     * è¡¨è¾¾å¼å¤„ç†çš„æ ¸å¿ƒæ–¹æ³•
+     * ±í´ïÊ½´¦ÀíµÄºËĞÄ·½·¨
      *
-     * @param expression: ä¸€ä¸ªç”±å•ä¸ªæ•°å€¼æˆ–ç¬¦å·æ„æˆçš„è¡¨è¾¾å¼æ•°ç»„(e.g., s[] = {"3.56","+","4"})
-     * @return æ•°å€¼ç»“æœ
+     * @param expression: Ò»¸öÓÉµ¥¸öÊıÖµ»ò·ûºÅ¹¹³ÉµÄ±í´ïÊ½Êı×é(e.g., s[] = {"3.56","+","4"})
+     * @return ÊıÖµ½á¹û
      */
     private BigDecimal evaluate(String[] expression) {
         if (expression.length < 1) {
-            throw new IllegalArgumentException("è¡¨è¾¾å¼ä¸ºç©º");
+            throw new IllegalArgumentException("±í´ïÊ½Îª¿Õ");
         }
         Stack<BigDecimal> val = new Stack<>();
         Stack<Character> flag = new Stack<>();
@@ -65,7 +65,7 @@ public abstract class Calculator {
                     flag.pop();
                 } else if (c == '(') {
                     if (!check) {
-                        throw new IllegalArgumentException("å³æ‹¬å·å¤šä½™");
+                        throw new IllegalArgumentException("ÓÒÀ¨ºÅ¶àÓà");
                     }
                     flag.push(c);
                 } else {
@@ -78,7 +78,7 @@ public abstract class Calculator {
 
             } else {
                 if (!check) {
-                    throw new IllegalArgumentException("æ•°å€¼å¤šä½™");
+                    throw new IllegalArgumentException("ÊıÖµ¶àÓà");
                 }
                 check = false;
                 if (radix > 0) {
@@ -97,34 +97,34 @@ public abstract class Calculator {
     }
 
     /**
-     * åˆ¤æ–­æ˜¯å¦æ˜¯æ•°å­—çš„ä¸€éƒ¨åˆ†ï¼ŒåŒ…æ‹¬å°æ•°ç‚¹
+     * ÅĞ¶ÏÊÇ·ñÊÇÊı×ÖµÄÒ»²¿·Ö£¬°üÀ¨Ğ¡Êıµã
      *
-     * @param c åˆ¤æ–­çš„å­—ç¬¦
-     * @return true å¦‚æœæ˜¯æ•°å­—çš„ä¸€éƒ¨åˆ†
+     * @param c ÅĞ¶ÏµÄ×Ö·û
+     * @return true Èç¹ûÊÇÊı×ÖµÄÒ»²¿·Ö
      */
     protected abstract boolean isDigit(char c);
 
     /**
-     * è·å¾—ä¸€ä¸ªæ“ä½œç¬¦çš„ä¼˜å…ˆçº§
+     * »ñµÃÒ»¸ö²Ù×÷·ûµÄÓÅÏÈ¼¶
      *
-     * @param c ä¸€ä¸ªæ“ä½œç¬¦
-     * @return æ“ä½œç¬¦ä¼˜å…ˆçº§
+     * @param c Ò»¸ö²Ù×÷·û
+     * @return ²Ù×÷·ûÓÅÏÈ¼¶
      */
     protected abstract int getLevel(char c);
 
     /**
-     * ç”¨åŒæ ˆè®¡ç®—è¡¨è¾¾å¼ç»“æœ
+     * ÓÃË«Õ»¼ÆËã±í´ïÊ½½á¹û
      *
-     * @param val   å­˜å‚¨æ•°å€¼çš„æ ˆ
-     * @param flag: å­˜å‚¨æ“ä½œç¬¦çš„æ ˆ
+     * @param val   ´æ´¢ÊıÖµµÄÕ»
+     * @param flag: ´æ´¢²Ù×÷·ûµÄÕ»
      */
     protected abstract void calcExp(Stack<BigDecimal> val, Stack<Character> flag);
 
     /**
-     * è§£æè¡¨è¾¾å¼å­—ç¬¦ä¸²åˆ°å­—ç¬¦ä¸²æ•°ç»„
+     * ½âÎö±í´ïÊ½×Ö·û´®µ½×Ö·û´®Êı×é
      *
-     * @param exp è¡¨è¾¾å¼å­—ç¬¦ä¸²
-     * @return å­—ç¬¦ä¸²æ•°ç»„
+     * @param exp ±í´ïÊ½×Ö·û´®
+     * @return ×Ö·û´®Êı×é
      */
     protected abstract String[] explain(String exp);
 }

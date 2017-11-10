@@ -11,11 +11,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * å†å²è®°å½•ä¾§è¾¹æ ï¼Œç”¨äºè®°å½•å„ç§ç»“æœï¼Œå¹¶ä¿å­˜ç»“æœ
- * å¯ä»¥é€šè¿‡ç‚¹å‡»çš„æ–¹å¼ï¼Œè¾“å‡ºä¸´æ—¶ä¿å­˜çš„ç»“æœåˆ°è¾“å…¥æ¡†ä¸­
- * æ”¯æŒå¤åˆ¶ç»“æœï¼Œæ¸…ç©ºç»“æœ
+ * ÀúÊ·¼ÇÂ¼²à±ßÀ¸£¬ÓÃÓÚ¼ÇÂ¼¸÷ÖÖ½á¹û£¬²¢±£´æ½á¹û
+ * ¿ÉÒÔÍ¨¹ıµã»÷µÄ·½Ê½£¬Êä³öÁÙÊ±±£´æµÄ½á¹ûµ½ÊäÈë¿òÖĞ
+ * Ö§³Ö¸´ÖÆ½á¹û£¬Çå¿Õ½á¹û
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
  */
 class HistoryUI extends JPanel {
 
@@ -24,34 +24,34 @@ class HistoryUI extends JPanel {
     private static DefaultListModel<String> dlm = new DefaultListModel<>();
 
     /**
-     * æ„å»ºå†å²è®°å½•UIåŸºæœ¬æ¡†æ¶ï¼ŒåŠç›‘å¬äº‹ä»¶
+     * ¹¹½¨ÀúÊ·¼ÇÂ¼UI»ù±¾¿ò¼Ü£¬¼°¼àÌıÊÂ¼ş
      */
     HistoryUI() {
 
         setOpaque(false);
 
-        // æ ‡é¢˜
-        JLabel title = new JLabel("å†å²è®°å½•");
+        // ±êÌâ
+        JLabel title = new JLabel("ÀúÊ·¼ÇÂ¼");
         title.setBounds(22, 20, 75, 35);
-        title.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 13));
+        title.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 13));
         add(title);
-        // æ·»åŠ å¤åˆ¶æŒ‰é’®
-        JButton btnCopy = new JButton("å¤åˆ¶");
+        // Ìí¼Ó¸´ÖÆ°´Å¥
+        JButton btnCopy = new JButton("¸´ÖÆ");
         btnCopy.setBackground(new Color(224, 255, 255));
         btnCopy.setBounds(22, 470, 75, 35);
         add(btnCopy);
-        // æ·»åŠ æ¸…ç©ºæŒ‰é’®
-        JButton btnClear = new JButton("æ¸…ç©º");
+        // Ìí¼ÓÇå¿Õ°´Å¥
+        JButton btnClear = new JButton("Çå¿Õ");
         btnClear.setBackground(new Color(224, 255, 255));
         btnClear.setBounds(105, 470, 75, 35);
         add(btnClear);
-        // è®¾ç½®åˆ—è¡¨
+        // ÉèÖÃÁĞ±í
         jList.setBackground(new Color(245, 255, 255));
         JScrollPane jsp = new JScrollPane();
         add(jsp, BorderLayout.CENTER);
         jsp.setViewportView(HistoryUI.jList);
         jsp.setBounds(16, 49, 170, 420);
-        // æ·»åŠ åˆ—è¡¨ç›‘å¬äº‹ä»¶
+        // Ìí¼ÓÁĞ±í¼àÌıÊÂ¼ş
         jList.addMouseListener(new MouseListener() {
 
             @Override
@@ -108,9 +108,9 @@ class HistoryUI extends JPanel {
     }
 
     /**
-     * æ–°å¢å¹¶æ›´æ–°å†å²è®°å½•
+     * ĞÂÔö²¢¸üĞÂÀúÊ·¼ÇÂ¼
      *
-     * @param r æ–°å¢çš„åè¿›åˆ¶æ•°å€¼ç»“æœ
+     * @param r ĞÂÔöµÄÊ®½øÖÆÊıÖµ½á¹û
      */
     static void updateRecord(String r) {
         HistoryRecord.addResult(r);

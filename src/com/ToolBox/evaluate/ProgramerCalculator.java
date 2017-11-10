@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * ç¨‹åºå‘˜è®¡ç®—å™¨è¿ç®—æ–¹å¼
+ * ³ÌĞòÔ±¼ÆËãÆ÷ÔËËã·½Ê½
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public class ProgramerCalculator extends Calculator {
     @Override
@@ -111,14 +111,14 @@ public class ProgramerCalculator extends Calculator {
                 val.push(new BigDecimal((i >>> j) | (i << 64 - j)));
                 break;
             default:
-                throw new IllegalArgumentException("æ— æ­¤æ“ä½œç¬¦");
+                throw new IllegalArgumentException("ÎŞ´Ë²Ù×÷·û");
         }
     }
 
     @Override
     protected String[] explain(String s) {
         if (s.isEmpty()) {
-            throw new IllegalArgumentException("è¡¨è¾¾å¼ä¸ºç©º");
+            throw new IllegalArgumentException("±í´ïÊ½Îª¿Õ");
         }
         ArrayList<String> expression = new ArrayList<>();
         StringBuilder digit = new StringBuilder();
@@ -128,17 +128,17 @@ public class ProgramerCalculator extends Calculator {
                 if (!(s.charAt(i) == '-' || s.charAt(i) == '~' ||
                         s.charAt(i) == '+' || s.charAt(i) == '(')
                         && !isDigit(s.charAt(i))) {
-                    throw new IllegalArgumentException("\"" + s.charAt(i) + "\" ä¸åº”åœ¨è¡¨è¾¾å¼çš„å¼€å¤´");
+                    throw new IllegalArgumentException("\"" + s.charAt(i) + "\" ²»Ó¦ÔÚ±í´ïÊ½µÄ¿ªÍ·");
                 } else if (s.charAt(i) == '-' || s.charAt(i) == '+') {
                     try {
                         if (isDigit(s.charAt(i + 1))) {
                             digit.append(s.charAt(i));
                             continue;
                         } else {
-                            throw new IllegalArgumentException("æœ‰å¤šä½™çš„æ­£è´Ÿå·");
+                            throw new IllegalArgumentException("ÓĞ¶àÓàµÄÕı¸ººÅ");
                         }
                     } catch (Exception e) {
-                        throw new IllegalArgumentException("æ­£è´Ÿå·ä¸åº”åœ¨æœ«å°¾");
+                        throw new IllegalArgumentException("Õı¸ººÅ²»Ó¦ÔÚÄ©Î²");
                     }
                 } else if (!isDigit(s.charAt(i))) {
                     expression.add("" + s.charAt(i));

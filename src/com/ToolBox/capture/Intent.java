@@ -3,9 +3,9 @@ package com.ToolBox.capture;
 import java.util.HashMap;
 
 /**
- * ä¿¡æ¯ä¼ é€’å·¥å…·
+ * ĞÅÏ¢´«µİ¹¤¾ß
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public class Intent {
     private static HashMap<String, Object> intent = new HashMap<>();

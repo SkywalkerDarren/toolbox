@@ -8,27 +8,27 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 /**
- * MD5æ ¡éªŒï¼Œæ”¯æŒæ–‡ä»¶æ ¡éªŒï¼Œä¿¡æ¯æ ¡éªŒ
- * ä»¥å¤§å†™32ä½çš„å½¢å¼è¿”å›ç»“æœ
+ * MD5Ğ£Ñé£¬Ö§³ÖÎÄ¼şĞ£Ñé£¬ĞÅÏ¢Ğ£Ñé
+ * ÒÔ´óĞ´32Î»µÄĞÎÊ½·µ»Ø½á¹û
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
  */
 class MD5UI extends JPanel {
 
     private static final long serialVersionUID = -4036614769898898847L;
-    private final static String upTip = "è¯·æŠŠéœ€è¦åŠ å¯†/æ ¡éªŒçš„å†…å®¹ç²˜è´´åœ¨è¿™é‡Œ";
-    private final static String middleTip = "è¯·é€‰æ‹©è·¯å¾„æµè§ˆæ–‡ä»¶";
-    private final static String downTip = "åŠ å¯†/æ ¡éªŒåçš„ç»“æœ";
+    private final static String upTip = "Çë°ÑĞèÒª¼ÓÃÜ/Ğ£ÑéµÄÄÚÈİÕ³ÌùÔÚÕâÀï";
+    private final static String middleTip = "ÇëÑ¡ÔñÂ·¾¶ä¯ÀÀÎÄ¼ş";
+    private final static String downTip = "¼ÓÃÜ/Ğ£ÑéºóµÄ½á¹û";
     private final JTextArea textAreaUp = new TextBox(upTip);
     private final TextBox textFieldMiddle = new TextBox(middleTip);
     private final TextBox textFieldDown = new TextBox(downTip);
 
     /**
-     * æ„é€ MD5æ¡†æ¶
+     * ¹¹ÔìMD5¿ò¼Ü
      */
     MD5UI() {
 
-        // ä¸Šæ–¹æ–‡æœ¬æ¡†
+        // ÉÏ·½ÎÄ±¾¿ò
         Color normal = new Color(245, 255, 255);
 
         add(textAreaUp);
@@ -39,18 +39,18 @@ class MD5UI extends JPanel {
         scroll.setBounds(70, 75, 450, 110);
         add(scroll);
 
-        // ä¸­é—´æ–‡æœ¬æ¡†
+        // ÖĞ¼äÎÄ±¾¿ò
         textFieldMiddle.setBounds(70, 255, 450, 45);
 
         add(textFieldMiddle);
 
-        // ä¸‹æ–¹æ–‡æœ¬æ¡†
+        // ÏÂ·½ÎÄ±¾¿ò
         textFieldDown.setBounds(70, 375, 450, 45);
         textFieldDown.setEditable(false);
 
         add(textFieldDown);
 
-        JButton buttonUnicodeToCHN = new JButton(" MD5 åŠ å¯† ");
+        JButton buttonUnicodeToCHN = new JButton(" MD5 ¼ÓÃÜ ");
         buttonUnicodeToCHN.setVisible(true);
         buttonUnicodeToCHN.setBackground(normal);
         buttonUnicodeToCHN.setBounds(558, 112, 140, 35);
@@ -61,14 +61,14 @@ class MD5UI extends JPanel {
                 String tar = MD5.converToMD5(src);
                 textFieldDown.setText(tar);
             } catch (Exception e1) {
-                textFieldDown.setText("è½¬æ¢å¤±è´¥");
+                textFieldDown.setText("×ª»»Ê§°Ü");
                 e1.printStackTrace();
             }
         });
         add(buttonUnicodeToCHN);
 
 
-        JButton buttonRoute = new JButton(" æµè§ˆæ–‡ä»¶ ");
+        JButton buttonRoute = new JButton(" ä¯ÀÀÎÄ¼ş ");
         buttonRoute.setVisible(true);
         buttonRoute.setBackground(normal);
         buttonRoute.setBounds(558, 262, 140, 35);
@@ -88,7 +88,7 @@ class MD5UI extends JPanel {
         });
         add(buttonRoute);
 
-        JButton buttonCHNToUnicode = new JButton(" MD5 æ ¡éªŒ ");
+        JButton buttonCHNToUnicode = new JButton(" MD5 Ğ£Ñé ");
         buttonCHNToUnicode.setVisible(true);
         buttonCHNToUnicode.setBackground(normal);
         buttonCHNToUnicode.setBounds(558, 382, 140, 35);
@@ -103,7 +103,7 @@ class MD5UI extends JPanel {
                 String tar = MD5.checkFileMD5(path);
                 textFieldDown.setText(tar);
             } catch (IOException e1) {
-                textFieldDown.setText("æ²¡æœ‰è¿™ä¸ªæ–‡ä»¶");
+                textFieldDown.setText("Ã»ÓĞÕâ¸öÎÄ¼ş");
                 e1.printStackTrace();
             } catch (GeneralSecurityException e1) {
                 e1.printStackTrace();

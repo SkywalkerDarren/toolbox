@@ -16,23 +16,23 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * äºŒç»´ç ä¸»é¢æ¿ï¼Œæ”¯æŒäºŒç»´ç ç”Ÿæˆä¸Žç¼–è¾‘
- * å¯é€‰æ‹©å›¾ç‰‡å¤§å° å¤§ ä¸­ å°
- * å¯é€‰çº é”™ç­‰çº§ ä½Ž ä¸­ é«˜ æžé«˜
- * æ”¯æŒäºŒç»´ç å›¾ç‰‡ä¿å­˜
+ * ¶þÎ¬ÂëÖ÷Ãæ°å£¬Ö§³Ö¶þÎ¬ÂëÉú³ÉÓë±à¼­
+ * ¿ÉÑ¡ÔñÍ¼Æ¬´óÐ¡ ´ó ÖÐ Ð¡
+ * ¿ÉÑ¡¾À´íµÈ¼¶ µÍ ÖÐ ¸ß ¼«¸ß
+ * Ö§³Ö¶þÎ¬ÂëÍ¼Æ¬±£´æ
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ÐìÏéÁÁ£¬Öì¿ÉÐÀ
  */
 class QRCodeUI extends JPanel {
 
-    private final static String topTip = "æ˜¾ç¤ºå†…å®¹";
-    private final static String levelTip = "çº é”™ç­‰çº§";
-    private final static String sizeTip = "é€‰æ‹©å¤§å°";
-    private final static String createQR = "ç”ŸæˆäºŒç»´ç ";
-    private final static String screenShot = "æˆªå›¾";
-    private final static String saveRoute = "ä¿å­˜åˆ°";
-    private final static String chooseFileString = "é€‰æ‹©æ–‡ä»¶";
-    private final static String identityString = "è¯†åˆ«äºŒç»´ç ";
+    private final static String topTip = "ÏÔÊ¾ÄÚÈÝ";
+    private final static String levelTip = "¾À´íµÈ¼¶";
+    private final static String sizeTip = "Ñ¡Ôñ´óÐ¡";
+    private final static String createQR = "Éú³É¶þÎ¬Âë";
+    private final static String screenShot = "½ØÍ¼";
+    private final static String saveRoute = "±£´æµ½";
+    private final static String chooseFileString = "Ñ¡ÔñÎÄ¼þ";
+    private final static String identityString = "Ê¶±ð¶þÎ¬Âë";
     private final static JFileChooser imageFileChooser = new JFileChooser();
     private final static JFileChooser directoryChooser = new JFileChooser();
     private static final long serialVersionUID = 4091338005524008141L;
@@ -41,7 +41,7 @@ class QRCodeUI extends JPanel {
 
 
     /**
-     * åŠ è½½äºŒç»´ç ç•Œé¢
+     * ¼ÓÔØ¶þÎ¬Âë½çÃæ
      */
     QRCodeUI() {
 
@@ -60,17 +60,17 @@ class QRCodeUI extends JPanel {
         final JLabel lblSize = new JLabel(sizeTip);
         JLabel imageLabel = new JLabel("");
 
-        setBorder(BorderFactory.createTitledBorder("äºŒç»´ç å·¥å…·"));
+        setBorder(BorderFactory.createTitledBorder("¶þÎ¬Âë¹¤¾ß"));
 
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         imageLabel.setVerticalAlignment(SwingConstants.CENTER);
 
 
-        // ä¸Šæ–¹æ–‡æœ¬æ¡†
+        // ÉÏ·½ÎÄ±¾¿ò
         textAreaTop.setColumns(10000);
         textAreaTop.setFocusable(true);
         textAreaTop.setVisible(true);
-        Font fontPlain = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14);
+        Font fontPlain = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14);
         textAreaTop.setFont(fontPlain);
         textAreaTop.setLineWrap(true);
         Color normal = new Color(245, 255, 255);
@@ -141,25 +141,25 @@ class QRCodeUI extends JPanel {
         comboBoxLevel.setBounds(55, 250, 150, 30);
         comboBoxLevel.setBackground(normal);
         comboBoxLevel.setForeground(normal);
-        comboBoxLevel.addItem("ä½Ž");
-        comboBoxLevel.addItem("ä¸­");
-        comboBoxLevel.addItem("é«˜");
-        comboBoxLevel.addItem("æžé«˜");
-        comboBoxLevel.setSelectedItem("ä¸­");
+        comboBoxLevel.addItem("µÍ");
+        comboBoxLevel.addItem("ÖÐ");
+        comboBoxLevel.addItem("¸ß");
+        comboBoxLevel.addItem("¼«¸ß");
+        comboBoxLevel.setSelectedItem("ÖÐ");
         Qrcode.setCorrection(ErrorCorrectionLevel.M);
         comboBoxLevel.addActionListener(l -> {
             if (comboBoxLevel.getSelectedItem() != null) {
                 switch ((String) comboBoxLevel.getSelectedItem()) {
-                    case "ä½Ž":
+                    case "µÍ":
                         Qrcode.setCorrection(ErrorCorrectionLevel.L);
                         break;
-                    case "ä¸­":
+                    case "ÖÐ":
                         Qrcode.setCorrection(ErrorCorrectionLevel.M);
                         break;
-                    case "é«˜":
+                    case "¸ß":
                         Qrcode.setCorrection(ErrorCorrectionLevel.Q);
                         break;
-                    case "æžé«˜":
+                    case "¼«¸ß":
                         Qrcode.setCorrection(ErrorCorrectionLevel.H);
                         break;
                     default:
@@ -173,21 +173,21 @@ class QRCodeUI extends JPanel {
         comboBoxSize.setBounds(235, 250, 150, 30);
         comboBoxSize.setBackground(normal);
         comboBoxSize.setForeground(normal);
-        comboBoxSize.addItem("å°");
-        comboBoxSize.addItem("ä¸­");
-        comboBoxSize.addItem("å¤§");
-        comboBoxSize.setSelectedItem("ä¸­");
+        comboBoxSize.addItem("Ð¡");
+        comboBoxSize.addItem("ÖÐ");
+        comboBoxSize.addItem("´ó");
+        comboBoxSize.setSelectedItem("ÖÐ");
         Qrcode.setSize(Qrcode.MEDIUM);
         comboBoxSize.addActionListener(l -> {
             if (comboBoxSize.getSelectedItem() != null) {
                 switch ((String) comboBoxSize.getSelectedItem()) {
-                    case "å°":
+                    case "Ð¡":
                         Qrcode.setSize(Qrcode.SMALL);
                         break;
-                    case "ä¸­":
+                    case "ÖÐ":
                         Qrcode.setSize(Qrcode.MEDIUM);
                         break;
-                    case "å¤§":
+                    case "´ó":
                         Qrcode.setSize(Qrcode.LARGE);
                         break;
                     default:
@@ -263,7 +263,7 @@ class QRCodeUI extends JPanel {
         btnChooseFile.setBackground(dark);
         btnChooseFile.addActionListener(l -> {
             imageFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            FileFilter imageFilter = new FileNameExtensionFilter("å›¾ç‰‡æ–‡ä»¶", "png", "jpg");
+            FileFilter imageFilter = new FileNameExtensionFilter("Í¼Æ¬ÎÄ¼þ", "png", "jpg");
             imageFileChooser.setFileFilter(imageFilter);
             int state = imageFileChooser.showOpenDialog(null);
             switch (state) {

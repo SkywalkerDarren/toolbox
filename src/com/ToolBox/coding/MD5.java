@@ -8,16 +8,16 @@ import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 
 /**
- * md5åŠ å¯†æ ¸å¿ƒ
+ * md5¼ÓÃÜºËĞÄ
  *
- * @author æ¨å¼˜
+ * @author Ñîºë
  */
 public class MD5 {
     /**
-     * å°†æ–‡æœ¬è½¬æ¢è‡³MD5æ‘˜è¦
+     * ½«ÎÄ±¾×ª»»ÖÁMD5ÕªÒª
      *
-     * @param content è¦è½¬æ¢çš„æ–‡æœ¬
-     * @return 32ä½å¤§å†™çš„MD5æ‘˜è¦
+     * @param content Òª×ª»»µÄÎÄ±¾
+     * @return 32Î»´óĞ´µÄMD5ÕªÒª
      */
     public static String converToMD5(String content) throws Exception {
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -30,10 +30,10 @@ public class MD5 {
     }
 
     /**
-     * æ£€æŸ¥æ–‡ä»¶MD5æ‘˜è¦
+     * ¼ì²éÎÄ¼şMD5ÕªÒª
      *
-     * @param filePath è¦æ‘˜è¦çš„æ–‡ä»¶
-     * @return 32ä½å¤§å†™çš„MD5æ‘˜è¦
+     * @param filePath ÒªÕªÒªµÄÎÄ¼ş
+     * @return 32Î»´óĞ´µÄMD5ÕªÒª
      */
     public static String checkFileMD5(String filePath) throws IOException, GeneralSecurityException {
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -45,10 +45,10 @@ public class MD5 {
     }
 
     /**
-     * 128ä½äºŒè¿›åˆ¶è½¬æ¢ä¸º32ä½å¤§å†™å­—ç¬¦ä¸²
+     * 128Î»¶ş½øÖÆ×ª»»Îª32Î»´óĞ´×Ö·û´®
      *
-     * @param buff äºŒè¿›åˆ¶æµ
-     * @return 32ä½å¤§å†™å­—ç¬¦ä¸²
+     * @param buff ¶ş½øÖÆÁ÷
+     * @return 32Î»´óĞ´×Ö·û´®
      */
     private static String toHex(byte[] buff) {
         StringBuilder sb = new StringBuilder("");

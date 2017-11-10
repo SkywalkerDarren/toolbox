@@ -4,15 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * ä¸€ä¸ªå…¨èƒ½çš„ç§‘å­¦è®¡ç®—å™¨ï¼Œå¸¦æœ‰å†å²è®°å½•åŠŸèƒ½ï¼Œæ”¯æŒç»“æœçš„ä¿å­˜ï¼Œè°ƒç”¨åŠå¤åˆ¶ï¼Œå¯è¿›è¡Œå¤æ‚çš„å¸¦ä¼˜å…ˆçº§çš„é«˜ç²¾åº¦è®¡ç®—ï¼Œ
- * ç¨‹åºå‘˜é”®ç›˜æä¾›äºŒè¿›åˆ¶ï¼Œå…«è¿›åˆ¶ï¼Œåè¿›åˆ¶ï¼Œåå…­è¿›åˆ¶çš„æ¢ç®—ï¼Œä»¥åŠå„ç§ä½è¿ç®—ï¼Œ
- * è¿˜å¯ä»¥é€šè¿‡æ¯”ç‰¹é”®ç›˜ç›´æ¥æ“çºµäºŒè¿›åˆ¶æ•°å€¼ï¼Œæ”¯æŒå¸¦ä¼˜å…ˆçº§çš„è®¡ç®—ï¼Œæ”¯æŒåè¿›åˆ¶è®¡ç®—ç»“æœä¿å­˜ï¼Œè°ƒç”¨åŠå¤åˆ¶ã€‚
- * æ±‡ç‡è®¡ç®—å™¨å¯ä»è”ç½‘è·å–æœ€æ–°æ±‡ç‡ï¼Œé»˜è®¤ä½¿ç”¨å†…ç½®çš„æ±‡ç‡ï¼Œæ¢ç®—ç»“æœå¹¶æ˜¾ç¤ºå½“å‰è´§å¸å…‘æ¢æ±‡ç‡ï¼Œå¹¶æ”¯æŒç»“æœçš„ä¿å­˜ï¼Œè°ƒç”¨åŠå¤åˆ¶ã€‚
- * æ¢ç®—è®¡ç®—å™¨å¯æ ¹æ®ç±»å‹å¯¹ä¸€ä¸ªå•ä½æ¢ç®—åˆ°å¦ä¸€ä¸ªå•ä½ï¼Œæ”¯æŒç»“æœä¿å­˜ï¼Œè°ƒç”¨åŠå¤åˆ¶ã€‚
- * æ—¥æœŸè®¡ç®—å™¨æœ‰ä¸¤éƒ¨åˆ†ç»„æˆï¼Œä¸€ä¸ªæ˜¯æ—¥æœŸé—´è·è®¡ç®—ï¼Œå³ä¸€ä¸ªæ—¥æœŸåˆ°å¦ä¸€ä¸ªæ—¥æœŸçš„å¤©æ•°ï¼Œä»¥åŠå‘¨æœŸï¼Œå¦ä¸€éƒ¨åˆ†æ˜¯å¯¹æ—¥æœŸçš„å¢å‡ï¼Œ
- * é€‰æ‹©ä¸€ä¸ªæ—¥æœŸï¼Œå†é€‰æ‹©å¢å‡çš„å‘¨æœŸæ•°ï¼Œè¿”å›å¢å‡åçš„æ—¥æœŸã€‚
+ * Ò»¸öÈ«ÄÜµÄ¿ÆÑ§¼ÆËãÆ÷£¬´øÓĞÀúÊ·¼ÇÂ¼¹¦ÄÜ£¬Ö§³Ö½á¹ûµÄ±£´æ£¬µ÷ÓÃ¼°¸´ÖÆ£¬¿É½øĞĞ¸´ÔÓµÄ´øÓÅÏÈ¼¶µÄ¸ß¾«¶È¼ÆËã£¬
+ * ³ÌĞòÔ±¼üÅÌÌá¹©¶ş½øÖÆ£¬°Ë½øÖÆ£¬Ê®½øÖÆ£¬Ê®Áù½øÖÆµÄ»»Ëã£¬ÒÔ¼°¸÷ÖÖÎ»ÔËËã£¬
+ * »¹¿ÉÒÔÍ¨¹ı±ÈÌØ¼üÅÌÖ±½Ó²Ù×İ¶ş½øÖÆÊıÖµ£¬Ö§³Ö´øÓÅÏÈ¼¶µÄ¼ÆËã£¬Ö§³ÖÊ®½øÖÆ¼ÆËã½á¹û±£´æ£¬µ÷ÓÃ¼°¸´ÖÆ¡£
+ * »ãÂÊ¼ÆËãÆ÷¿É´ÓÁªÍø»ñÈ¡×îĞÂ»ãÂÊ£¬Ä¬ÈÏÊ¹ÓÃÄÚÖÃµÄ»ãÂÊ£¬»»Ëã½á¹û²¢ÏÔÊ¾µ±Ç°»õ±Ò¶Ò»»»ãÂÊ£¬²¢Ö§³Ö½á¹ûµÄ±£´æ£¬µ÷ÓÃ¼°¸´ÖÆ¡£
+ * »»Ëã¼ÆËãÆ÷¿É¸ù¾İÀàĞÍ¶ÔÒ»¸öµ¥Î»»»Ëãµ½ÁíÒ»¸öµ¥Î»£¬Ö§³Ö½á¹û±£´æ£¬µ÷ÓÃ¼°¸´ÖÆ¡£
+ * ÈÕÆÚ¼ÆËãÆ÷ÓĞÁ½²¿·Ö×é³É£¬Ò»¸öÊÇÈÕÆÚ¼ä¾à¼ÆËã£¬¼´Ò»¸öÈÕÆÚµ½ÁíÒ»¸öÈÕÆÚµÄÌìÊı£¬ÒÔ¼°ÖÜÆÚ£¬ÁíÒ»²¿·ÖÊÇ¶ÔÈÕÆÚµÄÔö¼õ£¬
+ * Ñ¡ÔñÒ»¸öÈÕÆÚ£¬ÔÙÑ¡ÔñÔö¼õµÄÖÜÆÚÊı£¬·µ»ØÔö¼õºóµÄÈÕÆÚ¡£
  *
- * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
+ * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
  */
 class CalculatorUI extends JPanel {
 
@@ -20,48 +20,48 @@ class CalculatorUI extends JPanel {
     private static JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
     /**
-     * åˆå§‹åŒ–æ ‡ç­¾é¡µ
-     * æ·»åŠ ç§‘å­¦è®¡ç®—å™¨æ ‡ç­¾é¡µï¼Œæ±‡ç‡è®¡ç®—å™¨æ ‡ç­¾é¡µï¼Œ
-     * ç¨‹åºå‘˜é”®ç›˜æ ‡ç­¾é¡µï¼Œå•ä½æ¢ç®—å™¨æ ‡ç­¾é¡µï¼Œæ—¥æœŸä¸‡å¹´å†æ ‡ç­¾é¡µ
-     * ä»¥åŠå†å²è®°å½•ä¾§è¾¹æ 
+     * ³õÊ¼»¯±êÇ©Ò³
+     * Ìí¼Ó¿ÆÑ§¼ÆËãÆ÷±êÇ©Ò³£¬»ãÂÊ¼ÆËãÆ÷±êÇ©Ò³£¬
+     * ³ÌĞòÔ±¼üÅÌ±êÇ©Ò³£¬µ¥Î»»»ËãÆ÷±êÇ©Ò³£¬ÈÕÆÚÍòÄêÀú±êÇ©Ò³
+     * ÒÔ¼°ÀúÊ·¼ÇÂ¼²à±ßÀ¸
      */
     CalculatorUI() {
 
         setOpaque(false);
 
-        // æ„é€ æ ‡ç­¾é¡µ
+        // ¹¹Ôì±êÇ©Ò³
         tabbedPane.setBackground(new Color(250, 255, 255));
-        tabbedPane.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 16));
+        tabbedPane.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
         tabbedPane.setBounds(-2, -2, 597, 550);
         tabbedPane.setBorder(BorderFactory.createEtchedBorder());
         add(tabbedPane);
 
-        // ç§‘å­¦è®¡ç®—å™¨æ ‡ç­¾é¡µ
+        // ¿ÆÑ§¼ÆËãÆ÷±êÇ©Ò³
         JPanel panelCalculator = new ScientificUI();
         panelCalculator.setLayout(null);
-        tabbedPane.addTab("ç§‘å­¦è®¡ç®—å™¨", null, panelCalculator, null);
+        tabbedPane.addTab("¿ÆÑ§¼ÆËãÆ÷", null, panelCalculator, null);
 
-        // æ±‡ç‡è®¡ç®—å™¨æ ‡ç­¾é¡µ
+        // »ãÂÊ¼ÆËãÆ÷±êÇ©Ò³
         JPanel panelExchangeRate = new ExchangeRateUI();
         panelExchangeRate.setLayout(null);
-        tabbedPane.addTab("æ±‡ç‡è®¡ç®—å™¨", null, panelExchangeRate, null);
+        tabbedPane.addTab("»ãÂÊ¼ÆËãÆ÷", null, panelExchangeRate, null);
 
-        // ç¨‹åºå‘˜é”®ç›˜æ ‡ç­¾é¡µ
+        // ³ÌĞòÔ±¼üÅÌ±êÇ©Ò³
         JPanel panelKeyBoard = new ProgramerUI();
-        tabbedPane.addTab("ç¨‹åºå‘˜é”®ç›˜", null, panelKeyBoard, null);
+        tabbedPane.addTab("³ÌĞòÔ±¼üÅÌ", null, panelKeyBoard, null);
         panelKeyBoard.setLayout(null);
 
-        // å•ä½æ¢ç®—å™¨æ ‡ç­¾é¡µ
+        // µ¥Î»»»ËãÆ÷±êÇ©Ò³
         JPanel panelConversion = new ConversionUI();
         panelConversion.setLayout(null);
-        tabbedPane.addTab("å•ä½æ¢ç®—å™¨", null, panelConversion, null);
+        tabbedPane.addTab("µ¥Î»»»ËãÆ÷", null, panelConversion, null);
 
-        // æ—¥æœŸä¸‡å¹´å†æ ‡ç­¾é¡µ
+        // ÈÕÆÚÍòÄêÀú±êÇ©Ò³
         JPanel panelCalendar = new CalendarUI();
         panelCalendar.setLayout(null);
-        tabbedPane.addTab("æ—¥æœŸä¸‡å¹´å†", null, panelCalendar, null);
+        tabbedPane.addTab("ÈÕÆÚÍòÄêÀú", null, panelCalendar, null);
 
-        // å†å²è®°å½•
+        // ÀúÊ·¼ÇÂ¼
         JPanel panelHistory = new HistoryUI();
         panelHistory.setBorder(BorderFactory.createTitledBorder(""));
         panelHistory.setBounds(595, -13, 199, 566);
@@ -70,9 +70,9 @@ class CalculatorUI extends JPanel {
     }
 
     /**
-     * è·å¾—å½“å‰æ‰€é€‰æ ‡ç­¾é¡µåå­—
+     * »ñµÃµ±Ç°ËùÑ¡±êÇ©Ò³Ãû×Ö
      *
-     * @return è¿”å›æ‰€é€‰æ ‡ç­¾é¡µåå­—
+     * @return ·µ»ØËùÑ¡±êÇ©Ò³Ãû×Ö
      */
     static String getSelectedComponent() {
         return tabbedPane.getSelectedComponent().getClass().getName();
