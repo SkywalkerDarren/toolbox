@@ -4,9 +4,12 @@ import com.ToolBox.evaluate.Calculator;
 import com.ToolBox.evaluate.ProgramerCalculator;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * 程序员计算器，支持二进制键盘，对数值进行进制转换，位运算等
@@ -14,7 +17,7 @@ import java.awt.event.ActionListener;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class ProgramerUI extends JPanel implements ActionListener {
+class ProgramerUI extends JPanel implements ActionListener, MouseListener {
 
     private static final long serialVersionUID = 8745040693717225813L;
     private static JTextArea textAreaTop = new JTextArea();
@@ -81,8 +84,9 @@ class ProgramerUI extends JPanel implements ActionListener {
         textAreaTop.setBackground(new Color(250, 255, 255));
         textAreaTop.setFont(new Font("微软雅黑", Font.PLAIN, 14));
         textAreaTop.setBounds(13, 12, 570, 60);
-        add(textAreaTop);
         textAreaTop.setColumns(1000);
+        textAreaTop.addMouseListener(this);
+        add(textAreaTop);
 
         //二进制
         btnBinary.setBounds(13, 89, 51, 23);
@@ -112,8 +116,9 @@ class ProgramerUI extends JPanel implements ActionListener {
         textFieldBinary.setBackground(new Color(250, 255, 255));
         textFieldBinary.setFont(new Font("微软雅黑", Font.PLAIN, 14));
         textFieldBinary.setBounds(83, 85, 500, 30);
-        add(textFieldBinary);
         textFieldBinary.setColumns(100);
+        textFieldBinary.addMouseListener(this);
+        add(textFieldBinary);
 
         //八进制文本框
         textFieldOctonary.setEditable(false);
@@ -121,6 +126,7 @@ class ProgramerUI extends JPanel implements ActionListener {
         textFieldOctonary.setFont(new Font("微软雅黑", Font.PLAIN, 14));
         textFieldOctonary.setColumns(100);
         textFieldOctonary.setBounds(83, 136, 500, 30);
+        textFieldOctonary.addMouseListener(this);
         add(textFieldOctonary);
 
         //十进制文本框
@@ -129,6 +135,7 @@ class ProgramerUI extends JPanel implements ActionListener {
         textFieldDecimal.setFont(new Font("微软雅黑", Font.PLAIN, 14));
         textFieldDecimal.setColumns(100);
         textFieldDecimal.setBounds(83, 187, 500, 30);
+        textFieldDecimal.addMouseListener(this);
         add(textFieldDecimal);
 
 
@@ -138,6 +145,7 @@ class ProgramerUI extends JPanel implements ActionListener {
         textFieldHexadecimal.setFont(new Font("微软雅黑", Font.PLAIN, 14));
         textFieldHexadecimal.setColumns(100);
         textFieldHexadecimal.setBounds(83, 240, 500, 30);
+        textFieldHexadecimal.addMouseListener(this);
         add(textFieldHexadecimal);
 
         //最下方标签页
@@ -769,5 +777,33 @@ class ProgramerUI extends JPanel implements ActionListener {
             default:
                 throw new IllegalArgumentException("无此操作符");
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON3) {
+            RightClickMenu menu = new RightClickMenu((JTextComponent) e.getComponent());
+            menu.show(e.getComponent(), e.getX(), e.getY());
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
