@@ -20,7 +20,7 @@ public class ExchangerRateRecord {
     private int size;
 
     /**
-     * 默认汇率
+     * 初始化原始json数据
      */
     public ExchangerRateRecord() {
         JsonElement root = new JsonParser().parse("{\"result\":\"success\"," + "\"timestamp\":1508602227,"
@@ -50,9 +50,11 @@ public class ExchangerRateRecord {
         setRates(root.getAsJsonObject().get("rates").getAsJsonObject());
     }
 
+
     /**
-     * 汇率更新
-     * @return true如果更新成功
+     * 用于更新汇率信息，需要联网
+     *
+     * @return true 如果更新成功
      */
     public boolean update() {
         try {
@@ -64,16 +66,18 @@ public class ExchangerRateRecord {
     }
 
     /**
-     * 判断空汇率
-     * @return true如果为空
+     * 判断汇率信息是否为空
+     *
+     * @return true 如果汇率为空
      */
     private boolean isEmpty() {
         return size == 0;
     }
 
     /**
-     * 深拷贝获取汇率
-     * @return 汇率货币组
+     * 获取汇率信息数组，以Currency数组的形式返回一组汇率，如果信息为空，则自动从网上爬取信息
+     *
+     * @return 返回一组汇率
      */
     public Currency[] getRates() {
         if (isEmpty()) {
@@ -83,8 +87,9 @@ public class ExchangerRateRecord {
     }
 
     /**
-     * 设定汇率
-     * @param jsonRates 汇率数据
+     * 解析json数据到汇率数组
+     *
+     * @param jsonRates json数据
      */
     private void setRates(JsonObject jsonRates) {
         size = jsonRates.size();
@@ -99,9 +104,10 @@ public class ExchangerRateRecord {
     }
 
     /**
-     * 获取记录
-     * @param name 货币名
-     * @return 货币
+     * 给定一种货币名称，返回该货币类Currency
+     *
+     * @param name 货币名称
+     * @return 货币类
      */
     public Currency getRecord(String name) {
         if (isEmpty()) {
@@ -121,11 +127,12 @@ public class ExchangerRateRecord {
     }
 
     /**
-     * 计算汇率
-     * @param source 源汇率
-     * @param much 金额
-     * @param target 目标汇率
-     * @return 兑换金额
+     * 换算出兑换后应得的金额
+     *
+     * @param source 初始货币
+     * @param much   金额
+     * @param target 目标货币
+     * @return 兑换后的金额
      */
     public BigDecimal calcRate(Currency source, double much, Currency target) {
         BigDecimal m = new BigDecimal(much);
