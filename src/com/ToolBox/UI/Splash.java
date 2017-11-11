@@ -24,7 +24,7 @@ public class Splash extends JWindow implements Runnable {
         progress.setStringPainted(true);
         progress.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 13));
         progress.setBackground(Color.white);
-        container.add(new JLabel(new ImageIcon(new Resource().splashURL)));
+        container.add(new JLabel(new ImageIcon(new FileResource().splashURL)));
         container.add(progress, BorderLayout.SOUTH);
         Dimension screenSize = getToolkit().getScreenSize();
         pack();

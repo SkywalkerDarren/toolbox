@@ -30,7 +30,7 @@ class UserInterFace extends JFrame implements ActionListener {
         @Override
         protected void paintComponent(Graphics g) {
             try {
-                img = ImageIO.read(new Resource().backgroundURL);
+                img = ImageIO.read(new FileResource().backgroundURL);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -77,7 +77,7 @@ class UserInterFace extends JFrame implements ActionListener {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setFocusable(true);
         setIconImage(Toolkit.getDefaultToolkit()
-                .getImage(new Resource().toolboxURL));
+                .getImage(new FileResource().toolboxURL));
 
     }
 

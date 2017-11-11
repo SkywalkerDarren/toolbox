@@ -99,7 +99,7 @@ class SnapShot extends JFrame {
 
     private void initLayout() {
         setIconImage(Toolkit.getDefaultToolkit()
-                .getImage(new Resource().toolboxURL));
+                .getImage(new FileResource().toolboxURL));
 
         JPanel pane = new JPanel();
         pane.setBackground(Color.WHITE);

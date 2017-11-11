@@ -17,7 +17,7 @@ class AboutWindow extends JFrame {
      * 初始化关于窗口
      */
     AboutWindow() {
-        Resource resource = new Resource();
+        FileResource resource = new FileResource();
         Dimension screenSize = getToolkit().getScreenSize();
 
         setTitle("About ToolBox");
