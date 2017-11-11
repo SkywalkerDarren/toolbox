@@ -8,7 +8,7 @@ import java.awt.*;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class AboutWindow extends JFrame {
+class AboutWindow extends JDialog {
 
 
     private static final long serialVersionUID = -2467559809056956188L;
@@ -18,16 +18,15 @@ class AboutWindow extends JFrame {
      */
     AboutWindow() {
         FileResource resource = new FileResource();
-        Dimension screenSize = getToolkit().getScreenSize();
 
         setTitle("About ToolBox");
         setResizable(false);
         setFocusable(true);
         getContentPane().setLayout(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(resource.toolboxURL));
+        setSize(300, 220);
+        setLocationRelativeTo(null);
         setVisible(true);
-        setBounds((screenSize.width - 300) / 2, (screenSize.height - 220) / 2,
-                300, 220);
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 304, 201);
@@ -53,12 +52,12 @@ class AboutWindow extends JFrame {
         ImageIcon ic = new ImageIcon(resource.toolboxURL);
         ic.setImage(ic.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
 
-        JLabel lblIcon = new JLabel("");
+        JLabel lblIcon = new JLabel();
         lblIcon.setIcon(ic);
         lblIcon.setBounds(56, 40, 25, 32);
         panel.add(lblIcon);
 
-        JLabel lblBackGround = new JLabel("New label");
+        JLabel lblBackGround = new JLabel();
         lblBackGround.setIcon(new ImageIcon(resource.aboutURL));
         lblBackGround.setBounds(0, 0, 304, 201);
         panel.add(lblBackGround);

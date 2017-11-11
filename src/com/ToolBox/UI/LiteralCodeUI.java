@@ -26,7 +26,6 @@ class LiteralCodeUI extends TransparentPanelUI {
     private final static String input = "请输入文本内容";
     private final static String output = "转换后文本内容";
     private final static String exchange = "  转  换  > ";
-    private final static String success = "\t转换成功";
     private TextBox leftTextArea;
     private TextBox rightTextArea;
     private JTextField textFieldRoute;
@@ -195,7 +194,7 @@ class LiteralCodeUI extends TransparentPanelUI {
         btnExchangeFile.addActionListener(e -> {
             if (file == null) return;
             TextConvert.convertRoot(file, fromCharset, toCharset);
-            textFieldRoute.setText(file.getAbsolutePath() + success);
+            new SuccessDialog();
             file = null;
         });
 
@@ -210,6 +209,49 @@ class LiteralCodeUI extends TransparentPanelUI {
         });
     }
 
+    /**
+     * 成功修改的消息框
+     *
+     * @author 杨弘
+     */
+    class SuccessDialog extends JDialog {
+
+        private static final long serialVersionUID = 4237521911102115879L;
+        private static final String success = "已成功修改文件编码。";
+        private static final String OK = "确定";
+        private final FileResource resource = new FileResource();
+
+        /**
+         * 初始化窗口
+         */
+        SuccessDialog() {
+            setResizable(false);
+            setFocusable(true);
+            getContentPane().setLayout(null);
+            setIconImage(Toolkit.getDefaultToolkit().getImage(resource.toolboxURL));
+            setSize(300, 220);
+            setLocationRelativeTo(null);
+            setVisible(true);
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+            JLabel lblSuccess = new JLabel(success);
+            lblSuccess.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+            lblSuccess.setBounds(75, 60, 150, 30);
+            add(lblSuccess);
+
+            JButton confirm = new JButton(OK);
+            confirm.setFont(new Font("微软雅黑", Font.BOLD, 15));
+            confirm.setBounds(100, 140, 100, 30);
+            confirm.addActionListener(l -> dispose());
+            add(confirm);
+
+            JLabel lblBackGround = new JLabel();
+            lblBackGround.setIcon(new ImageIcon(resource.aboutURL));
+            lblBackGround.setBounds(0, 0, 300, 200);
+            add(lblBackGround);
+
+        }
+    }
     /**
      * 构建文字编码转换框架
      */
