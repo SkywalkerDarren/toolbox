@@ -1,5 +1,7 @@
 package com.ToolBox.UI;
 
+import com.ToolBox.history.Intent;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,7 +18,8 @@ import java.awt.*;
  */
 class CalculatorUI extends TransparentPanelUI {
 
-    private static final long serialVersionUID = -7067036135688239326L;
+    public static final long serialVersionUID = -7067036135688239326L;
+    public static final String strTabbed = "标签页";
     private static final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     private static final String scientifc = "科学计算器";
     private static final String exchange = "汇率计算器";
@@ -87,7 +90,7 @@ class CalculatorUI extends TransparentPanelUI {
      */
     @Override
     protected void createAction() {
-
+        tabbedPane.addChangeListener(e -> setSelectedComponent(tabbedPane.getSelectedComponent().getClass().getName()));
     }
 
     /**
@@ -98,15 +101,14 @@ class CalculatorUI extends TransparentPanelUI {
      */
     CalculatorUI() {
         super();
+        Intent.setObj(serialVersionUID, strTabbed, tabbedPane.getSelectedComponent().getClass().getName());
     }
 
     /**
-     * 获得当前所选标签页名字
-     *
-     * @return 返回所选标签页名字
+     * 设定当前所在组件
      */
-    static String getSelectedComponent() {
-        return tabbedPane.getSelectedComponent().getClass().getName();
+    private void setSelectedComponent(String panel) {
+        Intent.setObj(serialVersionUID, strTabbed, panel);
     }
 
 }

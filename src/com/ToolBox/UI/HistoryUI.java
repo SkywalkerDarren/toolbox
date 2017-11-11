@@ -1,6 +1,7 @@
 package com.ToolBox.UI;
 
 import com.ToolBox.history.HistoryRecord;
+import com.ToolBox.history.Intent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,6 +30,8 @@ class HistoryUI extends TransparentPanelUI {
     private JButton btnCopy;
     private JButton btnClear;
     private JScrollPane jsp;
+    private String strResult = "结果";
+
     /**
      * 初始化组件
      */
@@ -97,8 +100,9 @@ class HistoryUI extends TransparentPanelUI {
                 if (s == null) {
                     return;
                 }
-                String source = CalculatorUI.getSelectedComponent();
+                String source = (String) Intent.getObj(CalculatorUI.serialVersionUID, CalculatorUI.strTabbed);
                 if (source.equals(ScientificUI.class.getName())) {
+//                    Intent.setObj(serialVersionUID, strResult, s);
                     ScientificUI.setTempResult(s);
                 } else if (source.equals(ExchangeRateUI.class.getName())) {
                     ExchangeRateUI.setTempResult(s);
