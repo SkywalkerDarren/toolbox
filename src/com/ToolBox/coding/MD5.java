@@ -18,6 +18,7 @@ public class MD5 {
      *
      * @param content 要转换的文本
      * @return 32位大写的MD5摘要
+     * @throws Exception 编码错误
      */
     public static String converToMD5(String content) throws Exception {
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -34,6 +35,8 @@ public class MD5 {
      *
      * @param filePath 要摘要的文件
      * @return 32位大写的MD5摘要
+     * @throws IOException 读写错误
+     * @throws GeneralSecurityException 生成错误
      */
     public static String checkFileMD5(String filePath) throws IOException, GeneralSecurityException {
         MessageDigest md = MessageDigest.getInstance("MD5");

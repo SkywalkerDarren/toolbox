@@ -25,7 +25,7 @@ public class TextConvert {
      * @param fromCharsetName 源文件的编码
      * @param toCharsetName   要转换的编码
      */
-    public static void convert(File file, String fromCharsetName, String toCharsetName) throws Exception {
+    public static void convert(File file, String fromCharsetName, String toCharsetName) {
         String fileContent = getContentFromCharset(file, fromCharsetName);
         saveFile2Charset(file, toCharsetName, fileContent);
     }
@@ -34,15 +34,18 @@ public class TextConvert {
      * 把字符串转换成指定的编码
      *
      * @param string          要转换的字符串
-     * @param fromCharsetName 源文件的编码
+     * @param fromCharsetName 字符串的编码
      * @param toCharsetName   要转换的编码
+     * @return 转换后的字符串
      */
-    public static String convert(String string, String fromCharsetName, String toCharsetName) throws Exception {
-        if (!Charset.isSupported(fromCharsetName) || !Charset.isSupported(toCharsetName)) {
-            throw new UnsupportedCharsetException(fromCharsetName);
+    public static String convert(String string, String fromCharsetName, String toCharsetName) {
+        try {
+            byte[] b = string.getBytes(fromCharsetName);
+            return new String(b, toCharsetName);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("编码不支持");
         }
-        byte[] b = string.getBytes(fromCharsetName);
-        return new String(b, toCharsetName);
     }
 
     /**
@@ -52,18 +55,21 @@ public class TextConvert {
      * @param fromCharsetName 源文件的编码
      * @return 文件内容字符串
      */
-    private static String getContentFromCharset(File file, String fromCharsetName) throws Exception {
-        if (!Charset.isSupported(fromCharsetName)) {
-            throw new UnsupportedCharsetException(fromCharsetName);
+    private static String getContentFromCharset(File file, String fromCharsetName) {
+
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream(file);
+            InputStreamReader reader = new InputStreamReader(inputStream, fromCharsetName);
+            char[] chs = new char[(int) file.length()];
+            reader.read(chs);
+            String str = new String(chs).trim();
+            reader.close();
+            return str;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("文件错误");
         }
-        InputStream inputStream = new FileInputStream(file);
-        InputStreamReader reader = new InputStreamReader(inputStream,
-                fromCharsetName);
-        char[] chs = new char[(int) file.length()];
-        reader.read(chs);
-        String str = new String(chs).trim();
-        reader.close();
-        return str;
     }
 
     /**
@@ -73,14 +79,19 @@ public class TextConvert {
      * @param toCharsetName 要转换的编码
      * @param content       文件内容
      */
-    private static void saveFile2Charset(File file, String toCharsetName, String content) throws Exception {
+    private static void saveFile2Charset(File file, String toCharsetName, String content) {
         if (!Charset.isSupported(toCharsetName)) {
             throw new UnsupportedCharsetException(toCharsetName);
         }
-        OutputStream outputStream = new FileOutputStream(file);
-        OutputStreamWriter outWrite = new OutputStreamWriter(outputStream,
-                toCharsetName);
-        outWrite.write(content);
-        outWrite.close();
+
+        try {
+            OutputStream outputStream = new FileOutputStream(file);
+            OutputStreamWriter outWrite = new OutputStreamWriter(outputStream,
+                    toCharsetName);
+            outWrite.write(content);
+            outWrite.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

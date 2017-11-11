@@ -78,6 +78,7 @@ public class Qrcode {
      *
      * @param content 二维码原始信息
      * @param path    保存路径
+     * @throws IOException 文件读写错误
      */
     public static void generateFile(String content, Path path) throws IOException {
         generateImage(content);
