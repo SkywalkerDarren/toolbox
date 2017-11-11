@@ -89,6 +89,7 @@ class QRCodeUI extends TransparentPanelUI {
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         imageLabel.setVerticalAlignment(SwingConstants.CENTER);
 
+        textAreaTop.setBounds(55, 75, 330, 150);
         add(textAreaTop);
 
         lblLevel.setVisible(true);
@@ -211,7 +212,7 @@ class QRCodeUI extends TransparentPanelUI {
         btnSave.addActionListener(l -> {
 
             directoryChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            int state = directoryChooser.showOpenDialog(null);
+            int state = directoryChooser.showSaveDialog(null);
             switch (state) {
                 case JFileChooser.CANCEL_OPTION:
                     break;
@@ -222,7 +223,6 @@ class QRCodeUI extends TransparentPanelUI {
 
             try {
                 Qrcode.generateFile(textAreaTop.getText(), path);
-                System.out.println("success");
             } catch (IOException e) {
                 e.printStackTrace();
             }
