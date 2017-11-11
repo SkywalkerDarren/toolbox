@@ -4,6 +4,11 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 
+/**
+ * 文本转换
+ *
+ * @author 杨弘
+ */
 public class TextConvert {
 
     public final static String UTF_8 = "UTF-8"; // 通用
@@ -14,7 +19,7 @@ public class TextConvert {
     public final static String JIS = "JIS"; // 日语
 
     /**
-     * 把指定文件或目录转换成指定的编码
+     * 把文件转换成指定的编码
      *
      * @param file            要转换的文件或目录
      * @param fromCharsetName 源文件的编码
@@ -25,6 +30,13 @@ public class TextConvert {
         saveFile2Charset(file, toCharsetName, fileContent);
     }
 
+    /**
+     * 把字符串转换成指定的编码
+     *
+     * @param string          要转换的字符串
+     * @param fromCharsetName 源文件的编码
+     * @param toCharsetName   要转换的编码
+     */
     public static String convert(String string, String fromCharsetName, String toCharsetName) throws Exception {
         if (!Charset.isSupported(fromCharsetName) || !Charset.isSupported(toCharsetName)) {
             throw new UnsupportedCharsetException(fromCharsetName);
@@ -40,7 +52,7 @@ public class TextConvert {
      * @param fromCharsetName 源文件的编码
      * @return 文件内容字符串
      */
-    public static String getContentFromCharset(File file, String fromCharsetName) throws Exception {
+    private static String getContentFromCharset(File file, String fromCharsetName) throws Exception {
         if (!Charset.isSupported(fromCharsetName)) {
             throw new UnsupportedCharsetException(fromCharsetName);
         }
@@ -61,7 +73,7 @@ public class TextConvert {
      * @param toCharsetName 要转换的编码
      * @param content       文件内容
      */
-    public static void saveFile2Charset(File file, String toCharsetName, String content) throws Exception {
+    private static void saveFile2Charset(File file, String toCharsetName, String content) throws Exception {
         if (!Charset.isSupported(toCharsetName)) {
             throw new UnsupportedCharsetException(toCharsetName);
         }

@@ -1,7 +1,7 @@
 package com.ToolBox.UI;
 
-import com.ToolBox.capture.Intent;
 import com.ToolBox.capture.ScreenWindow;
+import com.ToolBox.history.Intent;
 import com.ToolBox.qrcode.Qrcode;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 

@@ -14,6 +14,9 @@ public class Splash extends JWindow implements Runnable {
     private JProgressBar progress;
     private String waiting = "杨弘正在编写后台。。。 ";
 
+    /**
+     * 启动画面布局
+     */
     public Splash() {
         Container container = getContentPane();
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -29,6 +32,9 @@ public class Splash extends JWindow implements Runnable {
                 (screenSize.height - getHeight()) / 2);
     }
 
+    /**
+     * 开始线程并置顶
+     */
     public void start() {
         toFront();
         Thread splashThread = new Thread(this);

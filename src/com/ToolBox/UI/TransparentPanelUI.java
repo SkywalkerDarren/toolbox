@@ -2,6 +2,11 @@ package com.ToolBox.UI;
 
 import javax.swing.*;
 
+/**
+ * 通用透明panel
+ *
+ * @author 杨弘
+ */
 public abstract class TransparentPanelUI extends JPanel {
     private static final long serialVersionUID = -8103263234844270632L;
 

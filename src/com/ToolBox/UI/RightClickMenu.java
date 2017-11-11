@@ -13,6 +13,11 @@ class RightClickMenu extends JPopupMenu {
 
     private static final long serialVersionUID = 4254117594980050625L;
 
+    /**
+     * 添加右键菜单组件逻辑
+     *
+     * @param jTextComponent 文本框
+     */
     RightClickMenu(JTextComponent jTextComponent) {
         JMenuItem selectAll = new JMenuItem("全选");
         selectAll.addActionListener(l -> jTextComponent.selectAll());
@@ -29,7 +34,5 @@ class RightClickMenu extends JPopupMenu {
         JMenuItem clean = new JMenuItem("清空");
         clean.addActionListener(l -> jTextComponent.setText(""));
         add(clean);
-
     }
-
 }

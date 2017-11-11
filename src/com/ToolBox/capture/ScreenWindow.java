@@ -1,5 +1,7 @@
 package com.ToolBox.capture;
 
+import com.ToolBox.history.Intent;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;

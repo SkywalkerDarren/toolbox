@@ -18,6 +18,11 @@ public class TextBox extends JTextArea implements MouseListener, FocusListener {
     private static final long serialVersionUID = -3130307316850299368L;
     private String hint;
 
+    /**
+     * 初始化带提示的文本框
+     *
+     * @param hint 提示文字
+     */
     TextBox(String hint) {
         this.hint = hint;
         setText(hint);

@@ -1,8 +1,8 @@
 package com.ToolBox.UI;
 
 import com.ToolBox.capture.GraphicsUtils;
-import com.ToolBox.capture.Intent;
 import com.ToolBox.capture.ScreenWindow;
+import com.ToolBox.history.Intent;
 import org.joda.time.DateTime;
 
 import javax.imageio.ImageIO;
