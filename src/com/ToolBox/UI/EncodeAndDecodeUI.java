@@ -48,7 +48,11 @@ class EncodeAndDecodeUI extends JPanel {
         panelMD5.setOpaque(false);
         panelMD5.setLayout(null);
 
-
+        // 文字编码批量转换标签页
+        JPanel panelLiteral = new LiteralCodeUI();
+        panelLiteral.setOpaque(false);
+        panelLiteral.setLayout(null);
+        tabbedPane.addTab("文件/文字编码批量转换", null, panelLiteral, null);
     }
 
 }
