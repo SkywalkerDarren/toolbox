@@ -53,8 +53,6 @@ class MD5UI extends TransparentPanelUI {
         Color normal = new Color(245, 255, 255);
 
         // 上方文本框
-//        add(textAreaUp);
-        add(scroll, BorderLayout.CENTER);
         scroll.setViewportView(textAreaUp);
         scroll.setBounds(70, 75, 450, 110);
         add(scroll);
