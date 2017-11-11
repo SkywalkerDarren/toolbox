@@ -1,14 +1,13 @@
 package com.ToolBox.currency;
 
 import com.ToolBox.UI.FileResource;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.net.URISyntaxException;
 import java.util.Map;
 
 /**
@@ -26,14 +25,16 @@ public class ExchangerRateRecord {
      * 初始化原始json数据
      */
     public ExchangerRateRecord() {
-        FileResource resource = new FileResource();
         try {
-            InputStream in = new FileInputStream(new File(resource.exchangeRateURL.toURI()));
-            JsonElement root = new JsonParser().parse(new InputStreamReader(in));
+            FileResource resource = new FileResource();
+            InputStream in = resource.exchangeRateIS;
+            JsonElement root;
+            root = new JsonParser().parse(new InputStreamReader(in, "utf-8"));
             setRates(root.getAsJsonObject().get("rates").getAsJsonObject());
-        } catch (FileNotFoundException | URISyntaxException e) {
+        } catch (JsonIOException | JsonSyntaxException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
     }
 
 
