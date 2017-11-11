@@ -17,7 +17,7 @@ import java.nio.file.Path;
 /**
  * 屏幕截图小程序
  *
- * @author pengranxiang
+ * @author 杨弘
  */
 class SnapShot extends JFrame {
 
@@ -28,6 +28,17 @@ class SnapShot extends JFrame {
     private final static int OVAL = 0;
     private final static int RECT = 1;
     private final static int PEN = 2;
+
+    private final static String title = "截图小工具";
+    private final static String start = "开始截图（点右键退出）";
+    private final static String oval = "圆形";
+    private final static String rect = "矩形";
+    private final static String pen = "画笔";
+    private final static String S = "小";
+    private final static String M = "中";
+    private final static String L = "大";
+    private final static String save = "保存";
+    private final static String copy = "复制";
 
     private int size = MEDIUM;
     private int flag = PEN;
@@ -46,11 +57,14 @@ class SnapShot extends JFrame {
     private int x, y;   //记录鼠标坐标
     private int startx, starty;
 
+    /**
+     * 截图面板
+     */
     SnapShot() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(700, 400);
-        setTitle("截图小工具");
-        setLocationRelativeTo(null);   //居中
+        setTitle(title);
+        setLocationRelativeTo(null);
 
         initUI();
         initLayout();
@@ -59,27 +73,27 @@ class SnapShot extends JFrame {
     }
 
     private void initUI() {
-        snapButton = new JButton("开始截图（点右键退出）");
+        snapButton = new JButton(start);
         imageLabel = new JLabel();
 
-        btnOval = new JToggleButton("圆形");
-        btnRect = new JToggleButton("矩形");
-        btnPen = new JToggleButton("画笔", true);
+        btnOval = new JToggleButton(oval);
+        btnRect = new JToggleButton(rect);
+        btnPen = new JToggleButton(pen, true);
         ButtonGroup shape = new ButtonGroup();
         shape.add(btnOval);
         shape.add(btnRect);
         shape.add(btnPen);
 
-        btnSmall = new JToggleButton("小");
-        btnMedium = new JToggleButton("中", true);
-        btnLarge = new JToggleButton("大");
+        btnSmall = new JToggleButton(S);
+        btnMedium = new JToggleButton(M, true);
+        btnLarge = new JToggleButton(L);
         ButtonGroup size = new ButtonGroup();
         size.add(btnSmall);
         size.add(btnMedium);
         size.add(btnLarge);
 
-        btnSave = new JButton("保存");
-        btnCopy = new JButton("复制");
+        btnSave = new JButton(save);
+        btnCopy = new JButton(copy);
 
     }
 
@@ -88,15 +102,18 @@ class SnapShot extends JFrame {
                 .getImage(new Resource().toolboxURL));
 
         JPanel pane = new JPanel();
+        pane.setBackground(Color.WHITE);
         pane.add(imageLabel);
         JScrollPane imgScrollPane = new JScrollPane(pane);
 
         Container container = getContentPane();
-        BorderLayout layout = new BorderLayout(10, 10);
+        container.setBackground(Color.WHITE);
+        BorderLayout layout = new BorderLayout(2, 2);
         container.setLayout(layout);
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
         container.add(BorderLayout.NORTH, panel);
+        panel.setOpaque(false);
         panel.add(snapButton);
         panel.add(btnOval);
         panel.add(btnRect);
@@ -122,7 +139,6 @@ class SnapShot extends JFrame {
                 e1.printStackTrace();
             }
             try {
-                //开启模拟屏幕，将显示截图的目标组件传入
                 JFrame screenShot = new ScreenWindow();
                 screenShot.addWindowListener(new WindowAdapter() {
                     @Override
@@ -196,20 +212,15 @@ class SnapShot extends JFrame {
                 x = e.getX();
                 y = e.getY();
 
-                //鼠标移动时，在imageLabel展示的图像中，绘制点
-                //1. 取得imageLabel中的图像
                 Image img = ((ImageIcon) imageLabel.getIcon()).getImage();
 
-                //2. 创建一个缓冲图形对象 bi
                 bi = new BufferedImage(img.getWidth(null), img.getHeight(null),
                         BufferedImage.TYPE_INT_RGB);
                 Graphics2D g2d = (Graphics2D) bi.getGraphics();
 
-                //3. 将截图的原始图像画到 bi
                 g2d.drawImage(img, 0, 0, null);
 
-                //4. 在鼠标所在的点，画一个点
-                g2d.setColor(Color.RED);    //设置画笔颜色为红色
+                g2d.setColor(Color.RED);
                 g2d.setStroke(new BasicStroke(size, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
                 Graphics g;
                 switch (flag) {
@@ -234,9 +245,6 @@ class SnapShot extends JFrame {
                 }
                 g2d.dispose();
 
-                //5. 为了保留每一个点，不能直接使用imageLabel.getGraphics()来画，
-                //需要使用imageLabel.setIcon()来直接将画了点的图像，设置到imageLabel中，
-                //这样，在第一步中，取得img时，就为已经划过上一个点的图像了。
                 imageLabel.setIcon(new ImageIcon(bi));
             }
 
@@ -256,19 +264,14 @@ class SnapShot extends JFrame {
                 x = e.getX();
                 y = e.getY();
 
-                //鼠标移动时，在imageLabel展示的图像中，绘制点
-                //1. 取得imageLabel中的图像
                 Image img = ((ImageIcon) imageLabel.getIcon()).getImage();
 
-                //2. 创建一个缓冲图形对象 bi
                 BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
                 Graphics2D g2d = (Graphics2D) bi.getGraphics();
 
-                //3. 将截图的原始图像画到 bi
                 g2d.drawImage(img, 0, 0, null);
 
-                //4. 在鼠标所在的点，画一个点
-                g2d.setColor(Color.RED);    //设置画笔颜色为红色
+                g2d.setColor(Color.RED);
                 g2d.setStroke(new BasicStroke(size, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
                 Graphics g;
                 switch (flag) {
@@ -291,9 +294,7 @@ class SnapShot extends JFrame {
                     case PEN:
                         g2d.drawOval(x, y, size, size);   //Java中没有提供点的绘制，使用起点和终点为同一个点的画线代替
                         g2d.dispose();
-                        //5. 为了保留每一个点，不能直接使用imageLabel.getGraphics()来画，
-                        //需要使用imageLabel.setIcon()来直接将画了点的图像，设置到imageLabel中，
-                        //这样，在第一步中，取得img时，就为已经划过上一个点的图像了。
+
                         imageLabel.setIcon(new ImageIcon(bi));
                         break;
                     default:
