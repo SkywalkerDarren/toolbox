@@ -26,10 +26,9 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
     /**
      * 截图界面
      *
-     * @throws AWTException         ui异常
-     * @throws InterruptedException 中断异常
+     * @throws Exception 截图异常
      */
-    public ScreenWindow() throws AWTException, InterruptedException {
+    public ScreenWindow() throws Exception {
 
         Dimension screenDims = Toolkit.getDefaultToolkit().getScreenSize();
         imageFullScreen = GraphicsUtils.getScreenImage(0, 0, screenDims.width, screenDims.height);
@@ -70,7 +69,7 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
             BufferedImage image = GraphicsUtils.getScreenImage(Math.min(x, xEnd), Math.min(y, yEnd), Math.abs(xEnd - x),
                     Math.abs(yEnd - y));
             Intent.setObj(serialVersionUID, imageIntent, image);
-        } catch (AWTException | InterruptedException e1) {
+        } catch (Exception e1) {
             e1.printStackTrace();
         }
         ScreenWindow.this.dispose();

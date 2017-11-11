@@ -21,8 +21,9 @@ public class GraphicsUtils {
      * @param w 宽度
      * @param h 高度
      * @return 被截部分的BufferedImage对象
+     * @throws Exception 截图异常
      */
-    static BufferedImage getScreenImage(int x, int y, int w, int h) throws AWTException, InterruptedException {
+    static BufferedImage getScreenImage(int x, int y, int w, int h) throws Exception {
         Robot robot = new Robot();
         return robot.createScreenCapture(new Rectangle(x, y, w, h));
     }
