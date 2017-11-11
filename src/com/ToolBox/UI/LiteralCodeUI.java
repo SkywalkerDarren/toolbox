@@ -37,8 +37,8 @@ class LiteralCodeUI extends TransparentPanelUI {
     private final static String json = "json";
     private final static String yaml = "yaml";
     private final static String h = "h";
-    private static TextBox leftTextArea;
-    private static TextBox rightTextArea;
+    private TextBox leftTextArea;
+    private TextBox rightTextArea;
     private JTextField textFieldRoute;
     private JComboBox<String> fromComboBox;
     private JComboBox<String> toComboBox;

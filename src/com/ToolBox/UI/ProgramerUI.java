@@ -28,8 +28,8 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     private static int radix = Calculator.DEC;
     private static StringBuilder expression = new StringBuilder();
     private static StringBuilder expUI = new StringBuilder();
-    private final Color color = new Color(240, 255, 255);
-    private final Font font = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13);
+    private static final Color color = new Color(240, 255, 255);
+    private static final Font font = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13);
     private Long result = 0L;
     private JButton[] btnBit;
     private JButton btnRol, btnRor, btnLsh, btnRsh, btnLeft, btnRight;
@@ -515,6 +515,10 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         return (c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f');
     }
 
+    private static void setRadix(int radix) {
+        ProgramerUI.radix = radix;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -542,7 +546,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 btnD.setEnabled(false);
                 btnE.setEnabled(false);
                 btnF.setEnabled(false);
-                radix = Calculator.BIN;
+                setRadix(Calculator.BIN);
                 textAreaTop.setText(textFieldBinary.getText());
                 expUI.replace(0, expUI.length(), "");
                 expression.replace(0, expression.length(), "");

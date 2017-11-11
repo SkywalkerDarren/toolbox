@@ -22,9 +22,9 @@ class CalendarUI extends TransparentPanelUI {
     private static final long serialVersionUID = -4791068421614363948L;
     private static final String interval = "日期之间的相隔时间";
     private static final String addAndMinusDay = "添加或减去天数";
-    private final Font fontPlain = new Font("微软雅黑", Font.PLAIN, 14);
-    private final Font fontBold = new Font("微软雅黑", Font.BOLD, 14);
-    private final Color normal = new Color(245, 255, 255);
+    private static final Font fontPlain = new Font("微软雅黑", Font.PLAIN, 14);
+    private static final Font fontBold = new Font("微软雅黑", Font.BOLD, 14);
+    private static final Color normal = new Color(245, 255, 255);
     private JComboBox<String> comboBoxYear;
     private JPanel panelPlusOrMinus;
     private JPanel panelInterval;
