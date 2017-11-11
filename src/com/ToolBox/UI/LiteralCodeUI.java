@@ -2,46 +2,46 @@ package com.ToolBox.UI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
-public class LiteralCodeUI extends JPanel {
+class LiteralCodeUI extends JPanel {
 
     private static final long serialVersionUID = 4233801683473119453L;
-    private final static String exchangeTip = "è½¬æ¢";
-    private final static String from = "ä»";
-    private final static String to = "è½¬æ¢åˆ°";
-    private final static String code = "ç¼–ç ";
-    private final static String route = "æ–‡ä»¶è·¯å¾„";
-    private final static String chooseFile = "é€‰æ‹©æ–‡ä»¶";
-    private final static String input = "è¯·è¾“å…¥æ–‡æœ¬å†…å®¹";
-    private final static String output = "è½¬æ¢åæ–‡æœ¬å†…å®¹";
-    private JComboBox<Object> fromComboBox;
-    private JComboBox<Object> toComboBox;
-    private static JTextArea leftTextArea;
-    private static JTextArea rightTextArea;
-    private JButton btnExchange;
-    private JButton btnChooseFile;
+    private final static String exchangeTip = "×ª»»";
+    private final static String from = "´Ó";
+    private final static String to = "×ª»»µ½";
+    private final static String code = "±àÂë";
+    private final static String route = "ÎÄ¼şÂ·¾¶";
+    private final static String chooseFile = "Ñ¡ÔñÎÄ¼ş";
+    private final static String input = "ÇëÊäÈëÎÄ±¾ÄÚÈİ";
+    private final static String output = "×ª»»ºóÎÄ±¾ÄÚÈİ";
+    private final static String exchange = "  ×ª  »»  > ";
+    private static TextBox leftTextArea;
+    private static TextBox rightTextArea;
     private JTextField textFieldRoute;
-    private JButton btnExchangeFile;
-    private JLabel lblFrom;
-    private JLabel lblTo;
-    private JLabel lblLeftCode;
-    private JLabel lblRightCode;
+
 
     LiteralCodeUI() {
+        setOpaque(false);
+
+        JComboBox<String> fromComboBox;
+        JComboBox<String> toComboBox;
+        JButton btnExchange;
+        JButton btnChooseFile;
+        JButton btnExchangeFile;
+        JLabel lblFrom;
+        JLabel lblTo;
+        JLabel lblLeftCode;
+        JLabel lblRightCode;
 
         /***
-         * æ„å»ºæ–‡å­—ç¼–ç è½¬æ¢æ¡†æ¶
+         * ¹¹½¨ÎÄ×Ö±àÂë×ª»»¿ò¼Ü
          */
 
         final Color normal = new Color(245, 255, 255);
         final Color button = new Color(240, 255, 250);
-        final Font fontPlain = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14);
+        final Font fontPlain = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14);
 
-        //é€‰æ‹©æ–‡ä»¶æŒ‰é’®
+        //Ñ¡ÔñÎÄ¼ş°´Å¥
         btnChooseFile = new JButton();
         btnChooseFile.setOpaque(false);
         btnChooseFile.setText(chooseFile);
@@ -49,18 +49,14 @@ public class LiteralCodeUI extends JPanel {
         btnChooseFile.setBounds(84, 50, 105, 35);
         btnChooseFile.setBackground(button);
         super.add(btnChooseFile);
-        btnChooseFile.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                if (!(textFieldRoute.getText().equals(route))) {
-                    textFieldRoute.setForeground(Color.BLACK);
-                }
+        btnChooseFile.addActionListener(e -> {
+            // TODO Auto-generated method stub
+            if (!(textFieldRoute.getText().equals(route))) {
+                textFieldRoute.setForeground(Color.BLACK);
             }
         });
 
-        //æœ€ä¸Šæ–¹è½¬æ¢æŒ‰é’®
+        //×îÉÏ·½×ª»»°´Å¥
         btnExchangeFile = new JButton();
         btnExchangeFile.setOpaque(false);
         btnExchangeFile.setText(exchangeTip);
@@ -69,7 +65,7 @@ public class LiteralCodeUI extends JPanel {
         btnExchangeFile.setBackground(button);
         super.add(btnExchangeFile);
 
-        //æ–‡ä»¶è·¯å¾„æ–‡æœ¬æ¡†
+        //ÎÄ¼şÂ·¾¶ÎÄ±¾¿ò
         textFieldRoute = new JTextField();
         textFieldRoute.setBackground(normal);
         textFieldRoute.setEditable(false);
@@ -79,112 +75,73 @@ public class LiteralCodeUI extends JPanel {
         textFieldRoute.setForeground(Color.GRAY);
         super.add(textFieldRoute);
 
-        //å·¦
-        fromComboBox = new JComboBox<Object>();
+        //×ó
+        fromComboBox = new JComboBox<>();
         fromComboBox.setOpaque(false);
         fromComboBox.setFont(fontPlain);
         fromComboBox.setBounds(92, 108, 205, 35);
         fromComboBox.setBackground(normal);
-        fromComboBox.addActionListener(new ActionListener() {
+        fromComboBox.addActionListener(e -> {
+            // TODO Auto-generated method stub
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
         });
         super.add(fromComboBox);
 
-        //å³
-        toComboBox = new JComboBox<Object>();
+        //ÓÒ
+        toComboBox = new JComboBox<>();
         toComboBox.setOpaque(false);
         toComboBox.setFont(fontPlain);
         toComboBox.setBounds(490, 108, 205, 35);
         toComboBox.setBackground(normal);
-        toComboBox.addActionListener(new ActionListener() {
+        toComboBox.addActionListener(e -> {
+            // TODO Auto-generated method stub
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-
-            }
         });
         super.add(toComboBox);
 
-        leftTextArea = new JTextArea();
-        leftTextArea.setEditable(true);
-        leftTextArea.setFont(fontPlain);
-        leftTextArea.setBackground(button);
-        leftTextArea.setForeground(Color.GRAY);
-        leftTextArea.setText("è¯·è¾“å…¥æ–‡æœ¬å†…å®¹");
+        leftTextArea = new TextBox(input);
         leftTextArea.setBounds(60, 170, 275, 315);
-        leftTextArea.addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                // TODO Auto-generated method stub
-                super.mousePressed(e);
-                if (leftTextArea.getText().equals(input)) {
-
-                    leftTextArea.setText(null);
-                    leftTextArea.setForeground(Color.BLACK);
-                }
-            }
-
-
-        });
         super.add(leftTextArea);
 
-        rightTextArea = new JTextArea();
-        rightTextArea.setEditable(false);
-        rightTextArea.setFont(fontPlain);
-        rightTextArea.setBackground(button);
-        rightTextArea.setText(output);
-        rightTextArea.setForeground(Color.GRAY);
+        rightTextArea = new TextBox(output);
         rightTextArea.setBounds(455, 170, 275, 315);
-
         super.add(rightTextArea);
 
-        //è½¬æ¢æŒ‰é’®
+        //×ª»»°´Å¥
         btnExchange = new JButton();
         btnExchange.setOpaque(false);
-        btnExchange.setText("  è½¬  æ¢  > ");
+        btnExchange.setText(exchange);
         btnExchange.setFont(fontPlain);
         btnExchange.setBounds(342, 305, 105, 35);
         btnExchange.setBackground(button);
         super.add(btnExchange);
-        btnExchange.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {//å•å‡»è½¬æ¢æŒ‰é’®å®ç°ç¼–ç è½¬æ¢ï¼Œå­—ä½“è®¾ç½®ä¸ºé»‘è‰²
-                // TODO Auto-generated method stub
-                rightTextArea.setForeground(Color.BLACK);
-//				rightTextArea.setText();
-            }
+        btnExchange.addActionListener(e -> {//µ¥»÷×ª»»°´Å¥ÊµÏÖ±àÂë×ª»»£¬×ÖÌåÉèÖÃÎªºÚÉ«
+            // TODO Auto-generated method stub
+            rightTextArea.setForeground(Color.BLACK);
         });
 
-        //æ ‡ç­¾ä»
+        //±êÇ©´Ó
         lblFrom = new JLabel();
         lblFrom.setText(from);
         lblFrom.setFont(fontPlain);
         lblFrom.setBounds(70, 116, 20, 20);
         super.add(lblFrom);
 
-        //æ ‡ç­¾è½¬æ¢åˆ°
+        //±êÇ©×ª»»µ½
         lblTo = new JLabel();
         lblTo.setText(to);
         lblTo.setFont(fontPlain);
         lblTo.setBounds(440, 116, 60, 20);
         super.add(lblTo);
 
-        //ç¼–ç æ ‡ç­¾
+        //±àÂë±êÇ©
         lblLeftCode = new JLabel();
         lblLeftCode.setText(code);
         lblLeftCode.setFont(fontPlain);
         lblLeftCode.setBounds(302, 114, 60, 20);
         super.add(lblLeftCode);
 
-        //ç¼–ç æ ‡ç­¾
+        //±àÂë±êÇ©
         lblRightCode = new JLabel();
         lblRightCode.setText(code);
         lblRightCode.setFont(fontPlain);

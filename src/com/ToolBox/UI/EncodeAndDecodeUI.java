@@ -12,6 +12,10 @@ import java.awt.*;
  */
 class EncodeAndDecodeUI extends JPanel {
     private static final long serialVersionUID = 8137943111751980202L;
+    private static final String base64 = "Base64加密/解密";
+    private static final String unicode = "Unicode中文互转";
+    private static final String md5 = "MD5文字加密/文件校验";
+    private static final String code = "文件/文字编码批量转换";
 
     /**
      * 初始化编码解码功能
@@ -34,17 +38,17 @@ class EncodeAndDecodeUI extends JPanel {
         JPanel panelBase64 = new Base64UI();
         panelBase64.setOpaque(false);
         panelBase64.setLayout(null);
-        tabbedPane.addTab("Base64加密/解密", null, panelBase64, null);
+        tabbedPane.addTab(base64, null, panelBase64, null);
 
         // Unicode中文互转
         JPanel panelUnicode = new UnicodeUI();
         panelUnicode.setLayout(null);
         panelBase64.setOpaque(false);
-        tabbedPane.addTab("Unicode中文互转", null, panelUnicode, null);
+        tabbedPane.addTab(unicode, null, panelUnicode, null);
 
         // MD5校验标签页
         JPanel panelMD5 = new MD5UI();
-        tabbedPane.addTab("MD5文字加密/文件校验", null, panelMD5, null);
+        tabbedPane.addTab(md5, null, panelMD5, null);
         panelMD5.setOpaque(false);
         panelMD5.setLayout(null);
 
@@ -52,7 +56,7 @@ class EncodeAndDecodeUI extends JPanel {
         JPanel panelLiteral = new LiteralCodeUI();
         panelLiteral.setOpaque(false);
         panelLiteral.setLayout(null);
-        tabbedPane.addTab("文件/文字编码批量转换", null, panelLiteral, null);
+        tabbedPane.addTab(code, null, panelLiteral, null);
     }
 
 }
