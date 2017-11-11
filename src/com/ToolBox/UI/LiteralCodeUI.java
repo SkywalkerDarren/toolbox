@@ -27,16 +27,6 @@ class LiteralCodeUI extends TransparentPanelUI {
     private final static String output = "转换后文本内容";
     private final static String exchange = "  转  换  > ";
     private final static String success = "\t转换成功";
-    private final static String txt = "txt";
-    private static final String js = "js";
-    private static final String log = "log";
-    private final static String c = "c";
-    private final static String java = "java";
-    private final static String cpp = "cpp";
-    private final static String xml = "xml";
-    private final static String json = "json";
-    private final static String yaml = "yaml";
-    private final static String h = "h";
     private TextBox leftTextArea;
     private TextBox rightTextArea;
     private JTextField textFieldRoute;
@@ -204,26 +194,7 @@ class LiteralCodeUI extends TransparentPanelUI {
 
         btnExchangeFile.addActionListener(e -> {
             if (file == null) return;
-            if (file.isDirectory()) {
-                File[] files = file.listFiles((dir, name) -> name.lastIndexOf(".") != -1 && (name.endsWith(txt) ||
-                        name.endsWith(c) || name.endsWith(java) || name.endsWith(cpp) || name.endsWith(json) ||
-                        name.endsWith(yaml) || name.endsWith(xml) || name.endsWith(h) || name.endsWith(log) ||
-                        name.endsWith(js)));
-                try {
-                    assert files != null;
-                    for (File f : files) {
-                        TextConvert.convert(f, fromCharset, toCharset);
-                    }
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            } else if (file.isFile()) {
-                try {
-                    TextConvert.convert(file, fromCharset, toCharset);
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-            }
+            TextConvert.convertRoot(file, fromCharset, toCharset);
             textFieldRoute.setText(file.getAbsolutePath() + success);
             file = null;
         });

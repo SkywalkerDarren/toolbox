@@ -18,6 +18,50 @@ public class TextConvert {
     public final static String SJIS = "SJIS"; // 日语
     public final static String JIS = "JIS"; // 日语
 
+    private final static String txt = "txt";
+    private static final String js = "js";
+    private static final String log = "log";
+    private final static String c = "c";
+    private final static String java = "java";
+    private final static String cpp = "cpp";
+    private final static String xml = "xml";
+    private final static String json = "json";
+    private final static String yaml = "yaml";
+    private final static String h = "h";
+
+    /**
+     * 把文件或目录转换成指定的编码
+     *
+     * @param file        要转换的文件或目录
+     * @param fromCharset 源编码
+     * @param toCharset   要转换的编码
+     */
+    public static void convertRoot(File file, String fromCharset, String toCharset) {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles((dir, name) -> name.lastIndexOf(".") != -1 && (name.endsWith(txt) ||
+                    name.endsWith(c) || name.endsWith(java) || name.endsWith(cpp) || name.endsWith(json) ||
+                    name.endsWith(yaml) || name.endsWith(xml) || name.endsWith(h) || name.endsWith(log) ||
+                    name.endsWith(js)));
+            try {
+                assert files != null;
+                for (File f : files) {
+                    if (f.isDirectory()) {
+                        convertRoot(f, fromCharset, toCharset);
+                    }
+                    convert(f, fromCharset, toCharset);
+                }
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        } else if (file.isFile()) {
+            try {
+                convert(file, fromCharset, toCharset);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
     /**
      * 把文件转换成指定的编码
      *
@@ -25,7 +69,7 @@ public class TextConvert {
      * @param fromCharsetName 源文件的编码
      * @param toCharsetName   要转换的编码
      */
-    public static void convert(File file, String fromCharsetName, String toCharsetName) {
+    private static void convert(File file, String fromCharsetName, String toCharsetName) {
         String fileContent = getContentFromCharset(file, fromCharsetName);
         saveFile2Charset(file, toCharsetName, fileContent);
     }
