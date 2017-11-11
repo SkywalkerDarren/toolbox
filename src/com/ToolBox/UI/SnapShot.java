@@ -19,7 +19,7 @@ import java.nio.file.Path;
  *
  * @author pengranxiang
  */
-public class SnapShot extends JFrame {
+class SnapShot extends JFrame {
 
     private static final long serialVersionUID = 2593517177840717431L;
     private final static int SMALL = 2;
@@ -307,9 +307,5 @@ public class SnapShot extends JFrame {
             }
         });
 
-    }
-
-    public static void main(String[] args) {
-        new SnapShot();
     }
 }
