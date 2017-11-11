@@ -38,17 +38,18 @@ public class TextConvert {
      */
     public static void convertRoot(File file, String fromCharset, String toCharset) {
         if (file.isDirectory()) {
-            File[] files = file.listFiles((dir, name) -> name.lastIndexOf(".") != -1 && (name.endsWith(txt) ||
-                    name.endsWith(c) || name.endsWith(java) || name.endsWith(cpp) || name.endsWith(json) ||
-                    name.endsWith(yaml) || name.endsWith(xml) || name.endsWith(h) || name.endsWith(log) ||
-                    name.endsWith(js)));
+            File[] files = file.listFiles((dir, name) -> (name.lastIndexOf(".") == -1 ||
+                    name.lastIndexOf(".") != -1 && (name.endsWith(txt) || name.endsWith(c) || name.endsWith(java) ||
+                            name.endsWith(cpp) || name.endsWith(json) || name.endsWith(yaml) || name.endsWith(xml) ||
+                            name.endsWith(h) || name.endsWith(log) || name.endsWith(js))));
             try {
                 assert files != null;
                 for (File f : files) {
                     if (f.isDirectory()) {
                         convertRoot(f, fromCharset, toCharset);
+                    } else {
+                        convert(f, fromCharset, toCharset);
                     }
-                    convert(f, fromCharset, toCharset);
                 }
             } catch (Exception e1) {
                 e1.printStackTrace();
@@ -101,9 +102,8 @@ public class TextConvert {
      */
     private static String getContentFromCharset(File file, String fromCharsetName) {
 
-        InputStream inputStream = null;
         try {
-            inputStream = new FileInputStream(file);
+            InputStream inputStream = new FileInputStream(file);
             InputStreamReader reader = new InputStreamReader(inputStream, fromCharsetName);
             char[] chs = new char[(int) file.length()];
             reader.read(chs);
