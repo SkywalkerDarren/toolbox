@@ -49,6 +49,8 @@ class LiteralCodeUI extends TransparentPanelUI {
     private JLabel lblTo;
     private JLabel lblLeftCode;
     private JLabel lblRightCode;
+    private JScrollPane leftScrollPane;
+    private JScrollPane rightScrollPane;
     private String fromCharset;
     private String toCharset;
     private File file;
@@ -69,6 +71,8 @@ class LiteralCodeUI extends TransparentPanelUI {
         lblFrom = new JLabel();
         lblLeftCode = new JLabel();
         lblRightCode = new JLabel();
+        leftScrollPane = new JScrollPane(leftTextArea);
+        rightScrollPane = new JScrollPane(rightTextArea);
     }
 
     /**
@@ -134,12 +138,14 @@ class LiteralCodeUI extends TransparentPanelUI {
         toComboBox.setSelectedItem(TextConvert.UTF_8);
         add(toComboBox);
 
-        leftTextArea.setBounds(60, 170, 275, 315);
-        add(leftTextArea);
+        leftScrollPane.setBounds(60, 170, 275, 315);
+        leftScrollPane.setViewportView(leftTextArea);
+        add(leftScrollPane);
 
-        rightTextArea.setBounds(455, 170, 275, 315);
         rightTextArea.setEditable(false);
-        add(rightTextArea);
+        rightScrollPane.setBounds(455, 170, 275, 315);
+        rightScrollPane.setViewportView(rightTextArea);
+        add(rightScrollPane);
 
         //×ª»»°´Å¥
         btnExchange.setOpaque(false);
@@ -192,7 +198,6 @@ class LiteralCodeUI extends TransparentPanelUI {
             }
         });
 
-
         fromComboBox.addItemListener(e -> fromCharset = (String) e.getItem());
 
         toComboBox.addItemListener(e -> toCharset = (String) e.getItem());
@@ -226,8 +231,8 @@ class LiteralCodeUI extends TransparentPanelUI {
         btnExchange.addActionListener(e -> {
             rightTextArea.setForeground(Color.BLACK);
             try {
-                String str = TextConvert.convert(rightTextArea.getText(), TextConvert.UTF_8, toCharset);
-                leftTextArea.setText(str);
+                String str = TextConvert.convert(leftTextArea.getText(), fromCharset, toCharset);
+                rightTextArea.setText(str);
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
