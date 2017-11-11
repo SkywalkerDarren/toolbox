@@ -1,7 +1,10 @@
 package com.ToolBox.UI;
 
+import com.ToolBox.coding.TextConvert;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * 批量文字转换工具
@@ -35,6 +38,8 @@ class LiteralCodeUI extends TransparentPanelUI {
     private JLabel lblTo;
     private JLabel lblLeftCode;
     private JLabel lblRightCode;
+    private String fromCharset;
+    private String toCharset;
 
     /**
      * 初始化组件
@@ -61,6 +66,8 @@ class LiteralCodeUI extends TransparentPanelUI {
         final Color normal = new Color(245, 255, 255);
         final Color button = new Color(240, 255, 250);
         final Font fontPlain = new Font("微软雅黑", Font.PLAIN, 14);
+        fromCharset = TextConvert.GBK;
+        toCharset = TextConvert.UTF_8;
 
         //选择文件按钮
         btnChooseFile.setOpaque(false);
@@ -92,6 +99,13 @@ class LiteralCodeUI extends TransparentPanelUI {
         fromComboBox.setFont(fontPlain);
         fromComboBox.setBounds(92, 108, 205, 35);
         fromComboBox.setBackground(normal);
+        fromComboBox.addItem(TextConvert.GBK);
+        fromComboBox.addItem(TextConvert.GB2312);
+        fromComboBox.addItem(TextConvert.BIG5);
+        fromComboBox.addItem(TextConvert.JIS);
+        fromComboBox.addItem(TextConvert.SJIS);
+        fromComboBox.addItem(TextConvert.UTF_8);
+        fromComboBox.setSelectedItem(TextConvert.GBK);
         add(fromComboBox);
 
         //右
@@ -99,6 +113,13 @@ class LiteralCodeUI extends TransparentPanelUI {
         toComboBox.setFont(fontPlain);
         toComboBox.setBounds(490, 108, 205, 35);
         toComboBox.setBackground(normal);
+        toComboBox.addItem(TextConvert.GBK);
+        toComboBox.addItem(TextConvert.GB2312);
+        toComboBox.addItem(TextConvert.BIG5);
+        toComboBox.addItem(TextConvert.JIS);
+        toComboBox.addItem(TextConvert.SJIS);
+        toComboBox.addItem(TextConvert.UTF_8);
+        toComboBox.setSelectedItem(TextConvert.UTF_8);
         add(toComboBox);
 
         leftTextArea.setBounds(60, 170, 275, 315);
@@ -147,23 +168,28 @@ class LiteralCodeUI extends TransparentPanelUI {
     protected void createAction() {
         btnChooseFile.addActionListener(e -> {
             // TODO Auto-generated method stub
-            if (!(textFieldRoute.getText().equals(route))) {
-                textFieldRoute.setForeground(Color.BLACK);
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            switch (fileChooser.showOpenDialog(null)) {
+                case JFileChooser.APPROVE_OPTION:
+                    File[] files = fileChooser.getSelectedFiles();
+                    System.out.println(files.length);
+                    break;
+                default:
+                    throw new IllegalArgumentException();
             }
         });
 
-        fromComboBox.addActionListener(e -> {
-            // TODO Auto-generated method stub
+
+        fromComboBox.addItemListener(e -> fromCharset = (String) e.getItem());
+
+        toComboBox.addItemListener(e -> toCharset = (String) e.getItem());
+
+        btnChooseFile.addActionListener(e -> {
 
         });
 
-        toComboBox.addActionListener(e -> {
-            // TODO Auto-generated method stub
-
-        });
-
-
-        btnExchange.addActionListener(e -> {//单击转换按钮实现编码转换，字体设置为黑色
+        btnExchange.addActionListener(e -> {
             // TODO Auto-generated method stub
             rightTextArea.setForeground(Color.BLACK);
         });
