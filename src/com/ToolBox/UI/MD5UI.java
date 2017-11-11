@@ -8,20 +8,20 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 /**
- * MD5Ğ£Ñé£¬Ö§³ÖÎÄ¼şĞ£Ñé£¬ĞÅÏ¢Ğ£Ñé
- * ÒÔ´óĞ´32Î»µÄĞÎÊ½·µ»Ø½á¹û
+ * MD5æ ¡éªŒï¼Œæ”¯æŒæ–‡ä»¶æ ¡éªŒï¼Œä¿¡æ¯æ ¡éªŒ
+ * ä»¥å¤§å†™32ä½çš„å½¢å¼è¿”å›ç»“æœ
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class MD5UI extends TransparentPanelUI {
 
     private static final long serialVersionUID = -4036614769898898847L;
-    private final static String upTip = "Çë°ÑĞèÒª¼ÓÃÜ/Ğ£ÑéµÄÄÚÈİÕ³ÌùÔÚÕâÀï";
-    private final static String middleTip = "ÇëÑ¡ÔñÂ·¾¶ä¯ÀÀÎÄ¼ş";
-    private final static String downTip = "¼ÓÃÜ/Ğ£ÑéºóµÄ½á¹û";
-    private final static String encode = " MD5 ¼ÓÃÜ ";
-    private final static String browser = " ä¯ÀÀÎÄ¼ş ";
-    private final static String check = " MD5 Ğ£Ñé ";
+    private final static String upTip = "è¯·æŠŠéœ€è¦åŠ å¯†/æ ¡éªŒçš„å†…å®¹ç²˜è´´åœ¨è¿™é‡Œ";
+    private final static String middleTip = "è¯·é€‰æ‹©è·¯å¾„æµè§ˆæ–‡ä»¶";
+    private final static String downTip = "åŠ å¯†/æ ¡éªŒåçš„ç»“æœ";
+    private final static String encode = " MD5 åŠ å¯† ";
+    private final static String browser = " æµè§ˆæ–‡ä»¶ ";
+    private final static String check = " MD5 æ ¡éªŒ ";
     private JTextArea textAreaUp;
     private TextBox textFieldMiddle;
     private TextBox textFieldDown;
@@ -32,7 +32,7 @@ class MD5UI extends TransparentPanelUI {
 
 
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -46,22 +46,22 @@ class MD5UI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
         Color normal = new Color(245, 255, 255);
 
-        // ÉÏ·½ÎÄ±¾¿ò
+        // ä¸Šæ–¹æ–‡æœ¬æ¡†
         scroll.setViewportView(textAreaUp);
         scroll.setBounds(70, 75, 450, 110);
         add(scroll);
 
-        // ÖĞ¼äÎÄ±¾¿ò
+        // ä¸­é—´æ–‡æœ¬æ¡†
         textFieldMiddle.setBounds(70, 255, 450, 45);
         add(textFieldMiddle);
 
-        // ÏÂ·½ÎÄ±¾¿ò
+        // ä¸‹æ–¹æ–‡æœ¬æ¡†
         textFieldDown.setBounds(70, 375, 450, 45);
         textFieldDown.setEditable(false);
         add(textFieldDown);
@@ -83,7 +83,7 @@ class MD5UI extends TransparentPanelUI {
     }
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -94,7 +94,7 @@ class MD5UI extends TransparentPanelUI {
                 String tar = MD5.converToMD5(src);
                 textFieldDown.setText(tar);
             } catch (Exception e1) {
-                textFieldDown.setText("×ª»»Ê§°Ü");
+                textFieldDown.setText("è½¬æ¢å¤±è´¥");
                 e1.printStackTrace();
             }
         });
@@ -125,7 +125,7 @@ class MD5UI extends TransparentPanelUI {
                 String tar = MD5.checkFileMD5(path);
                 textFieldDown.setText(tar);
             } catch (IOException e1) {
-                textFieldDown.setText("Ã»ÓĞÕâ¸öÎÄ¼ş");
+                textFieldDown.setText("æ²¡æœ‰è¿™ä¸ªæ–‡ä»¶");
                 e1.printStackTrace();
             } catch (GeneralSecurityException e1) {
                 e1.printStackTrace();
@@ -134,7 +134,7 @@ class MD5UI extends TransparentPanelUI {
     }
 
     /**
-     * ¹¹ÔìMD5¿ò¼Ü
+     * æ„é€ MD5æ¡†æ¶
      */
     MD5UI() {
         super();

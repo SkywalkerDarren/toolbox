@@ -11,19 +11,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * ÈÕÆÚ¼ÆËãÆ÷£¬Ö§³ÖÈÕÆÚ¼ä¸ô¼ÆËã¼°ÈÕÆÚÔö¼õÌìÊı¼ÆËã
- * ÏÔÊ¾×ÜÌìÊı£¬ÖÜÆÚÊ±¼ä
- * ²»Ö§³ÖÀúÊ·¼ÇÂ¼
+ * æ—¥æœŸè®¡ç®—å™¨ï¼Œæ”¯æŒæ—¥æœŸé—´éš”è®¡ç®—åŠæ—¥æœŸå¢å‡å¤©æ•°è®¡ç®—
+ * æ˜¾ç¤ºæ€»å¤©æ•°ï¼Œå‘¨æœŸæ—¶é—´
+ * ä¸æ”¯æŒå†å²è®°å½•
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class CalendarUI extends TransparentPanelUI {
 
     private static final long serialVersionUID = -4791068421614363948L;
-    private static final String interval = "ÈÕÆÚÖ®¼äµÄÏà¸ôÊ±¼ä";
-    private static final String addAndMinusDay = "Ìí¼Ó»ò¼õÈ¥ÌìÊı";
-    private static final Font fontPlain = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14);
-    private static final Font fontBold = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 14);
+    private static final String interval = "æ—¥æœŸä¹‹é—´çš„ç›¸éš”æ—¶é—´";
+    private static final String addAndMinusDay = "æ·»åŠ æˆ–å‡å»å¤©æ•°";
+    private static final Font fontPlain = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14);
+    private static final Font fontBold = new Font("å¾®è½¯é›…é»‘", Font.BOLD, 14);
     private static final Color normal = new Color(245, 255, 255);
     private JComboBox<String> comboBoxYear;
     private JPanel panelPlusOrMinus;
@@ -31,7 +31,7 @@ class CalendarUI extends TransparentPanelUI {
 
 
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -41,26 +41,26 @@ class CalendarUI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
         comboBoxYear.setBackground(normal);
         comboBoxYear.setBounds(97, 72, 160, 40);
-        comboBoxYear.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 13));
+        comboBoxYear.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 13));
         comboBoxYear.addItem(interval);
         comboBoxYear.addItem(addAndMinusDay);
         comboBoxYear.setVisible(true);
         add(comboBoxYear);
 
-        //ÈÕÆÚÔö¼õ
+        //æ—¥æœŸå¢å‡
         panelPlusOrMinus.setOpaque(false);
         panelPlusOrMinus.setLayout(null);
         panelPlusOrMinus.setVisible(true);
         panelPlusOrMinus.setBounds(0, 0, 590, 509);
         add(panelPlusOrMinus);
 
-        //ÈÕÆÚ¼ä¸ô
+        //æ—¥æœŸé—´éš”
         panelInterval.setOpaque(false);
         panelInterval.setLayout(null);
         panelPlusOrMinus.setVisible(false);
@@ -69,7 +69,7 @@ class CalendarUI extends TransparentPanelUI {
     }
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -93,7 +93,7 @@ class CalendarUI extends TransparentPanelUI {
     }
 
     /**
-     * ¹¹½¨ÈÕÆÚ¼ÆËãµÄUI»ù±¾¿ò¼Ü
+     * æ„å»ºæ—¥æœŸè®¡ç®—çš„UIåŸºæœ¬æ¡†æ¶
      */
     CalendarUI() {
         super();
@@ -101,11 +101,11 @@ class CalendarUI extends TransparentPanelUI {
 
 
     /**
-     * ¸ù¾İÄêÔÂÉè¶¨ÈÕÆÚ
+     * æ ¹æ®å¹´æœˆè®¾å®šæ—¥æœŸ
      *
-     * @param year  Äê·İ
-     * @param month ÔÂ·İ
-     * @return ÌìÊı
+     * @param year  å¹´ä»½
+     * @param month æœˆä»½
+     * @return å¤©æ•°
      */
     private int setDay(int year, int month) {
         int day;
@@ -151,36 +151,36 @@ class CalendarUI extends TransparentPanelUI {
                 day = 31;
                 break;
             default:
-                throw new IllegalArgumentException("ÈÕÆÚ·Ç·¨");
+                throw new IllegalArgumentException("æ—¥æœŸéæ³•");
         }
         return day;
     }
 
     /**
-     * ÅĞ¶ÏÒ»¸öÄê·İÊÇ·ñÊÇÈòÄê
+     * åˆ¤æ–­ä¸€ä¸ªå¹´ä»½æ˜¯å¦æ˜¯é—°å¹´
      *
-     * @param year ĞèÅĞ¶ÏµÄÄê·İ
-     * @return true Èç¹ûÊÇÈòÄê
+     * @param year éœ€åˆ¤æ–­çš„å¹´ä»½
+     * @return true å¦‚æœæ˜¯é—°å¹´
      */
     private boolean isLeapYear(int year) {
         return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
     }
 
     /**
-     * ÈÕÆÚ¾àÀëÀà
-     * »ñµÃÁ½¸öÈÕÆÚµÄ¼ä¸ôÈÕÆÚ¼°×ÜÌìÊı
+     * æ—¥æœŸè·ç¦»ç±»
+     * è·å¾—ä¸¤ä¸ªæ—¥æœŸçš„é—´éš”æ—¥æœŸåŠæ€»å¤©æ•°
      */
     private class IntervalPanel extends TransparentPanelUI {
 
 
         private static final long serialVersionUID = 1851775115929217134L;
-        private static final String from = "×Ô";
-        private static final String year = "Äê£¬";
-        private static final String month = "ÔÂ£¬";
-        private static final String day = "ÈÕ";
-        private static final String days = "Ìì";
-        private static final String to = "ÖÁ";
-        private static final String interval = "¼ä¸ôÌìÊı";
+        private static final String from = "è‡ª";
+        private static final String year = "å¹´ï¼Œ";
+        private static final String month = "æœˆï¼Œ";
+        private static final String day = "æ—¥";
+        private static final String days = "å¤©";
+        private static final String to = "è‡³";
+        private static final String interval = "é—´éš”å¤©æ•°";
         private JComboBox<Integer> comboBoxStartYear;
         private JComboBox<Integer> comboBoxStartMonth;
         private JComboBox<Integer> comboBoxStartDay;
@@ -207,7 +207,7 @@ class CalendarUI extends TransparentPanelUI {
         private JButton buttonClac;
 
         /**
-         * ³õÊ¼»¯×é¼ş
+         * åˆå§‹åŒ–ç»„ä»¶
          */
         @Override
         protected void initCompoment() {
@@ -234,15 +234,15 @@ class CalendarUI extends TransparentPanelUI {
             labelBetweenDay = new JLabel(day);
             textFieldTotalDay = new JLabel("", JLabel.CENTER);
             labelTotalDay = new JLabel(days);
-            buttonClac = new JButton("¼ÆËã");
+            buttonClac = new JButton("è®¡ç®—");
         }
 
         /**
-         * ³õÊ¼»¯²¼¾Ö
+         * åˆå§‹åŒ–å¸ƒå±€
          */
         @Override
         protected void initUI() {
-            // ¿ªÊ¼Äê·İ
+            // å¼€å§‹å¹´ä»½
             comboBoxStartYear.setBounds(97, 157, 65, 35);
             comboBoxStartYear.setBackground(normal);
             add(comboBoxStartYear);
@@ -251,7 +251,7 @@ class CalendarUI extends TransparentPanelUI {
             }
             comboBoxStartYear.setSelectedItem(DateTime.now().getYear());
 
-            // ¿ªÊ¼ÔÂ·İ
+            // å¼€å§‹æœˆä»½
             comboBoxStartMonth.setBounds(187, 157, 65, 35);
             comboBoxStartMonth.setBackground(normal);
             add(comboBoxStartMonth);
@@ -260,12 +260,12 @@ class CalendarUI extends TransparentPanelUI {
             }
             comboBoxStartMonth.setSelectedItem(DateTime.now().getMonthOfYear());
 
-            // ¿ªÊ¼ÌìÊı
+            // å¼€å§‹å¤©æ•°
             comboBoxStartDay.setBounds(280, 157, 65, 35);
             comboBoxStartDay.setBackground(normal);
             add(comboBoxStartDay);
 
-            // ½áÊøÄê·İ
+            // ç»“æŸå¹´ä»½
             comboBoxEndYear.setBounds(97, 244, 65, 35);
             comboBoxEndYear.setBackground(normal);
             add(comboBoxEndYear);
@@ -274,7 +274,7 @@ class CalendarUI extends TransparentPanelUI {
             }
             comboBoxEndYear.setSelectedItem(DateTime.now().getYear());
 
-            // ½áÊøÔÂ·İ
+            // ç»“æŸæœˆä»½
             comboBoxEndMonth.setBounds(187, 244, 65, 35);
             comboBoxEndMonth.setBackground(normal);
             add(comboBoxEndMonth);
@@ -283,12 +283,12 @@ class CalendarUI extends TransparentPanelUI {
             }
             comboBoxEndMonth.setSelectedItem(DateTime.now().getMonthOfYear());
 
-            // ½áÊøÌìÊı
+            // ç»“æŸå¤©æ•°
             comboBoxEndDay.setBounds(280, 244, 65, 35);
             comboBoxEndDay.setBackground(normal);
             add(comboBoxEndDay);
 
-            // ±êÇ©×é********************************
+            // æ ‡ç­¾ç»„********************************
             labelBetweenFrom.setFont(fontPlain);
             labelBetweenFrom.setBounds(97, 122, 42, 25);
             add(labelBetweenFrom);
@@ -335,22 +335,22 @@ class CalendarUI extends TransparentPanelUI {
             labelIntervalDay.setBounds(250, 336, 45, 35);
             add(labelIntervalDay);
 
-            // ÕâÊÇ×îÏÂÃæÄÇËÄ¸ö
+            // è¿™æ˜¯æœ€ä¸‹é¢é‚£å››ä¸ª
             labelBetweenYear.setFont(fontBold);
             labelBetweenYear.setBounds(152, 346, 54, 15);
             add(labelBetweenYear);
 
-            // ÕâÊÇ×îÏÂÃæÄÇËÄ¸ö
+            // è¿™æ˜¯æœ€ä¸‹é¢é‚£å››ä¸ª
             labelBetweenMonth.setFont(fontBold);
             labelBetweenMonth.setBounds(223, 346, 54, 15);
             add(labelBetweenMonth);
 
-            // ÕâÊÇ×îÏÂÃæÄÇËÄ¸ö
+            // è¿™æ˜¯æœ€ä¸‹é¢é‚£å››ä¸ª
             labelBetweenDay.setFont(fontBold);
             labelBetweenDay.setBounds(303, 346, 54, 15);
             add(labelBetweenDay);
 
-            // ÕâÊÇ×îÏÂÃæÄÇËÄ¸ö
+            // è¿™æ˜¯æœ€ä¸‹é¢é‚£å››ä¸ª
             textFieldTotalDay.setBounds(99, 398, 45, 35);
             add(textFieldTotalDay);
 
@@ -358,7 +358,7 @@ class CalendarUI extends TransparentPanelUI {
             labelTotalDay.setBounds(152, 406, 54, 15);
             add(labelTotalDay);
 
-            // ¼ÆËã°´Å¥
+            // è®¡ç®—æŒ‰é’®
             buttonClac.setFont(fontPlain);
             buttonClac.setBackground(normal);
             buttonClac.setBounds(223, 396, 75, 35);
@@ -366,7 +366,7 @@ class CalendarUI extends TransparentPanelUI {
         }
 
         /**
-         * ½¨Á¢¼àÌıÊÂ¼ş
+         * å»ºç«‹ç›‘å¬äº‹ä»¶
          */
         @Override
         protected void createAction() {
@@ -457,7 +457,7 @@ class CalendarUI extends TransparentPanelUI {
         }
 
         /**
-         * ÈÕÆÚ¾àÀëµÄUI³õÊ¼»¯
+         * æ—¥æœŸè·ç¦»çš„UIåˆå§‹åŒ–
          */
         IntervalPanel() {
             super();
@@ -465,21 +465,21 @@ class CalendarUI extends TransparentPanelUI {
     }
 
     /**
-     * ÈÕÆÚÔö¼õÀà
-     * ´ÓÒ»¸öÒÑÖªÈÕÆÚÔö¼õÒ»¶¨µÄÈÕÆÚ£¬À´»ñµÃÄ¿±êÈÕÆÚ
+     * æ—¥æœŸå¢å‡ç±»
+     * ä»ä¸€ä¸ªå·²çŸ¥æ—¥æœŸå¢å‡ä¸€å®šçš„æ—¥æœŸï¼Œæ¥è·å¾—ç›®æ ‡æ—¥æœŸ
      */
     private class PlusOrMinusPanel extends TransparentPanelUI {
 
 
         private static final long serialVersionUID = -2918669599707881570L;
-        private static final String from = "×Ô";
-        private static final String year = "Äê£¬";
-        private static final String month = "ÔÂ£¬";
-        private static final String day = "ÈÕ";
-        private static final String date = "ÈÕÆÚ";
-        private static final String calc = "¼ÆËã";
-        private static final String add = "Ìí¼Ó";
-        private static final String minus = "¼õÈ¥";
+        private static final String from = "è‡ª";
+        private static final String year = "å¹´ï¼Œ";
+        private static final String month = "æœˆï¼Œ";
+        private static final String day = "æ—¥";
+        private static final String date = "æ—¥æœŸ";
+        private static final String calc = "è®¡ç®—";
+        private static final String add = "æ·»åŠ ";
+        private static final String minus = "å‡å»";
         private boolean isAdd = true;
         private JLabel labelFrom;
         private JLabel labelYear;
@@ -507,7 +507,7 @@ class CalendarUI extends TransparentPanelUI {
         private JButton buttonCalc;
 
         /**
-         * ³õÊ¼»¯×é¼ş
+         * åˆå§‹åŒ–ç»„ä»¶
          */
         @Override
         protected void initCompoment() {
@@ -540,7 +540,7 @@ class CalendarUI extends TransparentPanelUI {
         }
 
         /**
-         * ³õÊ¼»¯²¼¾Ö
+         * åˆå§‹åŒ–å¸ƒå±€
          */
         @Override
         protected void initUI() {
@@ -627,17 +627,17 @@ class CalendarUI extends TransparentPanelUI {
             comboBoxFromDay.setBackground(normal);
             add(comboBoxFromDay);
 
-            // Õâ¸öÊÇ×îÏÂÃæÄÇËÄ¸ö»òÈı¸ö
+            // è¿™ä¸ªæ˜¯æœ€ä¸‹é¢é‚£å››ä¸ªæˆ–ä¸‰ä¸ª
             plusOrMinusYear.setBackground(new Color(224, 255, 255));
             plusOrMinusYear.setBounds(97, 368, 65, 35);
             add(plusOrMinusYear);
 
-            // Õâ¸öÊÇ×îÏÂÃæÄÇËÄ¸ö»òÈı¸ö
+            // è¿™ä¸ªæ˜¯æœ€ä¸‹é¢é‚£å››ä¸ªæˆ–ä¸‰ä¸ª
             plusOrMinusMonth.setBackground(new Color(224, 255, 255));
             plusOrMinusMonth.setBounds(187, 368, 65, 35);
             add(plusOrMinusMonth);
 
-            // Õâ¸öÊÇ×îÏÂÃæÄÇËÄ¸ö»òÈı¸ö
+            // è¿™ä¸ªæ˜¯æœ€ä¸‹é¢é‚£å››ä¸ªæˆ–ä¸‰ä¸ª
             plusOrMinusDay.setBackground(new Color(224, 255, 255));
             plusOrMinusDay.setBounds(280, 368, 65, 35);
             add(plusOrMinusDay);
@@ -662,7 +662,7 @@ class CalendarUI extends TransparentPanelUI {
         }
 
         /**
-         * ½¨Á¢¼àÌıÊÂ¼ş
+         * å»ºç«‹ç›‘å¬äº‹ä»¶
          */
         @Override
         protected void createAction() {
@@ -721,7 +721,7 @@ class CalendarUI extends TransparentPanelUI {
         }
 
         /**
-         * ÈÕÆÚÔö¼õÒ³ÃæµÄUI¹¹Ôì
+         * æ—¥æœŸå¢å‡é¡µé¢çš„UIæ„é€ 
          */
         PlusOrMinusPanel() {
             super();

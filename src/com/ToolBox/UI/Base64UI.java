@@ -6,17 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * base64½âÂëµÄÖ÷Ãæ°å£¬¿ÉÒÔ¶Ô±àÂë½øÐÐbase64±àÂëÓë½âÂë
+ * base64è§£ç çš„ä¸»é¢æ¿ï¼Œå¯ä»¥å¯¹ç¼–ç è¿›è¡Œbase64ç¼–ç ä¸Žè§£ç 
  *
- * @author Ñîºë£¬ÐìÏéÁÁ£¬Öì¿ÉÐÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class Base64UI extends TransparentPanelUI {
 
     private static final long serialVersionUID = -4621043278294486022L;
-    private final static String leftTips = "ÊäÈëÒª×ª»»µÄ×Ö·û´®";
-    private final static String rightTips = "ÊäÈëÒª½âÂëµÄ×Ö·û´®";
-    private final static String encoding = " BASE64±àÂë > ";
-    private final static String decoding = " < BASE64½âÂë ";
+    private final static String leftTips = "è¾“å…¥è¦è½¬æ¢çš„å­—ç¬¦ä¸²";
+    private final static String rightTips = "è¾“å…¥è¦è§£ç çš„å­—ç¬¦ä¸²";
+    private final static String encoding = " BASE64ç¼–ç  > ";
+    private final static String decoding = " < BASE64è§£ç  ";
 
     private TextBox textAreaLeft;
     private TextBox textAreaRight;
@@ -26,7 +26,7 @@ class Base64UI extends TransparentPanelUI {
     private JButton buttonDecode;
 
     /**
-     * ³õÊ¼»¯×é¼þ
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -40,7 +40,7 @@ class Base64UI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
@@ -69,7 +69,7 @@ class Base64UI extends TransparentPanelUI {
     }
 
     /**
-     * ½¨Á¢¼àÌýÊÂ¼þ
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -91,7 +91,7 @@ class Base64UI extends TransparentPanelUI {
     }
 
     /**
-     * ¹¹Ôì±àÂëÆ÷¿ò¼Ü
+     * æž„é€ ç¼–ç å™¨æ¡†æž¶
      */
     Base64UI() {
         super();

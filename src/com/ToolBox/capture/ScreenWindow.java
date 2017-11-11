@@ -10,9 +10,9 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 /**
- * È«ÆÁÏÔÊ¾µÄ´°¿Ú, °´ÓÒ¼üÍË³ö
+ * å…¨å±æ˜¾ç¤ºçš„çª—å£, æŒ‰å³é”®é€€å‡º
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 public class ScreenWindow extends JFrame implements MouseListener, MouseMotionListener {
 
@@ -23,6 +23,12 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
 
     private int x, y, xEnd, yEnd;
 
+    /**
+     * æˆªå›¾ç•Œé¢
+     *
+     * @throws AWTException         uiå¼‚å¸¸
+     * @throws InterruptedException ä¸­æ–­å¼‚å¸¸
+     */
     public ScreenWindow() throws AWTException, InterruptedException {
 
         Dimension screenDims = Toolkit.getDefaultToolkit().getScreenSize();
@@ -104,4 +110,3 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
 
     }
 }
-

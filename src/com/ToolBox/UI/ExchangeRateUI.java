@@ -14,24 +14,24 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * »ãÂÊ×ª»»£¬Ä¬ÈÏÊ¹ÓÃÄÚÖÃ»ãÂÊ£¬¿ÉÒÔ´ÓÍøÉÏ»ñÈ¡×îĞÂ»ãÂÊ
- * Ö§³Ö½ü°ÙÖÖ»õ±ÒµÄ»»Ëã
- * Ö§³Ö½á¹û±£´æÓë½á¹û¶ÁÈ¡
+ * æ±‡ç‡è½¬æ¢ï¼Œé»˜è®¤ä½¿ç”¨å†…ç½®æ±‡ç‡ï¼Œå¯ä»¥ä»ç½‘ä¸Šè·å–æœ€æ–°æ±‡ç‡
+ * æ”¯æŒè¿‘ç™¾ç§è´§å¸çš„æ¢ç®—
+ * æ”¯æŒç»“æœä¿å­˜ä¸ç»“æœè¯»å–
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
 
     private static final long serialVersionUID = -4791068421614363948L;
-    private static final String value = "±ÒÖµ";
+    private static final String value = "å¸å€¼";
     private static final String CNY = "CNY";
-    private static final String select = "Ñ¡Ôñ»õ±Ò";
-    private static final String input = "ÊäÈë½ğ¶î";
-    private static final String update = "¸üĞÂ»ãÂÊ";
-    private static final String exchanger = "¶Ò»»";
-    private static final String pattern = "yyyyÄêMMÔÂddÈÕ ¸üĞÂ³É¹¦";
-    private static final String failed = "¸üĞÂÊ§°Ü";
-    private static final String current = "µ±Ç°»ãÂÊÎª: ";
+    private static final String select = "é€‰æ‹©è´§å¸";
+    private static final String input = "è¾“å…¥é‡‘é¢";
+    private static final String update = "æ›´æ–°æ±‡ç‡";
+    private static final String exchanger = "å…‘æ¢";
+    private static final String pattern = "yyyyå¹´MMæœˆddæ—¥ æ›´æ–°æˆåŠŸ";
+    private static final String failed = "æ›´æ–°å¤±è´¥";
+    private static final String current = "å½“å‰æ±‡ç‡ä¸º: ";
     private static JTextField textFieldSource = new JTextField();
     private ExchangerRateRecord exchange;
     private JTextField textFieldTarget;
@@ -44,7 +44,7 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
     private JButton btnUpdate;
     private JButton btnExchange;
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -60,12 +60,12 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
         Color color = new Color(240, 255, 255);
-        Font font = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 15);
+        Font font = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 15);
         Currency[] cur = exchange.getRates();
         Dimension dimension = new Dimension(175, 35);
 
@@ -93,14 +93,14 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
         add(comboBoxTarget);
 
         textFieldSource.setBackground(color);
-        textFieldSource.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+        textFieldSource.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 16));
         textFieldSource.setBounds(315, 106, 175, 35);
         textFieldSource.setColumns(10);
         add(textFieldSource);
 
         textFieldTarget = new JTextField();
         textFieldTarget.setBackground(color);
-        textFieldTarget.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+        textFieldTarget.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 16));
         textFieldTarget.setEditable(false);
         textFieldTarget.setBounds(315, 333, 175, 35);
         textFieldTarget.setColumns(10);
@@ -119,18 +119,18 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
         add(lbRate);
 
         btnUpdate.setBackground(new Color(224, 255, 255));
-        btnUpdate.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+        btnUpdate.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
         btnUpdate.setBounds(86, 217, 174, 35);
         add(btnUpdate);
 
         btnExchange.setBackground(new Color(224, 255, 255));
-        btnExchange.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+        btnExchange.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
         btnExchange.setBounds(315, 217, 174, 35);
         add(btnExchange);
     }
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -161,16 +161,16 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
     }
 
     /**
-     * ¹¹Ôì»ãÂÊ¶Ò»»²¼¾Ö
+     * æ„é€ æ±‡ç‡å…‘æ¢å¸ƒå±€
      */
     public ExchangeRateUI() {
         super();
     }
 
     /**
-     * Éè¶¨´ÓÀúÊ·¼ÇÂ¼Ëù»ñÈ¡µÄ½á¹û£¬ÏÔÊ¾µ½UIÉÏ²¢¼ÓÔØµ½±í´ïÊ½ÖĞ
+     * è®¾å®šä»å†å²è®°å½•æ‰€è·å–çš„ç»“æœï¼Œæ˜¾ç¤ºåˆ°UIä¸Šå¹¶åŠ è½½åˆ°è¡¨è¾¾å¼ä¸­
      *
-     * @param s »ñÈ¡µÄ½á¹û
+     * @param s è·å–çš„ç»“æœ
      */
     static void setTempResult(String s) {
         textFieldSource.setText(s);

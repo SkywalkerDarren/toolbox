@@ -7,18 +7,18 @@ import java.awt.*;
 import java.awt.event.*;
 
 /**
- * ¿ÆÑ§¼ÆËãÆ÷£¬Ö§³Ö½á¹û±£´æ¼´½á¹û»ñÈ¡
- * Ö§³Ö´øÓÅÏÈ¼¶µÄËÄÔòÔËËã£¬ÒÔ¼°¸ß¼¶ÔËËã·û
- * Ö§³Ö¸ß¾«¶È¼ÆËã
+ * ç§‘å­¦è®¡ç®—å™¨ï¼Œæ”¯æŒç»“æžœä¿å­˜å³ç»“æžœèŽ·å–
+ * æ”¯æŒå¸¦ä¼˜å…ˆçº§çš„å››åˆ™è¿ç®—ï¼Œä»¥åŠé«˜çº§è¿ç®—ç¬¦
+ * æ”¯æŒé«˜ç²¾åº¦è®¡ç®—
  *
- * @author Ñîºë£¬ÐìÏéÁÁ£¬Öì¿ÉÐÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class ScientificUI extends TransparentPanelUI implements ActionListener, KeyListener {
 
     private static final long serialVersionUID = 688567022889591814L;
     private static JTextArea expTextArea = new JTextArea();
-    private static StringBuilder number = new StringBuilder();// ÓÃ»§ÏÔÊ¾
-    private static StringBuilder answer = new StringBuilder();// ºóÌ¨×Ö·û´®
+    private static StringBuilder number = new StringBuilder();// ç”¨æˆ·æ˜¾ç¤º
+    private static StringBuilder answer = new StringBuilder();// åŽå°å­—ç¬¦ä¸²
     private boolean wasAnswer = false;
     private JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     private JButton btnLog, btnAbs, btnSin, btnCos, btnTan, btnMod;
@@ -27,7 +27,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
     private JButton buttonPlus, buttonEqual, buttonFact, btnPower, btnRoot, buttonDot;
 
     /**
-     * ³õÊ¼»¯×é¼þ
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -51,7 +51,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
         btnRightParenthesis = new JButton(")");
         btnCE = new JButton("CE");
         btnC = new JButton("C");
-        buttonBackSpace = new JButton("¡û");
+        buttonBackSpace = new JButton("â†");
         btnDivide = new JButton("/");
         btnMultiply = new JButton("*");
         btnMinus = new JButton("-");
@@ -59,21 +59,21 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
         buttonEqual = new JButton("=");
         buttonFact = new JButton("fact");
         btnPower = new JButton("x^y");
-        btnRoot = new JButton("y¡Ìx");
+        btnRoot = new JButton("yâˆšx");
         buttonDot = new JButton(".");
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
         Color btnBasicColor = new Color(240, 255, 250);
         Color btnNumberColor = new Color(225, 255, 250);
-        Font font = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 13);
-        Font fontBasic = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 14);
+        Font font = new Font("å¾®è½¯é›…é»‘", Font.BOLD, 13);
+        Font fontBasic = new Font("å¾®è½¯é›…é»‘", Font.BOLD, 14);
 
-        // °´Å¥×é
+        // æŒ‰é’®ç»„
         btn0.setBackground(btnNumberColor);
         btn0.setFont(font);
         btn0.setBounds(295, 421, 75, 35);
@@ -225,9 +225,9 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
         buttonDot.setBounds(369, 421, 75, 35);
         add(buttonDot);
 
-        // ÎÄ±¾¿ò
+        // æ–‡æœ¬æ¡†
         expTextArea.setBackground(btnBasicColor);
-        expTextArea.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18));
+        expTextArea.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 18));
         expTextArea.setEditable(false);
         expTextArea.setLineWrap(true);
         expTextArea.setColumns(10000);
@@ -240,7 +240,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
     }
 
     /**
-     * ½¨Á¢¼àÌýÊÂ¼þ
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -307,14 +307,14 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
     }
 
     /**
-     * ¹¹Ôì¼ÆËãÆ÷²¼¾Ö
+     * æž„é€ è®¡ç®—å™¨å¸ƒå±€
      */
     ScientificUI() {
         super();
     }
 
     /**
-     * @param tempResult Éè¶¨´æ´¢½á¹û
+     * @param tempResult è®¾å®šå­˜å‚¨ç»“æžœ
      */
     static void setTempResult(String tempResult) {
         answer.append(tempResult);
@@ -323,7 +323,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
     }
 
     /**
-     * ¸÷¸ö°´Å¥ÊÂ¼þ
+     * å„ä¸ªæŒ‰é’®äº‹ä»¶
      */
     private void action(String btnName) {
         switch (btnName) {
@@ -357,7 +357,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("¡Â ");
+                number.append("Ã· ");
                 answer.append("/");
                 expTextArea.setText(number.toString());
                 break;
@@ -366,7 +366,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("¡Á ");
+                number.append("Ã— ");
                 answer.append("*");
                 expTextArea.setText(number.toString());
                 break;
@@ -455,12 +455,12 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 answer.append("^");
                 expTextArea.setText(number.toString());
                 break;
-            case "y¡Ìx":
+            case "yâˆšx":
                 wasAnswer = false;
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("¡Ì ");
+                number.append("âˆš ");
                 answer.append("q");
                 expTextArea.setText(number.toString());
                 break;
@@ -472,7 +472,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                     r = new ScientificCalculator().getResult(answer.toString());
                     HistoryUI.updateRecord(r);
                 } catch (Exception error) {
-                    r = "±í´ïÊ½ÎÞÐ§";
+                    r = "è¡¨è¾¾å¼æ— æ•ˆ";
                     error.printStackTrace();
                 }
                 number.append('\n');
@@ -502,7 +502,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 expTextArea.setText("0");
                 break;
             case "\b":
-            case "¡û":
+            case "â†":
                 wasAnswer = false;
                 if (number.length() == 0) {
                     return;
@@ -553,19 +553,19 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
 
 
     /**
-     * ÅÐ¶ÏÊÇ·ñÎªÊý×ÖµÄÒ»²¿·Ö
+     * åˆ¤æ–­æ˜¯å¦ä¸ºæ•°å­—çš„ä¸€éƒ¨åˆ†
      *
-     * @param c ÅÐ¶ÏµÄ×Ö·û
-     * @return true Èç¹ûÊÇÊý×ÖµÄÒ»²¿·Ö
+     * @param c åˆ¤æ–­çš„å­—ç¬¦
+     * @return true å¦‚æžœæ˜¯æ•°å­—çš„ä¸€éƒ¨åˆ†
      */
     private boolean isDigit(char c) {
         return (c == '.' || c >= '0' && c <= '9');
     }
 
     /**
-     * ÅÐ¶ÏÇ°Ò»×Ö·ûÊÇ·ñÎª¿Õ¸ñ
+     * åˆ¤æ–­å‰ä¸€å­—ç¬¦æ˜¯å¦ä¸ºç©ºæ ¼
      *
-     * @return true Èç¹ûÇ°Ò»×Ö·ûÊÇ¿Õ¸ñ
+     * @return true å¦‚æžœå‰ä¸€å­—ç¬¦æ˜¯ç©ºæ ¼
      */
     private boolean prevIsSpace() {
         return (number.charAt(number.length() - 1) == ' ');

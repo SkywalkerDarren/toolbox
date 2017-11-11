@@ -1,27 +1,27 @@
 package com.ToolBox.currency;
 
 /**
- * »õ±Ò´æ´¢
+ * è´§å¸å­˜å‚¨
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 public class Currency {
     String name;
     double rateToUSD;
 
     /**
-     * »ñÈ¡»õ±ÒµÄÃû³Æ
+     * è·å–è´§å¸çš„åç§°
      *
-     * @return »õ±ÒÃû³Æ
+     * @return è´§å¸åç§°
      */
     public String getName() {
         return name;
     }
 
     /**
-     * ÒÔÃÀÔªÎª1£¬»ñÈ¡»õ±ÒµÄ»ãÂÊ
+     * ä»¥ç¾å…ƒä¸º1ï¼Œè·å–è´§å¸çš„æ±‡ç‡
      *
-     * @return »õ±Ò¶ÒÃÀÔª»ãÂÊ
+     * @return è´§å¸å…‘ç¾å…ƒæ±‡ç‡
      */
     public double getRateToUSD() {
         return rateToUSD;

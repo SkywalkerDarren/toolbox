@@ -9,22 +9,22 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * 获取汇率
+ * 鑾峰彇姹囩巼
  *
- * @author 杨弘
+ * @author 鏉ㄥ紭
  */
 class ExchangeRateSpyder {
 
     /**
-     * 汇率数据爬虫
+     * 姹囩巼鏁版嵁鐖櫕
      *
-     * @return json元素
+     * @return json鍏冪礌
      */
     JsonObject spider() throws JsonIOException, JsonSyntaxException, IOException {
-        // 设置网址
+        // 璁剧疆缃戝潃
         String url_str = "https://v3.exchangerate-api.com/bulk/e92cde05e8f9d2a9a7847c75/USD";
 
-        // 拉取请求
+        // 鎷夊彇璇锋眰
         URL url;
         url = new URL(url_str);
 
@@ -32,7 +32,7 @@ class ExchangeRateSpyder {
         request = (HttpURLConnection) url.openConnection();
         request.connect();
 
-        // 解析json
+        // 瑙ｆ瀽json
         JsonParser jp = new JsonParser();
         JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent(), "utf-8"));
 

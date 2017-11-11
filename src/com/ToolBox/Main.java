@@ -4,7 +4,7 @@ import com.ToolBox.UI.Splash;
 
 public class Main {
     /**
-     * Ö÷³ÌĞòÔËĞĞÈë¿Ú
+     * ä¸»ç¨‹åºè¿è¡Œå…¥å£
      * @param args null
      */
     public static void main(String[] args) {

@@ -4,18 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * ±àÂë½âÂëÖ÷½çÃæ£¬·ÅÓĞBase64¼ÓÃÜ½âÃÜ£¬Unicode±àÂë½âÂë£¬MD5ĞÅÏ¢ÕªÒª¹¦ÄÜ¡£
- * ÎÄ±¾¿ò¾ùÖ§³Ö¸´ÖÆ Õ³Ìù È«Ñ¡ ¼ôÇĞµÄ³£ÓÃ¹¦ÄÜ¡£
- * MD5Ö§³Ö¶ÔÎÄ¼şĞ£Ñé£¬ÒÔ¼°ÎÄ×ÖĞÅÏ¢Ğ£Ñé
+ * ç¼–ç è§£ç ä¸»ç•Œé¢ï¼Œæ”¾æœ‰Base64åŠ å¯†è§£å¯†ï¼ŒUnicodeç¼–ç è§£ç ï¼ŒMD5ä¿¡æ¯æ‘˜è¦åŠŸèƒ½ã€‚
+ * æ–‡æœ¬æ¡†å‡æ”¯æŒå¤åˆ¶ ç²˜è´´ å…¨é€‰ å‰ªåˆ‡çš„å¸¸ç”¨åŠŸèƒ½ã€‚
+ * MD5æ”¯æŒå¯¹æ–‡ä»¶æ ¡éªŒï¼Œä»¥åŠæ–‡å­—ä¿¡æ¯æ ¡éªŒ
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class EncodeAndDecodeUI extends TransparentPanelUI {
     private static final long serialVersionUID = 8137943111751980202L;
-    private static final String base64 = "Base64¼ÓÃÜ/½âÃÜ";
-    private static final String unicode = "UnicodeÖĞÎÄ»¥×ª";
-    private static final String md5 = "MD5ÎÄ×Ö¼ÓÃÜ/ÎÄ¼şĞ£Ñé";
-    private static final String code = "ÎÄ¼ş/ÎÄ×Ö±àÂëÅúÁ¿×ª»»";
+    private static final String base64 = "Base64åŠ å¯†/è§£å¯†";
+    private static final String unicode = "Unicodeä¸­æ–‡äº’è½¬";
+    private static final String md5 = "MD5æ–‡å­—åŠ å¯†/æ–‡ä»¶æ ¡éªŒ";
+    private static final String code = "æ–‡ä»¶/æ–‡å­—ç¼–ç æ‰¹é‡è½¬æ¢";
     private JTabbedPane tabbedPane;
     private JPanel panelBase64;
     private JPanel panelUnicode;
@@ -23,7 +23,7 @@ class EncodeAndDecodeUI extends TransparentPanelUI {
     private JPanel panelLiteral;
 
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -35,40 +35,40 @@ class EncodeAndDecodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
-        // ¹¹Ôì±êÇ©Ò³
+        // æ„é€ æ ‡ç­¾é¡µ
         tabbedPane.setBackground(new Color(250, 255, 255));
-        tabbedPane.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
+        tabbedPane.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 16));
         tabbedPane.setBounds(-2, -2, 800, 550);
         tabbedPane.setBorder(BorderFactory.createEtchedBorder());
         add(tabbedPane);
 
-        // Base64¼ÓÃÜ/½âÃÜ±êÇ©Ò³
+        // Base64åŠ å¯†/è§£å¯†æ ‡ç­¾é¡µ
         panelBase64.setOpaque(false);
         panelBase64.setLayout(null);
         tabbedPane.addTab(base64, null, panelBase64, null);
 
-        // UnicodeÖĞÎÄ»¥×ª
+        // Unicodeä¸­æ–‡äº’è½¬
         panelUnicode.setLayout(null);
         panelBase64.setOpaque(false);
         tabbedPane.addTab(unicode, null, panelUnicode, null);
 
-        // MD5Ğ£Ñé±êÇ©Ò³
+        // MD5æ ¡éªŒæ ‡ç­¾é¡µ
         tabbedPane.addTab(md5, null, panelMD5, null);
         panelMD5.setOpaque(false);
         panelMD5.setLayout(null);
 
-        // ÎÄ×Ö±àÂëÅúÁ¿×ª»»±êÇ©Ò³
+        // æ–‡å­—ç¼–ç æ‰¹é‡è½¬æ¢æ ‡ç­¾é¡µ
         panelLiteral.setOpaque(false);
         panelLiteral.setLayout(null);
         tabbedPane.addTab(code, null, panelLiteral, null);
     }
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -76,9 +76,9 @@ class EncodeAndDecodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯±àÂë½âÂë¹¦ÄÜ
-     * Ìí¼Ó
-     * base64¼Ó/½âÃÜ, UnicodeÖĞÎÄ»¥×ª, MD5Ğ£Ñé
+     * åˆå§‹åŒ–ç¼–ç è§£ç åŠŸèƒ½
+     * æ·»åŠ 
+     * base64åŠ /è§£å¯†, Unicodeä¸­æ–‡äº’è½¬, MD5æ ¡éªŒ
      */
     EncodeAndDecodeUI() {
         super();

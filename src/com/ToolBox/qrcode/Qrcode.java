@@ -16,10 +16,10 @@ import java.nio.file.Path;
 import java.util.HashMap;
 
 /**
- * ¶şÎ¬ÂëºËĞÄ´úÂë
- * ¶şÎ¬ÂëÉú³ÉÓë½âÂë¹¦ÄÜ
+ * äºŒç»´ç æ ¸å¿ƒä»£ç 
+ * äºŒç»´ç ç”Ÿæˆä¸è§£ç åŠŸèƒ½
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 public class Qrcode {
 
@@ -32,16 +32,16 @@ public class Qrcode {
     private static int height = MEDIUM;
     private static HashMap<EncodeHintType, Object> hints = new HashMap<>();
 
-    //Ä¬ÈÏÊ¹ÓÃutf-8±àÂë
+    //é»˜è®¤ä½¿ç”¨utf-8ç¼–ç 
     static {
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
     }
 
     /**
-     * ¶şÎ¬Âë½âÂë
+     * äºŒç»´ç è§£ç 
      *
-     * @param bufferedImage ¶şÎ¬ÂëÍ¼Æ¬
-     * @return ½âÂë½á¹û£¬´íÎóÔò·µ»ØÊ¶±ğ´íÎó
+     * @param bufferedImage äºŒç»´ç å›¾ç‰‡
+     * @return è§£ç ç»“æœï¼Œé”™è¯¯åˆ™è¿”å›è¯†åˆ«é”™è¯¯
      */
     public static String decodeQr(BufferedImage bufferedImage) {
         String retStr;
@@ -54,15 +54,15 @@ public class Qrcode {
             Result result = new MultiFormatReader().decode(bitmap, hintTypeObjectHashMap);
             retStr = result.getText();
         } catch (Exception e) {
-            retStr = "Ê¶±ğ´íÎó";
+            retStr = "è¯†åˆ«é”™è¯¯";
         }
         return retStr;
     }
 
     /**
-     * ¾À´íµÈ¼¶ÉèÖÃ
+     * çº é”™ç­‰çº§è®¾ç½®
      *
-     * @param level ¾À´íµÈ¼¶ ÔÚErrorCorrectionLevelÀàÖĞ
+     * @param level çº é”™ç­‰çº§ åœ¨ErrorCorrectionLevelç±»ä¸­
      */
     public static void setCorrection(ErrorCorrectionLevel level) {
         hints.put(EncodeHintType.ERROR_CORRECTION, level);
@@ -74,26 +74,26 @@ public class Qrcode {
     }
 
     /**
-     * ±£´æ¶şÎ¬ÂëÎÄ¼ş
+     * ä¿å­˜äºŒç»´ç æ–‡ä»¶
      *
-     * @param content ¶şÎ¬ÂëÔ­Ê¼ĞÅÏ¢
-     * @param path    ±£´æÂ·¾¶
-     * @throws IOException ÎÄ¼ş¶ÁĞ´´íÎó
+     * @param content äºŒç»´ç åŸå§‹ä¿¡æ¯
+     * @param path    ä¿å­˜è·¯å¾„
+     * @throws IOException æ–‡ä»¶è¯»å†™é”™è¯¯
      */
     public static void generateFile(String content, Path path) throws IOException {
         generateImage(content);
         String FORMAT = "jpg";
         File qrCodeFile = new File(path.toString() + "\\qrcode" +
                 DateTime.now().toString(" yyyy-MM-dd") + "." + FORMAT);
-        //½«¶şÎ¬ÂëÍ¼Æ¬×÷ÎªÎÄ¼şÊä³ö
+        //å°†äºŒç»´ç å›¾ç‰‡ä½œä¸ºæ–‡ä»¶è¾“å‡º
         ImageIO.write(image, FORMAT, qrCodeFile);
     }
 
     /**
-     * Éú³É¶şÎ¬ÂëÍ¼Æ¬
+     * ç”ŸæˆäºŒç»´ç å›¾ç‰‡
      *
-     * @param content ¶şÎ¬ÂëÔ­Ê¼ĞÅÏ¢
-     * @return ±àÂëºóÍ¼Æ¬½á¹û
+     * @param content äºŒç»´ç åŸå§‹ä¿¡æ¯
+     * @return ç¼–ç åå›¾ç‰‡ç»“æœ
      */
     public static BufferedImage generateImage(String content) {
         BitMatrix bitMatrix = getMatrix(content);

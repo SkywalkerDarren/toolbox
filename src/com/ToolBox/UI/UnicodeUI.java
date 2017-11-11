@@ -6,17 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * ±àÂë½âÂëUnicode£¬Ö§³ÖÖÐÎÄUnicode»¥Ïà×ª»»
+ * ç¼–ç è§£ç Unicodeï¼Œæ”¯æŒä¸­æ–‡Unicodeäº’ç›¸è½¬æ¢
  *
- * @author Ñîºë£¬ÐìÏéÁÁ£¬Öì¿ÉÐÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class UnicodeUI extends TransparentPanelUI {
 
     private static final long serialVersionUID = 7188547339103719919L;
-    private static final String leftTip = "ÖÐÎÄ½á¹û";
-    private static final String rightTip = "Unicode½á¹û";
-    private static final String encode = " ÖÐÎÄ ×ª Unicode > ";
-    private static final String decode = " < Unicode ×ª ÖÐÎÄ ";
+    private static final String leftTip = "ä¸­æ–‡ç»“æžœ";
+    private static final String rightTip = "Unicodeç»“æžœ";
+    private static final String encode = " ä¸­æ–‡ è½¬ Unicode > ";
+    private static final String decode = " < Unicode è½¬ ä¸­æ–‡ ";
     private TextBox textAreaLeft;
     private TextBox textAreaRight;
     private JScrollPane jspTextLeft;
@@ -25,7 +25,7 @@ class UnicodeUI extends TransparentPanelUI {
     private JButton buttonCHNToUnicode;
 
     /**
-     * ³õÊ¼»¯×é¼þ
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -38,7 +38,7 @@ class UnicodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
@@ -70,7 +70,7 @@ class UnicodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ½¨Á¢¼àÌýÊÂ¼þ
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -92,7 +92,7 @@ class UnicodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ¹¹ÔìUnicodeÖÐÎÄ»¥×ª¿ò¼Ü
+     * æž„é€ Unicodeä¸­æ–‡äº’è½¬æ¡†æž¶
      */
     UnicodeUI() {
         super();

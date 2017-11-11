@@ -8,9 +8,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * 支持右键菜单，带提示的文本框
+ * 鏀寔鍙抽敭鑿滃崟锛屽甫鎻愮ず鐨勬枃鏈
  *
- * @author 杨弘，徐祥亮
+ * @author 鏉ㄥ紭锛屽緪绁ヤ寒
  */
 public class TextBox extends JTextArea implements MouseListener, FocusListener {
 
@@ -19,9 +19,9 @@ public class TextBox extends JTextArea implements MouseListener, FocusListener {
     private String hint;
 
     /**
-     * 初始化带提示的文本框
+     * 鍒濆鍖栧甫鎻愮ず鐨勬枃鏈
      *
-     * @param hint 提示文字
+     * @param hint 鎻愮ず鏂囧瓧
      */
     TextBox(String hint) {
         this.hint = hint;
@@ -32,7 +32,7 @@ public class TextBox extends JTextArea implements MouseListener, FocusListener {
         setFocusable(true);
         setWrapStyleWord(true);
         setVisible(true);
-        Font fontPlain = new Font("微软雅黑", Font.PLAIN, 14);
+        Font fontPlain = new Font("寰蒋闆呴粦", Font.PLAIN, 14);
         setFont(fontPlain);
         setForeground(Color.gray);
         addMouseListener(this);

@@ -6,15 +6,15 @@ import java.math.RoundingMode;
 import java.util.HashMap;
 
 /**
- * ²âÁ¿µ¥Î»
- * Éè¶¨Ä¬ÈÏÏà¶Ô¹ú¼Êµ¥Î»µÄ»»Ëã
- * Ôö¼ÓÎÂ¶È£¬½Ç¶ÈµÄ»»Ëãº¯Êı
+ * æµ‹é‡å•ä½
+ * è®¾å®šé»˜è®¤ç›¸å¯¹å›½é™…å•ä½çš„æ¢ç®—
+ * å¢åŠ æ¸©åº¦ï¼Œè§’åº¦çš„æ¢ç®—å‡½æ•°
  *
- * @author Ñîºë£¬ĞìÏéÁÁ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®
  */
 public class Measurement {
-    public final String[] measureType = {"³¤¶È", "Ãæ»ı", "Ìå»ı",
-            "ËÙ¶È", "ÖÊÁ¿", "ÎÂ¶È", "½Ç¶È"};
+    public final String[] measureType = {"é•¿åº¦", "é¢ç§¯", "ä½“ç§¯",
+            "é€Ÿåº¦", "è´¨é‡", "æ¸©åº¦", "è§’åº¦"};
 
     public final HashMap<String, BigDecimal> length = new HashMap<>();
     public final HashMap<String, BigDecimal> area = new HashMap<>();
@@ -25,113 +25,113 @@ public class Measurement {
     public final HashMap<String, String> angle = new HashMap<>();
 
     /**
-     * ³õÊ¼»¯¸÷µ¥Î»µ½¹ú¼Êµ¥Î»µÄ»»ËãÖµ£¬³ıÎÂ¶È£¬½Ç¶È
+     * åˆå§‹åŒ–å„å•ä½åˆ°å›½é™…å•ä½çš„æ¢ç®—å€¼ï¼Œé™¤æ¸©åº¦ï¼Œè§’åº¦
      */
     public Measurement() {
-        length.put("Ç§Ã×(km)", BigDecimal.valueOf(1000));
-        length.put("Ã×(m)", BigDecimal.valueOf(1));
-        length.put("·ÖÃ×(dm)", BigDecimal.valueOf(0.1));
-        length.put("ÀåÃ×(cm)", BigDecimal.valueOf(0.01));
-        length.put("ºÁÃ×(mm)", BigDecimal.valueOf(0.001));
-        length.put("Î¢Ã×(¦Ìm)", BigDecimal.valueOf(0.000001));
-        length.put("ÄÉÃ×(nm)", BigDecimal.valueOf(0.000000001));
-        length.put("Ó¢´ç(in)", BigDecimal.valueOf(0.0254));
-        length.put("Ó¢³ß(ft)", BigDecimal.valueOf(0.3048));
-        length.put("Âë(yd)", BigDecimal.valueOf(0.9144));
-        length.put("Ó¢Àï(mi)", BigDecimal.valueOf(1609.344));
-        length.put("º£Àï(nmi)", BigDecimal.valueOf(1853.249));
-        length.put("Àï", BigDecimal.valueOf(500));
-        length.put("ÕÉ", BigDecimal.valueOf(3.333333333));
-        length.put("³ß", BigDecimal.valueOf(0.333333333));
-        length.put("´ç", BigDecimal.valueOf(0.033333333));
-        length.put("·Ö", BigDecimal.valueOf(0.003333333));
-        length.put("Àå", BigDecimal.valueOf(0.000333333));
-        length.put("ºÁ", BigDecimal.valueOf(0.000033333));
+        length.put("åƒç±³(km)", BigDecimal.valueOf(1000));
+        length.put("ç±³(m)", BigDecimal.valueOf(1));
+        length.put("åˆ†ç±³(dm)", BigDecimal.valueOf(0.1));
+        length.put("å˜ç±³(cm)", BigDecimal.valueOf(0.01));
+        length.put("æ¯«ç±³(mm)", BigDecimal.valueOf(0.001));
+        length.put("å¾®ç±³(Î¼m)", BigDecimal.valueOf(0.000001));
+        length.put("çº³ç±³(nm)", BigDecimal.valueOf(0.000000001));
+        length.put("è‹±å¯¸(in)", BigDecimal.valueOf(0.0254));
+        length.put("è‹±å°º(ft)", BigDecimal.valueOf(0.3048));
+        length.put("ç (yd)", BigDecimal.valueOf(0.9144));
+        length.put("è‹±é‡Œ(mi)", BigDecimal.valueOf(1609.344));
+        length.put("æµ·é‡Œ(nmi)", BigDecimal.valueOf(1853.249));
+        length.put("é‡Œ", BigDecimal.valueOf(500));
+        length.put("ä¸ˆ", BigDecimal.valueOf(3.333333333));
+        length.put("å°º", BigDecimal.valueOf(0.333333333));
+        length.put("å¯¸", BigDecimal.valueOf(0.033333333));
+        length.put("åˆ†", BigDecimal.valueOf(0.003333333));
+        length.put("å˜", BigDecimal.valueOf(0.000333333));
+        length.put("æ¯«", BigDecimal.valueOf(0.000033333));
 
-        area.put("Æ½·½Ç§Ã×(km^2)", BigDecimal.valueOf(1000000));
-        area.put("¹«Çê(ha)", BigDecimal.valueOf(10000));
-        area.put("¹«Ä¶(are)", BigDecimal.valueOf(100));
-        area.put("Æ½·½Ã×(m^2)", BigDecimal.valueOf(1));
-        area.put("Æ½·½·ÖÃ×(dm^2)", BigDecimal.valueOf(0.01));
-        area.put("Æ½·½ÀåÃ×(cm^2)", BigDecimal.valueOf(0.0001));
-        area.put("Æ½·½ºÁÃ×(mm^2)", BigDecimal.valueOf(0.000001));
-        area.put("Æ½·½Ó¢Àï(sq.mi)", BigDecimal.valueOf(2589988));
-        area.put("Ó¢Ä¶(acre)", BigDecimal.valueOf(4046.864798));
-        area.put("Æ½·½¸Í(sq.rd)", BigDecimal.valueOf(25.29285264));
-        area.put("Æ½·½Âë(sq.yd)", BigDecimal.valueOf(0.83612736));
-        area.put("Æ½·½Ó¢³ß(sq.ft)", BigDecimal.valueOf(0.09290304));
-        area.put("Æ½·½Ó¢´ç(sq.in)", BigDecimal.valueOf(0.00064516));
-        area.put("Çê", BigDecimal.valueOf(66666.666666666));
-        area.put("Ä¶", BigDecimal.valueOf(666.666666666));
-        area.put("·Ö", BigDecimal.valueOf(66.666666666));
+        area.put("å¹³æ–¹åƒç±³(km^2)", BigDecimal.valueOf(1000000));
+        area.put("å…¬é¡·(ha)", BigDecimal.valueOf(10000));
+        area.put("å…¬äº©(are)", BigDecimal.valueOf(100));
+        area.put("å¹³æ–¹ç±³(m^2)", BigDecimal.valueOf(1));
+        area.put("å¹³æ–¹åˆ†ç±³(dm^2)", BigDecimal.valueOf(0.01));
+        area.put("å¹³æ–¹å˜ç±³(cm^2)", BigDecimal.valueOf(0.0001));
+        area.put("å¹³æ–¹æ¯«ç±³(mm^2)", BigDecimal.valueOf(0.000001));
+        area.put("å¹³æ–¹è‹±é‡Œ(sq.mi)", BigDecimal.valueOf(2589988));
+        area.put("è‹±äº©(acre)", BigDecimal.valueOf(4046.864798));
+        area.put("å¹³æ–¹ç«¿(sq.rd)", BigDecimal.valueOf(25.29285264));
+        area.put("å¹³æ–¹ç (sq.yd)", BigDecimal.valueOf(0.83612736));
+        area.put("å¹³æ–¹è‹±å°º(sq.ft)", BigDecimal.valueOf(0.09290304));
+        area.put("å¹³æ–¹è‹±å¯¸(sq.in)", BigDecimal.valueOf(0.00064516));
+        area.put("é¡·", BigDecimal.valueOf(66666.666666666));
+        area.put("äº©", BigDecimal.valueOf(666.666666666));
+        area.put("åˆ†", BigDecimal.valueOf(66.666666666));
 
-        volume.put("Á¢·½Ã×(m^3)", BigDecimal.valueOf(1));
-        volume.put("Á¢·½ÀåÃ×(cm^3)", BigDecimal.valueOf(0.000001));
-        volume.put("Á¢·½·ÖÃ×(dm^3)", BigDecimal.valueOf(0.001));
-        volume.put("Á¢·½ºÁÃ×(mm^3)", BigDecimal.valueOf(0.000000001));
-        volume.put("Éı(l)", BigDecimal.valueOf(0.001));
-        volume.put("·ÖÉı(dl)", BigDecimal.valueOf(0.0001));
-        volume.put("ÀåÉı(cl)", BigDecimal.valueOf(0.00001));
-        volume.put("ºÁÉı(ml)", BigDecimal.valueOf(0.000001));
-        volume.put("Î¢Éı(ul)", BigDecimal.valueOf(0.000000001));
-        volume.put("¹«Ê¯(hl)", BigDecimal.valueOf(0.1));
-        volume.put("Á¢·½Âë(cu yd)", BigDecimal.valueOf(0.764555));
-        volume.put("Á¢·½Ó¢³ß(cu ft)", BigDecimal.valueOf(0.028316846592));
-        volume.put("Á¢·½Ó¢´ç(cu in)", BigDecimal.valueOf(0.00001638706));
-        volume.put("Æ·ÍÑ(pint)", BigDecimal.valueOf(0.000568));
-        volume.put("¿äÍÑ(quart)", BigDecimal.valueOf(0.00114));
-        volume.put("Ó¢ÖÆ¼ÓÂØ(uk gal)", BigDecimal.valueOf(0.00454609));
-        volume.put("ÃÀÖÆ¼ÓÂØ(us gal)", BigDecimal.valueOf(0.003785412));
-        volume.put("Ó¢ÖÆÒºÌå°»Ë¾(oz)", BigDecimal.valueOf(0.00002841));
-        volume.put("ÃÀÖÆÒºÌå°»Ë¾(oz)", BigDecimal.valueOf(0.00002957));
+        volume.put("ç«‹æ–¹ç±³(m^3)", BigDecimal.valueOf(1));
+        volume.put("ç«‹æ–¹å˜ç±³(cm^3)", BigDecimal.valueOf(0.000001));
+        volume.put("ç«‹æ–¹åˆ†ç±³(dm^3)", BigDecimal.valueOf(0.001));
+        volume.put("ç«‹æ–¹æ¯«ç±³(mm^3)", BigDecimal.valueOf(0.000000001));
+        volume.put("å‡(l)", BigDecimal.valueOf(0.001));
+        volume.put("åˆ†å‡(dl)", BigDecimal.valueOf(0.0001));
+        volume.put("å˜å‡(cl)", BigDecimal.valueOf(0.00001));
+        volume.put("æ¯«å‡(ml)", BigDecimal.valueOf(0.000001));
+        volume.put("å¾®å‡(ul)", BigDecimal.valueOf(0.000000001));
+        volume.put("å…¬çŸ³(hl)", BigDecimal.valueOf(0.1));
+        volume.put("ç«‹æ–¹ç (cu yd)", BigDecimal.valueOf(0.764555));
+        volume.put("ç«‹æ–¹è‹±å°º(cu ft)", BigDecimal.valueOf(0.028316846592));
+        volume.put("ç«‹æ–¹è‹±å¯¸(cu in)", BigDecimal.valueOf(0.00001638706));
+        volume.put("å“è„±(pint)", BigDecimal.valueOf(0.000568));
+        volume.put("å¤¸è„±(quart)", BigDecimal.valueOf(0.00114));
+        volume.put("è‹±åˆ¶åŠ ä»‘(uk gal)", BigDecimal.valueOf(0.00454609));
+        volume.put("ç¾åˆ¶åŠ ä»‘(us gal)", BigDecimal.valueOf(0.003785412));
+        volume.put("è‹±åˆ¶æ¶²ä½“ç›å¸(oz)", BigDecimal.valueOf(0.00002841));
+        volume.put("ç¾åˆ¶æ¶²ä½“ç›å¸(oz)", BigDecimal.valueOf(0.00002957));
 
-        speed.put("Ã×/Ãë(m/s)", BigDecimal.valueOf(1));
-        speed.put("Ç§Ã×/Ãë(km/s)", BigDecimal.valueOf(1000));
-        speed.put("Ç§Ã×/Ê±(km/h)", BigDecimal.valueOf(0.27777778));
-        speed.put("Ó¢´ç/Ãë(in/s)", BigDecimal.valueOf(0.0254));
-        speed.put("Ó¢Àï/Ê±(mile/h)", BigDecimal.valueOf(0.44704));
-        speed.put("½Ú", BigDecimal.valueOf(0.51444445));
-        speed.put("ÂíºÕ(mach)", BigDecimal.valueOf(340.29));
+        speed.put("ç±³/ç§’(m/s)", BigDecimal.valueOf(1));
+        speed.put("åƒç±³/ç§’(km/s)", BigDecimal.valueOf(1000));
+        speed.put("åƒç±³/æ—¶(km/h)", BigDecimal.valueOf(0.27777778));
+        speed.put("è‹±å¯¸/ç§’(in/s)", BigDecimal.valueOf(0.0254));
+        speed.put("è‹±é‡Œ/æ—¶(mile/h)", BigDecimal.valueOf(0.44704));
+        speed.put("èŠ‚", BigDecimal.valueOf(0.51444445));
+        speed.put("é©¬èµ«(mach)", BigDecimal.valueOf(340.29));
 
-        mass.put("¶Ö(t)", BigDecimal.valueOf(1000));
-        mass.put("Ç§¿Ë(kg)", BigDecimal.valueOf(1));
-        mass.put("¿Ë(g)", BigDecimal.valueOf(0.001));
-        mass.put("ºÁ¿Ë(mg)", BigDecimal.valueOf(0.000001));
-        mass.put("Î¢¿Ë(¦Ìg)", BigDecimal.valueOf(0.000000001));
-        mass.put("¿ËÀ­(ct)", BigDecimal.valueOf(0.0002));
-        mass.put("Ó¢¶Ö(lt)", BigDecimal.valueOf(1016));
-        mass.put("ÃÀ¶Ö(st)", BigDecimal.valueOf(907));
-        mass.put("Ó¢µ£(hundredweight)", BigDecimal.valueOf(50.8));
-        mass.put("¿äÌØ(quarter)", BigDecimal.valueOf(12.7));
-        mass.put("Ó¢Ê¯(stone)", BigDecimal.valueOf(6.35));
-        mass.put("°õ(lb)", BigDecimal.valueOf(0.454));
-        mass.put("°»Ë¾(oz)", BigDecimal.valueOf(0.0283));
-        mass.put("´òÀ¼(dr)", BigDecimal.valueOf(0.00177));
-        mass.put("¸ñÁî(gr)", BigDecimal.valueOf(0.0000648));
-        mass.put("µ£", BigDecimal.valueOf(50));
-        mass.put("½ï", BigDecimal.valueOf(0.5));
-        mass.put("Á½", BigDecimal.valueOf(0.03125));
-        mass.put("Ç®", BigDecimal.valueOf(0.003125));
+        mass.put("å¨(t)", BigDecimal.valueOf(1000));
+        mass.put("åƒå…‹(kg)", BigDecimal.valueOf(1));
+        mass.put("å…‹(g)", BigDecimal.valueOf(0.001));
+        mass.put("æ¯«å…‹(mg)", BigDecimal.valueOf(0.000001));
+        mass.put("å¾®å…‹(Î¼g)", BigDecimal.valueOf(0.000000001));
+        mass.put("å…‹æ‹‰(ct)", BigDecimal.valueOf(0.0002));
+        mass.put("è‹±å¨(lt)", BigDecimal.valueOf(1016));
+        mass.put("ç¾å¨(st)", BigDecimal.valueOf(907));
+        mass.put("è‹±æ‹…(hundredweight)", BigDecimal.valueOf(50.8));
+        mass.put("å¤¸ç‰¹(quarter)", BigDecimal.valueOf(12.7));
+        mass.put("è‹±çŸ³(stone)", BigDecimal.valueOf(6.35));
+        mass.put("ç£…(lb)", BigDecimal.valueOf(0.454));
+        mass.put("ç›å¸(oz)", BigDecimal.valueOf(0.0283));
+        mass.put("æ‰“å…°(dr)", BigDecimal.valueOf(0.00177));
+        mass.put("æ ¼ä»¤(gr)", BigDecimal.valueOf(0.0000648));
+        mass.put("æ‹…", BigDecimal.valueOf(50));
+        mass.put("æ–¤", BigDecimal.valueOf(0.5));
+        mass.put("ä¸¤", BigDecimal.valueOf(0.03125));
+        mass.put("é’±", BigDecimal.valueOf(0.003125));
 
-        temp.put("ÉãÊÏ¶È(¡ãC)", "C");
-        temp.put("»ªÊÏ¶È(¡ãF)", "F");
-        temp.put("¿ªÊÏ¶È(K)", "K");
-        temp.put("À¼ÊÏ¶È(¡ãR)", "R");
-        temp.put("ÁĞÊÏ¶È(¡ãRe)", "Re");
+        temp.put("æ‘„æ°åº¦(Â°C)", "C");
+        temp.put("åæ°åº¦(Â°F)", "F");
+        temp.put("å¼€æ°åº¦(K)", "K");
+        temp.put("å…°æ°åº¦(Â°R)", "R");
+        temp.put("åˆ—æ°åº¦(Â°Re)", "Re");
 
-        angle.put("°Ù·Ö¶È(grad)", "grad");
-        angle.put("¶È(¡ã)", "¡ã");
-        angle.put("»¡¶È(rad)", "rad");
+        angle.put("ç™¾åˆ†åº¦(grad)", "grad");
+        angle.put("åº¦(Â°)", "Â°");
+        angle.put("å¼§åº¦(rad)", "rad");
     }
 
     /**
-     * Ö¸Ê¾Ò»¸öÀàĞÍ£¬¸ø¶¨Ò»¶¨Êı¶î£¬²¢´ÓÔ´µ¥Î»µ½Ä¿±êµ¥Î»µÄ»»Ëã£¬ÒÔ¼°·µ»Ø½á¹û
+     * æŒ‡ç¤ºä¸€ä¸ªç±»å‹ï¼Œç»™å®šä¸€å®šæ•°é¢ï¼Œå¹¶ä»æºå•ä½åˆ°ç›®æ ‡å•ä½çš„æ¢ç®—ï¼Œä»¥åŠè¿”å›ç»“æœ
      *
-     * @param source Ô´µ¥Î»
-     * @param target Ä¿±êµ¥Î»
-     * @param number »»ËãÊıÖµ
-     * @param type   »»ËãÀàĞÍ
-     * @return »»Ëã½á¹û
+     * @param source æºå•ä½
+     * @param target ç›®æ ‡å•ä½
+     * @param number æ¢ç®—æ•°å€¼
+     * @param type   æ¢ç®—ç±»å‹
+     * @return æ¢ç®—ç»“æœ
      */
     public BigDecimal conver(String source, String target, BigDecimal number, String type) {
         BigDecimal s;
@@ -179,7 +179,7 @@ public class Measurement {
                         rt = RetoC(number);
                         break;
                     default:
-                        throw new IllegalArgumentException("µ¥Î»²»´æÔÚ");
+                        throw new IllegalArgumentException("å•ä½ä¸å­˜åœ¨");
                 }
                 switch (tt) {
                     case "C":
@@ -198,16 +198,16 @@ public class Measurement {
                         rt = CtoRe(rt);
                         break;
                     default:
-                        throw new IllegalArgumentException("µ¥Î»²»´æÔÚ");
+                        throw new IllegalArgumentException("å•ä½ä¸å­˜åœ¨");
                 }
                 return rt;
-            case "½Ç¶È":
+            case "è§’åº¦":
                 String sa = angle.get(source);
                 String ta = angle.get(target);
 
                 BigDecimal ra;
                 switch (sa) {
-                    case "¡ã":
+                    case "Â°":
                         ra = degToDeg(number);
                         break;
                     case "grad":
@@ -217,10 +217,10 @@ public class Measurement {
                         ra = radToDeg(number);
                         break;
                     default:
-                        throw new IllegalArgumentException("µ¥Î»²»´æÔÚ");
+                        throw new IllegalArgumentException("å•ä½ä¸å­˜åœ¨");
                 }
                 switch (ta) {
-                    case "¡ã":
+                    case "Â°":
                         ra = degToDeg(ra);
                         break;
                     case "grad":
@@ -230,16 +230,16 @@ public class Measurement {
                         ra = degToRad(ra);
                         break;
                     default:
-                        throw new IllegalArgumentException("µ¥Î»²»´æÔÚ");
+                        throw new IllegalArgumentException("å•ä½ä¸å­˜åœ¨");
                 }
                 return ra;
             default:
-                throw new IllegalArgumentException("Î´ÊµÏÖ");
+                throw new IllegalArgumentException("æœªå®ç°");
         }
 
     }
 
-    //ÎÂ¶È»»Ëã
+    //æ¸©åº¦æ¢ç®—
     private BigDecimal KtoC(BigDecimal s) {
         return s.subtract(BigDecimal.valueOf(273.15));
     }
@@ -276,7 +276,7 @@ public class Measurement {
         return s.multiply(BigDecimal.valueOf(4).divide(BigDecimal.valueOf(5), MathContext.DECIMAL128));
     }
 
-    //½Ç¶È»»Ëã
+    //è§’åº¦æ¢ç®—
     private BigDecimal degToDeg(BigDecimal s) {
         return s;
     }

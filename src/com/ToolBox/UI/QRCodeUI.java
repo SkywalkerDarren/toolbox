@@ -17,30 +17,30 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * ¶şÎ¬ÂëÖ÷Ãæ°å£¬Ö§³Ö¶şÎ¬ÂëÉú³ÉÓë±à¼­
- * ¿ÉÑ¡ÔñÍ¼Æ¬´óĞ¡ ´ó ÖĞ Ğ¡
- * ¿ÉÑ¡¾À´íµÈ¼¶ µÍ ÖĞ ¸ß ¼«¸ß
- * Ö§³Ö¶şÎ¬ÂëÍ¼Æ¬±£´æ
+ * äºŒç»´ç ä¸»é¢æ¿ï¼Œæ”¯æŒäºŒç»´ç ç”Ÿæˆä¸ç¼–è¾‘
+ * å¯é€‰æ‹©å›¾ç‰‡å¤§å° å¤§ ä¸­ å°
+ * å¯é€‰çº é”™ç­‰çº§ ä½ ä¸­ é«˜ æé«˜
+ * æ”¯æŒäºŒç»´ç å›¾ç‰‡ä¿å­˜
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class QRCodeUI extends TransparentPanelUI {
 
-    private final static String topTip = "ÏÔÊ¾ÄÚÈİ";
-    private final static String levelTip = "¾À´íµÈ¼¶";
-    private final static String sizeTip = "Ñ¡Ôñ´óĞ¡";
-    private final static String createQR = "Éú³É¶şÎ¬Âë";
-    private final static String screenShot = "½ØÍ¼";
-    private final static String saveRoute = "±£´æµ½";
-    private final static String chooseFileString = "Ñ¡ÔñÎÄ¼ş";
-    private final static String identityString = "Ê¶±ğ¶şÎ¬Âë";
-    private final static String title = "¶şÎ¬Âë¹¤¾ß";
-    private final static String L = "µÍ";
-    private final static String M = "ÖĞ";
-    private final static String Q = "¸ß";
-    private final static String H = "¼«¸ß";
-    private final static String S = "Ğ¡";
-    private final static String B = "´ó";
+    private final static String topTip = "æ˜¾ç¤ºå†…å®¹";
+    private final static String levelTip = "çº é”™ç­‰çº§";
+    private final static String sizeTip = "é€‰æ‹©å¤§å°";
+    private final static String createQR = "ç”ŸæˆäºŒç»´ç ";
+    private final static String screenShot = "æˆªå›¾";
+    private final static String saveRoute = "ä¿å­˜åˆ°";
+    private final static String chooseFileString = "é€‰æ‹©æ–‡ä»¶";
+    private final static String identityString = "è¯†åˆ«äºŒç»´ç ";
+    private final static String title = "äºŒç»´ç å·¥å…·";
+    private final static String L = "ä½";
+    private final static String M = "ä¸­";
+    private final static String Q = "é«˜";
+    private final static String H = "æé«˜";
+    private final static String S = "å°";
+    private final static String B = "å¤§";
     private final static JFileChooser imageFileChooser = new JFileChooser();
     private final static JFileChooser directoryChooser = new JFileChooser();
     private static final long serialVersionUID = 4091338005524008141L;
@@ -61,7 +61,7 @@ class QRCodeUI extends TransparentPanelUI {
 
 
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -80,7 +80,7 @@ class QRCodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
@@ -160,7 +160,7 @@ class QRCodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -244,7 +244,7 @@ class QRCodeUI extends TransparentPanelUI {
 
         btnChooseFile.addActionListener(l -> {
             imageFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            FileFilter imageFilter = new FileNameExtensionFilter("Í¼Æ¬ÎÄ¼ş", "png", "jpg");
+            FileFilter imageFilter = new FileNameExtensionFilter("å›¾ç‰‡æ–‡ä»¶", "png", "jpg");
             imageFileChooser.setFileFilter(imageFilter);
             int state = imageFileChooser.showSaveDialog(null);
             switch (state) {
@@ -271,7 +271,7 @@ class QRCodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ¼ÓÔØ¶şÎ¬Âë½çÃæ
+     * åŠ è½½äºŒç»´ç ç•Œé¢
      */
     QRCodeUI() {
         super();

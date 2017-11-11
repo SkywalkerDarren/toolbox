@@ -4,9 +4,9 @@ import javax.swing.*;
 import javax.swing.text.JTextComponent;
 
 /**
- * Í¨ÓÃÓÒ¼ü²Ëµ¥
+ * é€šç”¨å³é”®èœå•
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 class RightClickMenu extends JPopupMenu {
 
@@ -14,24 +14,24 @@ class RightClickMenu extends JPopupMenu {
     private static final long serialVersionUID = 4254117594980050625L;
 
     /**
-     * Ìí¼ÓÓÒ¼ü²Ëµ¥×é¼þÂß¼­
+     * æ·»åŠ å³é”®èœå•ç»„ä»¶é€»è¾‘
      *
-     * @param jTextComponent ÎÄ±¾¿ò
+     * @param jTextComponent æ–‡æœ¬æ¡†
      */
     RightClickMenu(JTextComponent jTextComponent) {
-        JMenuItem selectAll = new JMenuItem("È«Ñ¡");
+        JMenuItem selectAll = new JMenuItem("å…¨é€‰");
         selectAll.addActionListener(l -> jTextComponent.selectAll());
         add(selectAll);
-        JMenuItem cut = new JMenuItem("¼ôÇÐ");
+        JMenuItem cut = new JMenuItem("å‰ªåˆ‡");
         cut.addActionListener(l -> jTextComponent.cut());
         add(cut);
-        JMenuItem copy = new JMenuItem("¸´ÖÆ");
+        JMenuItem copy = new JMenuItem("å¤åˆ¶");
         copy.addActionListener(l -> jTextComponent.copy());
         add(copy);
-        JMenuItem paste = new JMenuItem("Õ³Ìù");
+        JMenuItem paste = new JMenuItem("ç²˜è´´");
         paste.addActionListener(l -> jTextComponent.paste());
         add(paste);
-        JMenuItem clean = new JMenuItem("Çå¿Õ");
+        JMenuItem clean = new JMenuItem("æ¸…ç©º");
         clean.addActionListener(l -> jTextComponent.setText(""));
         add(clean);
     }

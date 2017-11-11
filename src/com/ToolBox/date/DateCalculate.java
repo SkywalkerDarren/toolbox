@@ -5,20 +5,20 @@ import org.joda.time.Interval;
 import org.joda.time.Period;
 
 /**
- * ÈÕÆÚ¼ÆËãºËĞÄ
- * ÈÕÆÚÇø¼ä¼ÆËã
+ * æ—¥æœŸè®¡ç®—æ ¸å¿ƒ
+ * æ—¥æœŸåŒºé—´è®¡ç®—
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 public class DateCalculate {
     private DateTime startDate;
     private DateTime endDate;
 
     /**
-     * ÈÕÆÚ¼ÆËã³õÊ¼»¯
+     * æ—¥æœŸè®¡ç®—åˆå§‹åŒ–
      *
-     * @param s ¿ªÊ¼ÈÕÆÚ
-     * @param e ½áÊøÈÕÆÚ
+     * @param s å¼€å§‹æ—¥æœŸ
+     * @param e ç»“æŸæ—¥æœŸ
      */
     public DateCalculate(DateTime s, DateTime e) {
         this.startDate = s;
@@ -26,11 +26,11 @@ public class DateCalculate {
     }
 
     /**
-     * @return »ñµÃÈÕÆÚÇø¼ä
+     * @return è·å¾—æ—¥æœŸåŒºé—´
      */
     public Period getIntervalDate() {
         if (startDate == null || endDate == null) {
-            throw new IllegalArgumentException("Ê±¼äÎ´³õÊ¼»¯");
+            throw new IllegalArgumentException("æ—¶é—´æœªåˆå§‹åŒ–");
         }
         Interval dt;
         if (startDate.isBefore(endDate)) {

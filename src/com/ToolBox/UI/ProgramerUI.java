@@ -12,10 +12,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * ³ÌĞòÔ±¼ÆËãÆ÷£¬Ö§³Ö¶ş½øÖÆ¼üÅÌ£¬¶ÔÊıÖµ½øĞĞ½øÖÆ×ª»»£¬Î»ÔËËãµÈ
- * È«¼üÅÌ¿ÉÒÔ¶ÔÊıÖµ½øĞĞ¿ìËÙ±à¼­£¬µ«ÊıÖµÒ»µ©±à¼­£¬½«ÖØÖÃ½á¹û
+ * ç¨‹åºå‘˜è®¡ç®—å™¨ï¼Œæ”¯æŒäºŒè¿›åˆ¶é”®ç›˜ï¼Œå¯¹æ•°å€¼è¿›è¡Œè¿›åˆ¶è½¬æ¢ï¼Œä½è¿ç®—ç­‰
+ * å…¨é”®ç›˜å¯ä»¥å¯¹æ•°å€¼è¿›è¡Œå¿«é€Ÿç¼–è¾‘ï¼Œä½†æ•°å€¼ä¸€æ—¦ç¼–è¾‘ï¼Œå°†é‡ç½®ç»“æœ
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseListener {
 
@@ -29,7 +29,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     private static StringBuilder expression = new StringBuilder();
     private static StringBuilder expUI = new StringBuilder();
     private static final Color color = new Color(240, 255, 255);
-    private static final Font font = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13);
+    private static final Font font = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13);
     private Long result = 0L;
     private JButton[] btnBit;
     private JButton btnRol, btnRor, btnLsh, btnRsh, btnLeft, btnRight;
@@ -40,7 +40,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     private JPanel fullKeyPanel, bitKeyPanel;
 
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -94,37 +94,37 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
 
-        //×îÉÏ·½ÏÔÊ¾ÇøÓò
+        //æœ€ä¸Šæ–¹æ˜¾ç¤ºåŒºåŸŸ
         textAreaTop.setEditable(false);
         textAreaTop.setBackground(new Color(250, 255, 255));
-        textAreaTop.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+        textAreaTop.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14));
         textAreaTop.setBounds(13, 12, 570, 60);
         textAreaTop.setColumns(1000);
         textAreaTop.addMouseListener(this);
         add(textAreaTop);
 
-        //¶ş½øÖÆ
+        //äºŒè¿›åˆ¶
         btnBinary.setBounds(13, 89, 51, 23);
         add(btnBinary);
 
-        //°Ë½øÖÆ
+        //å…«è¿›åˆ¶
         btnOctonary.setBounds(13, 140, 51, 23);
         add(btnOctonary);
 
-        //Ê®½øÖÆ
+        //åè¿›åˆ¶
         btnDecimal.setBounds(13, 191, 51, 23);
         add(btnDecimal);
 
-        //Ê®Áù½øÖÆ
+        //åå…­è¿›åˆ¶
         btnHexadecimal.setBounds(13, 244, 51, 23);
         add(btnHexadecimal);
 
-        //¶ş½øÖÆÎÄ±¾¿ò
+        //äºŒè¿›åˆ¶æ–‡æœ¬æ¡†
         textFieldBinary.setEditable(false);
         textFieldBinary.setBackground(color);
         textFieldBinary.setFont(font);
@@ -132,7 +132,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         textFieldBinary.setColumns(100);
         add(textFieldBinary);
 
-        //°Ë½øÖÆÎÄ±¾¿ò
+        //å…«è¿›åˆ¶æ–‡æœ¬æ¡†
         textFieldOctonary.setEditable(false);
         textFieldOctonary.setBackground(color);
         textFieldOctonary.setFont(font);
@@ -140,7 +140,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         textFieldOctonary.setBounds(83, 136, 500, 30);
         add(textFieldOctonary);
 
-        //Ê®½øÖÆÎÄ±¾¿ò
+        //åè¿›åˆ¶æ–‡æœ¬æ¡†
         textFieldDecimal.setEditable(false);
         textFieldDecimal.setBackground(color);
         textFieldDecimal.setFont(font);
@@ -149,7 +149,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         add(textFieldDecimal);
 
 
-        //Ê®Áù½øÖÆÎÄ±¾¿ò
+        //åå…­è¿›åˆ¶æ–‡æœ¬æ¡†
         textFieldHexadecimal.setEditable(false);
         textFieldHexadecimal.setBackground(color);
         textFieldHexadecimal.setFont(font);
@@ -157,7 +157,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         textFieldHexadecimal.setBounds(83, 240, 500, 30);
         add(textFieldHexadecimal);
 
-        //×îÏÂ·½±êÇ©Ò³
+        //æœ€ä¸‹æ–¹æ ‡ç­¾é¡µ
         JTabbedPane tabbedPaneDisplay = new JTabbedPane(JTabbedPane.TOP);
         tabbedPaneDisplay.setFont(font);
         tabbedPaneDisplay.setBounds(13, 275, 567, 214);
@@ -166,20 +166,20 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         fullKeyPanel.setOpaque(false);
         fullKeyPanel.setBorder(BorderFactory.createEtchedBorder());
         fullKeyPanel.setBackground(new Color(245, 255, 255));
-        tabbedPaneDisplay.addTab("È«¼üÅÌ", null, fullKeyPanel, null);
+        tabbedPaneDisplay.addTab("å…¨é”®ç›˜", null, fullKeyPanel, null);
         fullKeyPanel.setLayout(null);
         fullKeyboard(fullKeyPanel);
 
         bitKeyPanel.setOpaque(false);
         bitKeyPanel.setBorder(BorderFactory.createEtchedBorder());
         bitKeyPanel.setBackground(new Color(245, 255, 255));
-        tabbedPaneDisplay.addTab("±ÈÌØ¼üÅÌ", null, bitKeyPanel, null);
+        tabbedPaneDisplay.addTab("æ¯”ç‰¹é”®ç›˜", null, bitKeyPanel, null);
         bitKeyPanel.setLayout(null);
         bitKeyboard(bitKeyPanel);
     }
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -190,16 +190,16 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     }
 
     /**
-     * ³õÊ¼»¯UI´°¿Ú£¬°Ú·Å¿Ø¼şÎ»ÖÃ¼°Éè¶¨»ù±¾ÅäÖÃ
+     * åˆå§‹åŒ–UIçª—å£ï¼Œæ‘†æ”¾æ§ä»¶ä½ç½®åŠè®¾å®šåŸºæœ¬é…ç½®
      */
     public ProgramerUI() {
         super();
     }
 
     /**
-     * Éè¶¨´ÓÀúÊ·¼ÇÂ¼Ëù»ñÈ¡µÄ½á¹û£¬ÏÔÊ¾µ½UIÉÏ²¢¼ÓÔØµ½±í´ïÊ½ÖĞ
+     * è®¾å®šä»å†å²è®°å½•æ‰€è·å–çš„ç»“æœï¼Œæ˜¾ç¤ºåˆ°UIä¸Šå¹¶åŠ è½½åˆ°è¡¨è¾¾å¼ä¸­
      *
-     * @param tempResult »ñÈ¡µÄ½á¹û
+     * @param tempResult è·å–çš„ç»“æœ
      */
     static void setTempResult(String tempResult) {
         if (tempResult.contains(".")) {
@@ -449,7 +449,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
 
     private void bitKeyboard(JPanel panel) {
         JLabel[] lblIndex = new JLabel[16];
-        final Font bitFont = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 10);
+        final Font bitFont = new Font("å¾®è½¯é›…é»‘", Font.BOLD, 10);
         int index = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -499,16 +499,16 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 textAreaTop.setText(textFieldHexadecimal.getText());
                 break;
             default:
-                throw new IllegalArgumentException("ÎŞ´Ë½øÖÆ");
+                throw new IllegalArgumentException("æ— æ­¤è¿›åˆ¶");
         }
         expression.append(Long.toString(result, radix));
         expUI.append(Long.toString(result, radix));
     }
 
     /**
-     * ÅĞ¶ÏÇ°Ò»×Ö·ûÊÇ·ñÎªÊı×Ö
+     * åˆ¤æ–­å‰ä¸€å­—ç¬¦æ˜¯å¦ä¸ºæ•°å­—
      *
-     * @return true Èç¹ûÇ°Ò»×Ö·ûÊÇÊı×Ö
+     * @return true å¦‚æœå‰ä¸€å­—ç¬¦æ˜¯æ•°å­—
      */
     private boolean prevIsDigit() {
         char c = expUI.charAt(expUI.length() - 1);
@@ -530,7 +530,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         }
         String btnName = e.getActionCommand();
         switch (btnName) {
-            //**************½øÖÆÑ¡Ôñ*********************
+            //**************è¿›åˆ¶é€‰æ‹©*********************
             case "BIN":
                 btn2.setEnabled(false);
                 btn3.setEnabled(false);
@@ -619,7 +619,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 expUI.append(textFieldHexadecimal.getText());
                 expression.append(textFieldHexadecimal.getText());
                 break;
-            //***************************ÊıÖµÊäÈë***********
+            //***************************æ•°å€¼è¾“å…¥***********
             case "0":
             case "1":
             case "2":
@@ -640,7 +640,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 expUI.append(btnName);
                 textAreaTop.setText(expUI.toString());
                 break;
-            //*************************ÔËËã·û*************
+            //*************************è¿ç®—ç¬¦*************
             case "RoL":
                 if (expUI.length() > 0 && prevIsDigit()) {
                     expUI.append(" ");
@@ -726,7 +726,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 expUI.append(btnName).append(" ");
                 textAreaTop.setText(expUI.toString());
                 break;
-            //*************************¿ØÖÆ·û***********
+            //*************************æ§åˆ¶ç¬¦***********
             case "\n":
             case "=":
                 String r;
@@ -753,7 +753,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                     expUI.append(Long.toString(result, radix));
                     expression.append(Long.toString(result, radix));
                 } catch (Exception e2) {
-                    r = "±í´ïÊ½ÎŞĞ§";
+                    r = "è¡¨è¾¾å¼æ— æ•ˆ";
                     textAreaTop.setText(r);
                     textFieldBinary.setText("");
                     textFieldOctonary.setText("");
@@ -777,7 +777,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 textAreaTop.setText(expUI.toString());
                 break;
             case "\b":
-            case "¡û":
+            case "â†":
                 if (expUI.length() == 0) {
                     return;
                 }
@@ -802,7 +802,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 textAreaTop.setText(expUI.toString());
                 break;
             default:
-                throw new IllegalArgumentException("ÎŞ´Ë²Ù×÷·û");
+                throw new IllegalArgumentException("æ— æ­¤æ“ä½œç¬¦");
         }
     }
 

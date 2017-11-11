@@ -8,19 +8,19 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * 截图工具
+ * 鎴浘宸ュ叿
  *
- * @author 杨弘
+ * @author 鏉ㄥ紭
  */
 public class GraphicsUtils {
     /**
-     * 截图屏幕中制定区域的图片
+     * 鎴浘灞忓箷涓埗瀹氬尯鍩熺殑鍥剧墖
      *
-     * @param x 左上角横坐标
-     * @param y 左上角纵坐标
-     * @param w 宽度
-     * @param h 高度
-     * @return 被截部分的BufferedImage对象
+     * @param x 宸︿笂瑙掓í鍧愭爣
+     * @param y 宸︿笂瑙掔旱鍧愭爣
+     * @param w 瀹藉害
+     * @param h 楂樺害
+     * @return 琚埅閮ㄥ垎鐨凚ufferedImage瀵硅薄
      */
     static BufferedImage getScreenImage(int x, int y, int w, int h) throws AWTException, InterruptedException {
         Robot robot = new Robot();
@@ -28,9 +28,9 @@ public class GraphicsUtils {
     }
 
     /**
-     * 将指定图片写入系统剪贴板
+     * 灏嗘寚瀹氬浘鐗囧啓鍏ョ郴缁熷壀璐存澘
      *
-     * @param image 图片
+     * @param image 鍥剧墖
      */
     public static void setClipboardImage(final Image image) {
         Transferable trans = new Transferable() {

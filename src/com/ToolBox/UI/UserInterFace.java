@@ -12,17 +12,17 @@ import java.io.IOException;
 
 
 /**
- * ÕûÌå¿ò¼Ü²¼¾ÖµÄÉú³É
+ * æ•´ä½“æ¡†æ¶å¸ƒå±€çš„ç”Ÿæˆ
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  * @version 1.0
  */
 class UserInterFace extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = -5503828920612138533L;
-    private final static String CALCTOOLS = " ¼ÆËã¹¤¾ß ";
-    private final static String ENCODETOOLS = " ±àÂë½âÂë¹¤¾ß ";
-    private final static String QRCODETOOLS = " ¶şÎ¬ÂëÉú³É ";
+    private final static String CALCTOOLS = " è®¡ç®—å·¥å…· ";
+    private final static String ENCODETOOLS = " ç¼–ç è§£ç å·¥å…· ";
+    private final static String QRCODETOOLS = " äºŒç»´ç ç”Ÿæˆ ";
     private JPanel cardPanel = new JPanel() {
         private static final long serialVersionUID = -1572461108315996809L;
         private BufferedImage img;
@@ -40,7 +40,7 @@ class UserInterFace extends JFrame implements ActionListener {
     };
 
     /**
-     * ³õÊ¼»¯³ÌĞò
+     * åˆå§‹åŒ–ç¨‹åº
      */
     UserInterFace() {
 
@@ -57,8 +57,8 @@ class UserInterFace extends JFrame implements ActionListener {
     }
 
     /**
-     * ¿ò¼Ü³õÊ¼»¯
-     * ¼ÓÔØ³ÌĞòÖ÷¿ò¼Ü£¬¿ò¼ÜÀàĞÍ£¬ÉèÖÃ½¹µãÀàĞÍ£¬ÉèÖÃ×ÖÌå£¬±³¾°£¬´°¿ÚÊôĞÔ
+     * æ¡†æ¶åˆå§‹åŒ–
+     * åŠ è½½ç¨‹åºä¸»æ¡†æ¶ï¼Œæ¡†æ¶ç±»å‹ï¼Œè®¾ç½®ç„¦ç‚¹ç±»å‹ï¼Œè®¾ç½®å­—ä½“ï¼ŒèƒŒæ™¯ï¼Œçª—å£å±æ€§
      */
     private void initializeFrame() {
 
@@ -68,12 +68,12 @@ class UserInterFace extends JFrame implements ActionListener {
         setTitle(" ToolBox     v1.0 ");
         setAlwaysOnTop(false);
         getContentPane().setFont(new Font("Consolas", Font.BOLD, 17));
-        // ÉèÖÃ×ø±ê£ºxÆğµã£¬yÆğµã£¬×é¼ş³¤¶È£¬×é¼ş¿í¶È
+        // è®¾ç½®åæ ‡ï¼šxèµ·ç‚¹ï¼Œyèµ·ç‚¹ï¼Œç»„ä»¶é•¿åº¦ï¼Œç»„ä»¶å®½åº¦
         setBounds((screenSize.width - 800) / 2, (screenSize.height - 600) / 2, 800, 600);
         setLocationRelativeTo(null);
-        // ¿É·ñµ÷Õû´°¿Ú´óĞ¡
+        // å¯å¦è°ƒæ•´çª—å£å¤§å°
         setResizable(false);
-        // ÓÃ»§µ¥»ú´°¿ÚµÄ¹Ø±Õ°´Å¥Ê±³ÌĞòÖ´ĞĞµÄ²Ù×÷
+        // ç”¨æˆ·å•æœºçª—å£çš„å…³é—­æŒ‰é’®æ—¶ç¨‹åºæ‰§è¡Œçš„æ“ä½œ
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setFocusable(true);
         setIconImage(Toolkit.getDefaultToolkit()
@@ -82,11 +82,11 @@ class UserInterFace extends JFrame implements ActionListener {
     }
 
     /**
-     * ³õÊ¼»¯²Ëµ¥À¸£¬Ìí¼Ó¸÷ÀàÑ¡µ¥
+     * åˆå§‹åŒ–èœå•æ ï¼Œæ·»åŠ å„ç±»é€‰å•
      */
     private void initializeMenuBar() {
-        // Ìí¼Ó²Ëµ¥¹¤¾ßÀ¸
-        final Font font = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14);
+        // æ·»åŠ èœå•å·¥å…·æ 
+        final Font font = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14);
         final Color color = new Color(240, 255, 255);
         final Dimension dimensionStart = new Dimension(90, 25);
         final Dimension dimensionFunction = new Dimension(135, 25);
@@ -95,23 +95,23 @@ class UserInterFace extends JFrame implements ActionListener {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
-        // ÎÄ¼ş²Ëµ¥
-        JMenu mnMenuStart = new JMenu(" ÎÄ ¼ş ");
+        // æ–‡ä»¶èœå•
+        JMenu mnMenuStart = new JMenu(" æ–‡ ä»¶ ");
         mnMenuStart.setFont(font);
         menuBar.add(mnMenuStart);
 
-        // Ñ¡Ïî²Ëµ¥
-        JMenu mnMenuFunction = new JMenu(" ¹¦ ÄÜ ");
+        // é€‰é¡¹èœå•
+        JMenu mnMenuFunction = new JMenu(" åŠŸ èƒ½ ");
         mnMenuFunction.setFont(font);
         menuBar.add(mnMenuFunction);
 
-        // °ïÖú²Ëµ¥
-        JMenu mnMenuHelp = new JMenu(" °ï Öú ");
+        // å¸®åŠ©èœå•
+        JMenu mnMenuHelp = new JMenu(" å¸® åŠ© ");
         mnMenuHelp.setFont(font);
         menuBar.add(mnMenuHelp);
 
-        // ½ØÍ¼²Ëµ¥
-        JMenuItem mnMenuOpen = new JMenuItem(" ½Ø Í¼ ");
+        // æˆªå›¾èœå•
+        JMenuItem mnMenuOpen = new JMenuItem(" æˆª å›¾ ");
         mnMenuOpen.setAlignmentX(JMenu.CENTER_ALIGNMENT);
         mnMenuStart.add(mnMenuOpen);
         mnMenuOpen.setFont(font);
@@ -129,8 +129,8 @@ class UserInterFace extends JFrame implements ActionListener {
             });
         });
 
-        // ÍË³ö²Ëµ¥
-        JMenuItem menuItemExit = new JMenuItem(" ÍË ³ö ");
+        // é€€å‡ºèœå•
+        JMenuItem menuItemExit = new JMenuItem(" é€€ å‡º ");
         menuItemExit.setAlignmentX(JMenuItem.CENTER_ALIGNMENT);
         mnMenuStart.add(menuItemExit);
         menuItemExit.setOpaque(true);
@@ -139,7 +139,7 @@ class UserInterFace extends JFrame implements ActionListener {
         menuItemExit.setPreferredSize(dimensionStart);
         menuItemExit.addActionListener(e -> System.exit(0));
 
-        // ¼ÆËã¹¤¾ß²Ëµ¥
+        // è®¡ç®—å·¥å…·èœå•
         JMenuItem menuItemCalculateTool = new JMenuItem(CALCTOOLS);
         menuItemCalculateTool.setAlignmentX(JMenuItem.CENTER_ALIGNMENT);
         mnMenuFunction.add(menuItemCalculateTool);
@@ -149,7 +149,7 @@ class UserInterFace extends JFrame implements ActionListener {
         menuItemCalculateTool.setBackground(color);
         menuItemCalculateTool.addActionListener(this);
 
-        // ±àÂë½âÂë¹¤¾ß²Ëµ¥
+        // ç¼–ç è§£ç å·¥å…·èœå•
         JMenuItem menuItemEncodeAndDecode = new JMenuItem(ENCODETOOLS);
         menuItemEncodeAndDecode.setAlignmentX(JMenuItem.CENTER_ALIGNMENT);
         mnMenuFunction.add(menuItemEncodeAndDecode);
@@ -159,7 +159,7 @@ class UserInterFace extends JFrame implements ActionListener {
         menuItemEncodeAndDecode.setBackground(color);
         menuItemEncodeAndDecode.addActionListener(this);
 
-        // ¶şÎ¬Âë²Ëµ¥
+        // äºŒç»´ç èœå•
         JMenuItem menuItemQRCode = new JMenuItem(QRCODETOOLS);
         menuItemQRCode.setAlignmentX(JMenuItem.CENTER_ALIGNMENT);
         mnMenuFunction.add(menuItemQRCode);
@@ -169,38 +169,38 @@ class UserInterFace extends JFrame implements ActionListener {
         menuItemQRCode.setBackground(color);
         menuItemQRCode.addActionListener(this);
 
-        // ¹ØÓÚ²Ëµ¥
-        JMenuItem menuItemAbout = new JMenuItem(" ¹Ø ÓÚ ");
+        // å…³äºèœå•
+        JMenuItem menuItemAbout = new JMenuItem(" å…³ äº ");
         mnMenuHelp.add(menuItemAbout);
         menuItemAbout.setOpaque(true);
         menuItemAbout.setFont(font);
         menuItemAbout.setPreferredSize(dimensionAbout);
         menuItemAbout.setBackground(color);
         menuItemAbout.addActionListener(e -> {
-            // µ¯³ö¹ØÓÚ´°¿Ú
+            // å¼¹å‡ºå…³äºçª—å£
             new AboutWindow();
         });
     }
 
     /**
-     * ³õÊ¼»¯Ö÷Ãæ°å
+     * åˆå§‹åŒ–ä¸»é¢æ¿
      */
     private void initializeJPanel() {
-        // Ê¹ÓÃ¿¨Æ¬²¼¾Ö
+        // ä½¿ç”¨å¡ç‰‡å¸ƒå±€
         cardPanel.setLayout(new CardLayout());
         getContentPane().add(cardPanel);
 
-        // ¹¹Ôì¼ÆËãÆ÷¹¤¾ßÃæ°å
+        // æ„é€ è®¡ç®—å™¨å·¥å…·é¢æ¿
         JPanel calculateTools = new CalculatorUI();
         calculateTools.setLayout(null);
         cardPanel.add(calculateTools, CALCTOOLS);
 
-        // ¹¹Ôì±àÂë½âÂë¹¤¾ßÃæ°å
+        // æ„é€ ç¼–ç è§£ç å·¥å…·é¢æ¿
         JPanel encodeAndDecodeTools = new EncodeAndDecodeUI();
         encodeAndDecodeTools.setLayout(null);
         cardPanel.add(encodeAndDecodeTools, ENCODETOOLS);
 
-        // QR¹¹Ôì¶şÎ¬Âë¹¤¾ßÃæ°å
+        // QRæ„é€ äºŒç»´ç å·¥å…·é¢æ¿
         JPanel qrCodeTools = new QRCodeUI();
         qrCodeTools.setLayout(null);
         cardPanel.add(qrCodeTools, QRCODETOOLS);

@@ -5,25 +5,25 @@ import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 
 /**
- * ÎÄ±¾×ª»»
+ * æ–‡æœ¬è½¬æ¢
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 public class TextConvert {
 
-    public final static String UTF_8 = "UTF-8"; // Í¨ÓÃ
-    public final static String BIG5 = "BIG5"; // ·±Ìå
-    public final static String GBK = "GBK"; //¼òÌå
-    public final static String GB2312 = "GB2312"; //¼òÌå
-    public final static String SJIS = "SJIS"; // ÈÕÓï
-    public final static String JIS = "JIS"; // ÈÕÓï
+    public final static String UTF_8 = "UTF-8"; // é€šç”¨
+    public final static String BIG5 = "BIG5"; // ç¹ä½“
+    public final static String GBK = "GBK"; //ç®€ä½“
+    public final static String GB2312 = "GB2312"; //ç®€ä½“
+    public final static String SJIS = "SJIS"; // æ—¥è¯­
+    public final static String JIS = "JIS"; // æ—¥è¯­
 
     /**
-     * °ÑÎÄ¼ş×ª»»³ÉÖ¸¶¨µÄ±àÂë
+     * æŠŠæ–‡ä»¶è½¬æ¢æˆæŒ‡å®šçš„ç¼–ç 
      *
-     * @param file            Òª×ª»»µÄÎÄ¼ş»òÄ¿Â¼
-     * @param fromCharsetName Ô´ÎÄ¼şµÄ±àÂë
-     * @param toCharsetName   Òª×ª»»µÄ±àÂë
+     * @param file            è¦è½¬æ¢çš„æ–‡ä»¶æˆ–ç›®å½•
+     * @param fromCharsetName æºæ–‡ä»¶çš„ç¼–ç 
+     * @param toCharsetName   è¦è½¬æ¢çš„ç¼–ç 
      */
     public static void convert(File file, String fromCharsetName, String toCharsetName) {
         String fileContent = getContentFromCharset(file, fromCharsetName);
@@ -31,12 +31,12 @@ public class TextConvert {
     }
 
     /**
-     * °Ñ×Ö·û´®×ª»»³ÉÖ¸¶¨µÄ±àÂë
+     * æŠŠå­—ç¬¦ä¸²è½¬æ¢æˆæŒ‡å®šçš„ç¼–ç 
      *
-     * @param string          Òª×ª»»µÄ×Ö·û´®
-     * @param fromCharsetName ×Ö·û´®µÄ±àÂë
-     * @param toCharsetName   Òª×ª»»µÄ±àÂë
-     * @return ×ª»»ºóµÄ×Ö·û´®
+     * @param string          è¦è½¬æ¢çš„å­—ç¬¦ä¸²
+     * @param fromCharsetName å­—ç¬¦ä¸²çš„ç¼–ç 
+     * @param toCharsetName   è¦è½¬æ¢çš„ç¼–ç 
+     * @return è½¬æ¢åçš„å­—ç¬¦ä¸²
      */
     public static String convert(String string, String fromCharsetName, String toCharsetName) {
         try {
@@ -44,16 +44,16 @@ public class TextConvert {
             return new String(b, toCharsetName);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            throw new IllegalArgumentException("±àÂë²»Ö§³Ö");
+            throw new IllegalArgumentException("ç¼–ç ä¸æ”¯æŒ");
         }
     }
 
     /**
-     * ÒÔÖ¸¶¨±àÂë·½Ê½¶ÁÈ¡ÎÄ¼ş£¬·µ»ØÎÄ¼şÄÚÈİ
+     * ä»¥æŒ‡å®šç¼–ç æ–¹å¼è¯»å–æ–‡ä»¶ï¼Œè¿”å›æ–‡ä»¶å†…å®¹
      *
-     * @param file            Òª×ª»»µÄÎÄ¼ş
-     * @param fromCharsetName Ô´ÎÄ¼şµÄ±àÂë
-     * @return ÎÄ¼şÄÚÈİ×Ö·û´®
+     * @param file            è¦è½¬æ¢çš„æ–‡ä»¶
+     * @param fromCharsetName æºæ–‡ä»¶çš„ç¼–ç 
+     * @return æ–‡ä»¶å†…å®¹å­—ç¬¦ä¸²
      */
     private static String getContentFromCharset(File file, String fromCharsetName) {
 
@@ -68,16 +68,16 @@ public class TextConvert {
             return str;
         } catch (IOException e) {
             e.printStackTrace();
-            throw new IllegalArgumentException("ÎÄ¼ş´íÎó");
+            throw new IllegalArgumentException("æ–‡ä»¶é”™è¯¯");
         }
     }
 
     /**
-     * ÒÔÖ¸¶¨±àÂë·½Ê½Ğ´ÎÄ±¾ÎÄ¼ş£¬´æÔÚ»á¸²¸Ç
+     * ä»¥æŒ‡å®šç¼–ç æ–¹å¼å†™æ–‡æœ¬æ–‡ä»¶ï¼Œå­˜åœ¨ä¼šè¦†ç›–
      *
-     * @param file          ÒªĞ´ÈëµÄÎÄ¼ş
-     * @param toCharsetName Òª×ª»»µÄ±àÂë
-     * @param content       ÎÄ¼şÄÚÈİ
+     * @param file          è¦å†™å…¥çš„æ–‡ä»¶
+     * @param toCharsetName è¦è½¬æ¢çš„ç¼–ç 
+     * @param content       æ–‡ä»¶å†…å®¹
      */
     private static void saveFile2Charset(File file, String toCharsetName, String content) {
         if (!Charset.isSupported(toCharsetName)) {

@@ -12,18 +12,18 @@ import java.net.URISyntaxException;
 import java.util.Map;
 
 /**
- * ¼ÇÂ¼»ãÂÊ
- * ³õÊ¼ÎªÄÚÖÃ»ãÂÊ
- * ´ÓÍøÉÏ»ñÈ¡×îĞÂ»ãÂÊ
+ * è®°å½•æ±‡ç‡
+ * åˆå§‹ä¸ºå†…ç½®æ±‡ç‡
+ * ä»ç½‘ä¸Šè·å–æœ€æ–°æ±‡ç‡
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 public class ExchangerRateRecord {
     private Currency rates[];
     private int size;
 
     /**
-     * ³õÊ¼»¯Ô­Ê¼jsonÊı¾İ
+     * åˆå§‹åŒ–åŸå§‹jsonæ•°æ®
      */
     public ExchangerRateRecord() {
         FileResource resource = new FileResource();
@@ -38,9 +38,9 @@ public class ExchangerRateRecord {
 
 
     /**
-     * ÓÃÓÚ¸üĞÂ»ãÂÊĞÅÏ¢£¬ĞèÒªÁªÍø
+     * ç”¨äºæ›´æ–°æ±‡ç‡ä¿¡æ¯ï¼Œéœ€è¦è”ç½‘
      *
-     * @return true Èç¹û¸üĞÂ³É¹¦
+     * @return true å¦‚æœæ›´æ–°æˆåŠŸ
      */
     public boolean update() {
         try {
@@ -52,18 +52,18 @@ public class ExchangerRateRecord {
     }
 
     /**
-     * ÅĞ¶Ï»ãÂÊĞÅÏ¢ÊÇ·ñÎª¿Õ
+     * åˆ¤æ–­æ±‡ç‡ä¿¡æ¯æ˜¯å¦ä¸ºç©º
      *
-     * @return true Èç¹û»ãÂÊÎª¿Õ
+     * @return true å¦‚æœæ±‡ç‡ä¸ºç©º
      */
     private boolean isEmpty() {
         return size == 0;
     }
 
     /**
-     * »ñÈ¡»ãÂÊĞÅÏ¢Êı×é£¬ÒÔCurrencyÊı×éµÄĞÎÊ½·µ»ØÒ»×é»ãÂÊ£¬Èç¹ûĞÅÏ¢Îª¿Õ£¬Ôò×Ô¶¯´ÓÍøÉÏÅÀÈ¡ĞÅÏ¢
+     * è·å–æ±‡ç‡ä¿¡æ¯æ•°ç»„ï¼Œä»¥Currencyæ•°ç»„çš„å½¢å¼è¿”å›ä¸€ç»„æ±‡ç‡ï¼Œå¦‚æœä¿¡æ¯ä¸ºç©ºï¼Œåˆ™è‡ªåŠ¨ä»ç½‘ä¸Šçˆ¬å–ä¿¡æ¯
      *
-     * @return ·µ»ØÒ»×é»ãÂÊ
+     * @return è¿”å›ä¸€ç»„æ±‡ç‡
      */
     public Currency[] getRates() {
         if (isEmpty()) {
@@ -73,9 +73,9 @@ public class ExchangerRateRecord {
     }
 
     /**
-     * ½âÎöjsonÊı¾İµ½»ãÂÊÊı×é
+     * è§£æjsonæ•°æ®åˆ°æ±‡ç‡æ•°ç»„
      *
-     * @param jsonRates jsonÊı¾İ
+     * @param jsonRates jsonæ•°æ®
      */
     private void setRates(JsonObject jsonRates) {
         size = jsonRates.size();
@@ -90,10 +90,10 @@ public class ExchangerRateRecord {
     }
 
     /**
-     * ¸ø¶¨Ò»ÖÖ»õ±ÒÃû³Æ£¬·µ»Ø¸Ã»õ±ÒÀàCurrency
+     * ç»™å®šä¸€ç§è´§å¸åç§°ï¼Œè¿”å›è¯¥è´§å¸ç±»Currency
      *
-     * @param name »õ±ÒÃû³Æ
-     * @return »õ±ÒÀà
+     * @param name è´§å¸åç§°
+     * @return è´§å¸ç±»
      */
     public Currency getRecord(String name) {
         if (isEmpty()) {
@@ -107,18 +107,18 @@ public class ExchangerRateRecord {
             }
         }
         if (i == size) {
-            throw new IllegalArgumentException("Ã»ÓĞÕâÖÖ»õ±Ò");
+            throw new IllegalArgumentException("æ²¡æœ‰è¿™ç§è´§å¸");
         }
         return rates[i];
     }
 
     /**
-     * »»Ëã³ö¶Ò»»ºóÓ¦µÃµÄ½ğ¶î
+     * æ¢ç®—å‡ºå…‘æ¢ååº”å¾—çš„é‡‘é¢
      *
-     * @param source ³õÊ¼»õ±Ò
-     * @param much   ½ğ¶î
-     * @param target Ä¿±ê»õ±Ò
-     * @return ¶Ò»»ºóµÄ½ğ¶î
+     * @param source åˆå§‹è´§å¸
+     * @param much   é‡‘é¢
+     * @param target ç›®æ ‡è´§å¸
+     * @return å…‘æ¢åçš„é‡‘é¢
      */
     public BigDecimal calcRate(Currency source, double much, Currency target) {
         BigDecimal m = new BigDecimal(much);

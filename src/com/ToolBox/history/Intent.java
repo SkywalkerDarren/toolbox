@@ -3,29 +3,29 @@ package com.ToolBox.history;
 import java.util.HashMap;
 
 /**
- * ĞÅÏ¢´«µİ¹¤¾ß
+ * ä¿¡æ¯ä¼ é€’å·¥å…·
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 public class Intent {
     private static HashMap<String, Object> intent = new HashMap<>();
 
     /**
-     * Éè¶¨´«Öµ
+     * è®¾å®šä¼ å€¼
      *
-     * @param serialVersionUID Ààuid
-     * @param key              »ñÈ¡¼ü
-     * @param obj              ±£´æ¶ÔÏó
+     * @param serialVersionUID ç±»uid
+     * @param key              è·å–é”®
+     * @param obj              ä¿å­˜å¯¹è±¡
      */
     public static void setObj(long serialVersionUID, String key, Object obj) {
         intent.put(serialVersionUID + key, obj);
     }
 
     /**
-     * »ñÈ¡´«Öµ
-     * @param serialVersionUID Ààuid
-     * @param key »ñÈ¡¼ü
-     * @return »ñÈ¡¶ÔÏó
+     * è·å–ä¼ å€¼
+     * @param serialVersionUID ç±»uid
+     * @param key è·å–é”®
+     * @return è·å–å¯¹è±¡
      */
     public static Object getObj(long serialVersionUID, String key) {
         return intent.get(serialVersionUID + key);

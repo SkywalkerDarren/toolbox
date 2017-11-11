@@ -7,26 +7,26 @@ import java.awt.*;
 import java.io.File;
 
 /**
- * ÅúÁ¿ÎÄ×Ö×ª»»¹¤¾ß
- * Ö§³Ö¼òÌå£¬·±Ìå£¬ÈÕÓï£¬utf-8»¥Ïà×ª»»±àÂë
- * Ö§³ÖÎÄ¼ş±àÂë×ª»»
- * Ö§³ÖÅúÁ¿×ª»»
+ * æ‰¹é‡æ–‡å­—è½¬æ¢å·¥å…·
+ * æ”¯æŒç®€ä½“ï¼Œç¹ä½“ï¼Œæ—¥è¯­ï¼Œutf-8äº’ç›¸è½¬æ¢ç¼–ç 
+ * æ”¯æŒæ–‡ä»¶ç¼–ç è½¬æ¢
+ * æ”¯æŒæ‰¹é‡è½¬æ¢
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class LiteralCodeUI extends TransparentPanelUI {
 
     private static final long serialVersionUID = 4233801683473119453L;
-    private final static String exchangeTip = "×ª»»";
-    private final static String from = "´Ó";
-    private final static String to = "×ª»»µ½";
-    private final static String code = "±àÂë";
-    private final static String route = "ÎÄ¼şÂ·¾¶";
-    private final static String chooseFile = "Ñ¡ÔñÎÄ¼ş";
-    private final static String input = "ÇëÊäÈëÎÄ±¾ÄÚÈİ";
-    private final static String output = "×ª»»ºóÎÄ±¾ÄÚÈİ";
-    private final static String exchange = "  ×ª  »»  > ";
-    private final static String success = "\t×ª»»³É¹¦";
+    private final static String exchangeTip = "è½¬æ¢";
+    private final static String from = "ä»";
+    private final static String to = "è½¬æ¢åˆ°";
+    private final static String code = "ç¼–ç ";
+    private final static String route = "æ–‡ä»¶è·¯å¾„";
+    private final static String chooseFile = "é€‰æ‹©æ–‡ä»¶";
+    private final static String input = "è¯·è¾“å…¥æ–‡æœ¬å†…å®¹";
+    private final static String output = "è½¬æ¢åæ–‡æœ¬å†…å®¹";
+    private final static String exchange = "  è½¬  æ¢  > ";
+    private final static String success = "\tè½¬æ¢æˆåŠŸ";
     private final static String txt = "txt";
     private static final String js = "js";
     private static final String log = "log";
@@ -56,7 +56,7 @@ class LiteralCodeUI extends TransparentPanelUI {
     private File file;
 
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     protected void initCompoment() {
         btnChooseFile = new JButton();
@@ -76,16 +76,16 @@ class LiteralCodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     protected void initUI() {
         final Color normal = new Color(245, 255, 255);
         final Color button = new Color(240, 255, 250);
-        final Font fontPlain = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14);
+        final Font fontPlain = new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 14);
         fromCharset = TextConvert.GBK;
         toCharset = TextConvert.UTF_8;
 
-        //Ñ¡ÔñÎÄ¼ş°´Å¥
+        //é€‰æ‹©æ–‡ä»¶æŒ‰é’®
         btnChooseFile.setOpaque(false);
         btnChooseFile.setText(chooseFile);
         btnChooseFile.setFont(fontPlain);
@@ -93,7 +93,7 @@ class LiteralCodeUI extends TransparentPanelUI {
         btnChooseFile.setBackground(button);
         add(btnChooseFile);
 
-        //×îÉÏ·½×ª»»°´Å¥
+        //æœ€ä¸Šæ–¹è½¬æ¢æŒ‰é’®
         btnExchangeFile.setOpaque(false);
         btnExchangeFile.setText(exchangeTip);
         btnExchangeFile.setFont(fontPlain);
@@ -101,7 +101,7 @@ class LiteralCodeUI extends TransparentPanelUI {
         btnExchangeFile.setBackground(button);
         add(btnExchangeFile);
 
-        //ÎÄ¼şÂ·¾¶ÎÄ±¾¿ò
+        //æ–‡ä»¶è·¯å¾„æ–‡æœ¬æ¡†
         textFieldRoute.setBackground(normal);
         textFieldRoute.setEditable(false);
         textFieldRoute.setText(route);
@@ -110,7 +110,7 @@ class LiteralCodeUI extends TransparentPanelUI {
         textFieldRoute.setForeground(Color.GRAY);
         add(textFieldRoute);
 
-        //×ó
+        //å·¦
         fromComboBox.setOpaque(false);
         fromComboBox.setFont(fontPlain);
         fromComboBox.setBounds(92, 108, 205, 35);
@@ -124,7 +124,7 @@ class LiteralCodeUI extends TransparentPanelUI {
         fromComboBox.setSelectedItem(TextConvert.GBK);
         add(fromComboBox);
 
-        //ÓÒ
+        //å³
         toComboBox.setOpaque(false);
         toComboBox.setFont(fontPlain);
         toComboBox.setBounds(490, 108, 205, 35);
@@ -147,7 +147,7 @@ class LiteralCodeUI extends TransparentPanelUI {
         rightScrollPane.setViewportView(rightTextArea);
         add(rightScrollPane);
 
-        //×ª»»°´Å¥
+        //è½¬æ¢æŒ‰é’®
         btnExchange.setOpaque(false);
         btnExchange.setText(exchange);
         btnExchange.setFont(fontPlain);
@@ -155,25 +155,25 @@ class LiteralCodeUI extends TransparentPanelUI {
         btnExchange.setBackground(button);
         add(btnExchange);
 
-        //±êÇ©´Ó
+        //æ ‡ç­¾ä»
         lblFrom.setText(from);
         lblFrom.setFont(fontPlain);
         lblFrom.setBounds(70, 116, 20, 20);
         add(lblFrom);
 
-        //±êÇ©×ª»»µ½
+        //æ ‡ç­¾è½¬æ¢åˆ°
         lblTo.setText(to);
         lblTo.setFont(fontPlain);
         lblTo.setBounds(440, 116, 60, 20);
         add(lblTo);
 
-        //±àÂë±êÇ©
+        //ç¼–ç æ ‡ç­¾
         lblLeftCode.setText(code);
         lblLeftCode.setFont(fontPlain);
         lblLeftCode.setBounds(302, 114, 60, 20);
         add(lblLeftCode);
 
-        //±àÂë±êÇ©
+        //ç¼–ç æ ‡ç­¾
         lblRightCode.setText(code);
         lblRightCode.setFont(fontPlain);
         lblRightCode.setBounds(702, 114, 60, 20);
@@ -181,7 +181,7 @@ class LiteralCodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     protected void createAction() {
         btnChooseFile.addActionListener(e -> {
@@ -240,7 +240,7 @@ class LiteralCodeUI extends TransparentPanelUI {
     }
 
     /**
-     * ¹¹½¨ÎÄ×Ö±àÂë×ª»»¿ò¼Ü
+     * æ„å»ºæ–‡å­—ç¼–ç è½¬æ¢æ¡†æ¶
      */
     LiteralCodeUI() {
         super();

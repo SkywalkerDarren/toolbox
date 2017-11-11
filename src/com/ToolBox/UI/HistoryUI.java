@@ -12,18 +12,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * ÀúÊ·¼ÇÂ¼²à±ßÀ¸£¬ÓÃÓÚ¼ÇÂ¼¸÷ÖÖ½á¹û£¬²¢±£´æ½á¹û
- * ¿ÉÒÔÍ¨¹ıµã»÷µÄ·½Ê½£¬Êä³öÁÙÊ±±£´æµÄ½á¹ûµ½ÊäÈë¿òÖĞ
- * Ö§³Ö¸´ÖÆ½á¹û£¬Çå¿Õ½á¹û
+ * å†å²è®°å½•ä¾§è¾¹æ ï¼Œç”¨äºè®°å½•å„ç§ç»“æœï¼Œå¹¶ä¿å­˜ç»“æœ
+ * å¯ä»¥é€šè¿‡ç‚¹å‡»çš„æ–¹å¼ï¼Œè¾“å‡ºä¸´æ—¶ä¿å­˜çš„ç»“æœåˆ°è¾“å…¥æ¡†ä¸­
+ * æ”¯æŒå¤åˆ¶ç»“æœï¼Œæ¸…ç©ºç»“æœ
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class HistoryUI extends TransparentPanelUI {
 
     private static final long serialVersionUID = 4338709380282933851L;
-    private static final String history = "ÀúÊ·¼ÇÂ¼";
-    private static final String copy = "¸´ÖÆ";
-    private static final String clear = "Çå¿Õ";
+    private static final String history = "å†å²è®°å½•";
+    private static final String copy = "å¤åˆ¶";
+    private static final String clear = "æ¸…ç©º";
     private static JList<String> jList = new JList<>();
     private static DefaultListModel<String> dlm = new DefaultListModel<>();
     private JLabel title;
@@ -32,7 +32,7 @@ class HistoryUI extends TransparentPanelUI {
     private JScrollPane jsp;
 
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -43,23 +43,23 @@ class HistoryUI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
-        // ±êÌâ
+        // æ ‡é¢˜
         title.setBounds(22, 20, 75, 35);
-        title.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 13));
+        title.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 13));
         add(title);
-        // Ìí¼Ó¸´ÖÆ°´Å¥
+        // æ·»åŠ å¤åˆ¶æŒ‰é’®
         btnCopy.setBackground(new Color(224, 255, 255));
         btnCopy.setBounds(22, 470, 75, 35);
         add(btnCopy);
-        // Ìí¼ÓÇå¿Õ°´Å¥
+        // æ·»åŠ æ¸…ç©ºæŒ‰é’®
         btnClear.setBackground(new Color(224, 255, 255));
         btnClear.setBounds(105, 470, 75, 35);
         add(btnClear);
-        // ÉèÖÃÁĞ±í
+        // è®¾ç½®åˆ—è¡¨
         jList.setBackground(new Color(245, 255, 255));
         jsp.setViewportView(HistoryUI.jList);
         jsp.setBounds(16, 49, 170, 420);
@@ -67,7 +67,7 @@ class HistoryUI extends TransparentPanelUI {
     }
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -126,16 +126,16 @@ class HistoryUI extends TransparentPanelUI {
     }
 
     /**
-     * ¹¹½¨ÀúÊ·¼ÇÂ¼UI»ù±¾¿ò¼Ü£¬¼°¼àÌıÊÂ¼ş
+     * æ„å»ºå†å²è®°å½•UIåŸºæœ¬æ¡†æ¶ï¼ŒåŠç›‘å¬äº‹ä»¶
      */
     HistoryUI() {
         super();
     }
 
     /**
-     * ĞÂÔö²¢¸üĞÂÀúÊ·¼ÇÂ¼
+     * æ–°å¢å¹¶æ›´æ–°å†å²è®°å½•
      *
-     * @param r ĞÂÔöµÄÊ®½øÖÆÊıÖµ½á¹û
+     * @param r æ–°å¢çš„åè¿›åˆ¶æ•°å€¼ç»“æœ
      */
     static void updateRecord(String r) {
         HistoryRecord.addResult(r);

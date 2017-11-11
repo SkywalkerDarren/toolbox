@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * ¹ØÓÚ´°¿Ú£¬ÏÔÊ¾µ±Ç°°æ±¾ºÅ
+ * å…³äºçª—å£ï¼Œæ˜¾ç¤ºå½“å‰ç‰ˆæœ¬å·
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class AboutWindow extends JFrame {
 
@@ -14,7 +14,7 @@ class AboutWindow extends JFrame {
     private static final long serialVersionUID = -2467559809056956188L;
 
     /**
-     * ³õÊ¼»¯¹ØÓÚ´°¿Ú
+     * åˆå§‹åŒ–å…³äºçª—å£
      */
     AboutWindow() {
         FileResource resource = new FileResource();

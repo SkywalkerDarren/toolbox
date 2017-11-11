@@ -3,30 +3,30 @@ package com.ToolBox.UI;
 import javax.swing.*;
 
 /**
- * Í¨ÓÃÍ¸Ã÷panel
+ * é€šç”¨é€æ˜panel
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 public abstract class TransparentPanelUI extends JPanel {
     private static final long serialVersionUID = -8103263234844270632L;
 
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     protected abstract void initCompoment();
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     protected abstract void initUI();
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     protected abstract void createAction();
 
     /**
-     * ¹¹½¨ÎÄ×Ö±àÂë×ª»»¿ò¼Ü
+     * æ„å»ºæ–‡å­—ç¼–ç è½¬æ¢æ¡†æ¶
      */
     protected TransparentPanelUI() {
         initCompoment();

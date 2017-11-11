@@ -11,17 +11,17 @@ import java.math.BigDecimal;
 import java.util.Map.Entry;
 
 /**
- * »»ËãÆ÷£¬¸÷µ¥Î»½øĞĞ»»Ëã²¢±£´æ½á¹û
- * Ö§³ÖÀúÊ·¼ÇÂ¼¹¦ÄÜ
+ * æ¢ç®—å™¨ï¼Œå„å•ä½è¿›è¡Œæ¢ç®—å¹¶ä¿å­˜ç»“æœ
+ * æ”¯æŒå†å²è®°å½•åŠŸèƒ½
  *
- * @author Ñîºë£¬ĞìÏéÁÁ£¬Öì¿ÉĞÀ
+ * @author æ¨å¼˜ï¼Œå¾ç¥¥äº®ï¼Œæœ±å¯æ¬£
  */
 class ConversionUI extends TransparentPanelUI {
 
     public static final long serialVersionUID = -1342718738933302379L;
-    private static final String type = "ÇëÑ¡Ôñ»»ËãÀàĞÍ";
-    private static final String unit = "ÇëÑ¡Ôñ»»Ëãµ¥Î»";
-    private static final String exchange = "»»Ëã";
+    private static final String type = "è¯·é€‰æ‹©æ¢ç®—ç±»å‹";
+    private static final String unit = "è¯·é€‰æ‹©æ¢ç®—å•ä½";
+    private static final String exchange = "æ¢ç®—";
     private static JTextField tfSource = new JTextField();
     private JTextField tfTarget;
     private JComboBox<String> comboBoxType;
@@ -33,7 +33,7 @@ class ConversionUI extends TransparentPanelUI {
     private Measurement m;
 
     /**
-     * ³õÊ¼»¯×é¼ş
+     * åˆå§‹åŒ–ç»„ä»¶
      */
     @Override
     protected void initCompoment() {
@@ -48,44 +48,44 @@ class ConversionUI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯²¼¾Ö
+     * åˆå§‹åŒ–å¸ƒå±€
      */
     @Override
     protected void initUI() {
 
-        // ÀàĞÍ
+        // ç±»å‹
         Color color = new Color(240, 255, 255);
         comboBoxType.setBackground(color);
-        comboBoxType.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
+        comboBoxType.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
         comboBoxType.setBounds(103, 95, 150, 30);
         add(comboBoxType);
         for (String type : m.measureType) {
             comboBoxType.addItem(type);
         }
 
-        // Ô´ÊıÖµ
-        tfSource.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
+        // æºæ•°å€¼
+        tfSource.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
         tfSource.setBackground(color);
         tfSource.setBounds(297, 208, 151, 31);
         tfSource.setColumns(10);
         add(tfSource);
 
-        // Ô´µ¥Î»
-        comboBoxSource.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
+        // æºå•ä½
+        comboBoxSource.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
         comboBoxSource.setBackground(color);
         comboBoxSource.setBounds(103, 207, 150, 30);
         add(comboBoxSource);
 
-        // Ä¿±êÊıÖµ
+        // ç›®æ ‡æ•°å€¼
         tfTarget.setEditable(false);
-        tfTarget.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
+        tfTarget.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
         tfTarget.setColumns(10);
         tfTarget.setBackground(color);
         tfTarget.setBounds(297, 326, 151, 31);
         add(tfTarget);
 
-        // Ä¿±êµ¥Î»
-        comboBoxTarget.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
+        // ç›®æ ‡å•ä½
+        comboBoxTarget.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
         comboBoxTarget.setBackground(color);
         comboBoxTarget.setBounds(103, 326, 150, 30);
         add(comboBoxTarget);
@@ -95,26 +95,26 @@ class ConversionUI extends TransparentPanelUI {
             comboBoxTarget.addItem(entry.getKey());
         }
 
-        // »»ËãÀàĞÍ
-        lblType.setFont(new Font("ËÎÌå", Font.PLAIN, 15));
+        // æ¢ç®—ç±»å‹
+        lblType.setFont(new Font("å®‹ä½“", Font.PLAIN, 15));
         lblType.setBounds(103, 40, 150, 30);
         add(lblType);
 
-        // »»Ëãµ¥Î»
-        lblUnit.setFont(new Font("ËÎÌå", Font.PLAIN, 14));
+        // æ¢ç®—å•ä½
+        lblUnit.setFont(new Font("å®‹ä½“", Font.PLAIN, 14));
         lblUnit.setBounds(103, 150, 150, 30);
         add(lblUnit);
 
-        // »»Ëã°´Å¥
+        // æ¢ç®—æŒ‰é’®
         btnConvert.setBackground(new Color(245, 255, 250));
-        btnConvert.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
+        btnConvert.setFont(new Font("å¾®è½¯é›…é»‘", Font.PLAIN, 13));
         btnConvert.setBounds(338, 268, 70, 35);
         add(btnConvert);
 
     }
 
     /**
-     * ½¨Á¢¼àÌıÊÂ¼ş
+     * å»ºç«‹ç›‘å¬äº‹ä»¶
      */
     @Override
     protected void createAction() {
@@ -246,16 +246,16 @@ class ConversionUI extends TransparentPanelUI {
     }
 
     /**
-     * ³õÊ¼»¯»»Ëã¼ÆËãÆ÷µÄ»ù±¾¹¹Ôì
+     * åˆå§‹åŒ–æ¢ç®—è®¡ç®—å™¨çš„åŸºæœ¬æ„é€ 
      */
     public ConversionUI() {
         super();
     }
 
     /**
-     * Éè¶¨´ÓÀúÊ·¼ÇÂ¼Ëù»ñÈ¡µÄ½á¹û£¬ÏÔÊ¾µ½UIÉÏ²¢¼ÓÔØµ½±í´ïÊ½ÖĞ
+     * è®¾å®šä»å†å²è®°å½•æ‰€è·å–çš„ç»“æœï¼Œæ˜¾ç¤ºåˆ°UIä¸Šå¹¶åŠ è½½åˆ°è¡¨è¾¾å¼ä¸­
      *
-     * @param s »ñÈ¡µÄ½á¹û
+     * @param s è·å–çš„ç»“æœ
      */
     static void setTempResult(String s) {
         tfSource.setText(s);

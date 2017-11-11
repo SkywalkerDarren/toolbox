@@ -15,9 +15,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * ÆÁÄ»½ØÍ¼Ğ¡³ÌĞò
+ * å±å¹•æˆªå›¾å°ç¨‹åº
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 class SnapShot extends JFrame {
 
@@ -29,16 +29,16 @@ class SnapShot extends JFrame {
     private final static int RECT = 1;
     private final static int PEN = 2;
 
-    private final static String title = "½ØÍ¼Ğ¡¹¤¾ß";
-    private final static String start = "¿ªÊ¼½ØÍ¼£¨µãÓÒ¼üÍË³ö£©";
-    private final static String oval = "Ô²ĞÎ";
-    private final static String rect = "¾ØĞÎ";
-    private final static String pen = "»­±Ê";
-    private final static String S = "Ğ¡";
-    private final static String M = "ÖĞ";
-    private final static String L = "´ó";
-    private final static String save = "±£´æ";
-    private final static String copy = "¸´ÖÆ";
+    private final static String title = "æˆªå›¾å°å·¥å…·";
+    private final static String start = "å¼€å§‹æˆªå›¾ï¼ˆç‚¹å³é”®é€€å‡ºï¼‰";
+    private final static String oval = "åœ†å½¢";
+    private final static String rect = "çŸ©å½¢";
+    private final static String pen = "ç”»ç¬”";
+    private final static String S = "å°";
+    private final static String M = "ä¸­";
+    private final static String L = "å¤§";
+    private final static String save = "ä¿å­˜";
+    private final static String copy = "å¤åˆ¶";
 
     private int size = MEDIUM;
     private int flag = PEN;
@@ -54,11 +54,11 @@ class SnapShot extends JFrame {
     private JButton btnSave;
     private BufferedImage bi;
 
-    private int x, y;   //¼ÇÂ¼Êó±ê×ø±ê
+    private int x, y;   //è®°å½•é¼ æ ‡åæ ‡
     private int startx, starty;
 
     /**
-     * ½ØÍ¼Ãæ°å
+     * æˆªå›¾é¢æ¿
      */
     SnapShot() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -292,7 +292,7 @@ class SnapShot extends JFrame {
                         g.dispose();
                         break;
                     case PEN:
-                        g2d.drawOval(x, y, size, size);   //JavaÖĞÃ»ÓĞÌá¹©µãµÄ»æÖÆ£¬Ê¹ÓÃÆğµãºÍÖÕµãÎªÍ¬Ò»¸öµãµÄ»­Ïß´úÌæ
+                        g2d.drawOval(x, y, size, size);   //Javaä¸­æ²¡æœ‰æä¾›ç‚¹çš„ç»˜åˆ¶ï¼Œä½¿ç”¨èµ·ç‚¹å’Œç»ˆç‚¹ä¸ºåŒä¸€ä¸ªç‚¹çš„ç”»çº¿ä»£æ›¿
                         g2d.dispose();
 
                         imageLabel.setIcon(new ImageIcon(bi));

@@ -4,25 +4,25 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Æô¶¯»¶Ó­½çÃæ
+ * å¯åŠ¨æ¬¢è¿ç•Œé¢
  *
- * @author Ñîºë
+ * @author æ¨å¼˜
  */
 public class Splash extends JWindow implements Runnable {
 
     private static final long serialVersionUID = -6853365720969173394L;
     private JProgressBar progress;
-    private String waiting = "ÑîºëÕıÔÚ±àĞ´ºóÌ¨¡£¡£¡£ ";
+    private String waiting = "æ¨å¼˜æ­£åœ¨ç¼–å†™åå°ã€‚ã€‚ã€‚ ";
 
     /**
-     * Æô¶¯»­Ãæ²¼¾Ö
+     * å¯åŠ¨ç”»é¢å¸ƒå±€
      */
     public Splash() {
         Container container = getContentPane();
         setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         progress = new JProgressBar(1, 100);
         progress.setStringPainted(true);
-        progress.setFont(new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 13));
+        progress.setFont(new Font("å¾®è½¯é›…é»‘", Font.BOLD, 13));
         progress.setBackground(Color.white);
         container.add(new JLabel(new ImageIcon(new FileResource().splashURL)));
         container.add(progress, BorderLayout.SOUTH);
@@ -33,7 +33,7 @@ public class Splash extends JWindow implements Runnable {
     }
 
     /**
-     * ¿ªÊ¼Ïß³Ì²¢ÖÃ¶¥
+     * å¼€å§‹çº¿ç¨‹å¹¶ç½®é¡¶
      */
     public void start() {
         toFront();
@@ -52,13 +52,13 @@ public class Splash extends JWindow implements Runnable {
                 progress.setValue(i);
                 switch (i) {
                     case 40:
-                        waiting = "ĞìÏéÁÁÕıÔÚ±àĞ´Ç°¶Ë¡£¡£¡£ ";
+                        waiting = "å¾ç¥¥äº®æ­£åœ¨ç¼–å†™å‰ç«¯ã€‚ã€‚ã€‚ ";
                         break;
                     case 70:
-                        waiting = "Öì¿ÉĞÀÕıÔÚ»­×îºóµÄ±³¾°ËØ²Ä¡£¡£¡£ ";
+                        waiting = "æœ±å¯æ¬£æ­£åœ¨ç”»æœ€åçš„èƒŒæ™¯ç´ æã€‚ã€‚ã€‚ ";
                         break;
                     case 99:
-                        waiting = "×îºó¿¨×¡ÁË¡£¡£¡£ ";
+                        waiting = "æœ€åå¡ä½äº†ã€‚ã€‚ã€‚ ";
                         progress.setString(waiting + i + "%");
                         Thread.sleep(800);
                         break;
@@ -66,7 +66,7 @@ public class Splash extends JWindow implements Runnable {
                         break;
                 }
             }
-            waiting = "ÊÇ²»¿ÉÄÜµÄ ";
+            waiting = "æ˜¯ä¸å¯èƒ½çš„ ";
             progress.setString(waiting + "100%");
             Thread.sleep(300);
         } catch (InterruptedException e) {
