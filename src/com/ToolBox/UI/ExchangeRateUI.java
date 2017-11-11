@@ -20,39 +20,68 @@ import java.util.Date;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class ExchangeRateUI extends JPanel implements MouseListener {
+class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
 
     private static final long serialVersionUID = -4791068421614363948L;
+    private static final String value = "币值";
+    private static final String CNY = "CNY";
+    private static final String select = "选择货币";
+    private static final String input = "输入金额";
+    private static final String update = "更新汇率";
+    private static final String exchanger = "兑换";
+    private static final String pattern = "yyyy年MM月dd日 更新成功";
+    private static final String failed = "更新失败";
+    private static final String current = "当前汇率为: ";
     private static JTextField textFieldSource = new JTextField();
+    private ExchangerRateRecord exchange;
     private JTextField textFieldTarget;
-    private ExchangerRateRecord exchange = new ExchangerRateRecord();
+    private JComboBox<String> comboBoxSource;
+    private JComboBox<String> comboBoxTarget;
+    private JLabel lbSelectCurrency;
+    private JLabel lbDate;
+    private JLabel lbMuch;
+    private JLabel lbRate;
+    private JButton btnUpdate;
+    private JButton btnExchange;
+    /**
+     * 初始化组件
+     */
+    @Override
+    protected void initCompoment() {
+        exchange = new ExchangerRateRecord();
+        comboBoxSource = new JComboBox<>();
+        comboBoxTarget = new JComboBox<>();
+        lbSelectCurrency = new JLabel(select);
+        lbDate = new JLabel();
+        lbMuch = new JLabel(input);
+        lbRate = new JLabel();
+        btnUpdate = new JButton(update);
+        btnExchange = new JButton(exchanger);
+    }
 
     /**
-     * 构造汇率兑换布局
+     * 初始化布局
      */
-    public ExchangeRateUI() {
-
-        setOpaque(false);
-
-        JComboBox<String> comboBoxSource = new JComboBox<>();
-        comboBoxSource.setToolTipText("币值");
+    @Override
+    protected void initUI() {
         Color color = new Color(240, 255, 255);
-        comboBoxSource.setBackground(color);
         Font font = new Font("微软雅黑", Font.PLAIN, 15);
+        Currency[] cur = exchange.getRates();
+        Dimension dimension = new Dimension(175, 35);
+
+        comboBoxSource.setToolTipText(value);
+        comboBoxSource.setBackground(color);
         comboBoxSource.setFont(font);
         comboBoxSource.setLocation(86, 106);
-        Currency[] cur = exchange.getRates();
         for (Currency aCur : cur) {
             comboBoxSource.addItem(aCur.getName());
         }
-        comboBoxSource.setSelectedItem("CNY");
-        Dimension dimension = new Dimension(175, 35);
+        comboBoxSource.setSelectedItem(CNY);
         comboBoxSource.setPreferredSize(dimension);
         comboBoxSource.setSize(dimension);
         comboBoxSource.setEditable(false);
         add(comboBoxSource);
 
-        JComboBox<String> comboBoxTarget = new JComboBox<>();
         comboBoxTarget.setBackground(color);
         comboBoxTarget.setLocation(86, 333);
         comboBoxTarget.setFont(font);
@@ -63,16 +92,10 @@ class ExchangeRateUI extends JPanel implements MouseListener {
         }
         add(comboBoxTarget);
 
-        Date today = new Date();
-        today.getTime();
-        DateFormat format = new SimpleDateFormat("yyyy年MM月dd日 更新成功");
-        format.format(today);
-
         textFieldSource.setBackground(color);
         textFieldSource.setFont(new Font("微软雅黑", Font.PLAIN, 16));
         textFieldSource.setBounds(315, 106, 175, 35);
         textFieldSource.setColumns(10);
-        textFieldSource.addMouseListener(this);
         add(textFieldSource);
 
         textFieldTarget = new JTextField();
@@ -81,42 +104,51 @@ class ExchangeRateUI extends JPanel implements MouseListener {
         textFieldTarget.setEditable(false);
         textFieldTarget.setBounds(315, 333, 175, 35);
         textFieldTarget.setColumns(10);
-        textFieldTarget.addMouseListener(this);
         add(textFieldTarget);
 
-        JLabel lbSelectCurrency = new JLabel("选择货币");
         lbSelectCurrency.setBounds(86, 58, 175, 35);
         add(lbSelectCurrency);
 
-        JLabel lbDate = new JLabel();
         lbDate.setBounds(86, 253, 175, 35);
         add(lbDate);
 
-        JLabel lbMuch = new JLabel("输入金额");
         lbMuch.setBounds(315, 58, 175, 35);
         add(lbMuch);
 
-        JLabel lbRate = new JLabel();
         lbRate.setBounds(315, 283, 175, 35);
         add(lbRate);
 
-        JButton btnUpdate = new JButton("更新汇率");
         btnUpdate.setBackground(new Color(224, 255, 255));
         btnUpdate.setFont(new Font("微软雅黑", Font.PLAIN, 14));
         btnUpdate.setBounds(86, 217, 174, 35);
         add(btnUpdate);
+
+        btnExchange.setBackground(new Color(224, 255, 255));
+        btnExchange.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+        btnExchange.setBounds(315, 217, 174, 35);
+        add(btnExchange);
+    }
+
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
+        Date today = new Date();
+        DateFormat format = new SimpleDateFormat(pattern);
+        today.getTime();
+        format.format(today);
+
+        textFieldSource.addMouseListener(this);
+        textFieldTarget.addMouseListener(this);
         btnUpdate.addActionListener(e -> {
             if (exchange.update()) {
                 lbDate.setText(format.format(today));
             } else {
-                lbDate.setText("更新失败");
+                lbDate.setText(failed);
             }
         });
 
-        JButton btnExchange = new JButton("兑换");
-        btnExchange.setBackground(new Color(224, 255, 255));
-        btnExchange.setFont(new Font("微软雅黑", Font.PLAIN, 14));
-        btnExchange.setBounds(315, 217, 174, 35);
         btnExchange.addActionListener(e -> {
             Currency source = exchange.getRecord((String) comboBoxSource.getSelectedItem());
             Currency target = exchange.getRecord((String) comboBoxTarget.getSelectedItem());
@@ -124,9 +156,15 @@ class ExchangeRateUI extends JPanel implements MouseListener {
             BigDecimal money = exchange.calcRate(source, much, target);
             textFieldTarget.setText(money.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString());
             HistoryUI.updateRecord(money.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString());
-            lbRate.setText("当前汇率为: " + target.getRateToUSD() / source.getRateToUSD());
+            lbRate.setText(current + target.getRateToUSD() / source.getRateToUSD());
         });
-        add(btnExchange);
+    }
+
+    /**
+     * 构造汇率兑换布局
+     */
+    public ExchangeRateUI() {
+        super();
     }
 
     /**

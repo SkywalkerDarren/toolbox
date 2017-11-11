@@ -3,7 +3,15 @@ package com.ToolBox.UI;
 import javax.swing.*;
 import java.awt.*;
 
-class LiteralCodeUI extends JPanel {
+/**
+ * 批量文字转换工具
+ * 支持简体，繁体，日语，utf-8互相转换编码
+ * 支持文件编码转换
+ * 支持批量转换
+ *
+ * @author 杨弘，徐祥亮，朱可欣
+ */
+class LiteralCodeUI extends TransparentPanelUI {
 
     private static final long serialVersionUID = 4233801683473119453L;
     private final static String exchangeTip = "转换";
@@ -31,7 +39,7 @@ class LiteralCodeUI extends JPanel {
     /**
      * 初始化组件
      */
-    private void initCompoment() {
+    protected void initCompoment() {
         btnChooseFile = new JButton();
         btnExchangeFile = new JButton();
         textFieldRoute = new JTextField();
@@ -49,7 +57,7 @@ class LiteralCodeUI extends JPanel {
     /**
      * 初始化布局
      */
-    private void initUI() {
+    protected void initUI() {
         final Color normal = new Color(245, 255, 255);
         final Color button = new Color(240, 255, 250);
         final Font fontPlain = new Font("微软雅黑", Font.PLAIN, 14);
@@ -97,6 +105,7 @@ class LiteralCodeUI extends JPanel {
         add(leftTextArea);
 
         rightTextArea.setBounds(455, 170, 275, 315);
+        rightTextArea.setEditable(false);
         add(rightTextArea);
 
         //转换按钮
@@ -135,7 +144,7 @@ class LiteralCodeUI extends JPanel {
     /**
      * 建立监听事件
      */
-    private void createAction() {
+    protected void createAction() {
         btnChooseFile.addActionListener(e -> {
             // TODO Auto-generated method stub
             if (!(textFieldRoute.getText().equals(route))) {
@@ -164,11 +173,7 @@ class LiteralCodeUI extends JPanel {
      * 构建文字编码转换框架
      */
     LiteralCodeUI() {
-        initCompoment();
-        initUI();
-        createAction();
-
-        setOpaque(false);
+        super();
     }
 
 }

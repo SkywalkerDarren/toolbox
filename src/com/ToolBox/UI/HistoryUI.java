@@ -17,41 +17,59 @@ import java.awt.event.MouseListener;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class HistoryUI extends JPanel {
+class HistoryUI extends TransparentPanelUI {
 
     private static final long serialVersionUID = 4338709380282933851L;
+    private static final String history = "历史记录";
+    private static final String copy = "复制";
+    private static final String clear = "清空";
     private static JList<String> jList = new JList<>();
     private static DefaultListModel<String> dlm = new DefaultListModel<>();
+    private JLabel title;
+    private JButton btnCopy;
+    private JButton btnClear;
+    private JScrollPane jsp;
+    /**
+     * 初始化组件
+     */
+    @Override
+    protected void initCompoment() {
+        title = new JLabel(history);
+        btnCopy = new JButton(copy);
+        btnClear = new JButton(clear);
+        jsp = new JScrollPane();
+    }
 
     /**
-     * 构建历史记录UI基本框架，及监听事件
+     * 初始化布局
      */
-    HistoryUI() {
-
-        setOpaque(false);
+    @Override
+    protected void initUI() {
 
         // 标题
-        JLabel title = new JLabel("历史记录");
         title.setBounds(22, 20, 75, 35);
         title.setFont(new Font("微软雅黑", Font.BOLD, 13));
         add(title);
         // 添加复制按钮
-        JButton btnCopy = new JButton("复制");
         btnCopy.setBackground(new Color(224, 255, 255));
         btnCopy.setBounds(22, 470, 75, 35);
         add(btnCopy);
         // 添加清空按钮
-        JButton btnClear = new JButton("清空");
         btnClear.setBackground(new Color(224, 255, 255));
         btnClear.setBounds(105, 470, 75, 35);
         add(btnClear);
         // 设置列表
         jList.setBackground(new Color(245, 255, 255));
-        JScrollPane jsp = new JScrollPane();
-        add(jsp, BorderLayout.CENTER);
         jsp.setViewportView(HistoryUI.jList);
         jsp.setBounds(16, 49, 170, 420);
-        // 添加列表监听事件
+        add(jsp, BorderLayout.CENTER);
+    }
+
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
         jList.addMouseListener(new MouseListener() {
 
             @Override
@@ -104,7 +122,13 @@ class HistoryUI extends JPanel {
             HistoryRecord.clear();
             dlm.clear();
         });
+    }
 
+    /**
+     * 构建历史记录UI基本框架，及监听事件
+     */
+    HistoryUI() {
+        super();
     }
 
     /**

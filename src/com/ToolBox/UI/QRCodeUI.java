@@ -10,7 +10,8 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -23,7 +24,7 @@ import java.nio.file.Path;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class QRCodeUI extends JPanel {
+class QRCodeUI extends TransparentPanelUI {
 
     private final static String topTip = "显示内容";
     private final static String levelTip = "纠错等级";
@@ -33,100 +34,61 @@ class QRCodeUI extends JPanel {
     private final static String saveRoute = "保存到";
     private final static String chooseFileString = "选择文件";
     private final static String identityString = "识别二维码";
+    private final static String title = "二维码工具";
+    private final static String L = "低";
+    private final static String M = "中";
+    private final static String Q = "高";
+    private final static String H = "极高";
+    private final static String S = "小";
+    private final static String B = "大";
     private final static JFileChooser imageFileChooser = new JFileChooser();
     private final static JFileChooser directoryChooser = new JFileChooser();
     private static final long serialVersionUID = 4091338005524008141L;
     private BufferedImage image;
     private Path path;
+    private TextBox textAreaTop;
+    private JComboBox<String> comboBoxLevel;
+    private JComboBox<String> comboBoxSize;
+    private JButton btnCreate;
+    private JButton btnSave;
+    private JButton btnScreenShot;
+    private JButton btnChooseFile;
+    private JButton btnIdentity;
+    private JPanel display;
+    private JLabel lblLevel;
+    private JLabel lblSize;
+    private JLabel imageLabel;
 
 
     /**
-     * 加载二维码界面
+     * 初始化组件
      */
-    QRCodeUI() {
+    @Override
+    protected void initCompoment() {
+        textAreaTop = new TextBox(topTip);
+        comboBoxLevel = new JComboBox<>();
+        comboBoxSize = new JComboBox<>();
+        btnCreate = new JButton(createQR);
+        btnSave = new JButton(saveRoute);
+        btnScreenShot = new JButton(screenShot);
+        btnChooseFile = new JButton(chooseFileString);
+        display = new JPanel();
+        lblLevel = new JLabel(levelTip);
+        lblSize = new JLabel(sizeTip);
+        imageLabel = new JLabel("");
+        btnIdentity = new JButton(identityString);
+    }
 
-        setOpaque(false);
-
-        final JTextArea textAreaTop = new JTextArea(topTip);
-        final JComboBox<String> comboBoxLevel = new JComboBox<>();
-        final JComboBox<String> comboBoxSize = new JComboBox<>();
-        final JButton btnCreate = new JButton(createQR);
-        final JButton btnSave = new JButton(saveRoute);
-        final JButton btnScreenShot = new JButton(screenShot);
-        final JButton btnChooseFile = new JButton(chooseFileString);
-        final JButton btnIdentity = new JButton(identityString);
-        final JPanel display = new JPanel();
-        final JLabel lblLevel = new JLabel(levelTip);
-        final JLabel lblSize = new JLabel(sizeTip);
-        JLabel imageLabel = new JLabel("");
-
-        setBorder(BorderFactory.createTitledBorder("二维码工具"));
+    /**
+     * 初始化布局
+     */
+    @Override
+    protected void initUI() {
+        Color normal = new Color(245, 255, 255);
 
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         imageLabel.setVerticalAlignment(SwingConstants.CENTER);
 
-
-        // 上方文本框
-        textAreaTop.setColumns(10000);
-        textAreaTop.setFocusable(true);
-        textAreaTop.setVisible(true);
-        Font fontPlain = new Font("微软雅黑", Font.PLAIN, 14);
-        textAreaTop.setFont(fontPlain);
-        textAreaTop.setLineWrap(true);
-        Color normal = new Color(245, 255, 255);
-        textAreaTop.setBackground(normal);
-        textAreaTop.setOpaque(false);
-        textAreaTop.setForeground(Color.gray);
-        textAreaTop.setBounds(55, 75, 330, 150);
-        textAreaTop.addMouseListener(new MouseListener() {
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                if (e.getButton() == MouseEvent.BUTTON3) {
-                    RightClickMenu menu = new RightClickMenu(textAreaTop);
-                    menu.show(e.getComponent(), e.getX(), e.getY());
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                if (textAreaTop.getText().equals(topTip)) {
-                    textAreaTop.setForeground(Color.BLACK);
-                    textAreaTop.setText(null);
-                }
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-        });
-
-        textAreaTop.addFocusListener(new FocusListener() {
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textAreaTop.getText().length() == 0) {
-                    textAreaTop.setForeground(Color.gray);
-                    textAreaTop.setText(topTip);
-                }
-            }
-
-            @Override
-            public void focusGained(FocusEvent e) {
-            }
-        });
         add(textAreaTop);
 
         lblLevel.setVisible(true);
@@ -141,12 +103,66 @@ class QRCodeUI extends JPanel {
         comboBoxLevel.setBounds(55, 250, 150, 30);
         comboBoxLevel.setBackground(normal);
         comboBoxLevel.setForeground(normal);
-        comboBoxLevel.addItem("低");
-        comboBoxLevel.addItem("中");
-        comboBoxLevel.addItem("高");
-        comboBoxLevel.addItem("极高");
-        comboBoxLevel.setSelectedItem("中");
+        comboBoxLevel.addItem(L);
+        comboBoxLevel.addItem(M);
+        comboBoxLevel.addItem(Q);
+        comboBoxLevel.addItem(H);
+        comboBoxLevel.setSelectedItem(M);
         Qrcode.setCorrection(ErrorCorrectionLevel.M);
+        add(comboBoxLevel);
+
+        comboBoxSize.setVisible(true);
+        comboBoxSize.setBounds(235, 250, 150, 30);
+        comboBoxSize.setBackground(normal);
+        comboBoxSize.setForeground(normal);
+        comboBoxSize.addItem(S);
+        comboBoxSize.addItem(M);
+        comboBoxSize.addItem(B);
+        comboBoxSize.setSelectedItem(M);
+        Qrcode.setSize(Qrcode.MEDIUM);
+        add(comboBoxSize);
+
+        btnCreate.setVisible(true);
+        btnCreate.setBounds(55, 305, 150, 30);
+        Color dark = new Color(225, 255, 250);
+        btnCreate.setBackground(dark);
+        add(btnCreate);
+
+        btnSave.setVisible(true);
+        btnSave.setBounds(235, 305, 150, 30);
+        btnSave.setBackground(dark);
+        add(btnSave);
+
+        display.setLayout(new BorderLayout());
+        display.setBorder(BorderFactory.createEtchedBorder());
+        display.setVisible(true);
+        display.setBounds(435, 78, 300, 325);
+        display.setBackground(Color.WHITE);
+        display.add(imageLabel, BorderLayout.CENTER);
+        add(display);
+
+        btnScreenShot.setVisible(true);
+        btnScreenShot.setBounds(435, 435, 100, 30);
+        btnScreenShot.setBackground(dark);
+        add(btnScreenShot);
+
+        btnChooseFile.setVisible(true);
+        btnChooseFile.setBounds(535, 435, 100, 30);
+        btnChooseFile.setBackground(dark);
+        add(btnChooseFile);
+
+        btnIdentity.setVisible(true);
+        btnIdentity.setBounds(635, 435, 100, 30);
+        btnIdentity.setBackground(dark);
+        add(btnIdentity);
+
+    }
+
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
         comboBoxLevel.addActionListener(l -> {
             if (comboBoxLevel.getSelectedItem() != null) {
                 switch ((String) comboBoxLevel.getSelectedItem()) {
@@ -167,17 +183,7 @@ class QRCodeUI extends JPanel {
                 }
             }
         });
-        add(comboBoxLevel);
 
-        comboBoxSize.setVisible(true);
-        comboBoxSize.setBounds(235, 250, 150, 30);
-        comboBoxSize.setBackground(normal);
-        comboBoxSize.setForeground(normal);
-        comboBoxSize.addItem("小");
-        comboBoxSize.addItem("中");
-        comboBoxSize.addItem("大");
-        comboBoxSize.setSelectedItem("中");
-        Qrcode.setSize(Qrcode.MEDIUM);
         comboBoxSize.addActionListener(l -> {
             if (comboBoxSize.getSelectedItem() != null) {
                 switch ((String) comboBoxSize.getSelectedItem()) {
@@ -195,22 +201,13 @@ class QRCodeUI extends JPanel {
                 }
             }
         });
-        add(comboBoxSize);
 
-        btnCreate.setVisible(true);
-        btnCreate.setBounds(55, 305, 150, 30);
-        Color dark = new Color(225, 255, 250);
-        btnCreate.setBackground(dark);
         btnCreate.addActionListener(l -> {
             String src = textAreaTop.getText();
             image = Qrcode.generateImage(src);
             imageLabel.setIcon(new ImageIcon(image));
         });
-        add(btnCreate);
 
-        btnSave.setVisible(true);
-        btnSave.setBounds(235, 305, 150, 30);
-        btnSave.setBackground(dark);
         btnSave.addActionListener(l -> {
 
             directoryChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -230,19 +227,7 @@ class QRCodeUI extends JPanel {
                 e.printStackTrace();
             }
         });
-        add(btnSave);
 
-        display.setLayout(new BorderLayout());
-        display.setBorder(BorderFactory.createEtchedBorder());
-        display.setVisible(true);
-        display.setBounds(435, 78, 300, 325);
-        display.setBackground(Color.WHITE);
-        display.add(imageLabel, BorderLayout.CENTER);
-        add(display);
-
-        btnScreenShot.setVisible(true);
-        btnScreenShot.setBounds(435, 435, 100, 30);
-        btnScreenShot.setBackground(dark);
         btnScreenShot.addActionListener(l -> {
             try {
                 JFrame screenShot = new ScreenWindow();
@@ -256,11 +241,7 @@ class QRCodeUI extends JPanel {
             } catch (Exception ignored) {
             }
         });
-        add(btnScreenShot);
 
-        btnChooseFile.setVisible(true);
-        btnChooseFile.setBounds(535, 435, 100, 30);
-        btnChooseFile.setBackground(dark);
         btnChooseFile.addActionListener(l -> {
             imageFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             FileFilter imageFilter = new FileNameExtensionFilter("图片文件", "png", "jpg");
@@ -281,16 +262,19 @@ class QRCodeUI extends JPanel {
                     break;
             }
         });
-        add(btnChooseFile);
 
-        btnIdentity.setVisible(true);
-        btnIdentity.setBounds(635, 435, 100, 30);
-        btnIdentity.setBackground(dark);
         btnIdentity.addActionListener(e -> {
             textAreaTop.setForeground(Color.BLACK);
             String result = Qrcode.decodeQr(image);
             textAreaTop.setText(result);
         });
-        add(btnIdentity);
+    }
+
+    /**
+     * 加载二维码界面
+     */
+    QRCodeUI() {
+        super();
+        setBorder(BorderFactory.createTitledBorder(title));
     }
 }

@@ -13,236 +13,213 @@ import java.awt.event.*;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class ScientificUI extends JPanel implements ActionListener, KeyListener {
+class ScientificUI extends TransparentPanelUI implements ActionListener, KeyListener {
 
     private static final long serialVersionUID = 688567022889591814L;
     private static JTextArea expTextArea = new JTextArea();
     private static StringBuilder number = new StringBuilder();// 用户显示
     private static StringBuilder answer = new StringBuilder();// 后台字符串
     private boolean wasAnswer = false;
+    private JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
+    private JButton btnLog, btnAbs, btnSin, btnCos, btnTan, btnMod;
+    private JButton btnLeftParenthesis, btnRightParenthesis;
+    private JButton btnCE, btnC, buttonBackSpace, btnDivide, btnMultiply, btnMinus;
+    private JButton buttonPlus, buttonEqual, buttonFact, btnPower, btnRoot, buttonDot;
 
     /**
-     * 构造布局
-     * 按钮，文本框
+     * 初始化组件
      */
-    ScientificUI() {
+    @Override
+    protected void initCompoment() {
+        btn0 = new JButton("0");
+        btn1 = new JButton("1");
+        btn2 = new JButton("2");
+        btn3 = new JButton("3");
+        btn4 = new JButton("4");
+        btn5 = new JButton("5");
+        btn6 = new JButton("6");
+        btn7 = new JButton("7");
+        btn8 = new JButton("8");
+        btn9 = new JButton("9");
+        btnLog = new JButton("log");
+        btnAbs = new JButton("abs");
+        btnSin = new JButton("sin");
+        btnCos = new JButton("cos");
+        btnTan = new JButton("tan");
+        btnMod = new JButton("mod");
+        btnLeftParenthesis = new JButton("(");
+        btnRightParenthesis = new JButton(")");
+        btnCE = new JButton("CE");
+        btnC = new JButton("C");
+        buttonBackSpace = new JButton("←");
+        btnDivide = new JButton("/");
+        btnMultiply = new JButton("*");
+        btnMinus = new JButton("-");
+        buttonPlus = new JButton("+");
+        buttonEqual = new JButton("=");
+        buttonFact = new JButton("fact");
+        btnPower = new JButton("x^y");
+        btnRoot = new JButton("y√x");
+        buttonDot = new JButton(".");
+    }
 
-        setOpaque(false);
-        setBackground(new Color(248, 248, 255));
+    /**
+     * 初始化布局
+     */
+    @Override
+    protected void initUI() {
         Color btnBasicColor = new Color(240, 255, 250);
         Color btnNumberColor = new Color(225, 255, 250);
         Font font = new Font("微软雅黑", Font.BOLD, 13);
         Font fontBasic = new Font("微软雅黑", Font.BOLD, 14);
-        setForeground(btnBasicColor);
-        setLayout(null);
 
         // 按钮组
-        JButton btn0 = new JButton("0");
-        btn0.addActionListener(this);
         btn0.setBackground(btnNumberColor);
         btn0.setFont(font);
         btn0.setBounds(295, 421, 75, 35);
         add(btn0);
 
-        JButton btn1 = new JButton("1");
-        btn1.addActionListener(this);
         btn1.setBackground(btnNumberColor);
         btn1.setFont(font);
         btn1.setBounds(221, 387, 75, 35);
         add(btn1);
 
-        JButton btn2 = new JButton("2");
-        btn2.addActionListener(this);
         btn2.setBackground(btnNumberColor);
         btn2.setFont(font);
         btn2.setBounds(295, 387, 75, 35);
         add(btn2);
 
-        JButton btn3 = new JButton("3");
-        btn3.addActionListener(this);
         btn3.setBackground(btnNumberColor);
         btn3.setFont(font);
         btn3.setBounds(369, 387, 75, 35);
         add(btn3);
 
-        JButton btn4 = new JButton("4");
-        btn4.addActionListener(this);
         btn4.setBackground(btnNumberColor);
         btn4.setFont(font);
         btn4.setBounds(221, 353, 75, 35);
         add(btn4);
 
-        JButton btn5 = new JButton("5");
-        btn5.addActionListener(this);
         btn5.setBackground(btnNumberColor);
         btn5.setFont(font);
         btn5.setBounds(295, 353, 75, 35);
         add(btn5);
 
-        JButton btn6 = new JButton("6");
-        btn6.addActionListener(this);
         btn6.setBackground(btnNumberColor);
         btn6.setFont(font);
         btn6.setBounds(369, 353, 75, 35);
         add(btn6);
 
-        JButton btn7 = new JButton("7");
-        btn7.addActionListener(this);
         btn7.setBackground(btnNumberColor);
         btn7.setFont(font);
         btn7.setBounds(221, 319, 75, 35);
         add(btn7);
 
-        JButton btn8 = new JButton("8");
-        btn8.addActionListener(this);
         btn8.setBackground(btnNumberColor);
         btn8.setFont(font);
         btn8.setBounds(295, 319, 75, 35);
         add(btn8);
 
-        JButton btn9 = new JButton("9");
-        btn9.addActionListener(this);
         btn9.setBackground(btnNumberColor);
         btn9.setFont(font);
         btn9.setBounds(369, 319, 75, 35);
         add(btn9);
 
-        JButton btnLog = new JButton("log");
-        btnLog.addActionListener(this);
         Color btnAdvanceColor = new Color(235, 255, 250);
         btnLog.setBackground(btnAdvanceColor);
         btnLog.setFont(font);
         btnLog.setBounds(147, 319, 75, 35);
         add(btnLog);
 
-        JButton btnAbs = new JButton("abs");
-        btnAbs.addActionListener(this);
         btnAbs.setBackground(btnAdvanceColor);
         btnAbs.setFont(font);
         btnAbs.setBounds(147, 353, 75, 35);
         add(btnAbs);
 
-        JButton btnSin = new JButton("sin");
-        btnSin.addActionListener(this);
         btnSin.setBackground(btnAdvanceColor);
         btnSin.setFont(font);
         btnSin.setBounds(73, 319, 75, 35);
         add(btnSin);
 
-        JButton btnCos = new JButton("cos");
-        btnCos.addActionListener(this);
         btnCos.setBackground(btnAdvanceColor);
         btnCos.setFont(font);
         btnCos.setBounds(73, 353, 75, 35);
         add(btnCos);
 
-        JButton btnTan = new JButton("tan");
-        btnTan.addActionListener(this);
         btnTan.setBackground(btnAdvanceColor);
         btnTan.setFont(font);
         btnTan.setBounds(73, 387, 75, 35);
         add(btnTan);
 
-        JButton btnMod = new JButton("mod");
-        btnMod.addActionListener(this);
         btnMod.setBackground(btnAdvanceColor);
         btnMod.setFont(font);
         btnMod.setBounds(73, 421, 75, 35);
         add(btnMod);
 
-        JButton btnLeftParenthesis = new JButton("(");
-        btnLeftParenthesis.addActionListener(this);
         btnLeftParenthesis.setBackground(btnBasicColor);
         btnLeftParenthesis.setFont(font);
         btnLeftParenthesis.setBounds(73, 285, 75, 35);
         add(btnLeftParenthesis);
 
-        JButton btnRightParenthesis = new JButton(")");
-        btnRightParenthesis.addActionListener(this);
         btnRightParenthesis.setBackground(btnBasicColor);
         btnRightParenthesis.setFont(font);
         btnRightParenthesis.setBounds(147, 285, 75, 35);
         add(btnRightParenthesis);
 
-        JButton btnCE = new JButton("CE");
-        btnCE.addActionListener(this);
         btnCE.setBackground(btnBasicColor);
         btnCE.setFont(font);
         btnCE.setBounds(221, 285, 75, 35);
         add(btnCE);
 
-        JButton btnC = new JButton("C");
-        btnC.addActionListener(this);
         btnC.setBackground(btnBasicColor);
         btnC.setFont(font);
         btnC.setBounds(295, 285, 75, 35);
         add(btnC);
 
-        JButton buttonBackSpace = new JButton("←");
-        buttonBackSpace.addActionListener(this);
         buttonBackSpace.setBackground(btnBasicColor);
         buttonBackSpace.setFont(font);
         buttonBackSpace.setBounds(369, 285, 75, 35);
         add(buttonBackSpace);
 
-        JButton btnDivide = new JButton("/");
-        btnDivide.addActionListener(this);
         btnDivide.setBackground(btnBasicColor);
         btnDivide.setFont(fontBasic);
         btnDivide.setBounds(443, 285, 75, 35);
         add(btnDivide);
 
-        JButton btnMultiply = new JButton("*");
-        btnMultiply.addActionListener(this);
         btnMultiply.setBackground(btnBasicColor);
         btnMultiply.setFont(fontBasic);
         btnMultiply.setBounds(443, 319, 75, 35);
         add(btnMultiply);
 
-        JButton btnMinus = new JButton("-");
-        btnMinus.addActionListener(this);
         btnMinus.setBackground(btnBasicColor);
         btnMinus.setFont(fontBasic);
         btnMinus.setBounds(443, 353, 75, 35);
         add(btnMinus);
 
-        JButton buttonPlus = new JButton("+");
-        buttonPlus.addActionListener(this);
         buttonPlus.setBackground(btnBasicColor);
         buttonPlus.setFont(fontBasic);
         buttonPlus.setBounds(443, 387, 75, 35);
         add(buttonPlus);
 
-        JButton buttonEqual = new JButton("=");
-        buttonEqual.addActionListener(this);
         buttonEqual.setBackground(btnBasicColor);
         buttonEqual.setFont(fontBasic);
         buttonEqual.setBounds(443, 421, 75, 35);
         add(buttonEqual);
 
-        JButton buttonFact = new JButton("fact");
-        buttonFact.addActionListener(this);
         buttonFact.setBackground(btnAdvanceColor);
         buttonFact.setFont(font);
         buttonFact.setBounds(147, 387, 75, 35);
         add(buttonFact);
 
-        JButton btnPower = new JButton("x^y");
-        btnPower.addActionListener(this);
         btnPower.setBackground(btnAdvanceColor);
         btnPower.setFont(font);
         btnPower.setBounds(147, 421, 75, 35);
         add(btnPower);
 
-        JButton btnRoot = new JButton("y√x");
-        btnRoot.addActionListener(this);
         btnRoot.setBackground(btnAdvanceColor);
         btnRoot.setFont(font);
         btnRoot.setBounds(221, 421, 75, 35);
         add(btnRoot);
 
-        JButton buttonDot = new JButton(".");
-        buttonDot.addActionListener(this);
         buttonDot.setBackground(btnBasicColor);
         buttonDot.setFont(fontBasic);
         buttonDot.setBounds(369, 421, 75, 35);
@@ -256,6 +233,47 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
         expTextArea.setColumns(10000);
         expTextArea.setFocusable(true);
         expTextArea.setWrapStyleWord(true);
+        JScrollPane jsp = new JScrollPane(expTextArea);
+        jsp.setBounds(70, 55, 450, 158);
+        add(jsp);
+
+    }
+
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
+        btn0.addActionListener(this);
+        btn1.addActionListener(this);
+        btn2.addActionListener(this);
+        btn3.addActionListener(this);
+        btn4.addActionListener(this);
+        btn5.addActionListener(this);
+        btn6.addActionListener(this);
+        btn7.addActionListener(this);
+        btn8.addActionListener(this);
+        btn9.addActionListener(this);
+        btnLog.addActionListener(this);
+        btnAbs.addActionListener(this);
+        btnSin.addActionListener(this);
+        btnCos.addActionListener(this);
+        btnTan.addActionListener(this);
+        btnMod.addActionListener(this);
+        btnLeftParenthesis.addActionListener(this);
+        btnRightParenthesis.addActionListener(this);
+        btnCE.addActionListener(this);
+        btnC.addActionListener(this);
+        buttonBackSpace.addActionListener(this);
+        btnDivide.addActionListener(this);
+        btnMultiply.addActionListener(this);
+        btnMinus.addActionListener(this);
+        buttonPlus.addActionListener(this);
+        buttonEqual.addActionListener(this);
+        buttonFact.addActionListener(this);
+        btnPower.addActionListener(this);
+        btnRoot.addActionListener(this);
+        buttonDot.addActionListener(this);
         expTextArea.addKeyListener(this);
         expTextArea.addMouseListener(new MouseListener() {
             @Override
@@ -286,14 +304,17 @@ class ScientificUI extends JPanel implements ActionListener, KeyListener {
 
             }
         });
-        JScrollPane jsp = new JScrollPane(expTextArea);
-        jsp.setBounds(70, 55, 450, 158);
-        add(jsp);
-
     }
 
     /**
-     * @param tempResult the tempResult to set
+     * 构造计算器布局
+     */
+    ScientificUI() {
+        super();
+    }
+
+    /**
+     * @param tempResult 设定存储结果
      */
     static void setTempResult(String tempResult) {
         answer.append(tempResult);

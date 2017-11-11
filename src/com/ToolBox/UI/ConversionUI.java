@@ -16,21 +16,44 @@ import java.util.Map.Entry;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class ConversionUI extends JPanel implements MouseListener {
+class ConversionUI extends TransparentPanelUI {
 
     private static final long serialVersionUID = -1342718738933302379L;
+    private static final String type = "请选择换算类型";
+    private static final String unit = "请选择换算单位";
+    private static final String exchange = "换算";
     private static JTextField tfSource = new JTextField();
+    private JTextField tfTarget;
+    private JComboBox<String> comboBoxType;
+    private JComboBox<String> comboBoxSource;
+    private JComboBox<String> comboBoxTarget;
+    private JLabel lblType;
+    private JLabel lblUnit;
+    private JButton btnConvert;
+    private Measurement m;
 
     /**
-     * 初始化换算计算器的基本构造
+     * 初始化组件
      */
-    public ConversionUI() {
+    @Override
+    protected void initCompoment() {
+        m = new Measurement();
+        tfTarget = new JTextField();
+        comboBoxType = new JComboBox<>();
+        comboBoxSource = new JComboBox<>();
+        comboBoxTarget = new JComboBox<>();
+        lblType = new JLabel(type);
+        lblUnit = new JLabel(unit);
+        btnConvert = new JButton(exchange);
+    }
 
-        setOpaque(false);
+    /**
+     * 初始化布局
+     */
+    @Override
+    protected void initUI() {
 
-        Measurement m = new Measurement();
-        //第一个
-        JComboBox<String> comboBoxType = new JComboBox<>();
+        // 类型
         Color color = new Color(240, 255, 255);
         comboBoxType.setBackground(color);
         comboBoxType.setFont(new Font("微软雅黑", Font.PLAIN, 13));
@@ -40,15 +63,28 @@ class ConversionUI extends JPanel implements MouseListener {
             comboBoxType.addItem(type);
         }
 
-        //第二个
-        JComboBox<String> comboBoxSource = new JComboBox<>();
+        // 源数值
+        tfSource.setFont(new Font("微软雅黑", Font.PLAIN, 13));
+        tfSource.setBackground(color);
+        tfSource.setBounds(297, 208, 151, 31);
+        tfSource.setColumns(10);
+        add(tfSource);
+
+        // 源单位
         comboBoxSource.setFont(new Font("微软雅黑", Font.PLAIN, 13));
         comboBoxSource.setBackground(color);
         comboBoxSource.setBounds(103, 207, 150, 30);
         add(comboBoxSource);
 
-        //第三个
-        JComboBox<String> comboBoxTarget = new JComboBox<>();
+        // 目标数值
+        tfTarget.setEditable(false);
+        tfTarget.setFont(new Font("微软雅黑", Font.PLAIN, 13));
+        tfTarget.setColumns(10);
+        tfTarget.setBackground(color);
+        tfTarget.setBounds(297, 326, 151, 31);
+        add(tfTarget);
+
+        // 目标单位
         comboBoxTarget.setFont(new Font("微软雅黑", Font.PLAIN, 13));
         comboBoxTarget.setBackground(color);
         comboBoxTarget.setBounds(103, 326, 150, 30);
@@ -59,6 +95,29 @@ class ConversionUI extends JPanel implements MouseListener {
             comboBoxTarget.addItem(entry.getKey());
         }
 
+        // 换算类型
+        lblType.setFont(new Font("宋体", Font.PLAIN, 15));
+        lblType.setBounds(103, 40, 150, 30);
+        add(lblType);
+
+        // 换算单位
+        lblUnit.setFont(new Font("宋体", Font.PLAIN, 14));
+        lblUnit.setBounds(103, 150, 150, 30);
+        add(lblUnit);
+
+        // 换算按钮
+        btnConvert.setBackground(new Color(245, 255, 250));
+        btnConvert.setFont(new Font("微软雅黑", Font.PLAIN, 13));
+        btnConvert.setBounds(338, 268, 70, 35);
+        add(btnConvert);
+
+    }
+
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
         comboBoxType.addActionListener(e -> {
             switch (comboBoxType.getSelectedIndex()) {
                 case 0:
@@ -119,46 +178,64 @@ class ConversionUI extends JPanel implements MouseListener {
                     break;
             }
         });
+        tfSource.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON3) {
+                    RightClickMenu menu = new RightClickMenu((JTextComponent) e.getComponent());
+                    menu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
 
-        //第一个
+            @Override
+            public void mousePressed(MouseEvent e) {
 
-        tfSource.setFont(new Font("微软雅黑", Font.PLAIN, 13));
-        tfSource.setBackground(color);
-        tfSource.setBounds(297, 208, 151, 31);
-        tfSource.setColumns(10);
-        tfSource.addMouseListener(this);
-        add(tfSource);
+            }
 
-        //第二个
-        JTextField tfTarget = new JTextField();
-        tfTarget.setEditable(false);
-        tfTarget.setFont(new Font("微软雅黑", Font.PLAIN, 13));
-        tfTarget.setColumns(10);
-        tfTarget.setBackground(color);
-        tfTarget.setBounds(297, 326, 151, 31);
-        tfTarget.addMouseListener(this);
-        add(tfTarget);
+            @Override
+            public void mouseReleased(MouseEvent e) {
 
-        //换算类型
-        JLabel lblType = new JLabel("请选择换算类型");
-        lblType.setFont(new Font("宋体", Font.PLAIN, 15));
-        lblType.setBounds(103, 40, 150, 30);
-        add(lblType);
+            }
 
-        //换算单位
-        JLabel lblUnit = new JLabel("请选择换算单位");
-        lblUnit.setFont(new Font("宋体", Font.PLAIN, 14));
-        lblUnit.setBounds(103, 150, 150, 30);
-        add(lblUnit);
+            @Override
+            public void mouseEntered(MouseEvent e) {
 
-        //换算按钮
-        JButton btnConvert = new JButton("\u6362\u7B97");
-        btnConvert.setBackground(new Color(245, 255, 250));
-        btnConvert.setFont(new Font("微软雅黑", Font.PLAIN, 13));
-        btnConvert.setBounds(338, 268, 70, 35);
-        add(btnConvert);
+            }
 
-        //add
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        tfTarget.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON3) {
+                    RightClickMenu menu = new RightClickMenu((JTextComponent) e.getComponent());
+                    menu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
         btnConvert.addActionListener(e -> {
             BigDecimal r = m.conver((String) comboBoxSource.getSelectedItem(), (String) comboBoxTarget.getSelectedItem(),
                     new BigDecimal(tfSource.getText()), (String) comboBoxType.getSelectedItem());
@@ -166,8 +243,13 @@ class ConversionUI extends JPanel implements MouseListener {
             tfTarget.setText(result);
             HistoryUI.updateRecord(result);
         });
+    }
 
-
+    /**
+     * 初始化换算计算器的基本构造
+     */
+    public ConversionUI() {
+        super();
     }
 
     /**
@@ -177,33 +259,5 @@ class ConversionUI extends JPanel implements MouseListener {
      */
     static void setTempResult(String s) {
         tfSource.setText(s);
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON3) {
-            RightClickMenu menu = new RightClickMenu((JTextComponent) e.getComponent());
-            menu.show(e.getComponent(), e.getX(), e.getY());
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
     }
 }

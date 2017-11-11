@@ -14,10 +14,81 @@ import java.awt.*;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class CalculatorUI extends JPanel {
+class CalculatorUI extends TransparentPanelUI {
 
     private static final long serialVersionUID = -7067036135688239326L;
-    private static JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+    private static final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+    private static final String scientifc = "科学计算器";
+    private static final String exchange = "汇率计算器";
+    private static final String programer = "程序员键盘";
+    private static final String convertion = "单位换算器";
+    private static final String calendar = "日期万年历";
+    private JPanel panelCalculator;
+    private JPanel panelExchangeRate;
+    private JPanel panelKeyBoard;
+    private JPanel panelConversion;
+    private JPanel panelCalendar;
+    private JPanel panelHistory;
+
+    /**
+     * 初始化组件
+     */
+    @Override
+    protected void initCompoment() {
+        panelCalculator = new ScientificUI();
+        panelExchangeRate = new ExchangeRateUI();
+        panelKeyBoard = new ProgramerUI();
+        panelConversion = new ConversionUI();
+        panelCalendar = new CalendarUI();
+        panelHistory = new HistoryUI();
+    }
+
+    /**
+     * 初始化布局
+     */
+    @Override
+    protected void initUI() {
+
+        // 构造标签页
+        tabbedPane.setFont(new Font("微软雅黑", Font.PLAIN, 16));
+        tabbedPane.setBounds(-2, -2, 597, 550);
+        tabbedPane.setBorder(BorderFactory.createEtchedBorder());
+        add(tabbedPane);
+
+        // 科学计算器标签页
+        panelCalculator.setLayout(null);
+        tabbedPane.addTab(scientifc, null, panelCalculator, null);
+
+        // 汇率计算器标签页
+        panelExchangeRate.setLayout(null);
+        tabbedPane.addTab(exchange, null, panelExchangeRate, null);
+
+        // 程序员键盘标签页
+        tabbedPane.addTab(programer, null, panelKeyBoard, null);
+        panelKeyBoard.setLayout(null);
+
+        // 单位换算器标签页
+        panelConversion.setLayout(null);
+        tabbedPane.addTab(convertion, null, panelConversion, null);
+
+        // 日期万年历标签页
+        panelCalendar.setLayout(null);
+        tabbedPane.addTab(calendar, null, panelCalendar, null);
+
+        // 历史记录
+        panelHistory.setBorder(BorderFactory.createTitledBorder(""));
+        panelHistory.setBounds(595, -13, 199, 566);
+        panelHistory.setLayout(null);
+        add(panelHistory);
+    }
+
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
+
+    }
 
     /**
      * 初始化标签页
@@ -26,47 +97,7 @@ class CalculatorUI extends JPanel {
      * 以及历史记录侧边栏
      */
     CalculatorUI() {
-
-        setOpaque(false);
-
-        // 构造标签页
-        tabbedPane.setBackground(new Color(250, 255, 255));
-        tabbedPane.setFont(new Font("微软雅黑", Font.PLAIN, 16));
-        tabbedPane.setBounds(-2, -2, 597, 550);
-        tabbedPane.setBorder(BorderFactory.createEtchedBorder());
-        add(tabbedPane);
-
-        // 科学计算器标签页
-        JPanel panelCalculator = new ScientificUI();
-        panelCalculator.setLayout(null);
-        tabbedPane.addTab("科学计算器", null, panelCalculator, null);
-
-        // 汇率计算器标签页
-        JPanel panelExchangeRate = new ExchangeRateUI();
-        panelExchangeRate.setLayout(null);
-        tabbedPane.addTab("汇率计算器", null, panelExchangeRate, null);
-
-        // 程序员键盘标签页
-        JPanel panelKeyBoard = new ProgramerUI();
-        tabbedPane.addTab("程序员键盘", null, panelKeyBoard, null);
-        panelKeyBoard.setLayout(null);
-
-        // 单位换算器标签页
-        JPanel panelConversion = new ConversionUI();
-        panelConversion.setLayout(null);
-        tabbedPane.addTab("单位换算器", null, panelConversion, null);
-
-        // 日期万年历标签页
-        JPanel panelCalendar = new CalendarUI();
-        panelCalendar.setLayout(null);
-        tabbedPane.addTab("日期万年历", null, panelCalendar, null);
-
-        // 历史记录
-        JPanel panelHistory = new HistoryUI();
-        panelHistory.setBorder(BorderFactory.createTitledBorder(""));
-        panelHistory.setBounds(595, -13, 199, 566);
-        panelHistory.setLayout(null);
-        add(panelHistory);
+        super();
     }
 
     /**

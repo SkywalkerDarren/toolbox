@@ -17,7 +17,7 @@ import java.awt.event.MouseListener;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class ProgramerUI extends JPanel implements ActionListener, MouseListener {
+class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseListener {
 
     private static final long serialVersionUID = 8745040693717225813L;
     private static JTextArea textAreaTop = new JTextArea();
@@ -31,53 +31,73 @@ class ProgramerUI extends JPanel implements ActionListener, MouseListener {
     private final Color color = new Color(240, 255, 255);
     private final Font font = new Font("微软雅黑", Font.PLAIN, 13);
     private Long result = 0L;
-    private JButton[] btnBit = new JButton[64];
-    private JButton btnRol = new JButton("RoL");
-    private JButton btnRor = new JButton("RoR");
-    private JButton btnLsh = new JButton("Lsh");
-    private JButton btnRsh = new JButton("Rsh");
-    private JButton btnCE = new JButton("CE");
-    private JButton btnClean = new JButton("c");
-    private JButton btnBackSpace = new JButton("\u2190");
-    private JButton btnOr = new JButton("Or");
-    private JButton btnA = new JButton("A");
-    private JButton btnB = new JButton("B");
-    private JButton btn7 = new JButton("7");
-    private JButton btn8 = new JButton("8");
-    private JButton btn9 = new JButton("9");
-    private JButton btnPlus = new JButton("+");
-    private JButton btnXor = new JButton("Xor");
-    private JButton btnC = new JButton("C");
-    private JButton btnD = new JButton("D");
-    private JButton btn4 = new JButton("4");
-    private JButton btn5 = new JButton("5");
-    private JButton btn6 = new JButton("6");
-    private JButton btnMinus = new JButton("-");
-    private JButton btnNot = new JButton("Not");
-    private JButton btnE = new JButton("E");
-    private JButton btnF = new JButton("F");
-    private JButton btn1 = new JButton("1");
-    private JButton btn2 = new JButton("2");
-    private JButton btn3 = new JButton("3");
-    private JButton btnAnd = new JButton("And");
-    private JButton btnMod = new JButton("Mod");
-    private JButton btnLeft = new JButton("(");
-    private JButton btnRight = new JButton(")");
-    private JButton btn0 = new JButton("0");
-    private JButton btnEqual = new JButton("=");
-    private JButton btnDivided = new JButton("/");
-    private JButton btnMultiply = new JButton("*");
-    private JRadioButton btnBinary = new JRadioButton("BIN");
-    private JRadioButton btnOctonary = new JRadioButton("OCT");
-    private JRadioButton btnDecimal = new JRadioButton("DEC", true);
-    private JRadioButton btnHexadecimal = new JRadioButton("HEX");
+    private JButton[] btnBit;
+    private JButton btnRol, btnRor, btnLsh, btnRsh, btnLeft, btnRight;
+    private JButton btnCE, btnClean, btnBackSpace;
+    private JButton btnOr, btnXor, btnMinus, btnNot, btnAnd, btnMod, btnPlus, btnEqual, btnDivided, btnMultiply;
+    private JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnA, btnB, btnC, btnD, btnE, btnF;
+    private JRadioButton btnBinary, btnOctonary, btnDecimal, btnHexadecimal;
+    private JPanel fullKeyPanel, bitKeyPanel;
 
     /**
-     * 初始化UI窗口，摆放控件位置及设定基本配置
+     * 初始化组件
      */
-    public ProgramerUI() {
+    @Override
+    protected void initCompoment() {
+        fullKeyPanel = new JPanel();
+        bitKeyPanel = new JPanel();
+        btnBit = new JButton[64];
+        btnRol = new JButton("RoL");
+        btnRor = new JButton("RoR");
+        btnLsh = new JButton("Lsh");
+        btnRsh = new JButton("Rsh");
+        btnCE = new JButton("CE");
+        btnClean = new JButton("c");
+        btnBackSpace = new JButton("\u2190");
+        btnOr = new JButton("Or");
+        btnA = new JButton("A");
+        btnB = new JButton("B");
+        btn7 = new JButton("7");
+        btn8 = new JButton("8");
+        btn9 = new JButton("9");
+        btnPlus = new JButton("+");
+        btnXor = new JButton("Xor");
+        btnC = new JButton("C");
+        btnD = new JButton("D");
+        btn4 = new JButton("4");
+        btn5 = new JButton("5");
+        btn6 = new JButton("6");
+        btnMinus = new JButton("-");
+        btnNot = new JButton("Not");
+        btnE = new JButton("E");
+        btnF = new JButton("F");
+        btn1 = new JButton("1");
+        btn2 = new JButton("2");
+        btn3 = new JButton("3");
+        btnAnd = new JButton("And");
+        btnMod = new JButton("Mod");
+        btnLeft = new JButton("(");
+        btnRight = new JButton(")");
+        btn0 = new JButton("0");
+        btnEqual = new JButton("=");
+        btnDivided = new JButton("/");
+        btnMultiply = new JButton("*");
+        btnBinary = new JRadioButton("BIN");
+        btnOctonary = new JRadioButton("OCT");
+        btnDecimal = new JRadioButton("DEC", true);
+        btnHexadecimal = new JRadioButton("HEX");
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(btnHexadecimal);
+        buttonGroup.add(btnDecimal);
+        buttonGroup.add(btnOctonary);
+        buttonGroup.add(btnBinary);
+    }
 
-        setOpaque(false);
+    /**
+     * 初始化布局
+     */
+    @Override
+    protected void initUI() {
 
         //最上方显示区域
         textAreaTop.setEditable(false);
@@ -104,58 +124,45 @@ class ProgramerUI extends JPanel implements ActionListener, MouseListener {
         btnHexadecimal.setBounds(13, 244, 51, 23);
         add(btnHexadecimal);
 
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.add(btnHexadecimal);
-        buttonGroup.add(btnDecimal);
-        buttonGroup.add(btnOctonary);
-        buttonGroup.add(btnBinary);
-
-
         //二进制文本框
         textFieldBinary.setEditable(false);
-        textFieldBinary.setBackground(new Color(250, 255, 255));
-        textFieldBinary.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+        textFieldBinary.setBackground(color);
+        textFieldBinary.setFont(font);
         textFieldBinary.setBounds(83, 85, 500, 30);
         textFieldBinary.setColumns(100);
-        textFieldBinary.addMouseListener(this);
         add(textFieldBinary);
 
         //八进制文本框
         textFieldOctonary.setEditable(false);
-        textFieldOctonary.setBackground(new Color(250, 255, 255));
-        textFieldOctonary.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+        textFieldOctonary.setBackground(color);
+        textFieldOctonary.setFont(font);
         textFieldOctonary.setColumns(100);
         textFieldOctonary.setBounds(83, 136, 500, 30);
-        textFieldOctonary.addMouseListener(this);
         add(textFieldOctonary);
 
         //十进制文本框
         textFieldDecimal.setEditable(false);
-        textFieldDecimal.setBackground(new Color(250, 255, 255));
-        textFieldDecimal.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+        textFieldDecimal.setBackground(color);
+        textFieldDecimal.setFont(font);
         textFieldDecimal.setColumns(100);
         textFieldDecimal.setBounds(83, 187, 500, 30);
-        textFieldDecimal.addMouseListener(this);
         add(textFieldDecimal);
 
 
         //十六进制文本框
         textFieldHexadecimal.setEditable(false);
-        textFieldHexadecimal.setBackground(new Color(250, 255, 255));
-        textFieldHexadecimal.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+        textFieldHexadecimal.setBackground(color);
+        textFieldHexadecimal.setFont(font);
         textFieldHexadecimal.setColumns(100);
         textFieldHexadecimal.setBounds(83, 240, 500, 30);
-        textFieldHexadecimal.addMouseListener(this);
         add(textFieldHexadecimal);
 
         //最下方标签页
         JTabbedPane tabbedPaneDisplay = new JTabbedPane(JTabbedPane.TOP);
-        tabbedPaneDisplay.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+        tabbedPaneDisplay.setFont(font);
         tabbedPaneDisplay.setBounds(13, 275, 567, 214);
         add(tabbedPaneDisplay);
 
-        /*全键盘标签****************************************************************************************************/
-        JPanel fullKeyPanel = new JPanel();
         fullKeyPanel.setOpaque(false);
         fullKeyPanel.setBorder(BorderFactory.createEtchedBorder());
         fullKeyPanel.setBackground(new Color(245, 255, 255));
@@ -163,14 +170,30 @@ class ProgramerUI extends JPanel implements ActionListener, MouseListener {
         fullKeyPanel.setLayout(null);
         fullKeyboard(fullKeyPanel);
 
-        /*比特键盘标签*************************************************************************************************/
-        JPanel bitKeyPanel = new JPanel();
         bitKeyPanel.setOpaque(false);
         bitKeyPanel.setBorder(BorderFactory.createEtchedBorder());
         bitKeyPanel.setBackground(new Color(245, 255, 255));
         tabbedPaneDisplay.addTab("比特键盘", null, bitKeyPanel, null);
         bitKeyPanel.setLayout(null);
         bitKeyboard(bitKeyPanel);
+    }
+
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
+        textFieldBinary.addMouseListener(this);
+        textFieldOctonary.addMouseListener(this);
+        textFieldDecimal.addMouseListener(this);
+        textFieldHexadecimal.addMouseListener(this);
+    }
+
+    /**
+     * 初始化UI窗口，摆放控件位置及设定基本配置
+     */
+    public ProgramerUI() {
+        super();
     }
 
     /**

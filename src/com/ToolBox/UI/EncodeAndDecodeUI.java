@@ -10,24 +10,36 @@ import java.awt.*;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class EncodeAndDecodeUI extends JPanel {
+class EncodeAndDecodeUI extends TransparentPanelUI {
     private static final long serialVersionUID = 8137943111751980202L;
     private static final String base64 = "Base64加密/解密";
     private static final String unicode = "Unicode中文互转";
     private static final String md5 = "MD5文字加密/文件校验";
     private static final String code = "文件/文字编码批量转换";
+    private JTabbedPane tabbedPane;
+    private JPanel panelBase64;
+    private JPanel panelUnicode;
+    private JPanel panelMD5;
+    private JPanel panelLiteral;
 
     /**
-     * 初始化编码解码功能
-     * 添加
-     * base64加/解密, Unicode中文互转, MD5校验
+     * 初始化组件
      */
-    EncodeAndDecodeUI() {
+    @Override
+    protected void initCompoment() {
+        tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+        panelBase64 = new Base64UI();
+        panelUnicode = new UnicodeUI();
+        panelMD5 = new MD5UI();
+        panelLiteral = new LiteralCodeUI();
+    }
 
-        setOpaque(false);
-
+    /**
+     * 初始化布局
+     */
+    @Override
+    protected void initUI() {
         // 构造标签页
-        JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         tabbedPane.setBackground(new Color(250, 255, 255));
         tabbedPane.setFont(new Font("微软雅黑", Font.PLAIN, 16));
         tabbedPane.setBounds(-2, -2, 800, 550);
@@ -35,28 +47,41 @@ class EncodeAndDecodeUI extends JPanel {
         add(tabbedPane);
 
         // Base64加密/解密标签页
-        JPanel panelBase64 = new Base64UI();
         panelBase64.setOpaque(false);
         panelBase64.setLayout(null);
         tabbedPane.addTab(base64, null, panelBase64, null);
 
         // Unicode中文互转
-        JPanel panelUnicode = new UnicodeUI();
         panelUnicode.setLayout(null);
         panelBase64.setOpaque(false);
         tabbedPane.addTab(unicode, null, panelUnicode, null);
 
         // MD5校验标签页
-        JPanel panelMD5 = new MD5UI();
         tabbedPane.addTab(md5, null, panelMD5, null);
         panelMD5.setOpaque(false);
         panelMD5.setLayout(null);
 
         // 文字编码批量转换标签页
-        JPanel panelLiteral = new LiteralCodeUI();
         panelLiteral.setOpaque(false);
         panelLiteral.setLayout(null);
         tabbedPane.addTab(code, null, panelLiteral, null);
+    }
+
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
+
+    }
+
+    /**
+     * 初始化编码解码功能
+     * 添加
+     * base64加/解密, Unicode中文互转, MD5校验
+     */
+    EncodeAndDecodeUI() {
+        super();
     }
 
 }

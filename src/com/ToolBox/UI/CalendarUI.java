@@ -17,47 +17,62 @@ import java.awt.event.MouseListener;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class CalendarUI extends JPanel {
+class CalendarUI extends TransparentPanelUI {
 
     private static final long serialVersionUID = -4791068421614363948L;
+    private static final String interval = "日期之间的相隔时间";
+    private static final String addAndMinusDay = "添加或减去天数";
     private final Font fontPlain = new Font("微软雅黑", Font.PLAIN, 14);
     private final Font fontBold = new Font("微软雅黑", Font.BOLD, 14);
     private final Color normal = new Color(245, 255, 255);
+    private JComboBox<String> comboBoxYear;
+    private JPanel panelPlusOrMinus;
+    private JPanel panelInterval;
+
 
     /**
-     * 构建日期计算的UI基本框架
+     * 初始化组件
      */
-    CalendarUI() {
+    @Override
+    protected void initCompoment() {
+        comboBoxYear = new JComboBox<>();
+        panelPlusOrMinus = new PlusOrMinusPanel();
+        panelInterval = new IntervalPanel();
+    }
 
-
-        setOpaque(false);
-        JComboBox<String> comboBoxYear = new JComboBox<>();
-        add(comboBoxYear);
+    /**
+     * 初始化布局
+     */
+    @Override
+    protected void initUI() {
         comboBoxYear.setBackground(normal);
         comboBoxYear.setBounds(97, 72, 160, 40);
         comboBoxYear.setFont(new Font("微软雅黑", Font.BOLD, 13));
-        comboBoxYear.addItem("日期之间的相隔时间");
-        comboBoxYear.addItem("添加或减去天数");
+        comboBoxYear.addItem(interval);
+        comboBoxYear.addItem(addAndMinusDay);
         comboBoxYear.setVisible(true);
-
+        add(comboBoxYear);
 
         //日期增减
-        JPanel panelPlusOrMinus = new PlusOrMinusPanel();
         panelPlusOrMinus.setOpaque(false);
         panelPlusOrMinus.setLayout(null);
         panelPlusOrMinus.setVisible(true);
         panelPlusOrMinus.setBounds(0, 0, 590, 509);
         add(panelPlusOrMinus);
 
-
         //日期间隔
-        JPanel panelInterval = new IntervalPanel();
         panelInterval.setOpaque(false);
         panelInterval.setLayout(null);
         panelPlusOrMinus.setVisible(false);
         panelInterval.setBounds(0, 0, 600, 509);
         add(panelInterval);
+    }
 
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
         comboBoxYear.addActionListener(e -> {
             if (e.getSource() == comboBoxYear) {
 
@@ -75,7 +90,13 @@ class CalendarUI extends JPanel {
 
             }
         });
+    }
 
+    /**
+     * 构建日期计算的UI基本框架
+     */
+    CalendarUI() {
+        super();
     }
 
 
@@ -149,16 +170,79 @@ class CalendarUI extends JPanel {
      * 日期距离类
      * 获得两个日期的间隔日期及总天数
      */
-    private class IntervalPanel extends JPanel {
+    private class IntervalPanel extends TransparentPanelUI {
 
 
         private static final long serialVersionUID = 1851775115929217134L;
+        private static final String from = "自";
+        private static final String year = "年，";
+        private static final String month = "月，";
+        private static final String day = "日";
+        private static final String days = "天";
+        private static final String to = "至";
+        private static final String interval = "间隔天数";
+        private JComboBox<Integer> comboBoxStartYear;
+        private JComboBox<Integer> comboBoxStartMonth;
+        private JComboBox<Integer> comboBoxStartDay;
+        private JComboBox<Integer> comboBoxEndYear;
+        private JComboBox<Integer> comboBoxEndMonth;
+        private JComboBox<Integer> comboBoxEndDay;
+        private JLabel labelBetweenFrom;
+        private JLabel labelStartYear;
+        private JLabel labelStartMonth;
+        private JLabel labelStartDay;
+        private JLabel labelTo;
+        private JLabel labelEndYear;
+        private JLabel labelEndMonth;
+        private JLabel labelEndDay;
+        private JLabel labelInterval;
+        private JLabel labelIntervalYear;
+        private JLabel labelIntervalMonth;
+        private JLabel labelIntervalDay;
+        private JLabel labelBetweenYear;
+        private JLabel labelBetweenMonth;
+        private JLabel labelBetweenDay;
+        private JLabel textFieldTotalDay;
+        private JLabel labelTotalDay;
+        private JButton buttonClac;
 
         /**
-         * 日期距离的UI初始化
+         * 初始化组件
          */
-        IntervalPanel() {
-            JComboBox<Integer> comboBoxStartYear = new JComboBox<>();
+        @Override
+        protected void initCompoment() {
+            comboBoxStartYear = new JComboBox<>();
+            comboBoxStartMonth = new JComboBox<>();
+            comboBoxStartDay = new JComboBox<>();
+            comboBoxEndYear = new JComboBox<>();
+            comboBoxEndMonth = new JComboBox<>();
+            comboBoxEndDay = new JComboBox<>();
+            labelBetweenFrom = new JLabel(from);
+            labelStartYear = new JLabel(year);
+            labelStartMonth = new JLabel(month);
+            labelStartDay = new JLabel(day);
+            labelTo = new JLabel(to);
+            labelEndYear = new JLabel(year);
+            labelEndMonth = new JLabel(month);
+            labelEndDay = new JLabel(day);
+            labelInterval = new JLabel(interval);
+            labelIntervalYear = new JLabel("", JLabel.CENTER);
+            labelIntervalMonth = new JLabel("", JLabel.CENTER);
+            labelIntervalDay = new JLabel("", JLabel.CENTER);
+            labelBetweenYear = new JLabel(year);
+            labelBetweenMonth = new JLabel(month);
+            labelBetweenDay = new JLabel(day);
+            textFieldTotalDay = new JLabel("", JLabel.CENTER);
+            labelTotalDay = new JLabel(days);
+            buttonClac = new JButton("计算");
+        }
+
+        /**
+         * 初始化布局
+         */
+        @Override
+        protected void initUI() {
+            // 开始年份
             comboBoxStartYear.setBounds(97, 157, 65, 35);
             comboBoxStartYear.setBackground(normal);
             add(comboBoxStartYear);
@@ -167,7 +251,7 @@ class CalendarUI extends JPanel {
             }
             comboBoxStartYear.setSelectedItem(DateTime.now().getYear());
 
-            JComboBox<Integer> comboBoxStartMonth = new JComboBox<>();
+            // 开始月份
             comboBoxStartMonth.setBounds(187, 157, 65, 35);
             comboBoxStartMonth.setBackground(normal);
             add(comboBoxStartMonth);
@@ -176,10 +260,118 @@ class CalendarUI extends JPanel {
             }
             comboBoxStartMonth.setSelectedItem(DateTime.now().getMonthOfYear());
 
-            JComboBox<Integer> comboBoxStartDay = new JComboBox<>();
+            // 开始天数
             comboBoxStartDay.setBounds(280, 157, 65, 35);
             comboBoxStartDay.setBackground(normal);
             add(comboBoxStartDay);
+
+            // 结束年份
+            comboBoxEndYear.setBounds(97, 244, 65, 35);
+            comboBoxEndYear.setBackground(normal);
+            add(comboBoxEndYear);
+            for (int i = 1970; i < 3000; i++) {
+                comboBoxEndYear.addItem(i);
+            }
+            comboBoxEndYear.setSelectedItem(DateTime.now().getYear());
+
+            // 结束月份
+            comboBoxEndMonth.setBounds(187, 244, 65, 35);
+            comboBoxEndMonth.setBackground(normal);
+            add(comboBoxEndMonth);
+            for (int i = 1; i <= 12; i++) {
+                comboBoxEndMonth.addItem(i);
+            }
+            comboBoxEndMonth.setSelectedItem(DateTime.now().getMonthOfYear());
+
+            // 结束天数
+            comboBoxEndDay.setBounds(280, 244, 65, 35);
+            comboBoxEndDay.setBackground(normal);
+            add(comboBoxEndDay);
+
+            // 标签组********************************
+            labelBetweenFrom.setFont(fontPlain);
+            labelBetweenFrom.setBounds(97, 122, 42, 25);
+            add(labelBetweenFrom);
+
+            labelStartYear.setFont(fontBold);
+            labelStartYear.setBounds(162, 166, 54, 15);
+            add(labelStartYear);
+
+            labelStartMonth.setFont(fontBold);
+            labelStartMonth.setBounds(252, 166, 54, 15);
+            add(labelStartMonth);
+
+            labelStartDay.setFont(fontBold);
+            labelStartDay.setBounds(345, 166, 54, 15);
+            add(labelStartDay);
+
+            labelTo.setFont(fontPlain);
+            labelTo.setBounds(97, 212, 54, 15);
+            add(labelTo);
+
+            labelEndYear.setFont(fontBold);
+            labelEndYear.setBounds(162, 253, 54, 15);
+            add(labelEndYear);
+
+            labelEndMonth.setFont(fontBold);
+            labelEndMonth.setBounds(252, 253, 54, 15);
+            add(labelEndMonth);
+
+            labelEndDay.setFont(fontBold);
+            labelEndDay.setBounds(345, 253, 54, 15);
+            add(labelEndDay);
+
+            labelInterval.setFont(fontPlain);
+            labelInterval.setBounds(97, 301, 83, 25);
+            add(labelInterval);
+
+            labelIntervalYear.setBounds(97, 336, 45, 35);
+            add(labelIntervalYear);
+
+
+            labelIntervalMonth.setBounds(175, 336, 45, 35);
+            add(labelIntervalMonth);
+
+            labelIntervalDay.setBounds(250, 336, 45, 35);
+            add(labelIntervalDay);
+
+            // 这是最下面那四个
+            labelBetweenYear.setFont(fontBold);
+            labelBetweenYear.setBounds(152, 346, 54, 15);
+            add(labelBetweenYear);
+
+            // 这是最下面那四个
+            labelBetweenMonth.setFont(fontBold);
+            labelBetweenMonth.setBounds(223, 346, 54, 15);
+            add(labelBetweenMonth);
+
+            // 这是最下面那四个
+            labelBetweenDay.setFont(fontBold);
+            labelBetweenDay.setBounds(303, 346, 54, 15);
+            add(labelBetweenDay);
+
+            // 这是最下面那四个
+            textFieldTotalDay.setBounds(99, 398, 45, 35);
+            add(textFieldTotalDay);
+
+            labelTotalDay.setFont(fontPlain);
+            labelTotalDay.setBounds(152, 406, 54, 15);
+            add(labelTotalDay);
+
+            // 计算按钮
+            buttonClac.setFont(fontPlain);
+            buttonClac.setBackground(normal);
+            buttonClac.setBounds(223, 396, 75, 35);
+            add(buttonClac);
+        }
+
+        /**
+         * 建立监听事件
+         */
+        @Override
+        protected void createAction() {
+            int day;
+
             comboBoxStartDay.addMouseListener(new MouseListener() {
 
                 @Override
@@ -208,35 +400,12 @@ class CalendarUI extends JPanel {
                     }
                 }
             });
-            int day = setDay((int) comboBoxStartYear.getSelectedItem(), (int) comboBoxStartMonth.getSelectedItem());
+            day = setDay((int) comboBoxStartYear.getSelectedItem(), (int) comboBoxStartMonth.getSelectedItem());
             for (int i = 1; i <= day; i++) {
                 comboBoxStartDay.addItem(i);
             }
             comboBoxStartDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
-            JComboBox<Integer> comboBoxEndYear = new JComboBox<>();
-            comboBoxEndYear.setBounds(97, 244, 65, 35);
-            comboBoxEndYear.setBackground(normal);
-            add(comboBoxEndYear);
-            for (int i = 1970; i < 3000; i++) {
-                comboBoxEndYear.addItem(i);
-            }
-            comboBoxEndYear.setSelectedItem(DateTime.now().getYear());
-
-
-            JComboBox<Integer> comboBoxEndMonth = new JComboBox<>();
-            comboBoxEndMonth.setBounds(187, 244, 65, 35);
-            comboBoxEndMonth.setBackground(normal);
-            add(comboBoxEndMonth);
-            for (int i = 1; i <= 12; i++) {
-                comboBoxEndMonth.addItem(i);
-            }
-            comboBoxEndMonth.setSelectedItem(DateTime.now().getMonthOfYear());
-
-            JComboBox<Integer> comboBoxEndDay = new JComboBox<>();
-            comboBoxEndDay.setBounds(280, 244, 65, 35);
-            comboBoxEndDay.setBackground(normal);
-            add(comboBoxEndDay);
             comboBoxEndDay.addMouseListener(new MouseListener() {
 
                 @Override
@@ -270,97 +439,6 @@ class CalendarUI extends JPanel {
             }
             comboBoxEndDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
-            JLabel labelBetweenFrom = new JLabel("自");
-            labelBetweenFrom.setFont(fontPlain);
-
-            labelBetweenFrom.setBounds(97, 122, 42, 25);
-            add(labelBetweenFrom);
-
-            JLabel labelStartYear = new JLabel("年，");
-            labelStartYear.setFont(fontBold);
-            labelStartYear.setBounds(162, 166, 54, 15);
-            add(labelStartYear);
-
-            JLabel labelStartMonth = new JLabel("月，");
-            labelStartMonth.setFont(fontBold);
-            labelStartMonth.setBounds(252, 166, 54, 15);
-            add(labelStartMonth);
-
-            JLabel labelStartDay = new JLabel("日");
-            labelStartDay.setFont(fontBold);
-            labelStartDay.setBounds(345, 166, 54, 15);
-            add(labelStartDay);
-
-            JLabel labelTo = new JLabel("至");
-            labelTo.setFont(fontPlain);
-            labelTo.setBounds(97, 212, 54, 15);
-            add(labelTo);
-
-            JLabel labelEndYear = new JLabel("年，");
-            labelEndYear.setFont(fontBold);
-            labelEndYear.setBounds(162, 253, 54, 15);
-            add(labelEndYear);
-
-            JLabel labelEndMonth = new JLabel("月，");
-            labelEndMonth.setFont(fontBold);
-            labelEndMonth.setBounds(252, 253, 54, 15);
-            add(labelEndMonth);
-
-            JLabel labelEndDay = new JLabel("日");
-            labelEndDay.setFont(fontBold);
-            labelEndDay.setBounds(345, 253, 54, 15);
-            add(labelEndDay);
-
-            JLabel labelInterval = new JLabel("间隔天数");
-            labelInterval.setFont(fontPlain);
-            labelInterval.setBounds(97, 301, 83, 25);
-            add(labelInterval);
-
-            JLabel labelIntervalYear = new JLabel("", JLabel.CENTER);
-            labelIntervalYear.setBounds(97, 336, 45, 35);
-            add(labelIntervalYear);
-
-            JLabel labelIntervalMonth = new JLabel("", JLabel.CENTER);
-            labelIntervalMonth.setBounds(175, 336, 45, 35);
-            add(labelIntervalMonth);
-
-            JLabel labelIntervalDay = new JLabel("", JLabel.CENTER);
-            labelIntervalDay.setBounds(250, 336, 45, 35);
-            add(labelIntervalDay);
-
-            // 这是最下面那四个
-            JLabel labelBetweenYear = new JLabel("年，");
-            labelBetweenYear.setFont(fontBold);
-            labelBetweenYear.setBounds(152, 346, 54, 15);
-            add(labelBetweenYear);
-
-            // 这是最下面那四个
-            JLabel labelBetweenMonth = new JLabel("月，");
-            labelBetweenMonth.setFont(fontBold);
-            labelBetweenMonth.setBounds(223, 346, 54, 15);
-            add(labelBetweenMonth);
-
-            // 这是最下面那四个
-            JLabel labelBetweenDay = new JLabel("日");
-            labelBetweenDay.setFont(fontBold);
-            labelBetweenDay.setBounds(303, 346, 54, 15);
-            add(labelBetweenDay);
-
-            // 这是最下面那四个
-            JLabel textFieldTotalDay = new JLabel("", JLabel.CENTER);
-            textFieldTotalDay.setBounds(99, 398, 45, 35);
-            add(textFieldTotalDay);
-
-            JLabel labelTotalDay = new JLabel("天");
-            labelTotalDay.setFont(fontPlain);
-            labelTotalDay.setBounds(152, 406, 54, 15);
-            add(labelTotalDay);
-
-            JButton buttonClac = new JButton("计算");
-            buttonClac.setFont(fontPlain);
-            buttonClac.setBackground(normal);
-            buttonClac.setBounds(223, 396, 75, 35);
-            add(buttonClac);
             buttonClac.addActionListener(e -> {
                 DateTime start = new DateTime((int) comboBoxStartYear.getSelectedItem(),
                         (int) comboBoxStartMonth.getSelectedItem(), (int) comboBoxStartDay.getSelectedItem(), 0, 0);
@@ -377,80 +455,137 @@ class CalendarUI extends JPanel {
             });
 
         }
+
+        /**
+         * 日期距离的UI初始化
+         */
+        IntervalPanel() {
+            super();
+        }
     }
 
     /**
      * 日期增减类
      * 从一个已知日期增减一定的日期，来获得目标日期
      */
-    private class PlusOrMinusPanel extends JPanel {
+    private class PlusOrMinusPanel extends TransparentPanelUI {
 
 
         private static final long serialVersionUID = -2918669599707881570L;
+        private static final String from = "自";
+        private static final String year = "年，";
+        private static final String month = "月，";
+        private static final String day = "日";
+        private static final String date = "日期";
+        private static final String calc = "计算";
+        private static final String add = "添加";
+        private static final String minus = "减去";
         private boolean isAdd = true;
+        private JLabel labelFrom;
+        private JLabel labelYear;
+        private JLabel labelMonth;
+        private JLabel labelDay;
+        private JLabel labelDate;
+        private JRadioButton radioButtonAdd;
+        private JRadioButton radioButtonMinus;
+        private ButtonGroup group;
+        private JLabel labelFromYear;
+        private JLabel labelFromMonth;
+        private JLabel labelFromDay;
+        private JComboBox<Integer> comboBoxAddMonth;
+        private JComboBox<Integer> comboBoxAddDay;
+        private JComboBox<Integer> comboBoxAddYear;
+        private JComboBox<Integer> comboBoxFromYear;
+        private JComboBox<Integer> comboBoxFromMonth;
+        private JComboBox<Integer> comboBoxFromDay;
+        private JLabel plusOrMinusYear;
+        private JLabel plusOrMinusMonth;
+        private JLabel plusOrMinusDay;
+        private JLabel labelyear;
+        private JLabel labelmonth;
+        private JLabel labelday;
+        private JButton buttonCalc;
 
         /**
-         * 日期增减页面的UI构造
+         * 初始化组件
          */
-        PlusOrMinusPanel() {
-            JLabel labelFrom = new JLabel("自");
+        @Override
+        protected void initCompoment() {
+            labelFrom = new JLabel(from);
+            labelYear = new JLabel(year);
+            labelMonth = new JLabel(month);
+            labelDay = new JLabel(day);
+            labelDate = new JLabel(date);
+            radioButtonAdd = new JRadioButton(add, true);
+            radioButtonMinus = new JRadioButton(minus);
+            group = new ButtonGroup();
+            group.add(radioButtonAdd);
+            group.add(radioButtonMinus);
+            labelFromYear = new JLabel(year);
+            labelFromMonth = new JLabel(month);
+            labelFromDay = new JLabel(day);
+            comboBoxAddMonth = new JComboBox<>();
+            comboBoxAddDay = new JComboBox<>();
+            comboBoxAddYear = new JComboBox<>();
+            comboBoxFromYear = new JComboBox<>();
+            comboBoxFromMonth = new JComboBox<>();
+            comboBoxFromDay = new JComboBox<>();
+            plusOrMinusYear = new JLabel("", JLabel.CENTER);
+            plusOrMinusMonth = new JLabel("", JLabel.CENTER);
+            plusOrMinusDay = new JLabel("", JLabel.CENTER);
+            labelyear = new JLabel(year);
+            labelmonth = new JLabel(month);
+            labelday = new JLabel(day);
+            buttonCalc = new JButton(calc);
+        }
+
+        /**
+         * 初始化布局
+         */
+        @Override
+        protected void initUI() {
             labelFrom.setFont(fontPlain);
             labelFrom.setBounds(97, 122, 42, 25);
             add(labelFrom);
 
-            JLabel labelYear = new JLabel("年，");
             labelYear.setFont(fontBold);
             labelYear.setBounds(162, 274, 54, 15);
             add(labelYear);
 
-            JLabel labelMonth = new JLabel("月，");
             labelMonth.setFont(fontBold);
             labelMonth.setBounds(251, 274, 54, 15);
             add(labelMonth);
 
-            JLabel labelDay = new JLabel("日");
             labelDay.setFont(fontBold);
             labelDay.setBounds(345, 274, 54, 15);
             add(labelDay);
 
-            JLabel labelDate = new JLabel("日期");
             labelDate.setFont(fontPlain);
             labelDate.setBounds(97, 336, 54, 15);
             add(labelDate);
 
-            JRadioButton radioButtonAdd = new JRadioButton("添加", true);
             radioButtonAdd.setSelected(true);
             radioButtonAdd.setFont(fontPlain);
             radioButtonAdd.setBounds(162, 219, 87, 23);
             add(radioButtonAdd);
-            radioButtonAdd.addActionListener(e -> isAdd = true);
 
-            JRadioButton radioButtonMinus = new JRadioButton("减去");
             radioButtonMinus.setFont(fontPlain);
             radioButtonMinus.setBounds(251, 219, 121, 23);
             add(radioButtonMinus);
-            radioButtonMinus.addActionListener(e -> isAdd = false);
 
-            ButtonGroup group = new ButtonGroup();
-            group.add(radioButtonAdd);
-            group.add(radioButtonMinus);
-
-            JLabel labelFromYear = new JLabel("年，");
             labelFromYear.setFont(fontBold);
             labelFromYear.setBounds(162, 166, 54, 15);
             add(labelFromYear);
 
-            JLabel labelFromMonth = new JLabel("月，");
             labelFromMonth.setFont(fontBold);
             labelFromMonth.setBounds(252, 166, 54, 15);
             add(labelFromMonth);
 
-            JLabel labelFromDay = new JLabel("日");
+
             labelFromDay.setFont(fontBold);
             labelFromDay.setBounds(345, 166, 54, 15);
             add(labelFromDay);
 
-            JComboBox<Integer> comboBoxAddMonth = new JComboBox<>();
             comboBoxAddMonth.setBounds(187, 265, 65, 35);
             comboBoxAddMonth.setBackground(normal);
             add(comboBoxAddMonth);
@@ -458,7 +593,6 @@ class CalendarUI extends JPanel {
                 comboBoxAddMonth.addItem(i);
             }
 
-            JComboBox<Integer> comboBoxAddDay = new JComboBox<>();
             comboBoxAddDay.setBounds(280, 265, 65, 35);
             comboBoxAddDay.setBackground(normal);
             add(comboBoxAddDay);
@@ -466,7 +600,6 @@ class CalendarUI extends JPanel {
                 comboBoxAddDay.addItem(i);
             }
 
-            JComboBox<Integer> comboBoxAddYear = new JComboBox<>();
             comboBoxAddYear.setBounds(97, 265, 65, 35);
             comboBoxAddYear.setBackground(normal);
             add(comboBoxAddYear);
@@ -474,7 +607,6 @@ class CalendarUI extends JPanel {
                 comboBoxAddYear.addItem(i);
             }
 
-            JComboBox<Integer> comboBoxFromYear = new JComboBox<>();
             comboBoxFromYear.setBounds(97, 157, 65, 35);
             comboBoxFromYear.setBackground(normal);
             add(comboBoxFromYear);
@@ -483,7 +615,6 @@ class CalendarUI extends JPanel {
             }
             comboBoxFromYear.setSelectedItem(DateTime.now().getYear());
 
-            JComboBox<Integer> comboBoxFromMonth = new JComboBox<>();
             comboBoxFromMonth.setBounds(187, 157, 65, 35);
             comboBoxFromMonth.setBackground(normal);
             add(comboBoxFromMonth);
@@ -492,10 +623,52 @@ class CalendarUI extends JPanel {
             }
             comboBoxFromMonth.setSelectedItem(DateTime.now().getMonthOfYear());
 
-            JComboBox<Integer> comboBoxFromDay = new JComboBox<>();
             comboBoxFromDay.setBounds(280, 157, 65, 35);
             comboBoxFromDay.setBackground(normal);
             add(comboBoxFromDay);
+
+            // 这个是最下面那四个或三个
+            plusOrMinusYear.setBackground(new Color(224, 255, 255));
+            plusOrMinusYear.setBounds(97, 368, 65, 35);
+            add(plusOrMinusYear);
+
+            // 这个是最下面那四个或三个
+            plusOrMinusMonth.setBackground(new Color(224, 255, 255));
+            plusOrMinusMonth.setBounds(187, 368, 65, 35);
+            add(plusOrMinusMonth);
+
+            // 这个是最下面那四个或三个
+            plusOrMinusDay.setBackground(new Color(224, 255, 255));
+            plusOrMinusDay.setBounds(280, 368, 65, 35);
+            add(plusOrMinusDay);
+
+            labelyear.setFont(fontBold);
+            labelyear.setBounds(162, 377, 54, 15);
+            add(labelyear);
+
+            labelmonth.setFont(fontBold);
+            labelmonth.setBounds(251, 377, 54, 15);
+            add(labelmonth);
+
+
+            labelday.setFont(fontBold);
+            labelday.setBounds(345, 377, 54, 15);
+            add(labelday);
+
+            buttonCalc.setFont(fontPlain);
+            buttonCalc.setBackground(normal);
+            buttonCalc.setBounds(197, 326, 75, 35);
+            add(buttonCalc);
+        }
+
+        /**
+         * 建立监听事件
+         */
+        @Override
+        protected void createAction() {
+            radioButtonAdd.addActionListener(e -> isAdd = true);
+            radioButtonMinus.addActionListener(e -> isAdd = false);
+
             comboBoxFromDay.addMouseListener(new MouseListener() {
 
                 @Override
@@ -529,44 +702,6 @@ class CalendarUI extends JPanel {
             }
             comboBoxFromDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
-            // 这个是最下面那四个或三个
-            JLabel plusOrMinusYear = new JLabel("", JLabel.CENTER);
-            plusOrMinusYear.setBackground(new Color(224, 255, 255));
-            plusOrMinusYear.setBounds(97, 368, 65, 35);
-            add(plusOrMinusYear);
-
-            // 这个是最下面那四个或三个
-            JLabel plusOrMinusMonth = new JLabel("", JLabel.CENTER);
-            plusOrMinusMonth.setBackground(new Color(224, 255, 255));
-            plusOrMinusMonth.setBounds(187, 368, 65, 35);
-            add(plusOrMinusMonth);
-
-            // 这个是最下面那四个或三个
-            JLabel plusOrMinusDay = new JLabel("", JLabel.CENTER);
-            plusOrMinusDay.setBackground(new Color(224, 255, 255));
-            plusOrMinusDay.setBounds(280, 368, 65, 35);
-            add(plusOrMinusDay);
-
-            JLabel labelyear = new JLabel("年，");
-            labelyear.setFont(fontBold);
-            labelyear.setBounds(162, 377, 54, 15);
-            add(labelyear);
-
-            JLabel labelmonth = new JLabel("月，");
-            labelmonth.setFont(fontBold);
-            labelmonth.setBounds(251, 377, 54, 15);
-            add(labelmonth);
-
-            JLabel labelday = new JLabel("日");
-            labelday.setFont(fontBold);
-            labelday.setBounds(345, 377, 54, 15);
-            add(labelday);
-
-            JButton buttonCalc = new JButton("计算");
-            buttonCalc.setFont(fontPlain);
-            buttonCalc.setBackground(normal);
-            buttonCalc.setBounds(197, 326, 75, 35);
-            add(buttonCalc);
             buttonCalc.addActionListener(e -> {
                 DateTime start = new DateTime((int) comboBoxFromYear.getSelectedItem(),
                         (int) comboBoxFromMonth.getSelectedItem(), (int) comboBoxFromDay.getSelectedItem(), 0, 0);
@@ -583,8 +718,13 @@ class CalendarUI extends JPanel {
                 plusOrMinusMonth.setText(target.getMonthOfYear() + "");
                 plusOrMinusYear.setText(target.getYear() + "");
             });
+        }
 
-
+        /**
+         * 日期增减页面的UI构造
+         */
+        PlusOrMinusPanel() {
+            super();
         }
     }
 

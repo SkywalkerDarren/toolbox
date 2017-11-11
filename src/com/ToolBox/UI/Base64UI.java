@@ -10,38 +10,69 @@ import java.awt.*;
  *
  * @author 杨弘，徐祥亮，朱可欣
  */
-class Base64UI extends JPanel {
+class Base64UI extends TransparentPanelUI {
 
     private static final long serialVersionUID = -4621043278294486022L;
     private final static String leftTips = "输入要转换的字符串";
     private final static String rightTips = "输入要解码的字符串";
-    private final TextBox textAreaLeft = new TextBox(leftTips);
-    private final TextBox textAreaRight = new TextBox(rightTips);
+    private final static String encoding = " BASE64编码 > ";
+    private final static String decoding = " < BASE64解码 ";
+
+    private TextBox textAreaLeft;
+    private TextBox textAreaRight;
+    private JScrollPane jspTextLeft;
+    private JScrollPane jspTextRight;
+    private JButton buttonRecode;
+    private JButton buttonDecode;
 
     /**
-     * 构造编码器框架
+     * 初始化组件
      */
-    Base64UI() {
-        setOpaque(false);
+    @Override
+    protected void initCompoment() {
+        textAreaLeft = new TextBox(leftTips);
+        textAreaRight = new TextBox(rightTips);
+        jspTextLeft = new JScrollPane();
+        jspTextRight = new JScrollPane();
+        buttonRecode = new JButton(encoding);
+        buttonDecode = new JButton(decoding);
 
+    }
+
+    /**
+     * 初始化布局
+     */
+    @Override
+    protected void initUI() {
         Color normal = new Color(245, 255, 255);
 
-        JScrollPane jspTextLeft = new JScrollPane();
         jspTextLeft.setBounds(35, 60, 250, 350);
         jspTextLeft.add(textAreaLeft);
         jspTextLeft.setViewportView(textAreaLeft);
         add(jspTextLeft);
 
-        JScrollPane jspTextRight = new JScrollPane();
         jspTextRight.setBounds(510, 60, 250, 350);
         jspTextRight.add(textAreaRight);
         jspTextRight.setViewportView(textAreaRight);
         add(jspTextRight);
 
-        JButton buttonRecode = new JButton(" BASE64编码 > ");
         buttonRecode.setVisible(true);
         buttonRecode.setBackground(normal);
         buttonRecode.setBounds(328, 150, 140, 30);
+        add(buttonRecode);
+
+        buttonDecode.setVisible(true);
+        buttonDecode.setBackground(normal);
+        buttonDecode.setBounds(328, 225, 140, 30);
+        add(buttonDecode);
+
+    }
+
+    /**
+     * 建立监听事件
+     */
+    @Override
+    protected void createAction() {
         buttonRecode.addActionListener(e -> {
             String src = textAreaLeft.getText();
             String tar = Base64.stringToBase64(src);
@@ -49,12 +80,7 @@ class Base64UI extends JPanel {
             textAreaLeft.setForeground(Color.BLACK);
             textAreaRight.setForeground(Color.BLACK);
         });
-        add(buttonRecode);
 
-        JButton buttonDecode = new JButton(" < BASE64解码 ");
-        buttonDecode.setVisible(true);
-        buttonDecode.setBackground(normal);
-        buttonDecode.setBounds(328, 225, 140, 30);
         buttonDecode.addActionListener(e -> {
             String src = textAreaRight.getText();
             String tar = Base64.base64ToString(src);
@@ -62,6 +88,12 @@ class Base64UI extends JPanel {
             textAreaLeft.setForeground(Color.BLACK);
             textAreaRight.setForeground(Color.BLACK);
         });
-        add(buttonDecode);
+    }
+
+    /**
+     * 构造编码器框架
+     */
+    Base64UI() {
+        super();
     }
 }
