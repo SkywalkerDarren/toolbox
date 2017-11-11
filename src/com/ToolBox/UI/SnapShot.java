@@ -149,7 +149,7 @@ class SnapShot extends JFrame {
                         imageLabel.setIcon(new ImageIcon(image));
                     }
                 });
-            } catch (AWTException | InterruptedException e1) {
+            } catch (Exception e1) {
                 e1.printStackTrace();
             }
 
