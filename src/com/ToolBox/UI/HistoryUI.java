@@ -45,7 +45,6 @@ class HistoryUI extends TransparentPanelUI {
      */
     @Override
     protected void initUI() {
-
         // ±ÍÃ‚
         title.setBounds(22, 20, 75, 35);
         title.setFont(new Font("Œ¢»Ì—≈∫⁄", Font.BOLD, 13));

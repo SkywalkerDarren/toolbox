@@ -167,16 +167,16 @@ class QRCodeUI extends TransparentPanelUI {
         comboBoxLevel.addActionListener(l -> {
             if (comboBoxLevel.getSelectedItem() != null) {
                 switch ((String) comboBoxLevel.getSelectedItem()) {
-                    case "低":
+                    case L:
                         Qrcode.setCorrection(ErrorCorrectionLevel.L);
                         break;
-                    case "中":
+                    case M:
                         Qrcode.setCorrection(ErrorCorrectionLevel.M);
                         break;
-                    case "高":
+                    case Q:
                         Qrcode.setCorrection(ErrorCorrectionLevel.Q);
                         break;
-                    case "极高":
+                    case H:
                         Qrcode.setCorrection(ErrorCorrectionLevel.H);
                         break;
                     default:
@@ -188,13 +188,13 @@ class QRCodeUI extends TransparentPanelUI {
         comboBoxSize.addActionListener(l -> {
             if (comboBoxSize.getSelectedItem() != null) {
                 switch ((String) comboBoxSize.getSelectedItem()) {
-                    case "小":
+                    case S:
                         Qrcode.setSize(Qrcode.SMALL);
                         break;
-                    case "中":
+                    case M:
                         Qrcode.setSize(Qrcode.MEDIUM);
                         break;
-                    case "大":
+                    case B:
                         Qrcode.setSize(Qrcode.LARGE);
                         break;
                     default:
