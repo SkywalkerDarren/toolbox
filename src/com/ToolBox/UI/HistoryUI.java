@@ -30,7 +30,6 @@ class HistoryUI extends TransparentPanelUI {
     private JButton btnCopy;
     private JButton btnClear;
     private JScrollPane jsp;
-    private String strResult = "结果";
 
     /**
      * 初始化组件
@@ -102,7 +101,6 @@ class HistoryUI extends TransparentPanelUI {
                 }
                 String source = (String) Intent.getObj(CalculatorUI.serialVersionUID, CalculatorUI.strTabbed);
                 if (source.equals(ScientificUI.class.getName())) {
-//                    Intent.setObj(serialVersionUID, strResult, s);
                     ScientificUI.setTempResult(s);
                 } else if (source.equals(ExchangeRateUI.class.getName())) {
                     ExchangeRateUI.setTempResult(s);

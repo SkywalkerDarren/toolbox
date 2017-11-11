@@ -19,7 +19,6 @@ import java.util.Map.Entry;
 class ConversionUI extends TransparentPanelUI {
 
     public static final long serialVersionUID = -1342718738933302379L;
-    public static final String strResult = "结果";
     private static final String type = "请选择换算类型";
     private static final String unit = "请选择换算单位";
     private static final String exchange = "换算";
