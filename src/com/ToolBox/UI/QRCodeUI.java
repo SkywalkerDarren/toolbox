@@ -246,7 +246,7 @@ class QRCodeUI extends TransparentPanelUI {
             imageFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             FileFilter imageFilter = new FileNameExtensionFilter("Í¼Æ¬ÎÄ¼þ", "png", "jpg");
             imageFileChooser.setFileFilter(imageFilter);
-            int state = imageFileChooser.showOpenDialog(null);
+            int state = imageFileChooser.showSaveDialog(null);
             switch (state) {
                 case JFileChooser.CANCEL_OPTION:
                     break;
