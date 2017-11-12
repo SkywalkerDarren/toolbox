@@ -176,9 +176,7 @@ class SnapShot extends JFrame {
 
         btnLarge.addActionListener(e -> size = LARGE);
 
-        btnChooseColor.addActionListener(e -> {
-            color = JColorChooser.showDialog(null, selectColor, color);
-        });
+        btnChooseColor.addActionListener(e -> color = JColorChooser.showDialog(null, selectColor, color));
 
         btnCopy.addActionListener(e -> {
             Image image = ((ImageIcon) imageLabel.getIcon()).getImage();
