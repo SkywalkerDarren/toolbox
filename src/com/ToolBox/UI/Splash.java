@@ -48,7 +48,7 @@ public class Splash extends JWindow implements Runnable {
         try {
             for (int i = 0; i < 100; i++) {
                 progress.setString(waiting + i + "%");
-                Thread.sleep(5);
+                Thread.sleep(20);
                 progress.setValue(i);
                 switch (i) {
                     case 40:
@@ -57,18 +57,10 @@ public class Splash extends JWindow implements Runnable {
                     case 70:
                         waiting = "朱可欣正在画最后的背景素材。。。 ";
                         break;
-                    case 99:
-                        waiting = "最后卡住了。。。 ";
-                        progress.setString(waiting + i + "%");
-                        Thread.sleep(800);
-                        break;
                     default:
                         break;
                 }
             }
-            waiting = "是不可能的 ";
-            progress.setString(waiting + "100%");
-            Thread.sleep(300);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
