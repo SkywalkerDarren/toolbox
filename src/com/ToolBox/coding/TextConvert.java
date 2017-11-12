@@ -28,6 +28,8 @@ public class TextConvert {
     private final static String json = "json";
     private final static String yaml = "yaml";
     private final static String h = "h";
+    private final static String md = "md";
+    private final static String sh = "sh";
 
     /**
      * 把文件或目录转换成指定的编码
@@ -41,7 +43,8 @@ public class TextConvert {
             File[] files = file.listFiles((dir, name) -> (name.lastIndexOf(".") == -1 ||
                     name.lastIndexOf(".") != -1 && (name.endsWith(txt) || name.endsWith(c) || name.endsWith(java) ||
                             name.endsWith(cpp) || name.endsWith(json) || name.endsWith(yaml) || name.endsWith(xml) ||
-                            name.endsWith(h) || name.endsWith(log) || name.endsWith(js))));
+                            name.endsWith(h) || name.endsWith(log) || name.endsWith(js) || name.endsWith(md) ||
+                            name.endsWith(sh))));
             try {
                 assert files != null;
                 for (File f : files) {

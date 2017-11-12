@@ -176,8 +176,6 @@ class LiteralCodeUI extends TransparentPanelUI {
         btnChooseFile.addActionListener(e -> {
             textFieldRoute.setForeground(Color.BLACK);
             JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setOpaque(false);
-            fileChooser.setBackground(Color.WHITE);
             fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
             switch (fileChooser.showOpenDialog(null)) {
                 case JFileChooser.APPROVE_OPTION:
