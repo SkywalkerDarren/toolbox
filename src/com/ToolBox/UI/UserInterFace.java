@@ -20,7 +20,7 @@ import java.io.IOException;
 class UserInterFace extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = -5503828920612138533L;
-    private final static String CALCTOOLS = " 计算工具 ";
+    private final static String CALCTOOLS = " 计算换算工具 ";
     private final static String ENCODETOOLS = " 编码解码工具 ";
     private final static String QRCODETOOLS = " 二维码生成 ";
     private JPanel cardPanel = new JPanel() {
