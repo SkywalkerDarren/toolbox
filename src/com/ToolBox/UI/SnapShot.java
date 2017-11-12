@@ -97,6 +97,7 @@ class SnapShot extends JFrame {
         size.add(btnLarge);
 
         btnChooseColor = new JButton(chooseColor);
+        color = Color.RED;
 
         btnSave = new JButton(save);
         btnCopy = new JButton(copy);
