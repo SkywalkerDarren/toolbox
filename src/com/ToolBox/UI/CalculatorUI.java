@@ -23,7 +23,7 @@ class CalculatorUI extends TransparentPanelUI {
     private static final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     private static final String scientifc = "科学计算器";
     private static final String exchange = "汇率计算器";
-    private static final String programer = "程序员键盘";
+    private static final String programer = "程序员计算器";
     private static final String convertion = "单位换算器";
     private static final String calendar = "日期计算器";
     private JPanel panelCalculator;
