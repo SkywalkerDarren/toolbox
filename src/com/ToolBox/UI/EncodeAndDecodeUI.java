@@ -17,8 +17,8 @@ class EncodeAndDecodeUI extends TransparentPanelUI {
     private static final long serialVersionUID = 8137943111751980202L;
     private static final String base64 = "Base64编码/解码";
     private static final String unicode = "Unicode中文互转";
-    private static final String md5 = "MD5文字加密/文件校验";
-    private static final String code = "文件/文字编码批量转换";
+    private static final String md5 = "MD5生成校验";
+    private static final String code = "文字/文件编码批量转换";
     private JTabbedPane tabbedPane;
     private JPanel panelBase64;
     private JPanel panelUnicode;
