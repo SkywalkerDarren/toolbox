@@ -37,8 +37,10 @@ class SnapShot extends JFrame {
     private final static String S = "小";
     private final static String M = "中";
     private final static String L = "大";
+    private final static String chooseColor = "颜色";
     private final static String save = "保存";
     private final static String copy = "复制";
+    private final static String selectColor = "选择颜色";
 
     private int size = MEDIUM;
     private int flag = PEN;
@@ -50,9 +52,11 @@ class SnapShot extends JFrame {
     private JToggleButton btnSmall;
     private JToggleButton btnMedium;
     private JToggleButton btnLarge;
+    private JButton btnChooseColor;
     private JButton btnCopy;
     private JButton btnSave;
     private BufferedImage bi;
+    private Color color;
 
     private int x, y;   //记录鼠标坐标
     private int startx, starty;
@@ -92,6 +96,8 @@ class SnapShot extends JFrame {
         size.add(btnMedium);
         size.add(btnLarge);
 
+        btnChooseColor = new JButton(chooseColor);
+
         btnSave = new JButton(save);
         btnCopy = new JButton(copy);
 
@@ -121,6 +127,7 @@ class SnapShot extends JFrame {
         panel.add(btnSmall);
         panel.add(btnMedium);
         panel.add(btnLarge);
+        panel.add(btnChooseColor);
         panel.add(btnCopy);
         panel.add(btnSave);
         container.add(BorderLayout.CENTER, imgScrollPane);
@@ -167,6 +174,10 @@ class SnapShot extends JFrame {
         btnMedium.addActionListener(e -> size = MEDIUM);
 
         btnLarge.addActionListener(e -> size = LARGE);
+
+        btnChooseColor.addActionListener(e -> {
+            color = JColorChooser.showDialog(null, selectColor, color);
+        });
 
         btnCopy.addActionListener(e -> {
             Image image = ((ImageIcon) imageLabel.getIcon()).getImage();
@@ -220,7 +231,7 @@ class SnapShot extends JFrame {
 
                 g2d.drawImage(img, 0, 0, null);
 
-                g2d.setColor(Color.RED);
+                g2d.setColor(color);
                 g2d.setStroke(new BasicStroke(size, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
                 Graphics g;
                 switch (flag) {
@@ -271,7 +282,7 @@ class SnapShot extends JFrame {
 
                 g2d.drawImage(img, 0, 0, null);
 
-                g2d.setColor(Color.RED);
+                g2d.setColor(color);
                 g2d.setStroke(new BasicStroke(size, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
                 Graphics g;
                 switch (flag) {
