@@ -19,7 +19,7 @@ import java.awt.*;
 class CalculatorUI extends TransparentPanelUI {
 
     public static final long serialVersionUID = -7067036135688239326L;
-    public static final String strTabbed = "标签页";
+    static final String strTabbed = "标签页";
     private static final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     private static final String scientifc = "科学计算器";
     private static final String exchange = "汇率计算器";
@@ -62,13 +62,13 @@ class CalculatorUI extends TransparentPanelUI {
         panelCalculator.setLayout(null);
         tabbedPane.addTab(scientifc, null, panelCalculator, null);
 
+        // 程序员计算器标签页
+        tabbedPane.addTab(programer, null, panelKeyBoard, null);
+        panelKeyBoard.setLayout(null);
+
         // 汇率计算器标签页
         panelExchangeRate.setLayout(null);
         tabbedPane.addTab(exchange, null, panelExchangeRate, null);
-
-        // 程序员键盘标签页
-        tabbedPane.addTab(programer, null, panelKeyBoard, null);
-        panelKeyBoard.setLayout(null);
 
         // 单位换算器标签页
         panelConversion.setLayout(null);
