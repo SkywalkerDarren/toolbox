@@ -75,15 +75,14 @@
 
 ### Windows
 
-64位版本`ToolBox x64.exe`
-
-32位版本`ToolBox.exe`
+运行`setup.exe`进行安装
+安装完后即可运行`Universal ToolBox`
 
 ### Others
 
 需要Java 1.8以上的Jre支持，并设置好JAVA_HOME的环境变量。
 
-运行`ToolBox.jar`
+运行`Universal ToolBox.jar`
 
 ## Javadoc
 
@@ -91,7 +90,7 @@ Javadoc手册在`doc`文件夹中，`index.html`为首页
 
 ## 源码
 
-源码在`ToolBox.zip`内
+源码在`src`文件夹内
 
 ## License
 
