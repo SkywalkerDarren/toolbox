@@ -73,16 +73,24 @@
 
 ## 安装
 
+正式版本在`Release`文件夹中
+
 ### Windows
 
 运行`setup.exe`进行安装
 安装完后即可运行`Universal ToolBox`
 
-### Others
+#### 卸载
 
-需要Java 1.8以上的Jre支持，并设置好JAVA_HOME的环境变量。
+控制面板中卸载
+
+### Linux
+
+需要Java 1.8以上的Jre支持，并设置好环境变量。
 
 运行`Universal ToolBox.jar`
+
+或执行`java -jar Universal\ ToolBox.jar`
 
 ## Javadoc
 
