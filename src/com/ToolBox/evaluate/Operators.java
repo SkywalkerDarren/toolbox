@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 class Operators {
     private final static MathContext mc = new MathContext(64, RoundingMode.HALF_UP);
-    static HashMap<String, Operator> operatorHashMap = new HashMap<>();
+    static HashMap<String, Operator> operatorHashMap = new HashMap<>(32);
     static {
         operatorHashMap.put("@", new Operator() {
             @Override
