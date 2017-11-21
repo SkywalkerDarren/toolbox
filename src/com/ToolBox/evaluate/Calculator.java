@@ -112,7 +112,7 @@ public class Calculator {
 
     public static void main(String[] args) {
 //        String[] s = {"(","50","+","4","*","3","/","2","+","799","-","180","+","9","+","8","+","(","3","/","3",")","+","8","+","(","9","+","3",")","/","3",")"};
-        String s = "( 50.3 + 4 )";
+        String s = "( cos ( 3.1415926535 ) )";
         System.out.println(new Calculator().getResult(s));
     }
 
