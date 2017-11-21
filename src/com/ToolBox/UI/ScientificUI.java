@@ -1,7 +1,5 @@
 package com.ToolBox.UI;
 
-import com.ToolBox.evaluate.ScientificCalculator;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -469,20 +467,20 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 number.append(" =");
                 String r;
                 try {
-                    r = new ScientificCalculator().getResult(answer.toString());
-                    HistoryUI.updateRecord(r);
+//                    r = new ScientificCalculator().getResult(answer.toString());
+//                    HistoryUI.updateRecord(r);
                 } catch (Exception error) {
                     r = "表达式无效";
                     error.printStackTrace();
                 }
                 number.append('\n');
                 number.append('\n');
-                number.append(r);
+//                number.append(r);
                 expTextArea.setText(number.toString());
                 answer.replace(0, answer.length(), "");
-                answer.append(r);
+//                answer.append(r);
                 number.replace(0, number.length(), "");
-                number.append(r);
+//                number.append(r);
                 wasAnswer = true;
                 break;
             case "CE":

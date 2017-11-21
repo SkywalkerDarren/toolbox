@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicReference;
  *
  * @author 杨弘
  */
-public abstract class Calculator {
+public class Calculator {
     public final static int HEX = 16;
     public final static int DEC = 10;
     public final static int OCT = 8;
@@ -50,44 +50,38 @@ public abstract class Calculator {
             throw new IllegalArgumentException("表达式为空");
         }
         Stack<BigDecimal> val = new Stack<>();
-        Stack<Character> flag = new Stack<>();
-        flag.push('@');
-        boolean check = true;
+        Stack<String> flag = new Stack<>();
+        // 终止符
+        flag.push("@");
         for (String s : expression) {
-            char c = s.charAt(0);
-            if (s.length() < 2 && !isDigit(c)) {
-                // operator
-                if (c == ')') {
-                    check = false;
-                    while (flag.peek() != '(') {
-                        calcExp(val, flag);
-                    }
-                    flag.pop();
-                } else if (c == '(') {
-                    if (!check) {
-                        throw new IllegalArgumentException("右括号多余");
-                    }
-                    flag.push(c);
-                } else {
-                    check = true;
-                    while (getLevel(c) <= getLevel(flag.peek())) {
-                        calcExp(val, flag);
-                    }
-                    flag.push(c);
-                }
-
-            } else {
-                if (!check) {
-                    throw new IllegalArgumentException("数值多余");
-                }
-                check = false;
+            try {
                 if (radix > 0) {
                     s = Long.parseLong(s, radix) + "";
                 }
                 val.push(new BigDecimal(s));
+            } catch (NumberFormatException e) {
+                // 运算符
+                switch (s) {
+                    case ")":
+                        while (!flag.peek().equals("(")) {
+                            calcExp(val, flag);
+                        }
+                        flag.pop();
+                        break;
+                    case "(":
+                        flag.push(s);
+                        break;
+                    default:
+                        while (Operators.operatorHashMap.get(s).getLevel() <=
+                                Operators.operatorHashMap.get(flag.peek()).getLevel()) {
+                            calcExp(val, flag);
+                        }
+                        flag.push(s);
+                        break;
+                }
             }
         }
-        while (flag.peek() != '@') {
+        while (!flag.peek().equals("@")) {
             calcExp(val, flag);
         }
         if (val.isEmpty()) {
@@ -97,28 +91,30 @@ public abstract class Calculator {
     }
 
     /**
-     * 判断是否是数字的一部分，包括小数点
-     *
-     * @param c 判断的字符
-     * @return true 如果是数字的一部分
-     */
-    protected abstract boolean isDigit(char c);
-
-    /**
-     * 获得一个操作符的优先级
-     *
-     * @param c 一个操作符
-     * @return 操作符优先级
-     */
-    protected abstract int getLevel(char c);
-
-    /**
      * 用双栈计算表达式结果
      *
      * @param val   存储数值的栈
      * @param flag: 存储操作符的栈
      */
-    protected abstract void calcExp(Stack<BigDecimal> val, Stack<Character> flag);
+    private void calcExp(Stack<BigDecimal> val, Stack<String> flag) {
+        BigDecimal b;
+        BigDecimal a;
+        Operator op = Operators.operatorHashMap.get(flag.pop());
+        if (op.getAry() == 2) {
+            b = val.pop();
+            a = val.pop();
+            val.push(op.calc(a, b));
+        } else if (op.getAry() == 1) {
+            a = val.pop();
+            val.push(op.calc(a, null));
+        }
+    }
+
+    public static void main(String[] args) {
+//        String[] s = {"(","50","+","4","*","3","/","2","+","799","-","180","+","9","+","8","+","(","3","/","3",")","+","8","+","(","9","+","3",")","/","3",")"};
+        String s = "( 50.3 + 4 )";
+        System.out.println(new Calculator().getResult(s));
+    }
 
     /**
      * 解析表达式字符串到字符串数组
@@ -126,5 +122,7 @@ public abstract class Calculator {
      * @param exp 表达式字符串
      * @return 字符串数组
      */
-    protected abstract String[] explain(String exp);
+    private String[] explain(String exp) {
+        return exp.split(" ");
+    }
 }

@@ -1,7 +1,6 @@
 package com.ToolBox.UI;
 
 import com.ToolBox.evaluate.Calculator;
-import com.ToolBox.evaluate.ProgramerCalculator;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -731,8 +730,8 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
             case "=":
                 String r;
                 try {
-                    r = new ProgramerCalculator().getResult(expression.toString(), radix);
-                    result = Long.valueOf(r);
+//                    r = new ProgramerCalculator().getResult(expression.toString(), radix);
+//                    result = Long.valueOf(r);
                     textAreaTop.setText(Long.toString(result, radix));
                     textFieldBinary.setText(Long.toBinaryString(result));
                     textFieldOctonary.setText(Long.toOctalString(result));
