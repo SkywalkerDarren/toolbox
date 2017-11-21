@@ -9,9 +9,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 汇率转换，默认使用内置汇率，可以从网上获取最新汇率
@@ -29,7 +26,6 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
     private static final String input = "输入金额";
     private static final String update = "更新汇率";
     private static final String exchanger = "兑换";
-    private static final String pattern = "yyyy年MM月dd日 更新成功";
     private static final String failed = "更新失败";
     private static final String current = "当前汇率为: ";
     private static JTextField textFieldSource = new JTextField();
@@ -110,6 +106,7 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
         add(lbSelectCurrency);
 
         lbDate.setBounds(86, 253, 175, 35);
+        lbDate.setText("当前汇率的更新日期 " + exchange.getDate());
         add(lbDate);
 
         lbMuch.setBounds(315, 58, 175, 35);
@@ -134,16 +131,12 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
      */
     @Override
     protected void createAction() {
-        Date today = new Date();
-        DateFormat format = new SimpleDateFormat(pattern);
-        today.getTime();
-        format.format(today);
 
         textFieldSource.addMouseListener(this);
         textFieldTarget.addMouseListener(this);
         btnUpdate.addActionListener(e -> {
             if (exchange.update()) {
-                lbDate.setText(format.format(today));
+                lbDate.setText(exchange.getDate() + " 已获取最新汇率");
             } else {
                 lbDate.setText(failed);
             }

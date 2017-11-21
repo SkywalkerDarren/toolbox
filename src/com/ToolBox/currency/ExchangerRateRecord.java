@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -20,6 +22,7 @@ import java.util.Map;
 public class ExchangerRateRecord {
     private Currency rates[];
     private int size;
+    private JsonElement root;
 
     /**
      * 初始化原始json数据
@@ -28,7 +31,6 @@ public class ExchangerRateRecord {
         try {
             FileResource resource = new FileResource();
             InputStream in = resource.exchangeRateIS;
-            JsonElement root;
             root = new JsonParser().parse(new InputStreamReader(in, "utf-8"));
             setRates(root.getAsJsonObject().get("rates").getAsJsonObject());
         } catch (JsonIOException | JsonSyntaxException | UnsupportedEncodingException e) {
@@ -37,6 +39,16 @@ public class ExchangerRateRecord {
 
     }
 
+    /**
+     * 获取汇率更新日期
+     *
+     * @return 返回格式化后的日期 yyyy年MM月dd日 HH:mm:ss
+     */
+    public String getDate() {
+        Date date = new Date(root.getAsJsonObject().get("timestamp").getAsLong() * 1000);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        return format.format(date);
+    }
 
     /**
      * 用于更新汇率信息，需要联网
@@ -45,7 +57,8 @@ public class ExchangerRateRecord {
      */
     public boolean update() {
         try {
-            setRates(new ExchangeRateSpyder().spider());
+            root = new ExchangeRateSpyder().spider();
+            setRates(root.getAsJsonObject().get("rates").getAsJsonObject());
         } catch (Exception e) {
             return false;
         }
