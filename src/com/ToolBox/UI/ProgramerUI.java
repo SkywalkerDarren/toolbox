@@ -698,17 +698,11 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 if (expression.length() == 0) {
                     return;
                 }
-                char c = 0;
 
                 if (expression.charAt(expression.length() - 1) == ' ') {
                     do {
                         expression.deleteCharAt(expression.length() - 1);
-                    } while (expression.charAt(expression.length() - 1) != ' ');
-                    if ((c >= '0' && c <= '9')
-                            || (c >= 'A' && c <= 'F')
-                            || (c >= 'a' && c <= 'f')) {
-                        expression.deleteCharAt(expression.length() - 1);
-                    }
+                    } while (expression.length() > 0 && expression.charAt(expression.length() - 1) != ' ');
                 } else {
                     expression.deleteCharAt(expression.length() - 1);
                 }
