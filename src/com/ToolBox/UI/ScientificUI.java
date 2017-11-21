@@ -1,5 +1,7 @@
 package com.ToolBox.UI;
 
+import com.ToolBox.evaluate.Calculator;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -16,7 +18,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
     private static final long serialVersionUID = 688567022889591814L;
     private static JTextArea expTextArea = new JTextArea();
     private static StringBuilder number = new StringBuilder();// 用户显示
-    private static StringBuilder answer = new StringBuilder();// 后台字符串
     private boolean wasAnswer = false;
     private JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     private JButton btnLog, btnAbs, btnSin, btnCos, btnTan, btnMod;
@@ -315,7 +316,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
      * @param tempResult 设定存储结果
      */
     static void setTempResult(String tempResult) {
-        answer.append(tempResult);
         number.append(tempResult);
         expTextArea.setText(number.toString());
     }
@@ -336,18 +336,15 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
             case "8":
             case "9":
                 if (wasAnswer) {
-                    answer.replace(0, answer.length(), "");
                     number.replace(0, number.length(), "");
                     wasAnswer = false;
                 }
                 number.append(btnName);
-                answer.append(btnName);
                 expTextArea.setText(number.toString());
                 break;
             case ".":
                 wasAnswer = false;
                 number.append(".");
-                answer.append(".");
                 expTextArea.setText(number.toString());
                 break;
             case "/":
@@ -356,7 +353,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                     number.append(" ");
                 }
                 number.append("÷ ");
-                answer.append("/");
                 expTextArea.setText(number.toString());
                 break;
             case "*":
@@ -365,7 +361,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                     number.append(" ");
                 }
                 number.append("× ");
-                answer.append("*");
                 expTextArea.setText(number.toString());
                 break;
             case "-":
@@ -377,7 +372,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                     number.append(" ");
                 }
                 number.append(btnName).append(" ");
-                answer.append(btnName);
                 expTextArea.setText(number.toString());
                 break;
             case "sin":
@@ -385,8 +379,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("sin( ");
-                answer.append("s(");
+                number.append("sin ");
                 expTextArea.setText(number.toString());
                 break;
             case "cos":
@@ -394,8 +387,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("cos( ");
-                answer.append("c(");
+                number.append("cos ");
                 expTextArea.setText(number.toString());
                 break;
             case "tan":
@@ -403,8 +395,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("tan( ");
-                answer.append("t(");
+                number.append("tan ");
                 expTextArea.setText(number.toString());
                 break;
             case "mod":
@@ -413,7 +404,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                     number.append(" ");
                 }
                 number.append("mod ");
-                answer.append("m");
                 expTextArea.setText(number.toString());
                 break;
             case "log":
@@ -421,8 +411,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("log( ");
-                answer.append("l(");
+                number.append("log ");
                 expTextArea.setText(number.toString());
                 break;
             case "abs":
@@ -430,8 +419,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("abs( ");
-                answer.append("a(");
+                number.append("abs ");
                 expTextArea.setText(number.toString());
                 break;
             case "fact":
@@ -439,8 +427,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("fact( ");
-                answer.append("!(");
+                number.append("fact ");
                 expTextArea.setText(number.toString());
                 break;
             case "^":
@@ -450,7 +437,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                     number.append(" ");
                 }
                 number.append("^ ");
-                answer.append("^");
                 expTextArea.setText(number.toString());
                 break;
             case "y√x":
@@ -459,28 +445,25 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                     number.append(" ");
                 }
                 number.append("√ ");
-                answer.append("q");
                 expTextArea.setText(number.toString());
                 break;
             case "\n":
             case "=":
-                number.append(" =");
                 String r;
                 try {
-//                    r = new ScientificCalculator().getResult(answer.toString());
-//                    HistoryUI.updateRecord(r);
+                    r = new Calculator().getResult(number.toString());
+                    HistoryUI.updateRecord(r);
                 } catch (Exception error) {
                     r = "表达式无效";
                     error.printStackTrace();
                 }
+                number.append(" =");
                 number.append('\n');
                 number.append('\n');
-//                number.append(r);
+                number.append(r);
                 expTextArea.setText(number.toString());
-                answer.replace(0, answer.length(), "");
-//                answer.append(r);
                 number.replace(0, number.length(), "");
-//                number.append(r);
+                number.append(r);
                 wasAnswer = true;
                 break;
             case "CE":
@@ -488,14 +471,12 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 while (number.length() > 0 && isDigit(number.charAt(number.length() - 1))) {
                     // delete
                     number.deleteCharAt(number.length() - 1);
-                    answer.deleteCharAt(answer.length() - 1);
                     expTextArea.setText(number.toString());
                 }
 
                 break;
             case "C":
                 wasAnswer = false;
-                answer.replace(0, answer.length(), "");
                 number.replace(0, number.length(), "");
                 expTextArea.setText("0");
                 break;
@@ -507,7 +488,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 }
                 if (isDigit(number.charAt(number.length() - 1))) {
                     number.replace(number.length() - 1, number.length(), "");
-                    answer.replace(answer.length() - 1, answer.length(), "");
                 } else {
                     number.replace(number.length() - 1, number.length(), "");
                     while (number.length() > 0 && !isDigit(number.charAt(number.length() - 1))
@@ -516,32 +496,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                     }
                     number.replace(number.length() - 1, number.length(), "");
 
-                    switch (answer.charAt(answer.length() - 1)) {
-                        case '+':
-                        case '-':
-                        case '*':
-                        case '/':
-                        case '^':
-                        case 'q':
-                        case ')':
-                        case 'm':
-                            answer.replace(answer.length() - 1, answer.length(), "");
-                            break;
-                        case '(':
-                            answer.replace(answer.length() - 1, answer.length(), "");
-                            if (answer.length() > 0) switch (answer.charAt(answer.length() - 1)) {
-                                case 's':
-                                case 'c':
-                                case 't':
-                                case '!':
-                                case 'l':
-                                case 'a':
-                                    answer.replace(answer.length() - 1, answer.length(), "");
-                                    break;
-                                default:
-                                    break;
-                            }
-                    }
                 }
                 expTextArea.setText(number.toString());
                 break;

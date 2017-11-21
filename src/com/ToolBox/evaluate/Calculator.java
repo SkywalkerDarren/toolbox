@@ -1,9 +1,8 @@
 package com.ToolBox.evaluate;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
+import java.util.EmptyStackException;
 import java.util.Stack;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * 计算器核心算法
@@ -15,7 +14,6 @@ public class Calculator {
     public final static int DEC = 10;
     public final static int OCT = 8;
     public final static int BIN = 2;
-    final static MathContext mc = new MathContext(64);
     private final static int NORMAL = 0;
     private int radix = NORMAL;
 
@@ -24,13 +22,13 @@ public class Calculator {
      * @return 表达式的结果
      */
     public String getResult(String exp) {
-        String[] expression = explain(exp);
-        AtomicReference<BigDecimal> answer = new AtomicReference<>(evaluate(expression));
-        String result = answer.get().setScale(16, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();
+        String[] expression = exp.split(" ");
+        BigDecimal answer = evaluate(expression);
+        String result = answer.setScale(16, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();
         if (result.length() < 32) {
             return result;
         } else {
-            return answer.get().setScale(16, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toEngineeringString();
+            return answer.setScale(16, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toEngineeringString();
         }
     }
 
@@ -71,6 +69,8 @@ public class Calculator {
                     case "(":
                         flag.push(s);
                         break;
+                    case "":
+                        break;
                     default:
                         while (Operators.operatorHashMap.get(s).getLevel() <=
                                 Operators.operatorHashMap.get(flag.peek()).getLevel()) {
@@ -99,30 +99,38 @@ public class Calculator {
     private void calcExp(Stack<BigDecimal> val, Stack<String> flag) {
         BigDecimal b;
         BigDecimal a;
+        BigDecimal c;
         Operator op = Operators.operatorHashMap.get(flag.pop());
-        if (op.getAry() == 2) {
-            b = val.pop();
-            a = val.pop();
-            val.push(op.calc(a, b));
-        } else if (op.getAry() == 1) {
-            a = val.pop();
-            val.push(op.calc(a, null));
+        switch (op.getAry()) {
+            case 2:
+                b = val.pop();
+                try {
+                    a = val.pop();
+                } catch (EmptyStackException e) {
+                    a = BigDecimal.ZERO;
+                }
+                if (radix > 0) {
+                    c = BigDecimal.valueOf(op.calc(a.longValueExact(), b.longValueExact()));
+                } else {
+                    c = op.calc(a, b);
+                }
+                val.push(c);
+                break;
+            case 1:
+                a = val.pop();
+                if (radix > 0) {
+                    c = BigDecimal.valueOf(op.calc(a.longValueExact(), null));
+                } else {
+                    c = op.calc(a, null);
+                }
+                val.push(c);
+                break;
         }
     }
 
     public static void main(String[] args) {
 //        String[] s = {"(","50","+","4","*","3","/","2","+","799","-","180","+","9","+","8","+","(","3","/","3",")","+","8","+","(","9","+","3",")","/","3",")"};
-        String s = "( cos ( 3.1415926535 ) )";
-        System.out.println(new Calculator().getResult(s));
-    }
-
-    /**
-     * 解析表达式字符串到字符串数组
-     *
-     * @param exp 表达式字符串
-     * @return 字符串数组
-     */
-    private String[] explain(String exp) {
-        return exp.split(" ");
+//        String s = "( RR )";
+        System.out.println(new Calculator().getResult("Not 0", 10));
     }
 }

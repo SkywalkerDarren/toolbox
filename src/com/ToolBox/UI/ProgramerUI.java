@@ -26,7 +26,6 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     private static JTextField textFieldHexadecimal = new JTextField();
     private static int radix = Calculator.DEC;
     private static StringBuilder expression = new StringBuilder();
-    private static StringBuilder expUI = new StringBuilder();
     private static final Color color = new Color(240, 255, 255);
     private static final Font font = new Font("微软雅黑", Font.PLAIN, 13);
     private Long result = 0L;
@@ -207,9 +206,8 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
             tempResult = sb.toString();
         }
         Long temp = Long.valueOf(tempResult);
-        expUI.append(Long.toString(temp, radix));
         expression.append(Long.toString(temp, radix));
-        textAreaTop.setText(expUI.toString());
+        textAreaTop.setText(expression.toString());
         textFieldBinary.setText(Long.toBinaryString(temp));
         textFieldOctonary.setText(Long.toOctalString(temp));
         textFieldDecimal.setText(Long.toString(temp));
@@ -471,7 +469,6 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     }
 
     private void bitAction(int i) {
-        expUI.replace(0, expUI.length(), "");
         expression.replace(0, expression.length(), "");
         if (btnBit[i].getText().equals("0")) {
             btnBit[i].setText("1");
@@ -501,7 +498,6 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 throw new IllegalArgumentException("无此进制");
         }
         expression.append(Long.toString(result, radix));
-        expUI.append(Long.toString(result, radix));
     }
 
     /**
@@ -510,7 +506,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
      * @return true 如果前一字符是数字
      */
     private boolean prevIsDigit() {
-        char c = expUI.charAt(expUI.length() - 1);
+        char c = expression.charAt(expression.length() - 1);
         return (c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f');
     }
 
@@ -547,9 +543,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 btnF.setEnabled(false);
                 setRadix(Calculator.BIN);
                 textAreaTop.setText(textFieldBinary.getText());
-                expUI.replace(0, expUI.length(), "");
                 expression.replace(0, expression.length(), "");
-                expUI.append(textFieldBinary.getText());
                 expression.append(textFieldBinary.getText());
                 break;
             case "OCT":
@@ -569,9 +563,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 btnF.setEnabled(false);
                 radix = Calculator.OCT;
                 textAreaTop.setText(textFieldOctonary.getText());
-                expUI.replace(0, expUI.length(), "");
                 expression.replace(0, expression.length(), "");
-                expUI.append(textFieldOctonary.getText());
                 expression.append(textFieldOctonary.getText());
                 break;
             case "DEC":
@@ -591,9 +583,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 btnF.setEnabled(false);
                 radix = Calculator.DEC;
                 textAreaTop.setText(textFieldDecimal.getText());
-                expUI.replace(0, expUI.length(), "");
                 expression.replace(0, expression.length(), "");
-                expUI.append(textFieldDecimal.getText());
                 expression.append(textFieldDecimal.getText());
                 break;
             case "HEX":
@@ -613,9 +603,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 btnF.setEnabled(true);
                 radix = Calculator.HEX;
                 textAreaTop.setText(textFieldHexadecimal.getText());
-                expUI.replace(0, expUI.length(), "");
                 expression.replace(0, expression.length(), "");
-                expUI.append(textFieldHexadecimal.getText());
                 expression.append(textFieldHexadecimal.getText());
                 break;
             //***************************数值输入***********
@@ -636,102 +624,37 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
             case "E":
             case "F":
                 expression.append(btnName);
-                expUI.append(btnName);
-                textAreaTop.setText(expUI.toString());
+                textAreaTop.setText(expression.toString());
                 break;
             //*************************运算符*************
             case "RoL":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
-                }
-                expression.append(";");
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
-                break;
             case "RoR":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
-                }
-                expression.append(":");
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
-                break;
             case "Lsh":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
-                }
-                expression.append("<");
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
-                break;
             case "Rsh":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
-                }
-                expression.append(">");
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
-                break;
             case "Or":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
-                }
-                expression.append("|");
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
-                break;
             case "Xor":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
-                }
-                expression.append("^");
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
-                break;
             case "Not":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
-                }
-                expression.append("~");
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
-                break;
             case "And":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
-                }
-                expression.append("&");
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
-                break;
             case "Mod":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
-                }
-                expression.append("%");
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
-                break;
             case "(":
             case ")":
             case "+":
             case "-":
             case "*":
             case "/":
-                if (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.append(" ");
+                if (expression.length() > 0 && prevIsDigit()) {
+                    expression.append(" ");
                 }
-                expression.append(btnName);
-                expUI.append(btnName).append(" ");
-                textAreaTop.setText(expUI.toString());
+                expression.append(btnName).append(" ");
+                textAreaTop.setText(expression.toString());
                 break;
             //*************************控制符***********
             case "\n":
             case "=":
                 String r;
                 try {
-//                    r = new ProgramerCalculator().getResult(expression.toString(), radix);
-//                    result = Long.valueOf(r);
+                    r = new Calculator().getResult(expression.toString(), radix);
+                    result = Long.valueOf(r);
                     textAreaTop.setText(Long.toString(result, radix));
                     textFieldBinary.setText(Long.toBinaryString(result));
                     textFieldOctonary.setText(Long.toOctalString(result));
@@ -747,9 +670,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                             btnBit[i].setText("0");
                         }
                     }
-                    expUI.replace(0, expUI.length(), "");
                     expression.replace(0, expression.length(), "");
-                    expUI.append(Long.toString(result, radix));
                     expression.append(Long.toString(result, radix));
                 } catch (Exception e2) {
                     r = "表达式无效";
@@ -758,47 +679,40 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                     textFieldOctonary.setText("");
                     textFieldDecimal.setText("");
                     textFieldHexadecimal.setText("");
-                    expUI.replace(0, expUI.length(), "");
                     expression.replace(0, expression.length(), "");
                     e2.printStackTrace();
                 }
                 break;
             case "CE":
-                while (expUI.length() > 0 && prevIsDigit()) {
-                    expUI.deleteCharAt(expUI.length() - 1);
+                while (expression.length() > 0 && prevIsDigit()) {
                     expression.deleteCharAt(expression.length() - 1);
                 }
-                textAreaTop.setText(expUI.toString());
+                textAreaTop.setText(expression.toString());
                 break;
             case "c":
-                expUI.replace(0, expUI.length(), "");
                 expression.replace(0, expression.length(), "");
-                textAreaTop.setText(expUI.toString());
+                textAreaTop.setText(expression.toString());
                 break;
             case "\b":
             case "←":
-                if (expUI.length() == 0) {
+                if (expression.length() == 0) {
                     return;
                 }
-
-                expression.deleteCharAt(expression.length() - 1);
                 char c = 0;
-                if (expression.length() > 0) {
-                    c = expression.charAt(expression.length() - 1);
-                }
-                if (expUI.charAt(expUI.length() - 1) == ' ') {
+
+                if (expression.charAt(expression.length() - 1) == ' ') {
                     do {
-                        expUI.deleteCharAt(expUI.length() - 1);
-                    } while (expUI.charAt(expUI.length() - 1) != ' ');
+                        expression.deleteCharAt(expression.length() - 1);
+                    } while (expression.charAt(expression.length() - 1) != ' ');
                     if ((c >= '0' && c <= '9')
                             || (c >= 'A' && c <= 'F')
                             || (c >= 'a' && c <= 'f')) {
-                        expUI.deleteCharAt(expUI.length() - 1);
+                        expression.deleteCharAt(expression.length() - 1);
                     }
                 } else {
-                    expUI.deleteCharAt(expUI.length() - 1);
+                    expression.deleteCharAt(expression.length() - 1);
                 }
-                textAreaTop.setText(expUI.toString());
+                textAreaTop.setText(expression.toString());
                 break;
             default:
                 throw new IllegalArgumentException("无此操作符");
