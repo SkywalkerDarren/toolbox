@@ -105,8 +105,8 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
         lbSelectCurrency.setBounds(86, 58, 175, 35);
         add(lbSelectCurrency);
 
-        lbDate.setBounds(86, 253, 175, 35);
-        lbDate.setText("当前汇率的更新日期 " + exchange.getDate());
+        lbDate.setBounds(70, 253, 205, 35);
+        lbDate.setText("当前汇率日期 " + exchange.getDate());
         add(lbDate);
 
         lbMuch.setBounds(315, 58, 175, 35);

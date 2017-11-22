@@ -3,9 +3,7 @@ package com.ToolBox.currency;
 import com.ToolBox.UI.FileResource;
 import com.google.gson.*;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.text.SimpleDateFormat;
@@ -23,6 +21,7 @@ public class ExchangerRateRecord {
     private Currency rates[];
     private int size;
     private JsonElement root;
+    private File file = new File("ExchangeRate.json");
 
     /**
      * 初始化原始json数据
@@ -30,13 +29,39 @@ public class ExchangerRateRecord {
     public ExchangerRateRecord() {
         try {
             FileResource resource = new FileResource();
-            InputStream in = resource.exchangeRateIS;
-            root = new JsonParser().parse(new InputStreamReader(in, "utf-8"));
-            setRates(root.getAsJsonObject().get("rates").getAsJsonObject());
-        } catch (JsonIOException | JsonSyntaxException | UnsupportedEncodingException e) {
+
+            try {
+                if (!file.exists()) {
+                    InputStream in = resource.exchangeRateIS;
+                    root = new JsonParser().parse(new InputStreamReader(in, "utf-8"));
+                    saveData(root);
+                } else {
+                    root = new JsonParser().parse(new InputStreamReader(new FileInputStream(file), "utf-8"));
+                }
+
+                setRates(root.getAsJsonObject().get("rates").getAsJsonObject());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (JsonIOException | JsonSyntaxException e) {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * 持久化保存数据
+     *
+     * @param root json根节点元素
+     */
+    private void saveData(JsonElement root) {
+        try {
+            FileWriter writer = new FileWriter(file);
+            writer.write(root.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -46,7 +71,7 @@ public class ExchangerRateRecord {
      */
     public String getDate() {
         Date date = new Date(root.getAsJsonObject().get("timestamp").getAsLong() * 1000);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm");
         return format.format(date);
     }
 
@@ -59,6 +84,7 @@ public class ExchangerRateRecord {
         try {
             root = new ExchangeRateSpyder().spider();
             setRates(root.getAsJsonObject().get("rates").getAsJsonObject());
+            saveData(root);
         } catch (Exception e) {
             return false;
         }
