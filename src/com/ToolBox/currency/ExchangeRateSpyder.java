@@ -36,8 +36,7 @@ class ExchangeRateSpyder {
         // 解析json
         JsonParser jp = new JsonParser();
         InputStreamReader isr = new InputStreamReader((InputStream) request.getContent(), "utf-8");
-        JsonElement root = jp.parse(isr);
 
-        return root;
+        return jp.parse(isr);
     }
 }
