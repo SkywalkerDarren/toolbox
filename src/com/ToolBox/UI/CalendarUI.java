@@ -2,8 +2,6 @@ package com.ToolBox.UI;
 
 import com.ToolBox.date.DateCalculate;
 import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.Period;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +23,7 @@ class CalendarUI extends TransparentPanelUI {
     private static final Font fontPlain = new Font("微软雅黑", Font.PLAIN, 14);
     private static final Font fontBold = new Font("微软雅黑", Font.BOLD, 14);
     private static final Color normal = new Color(245, 255, 255);
-    private JComboBox<String> comboBoxYear;
+    private JComboBox<String> comboBoxCalcMethod;
     private JPanel panelPlusOrMinus;
     private JPanel panelInterval;
 
@@ -35,7 +33,7 @@ class CalendarUI extends TransparentPanelUI {
      */
     @Override
     protected void initCompoment() {
-        comboBoxYear = new JComboBox<>();
+        comboBoxCalcMethod = new JComboBox<>();
         panelPlusOrMinus = new PlusOrMinusPanel();
         panelInterval = new IntervalPanel();
     }
@@ -45,13 +43,13 @@ class CalendarUI extends TransparentPanelUI {
      */
     @Override
     protected void initUI() {
-        comboBoxYear.setBackground(normal);
-        comboBoxYear.setBounds(97, 72, 160, 40);
-        comboBoxYear.setFont(new Font("微软雅黑", Font.BOLD, 13));
-        comboBoxYear.addItem(interval);
-        comboBoxYear.addItem(addAndMinusDay);
-        comboBoxYear.setVisible(true);
-        add(comboBoxYear);
+        comboBoxCalcMethod.setBackground(normal);
+        comboBoxCalcMethod.setBounds(97, 72, 160, 40);
+        comboBoxCalcMethod.setFont(new Font("微软雅黑", Font.BOLD, 13));
+        comboBoxCalcMethod.addItem(interval);
+        comboBoxCalcMethod.addItem(addAndMinusDay);
+        comboBoxCalcMethod.setVisible(true);
+        add(comboBoxCalcMethod);
 
         //日期增减
         panelPlusOrMinus.setOpaque(false);
@@ -73,10 +71,10 @@ class CalendarUI extends TransparentPanelUI {
      */
     @Override
     protected void createAction() {
-        comboBoxYear.addActionListener(e -> {
-            if (e.getSource() == comboBoxYear) {
+        comboBoxCalcMethod.addActionListener(e -> {
+            if (e.getSource() == comboBoxCalcMethod) {
 
-                int index = comboBoxYear.getSelectedIndex();
+                int index = comboBoxCalcMethod.getSelectedIndex();
                 switch (index) {
                     case 0:
                         panelPlusOrMinus.setVisible(false);
@@ -97,73 +95,6 @@ class CalendarUI extends TransparentPanelUI {
      */
     CalendarUI() {
         super();
-    }
-
-
-    /**
-     * 根据年月设定日期
-     *
-     * @param year  年份
-     * @param month 月份
-     * @return 天数
-     */
-    private int setDay(int year, int month) {
-        int day;
-        switch (month) {
-            case 1:
-                day = 31;
-                break;
-            case 2:
-                if (isLeapYear(year)) {
-                    day = 29;
-                } else {
-                    day = 28;
-                }
-                break;
-            case 3:
-                day = 31;
-                break;
-            case 4:
-                day = 30;
-                break;
-            case 5:
-                day = 31;
-                break;
-            case 6:
-                day = 30;
-                break;
-            case 7:
-                day = 31;
-                break;
-            case 8:
-                day = 31;
-                break;
-            case 9:
-                day = 30;
-                break;
-            case 10:
-                day = 31;
-                break;
-            case 11:
-                day = 30;
-                break;
-            case 12:
-                day = 31;
-                break;
-            default:
-                throw new IllegalArgumentException("日期非法");
-        }
-        return day;
-    }
-
-    /**
-     * 判断一个年份是否是闰年
-     *
-     * @param year 需判断的年份
-     * @return true 如果是闰年
-     */
-    private boolean isLeapYear(int year) {
-        return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
     }
 
     /**
@@ -204,7 +135,7 @@ class CalendarUI extends TransparentPanelUI {
         private JLabel labelBetweenDay;
         private JLabel textFieldTotalDay;
         private JLabel labelTotalDay;
-        private JButton buttonClac;
+        private JButton buttonCalc;
 
         /**
          * 初始化组件
@@ -234,7 +165,7 @@ class CalendarUI extends TransparentPanelUI {
             labelBetweenDay = new JLabel(day);
             textFieldTotalDay = new JLabel("", JLabel.CENTER);
             labelTotalDay = new JLabel(days);
-            buttonClac = new JButton("计算");
+            buttonCalc = new JButton("计算");
         }
 
         /**
@@ -242,6 +173,8 @@ class CalendarUI extends TransparentPanelUI {
          */
         @Override
         protected void initUI() {
+            int day;
+
             // 开始年份
             comboBoxStartYear.setBounds(97, 157, 65, 35);
             comboBoxStartYear.setBackground(normal);
@@ -264,6 +197,11 @@ class CalendarUI extends TransparentPanelUI {
             comboBoxStartDay.setBounds(280, 157, 65, 35);
             comboBoxStartDay.setBackground(normal);
             add(comboBoxStartDay);
+            day = DateCalculate.setDay((int) comboBoxStartYear.getSelectedItem(), (int) comboBoxStartMonth.getSelectedItem());
+            for (int i = 1; i <= day; i++) {
+                comboBoxStartDay.addItem(i);
+            }
+            comboBoxStartDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
             // 结束年份
             comboBoxEndYear.setBounds(97, 244, 65, 35);
@@ -287,6 +225,11 @@ class CalendarUI extends TransparentPanelUI {
             comboBoxEndDay.setBounds(280, 244, 65, 35);
             comboBoxEndDay.setBackground(normal);
             add(comboBoxEndDay);
+            day = DateCalculate.setDay((int) comboBoxEndYear.getSelectedItem(), (int) comboBoxEndMonth.getSelectedItem());
+            for (int i = 1; i <= day; i++) {
+                comboBoxEndDay.addItem(i);
+            }
+            comboBoxEndDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
             // 标签组********************************
             labelBetweenFrom.setFont(fontPlain);
@@ -359,10 +302,10 @@ class CalendarUI extends TransparentPanelUI {
             add(labelTotalDay);
 
             // 计算按钮
-            buttonClac.setFont(fontPlain);
-            buttonClac.setBackground(normal);
-            buttonClac.setBounds(223, 396, 75, 35);
-            add(buttonClac);
+            buttonCalc.setFont(fontPlain);
+            buttonCalc.setBackground(normal);
+            buttonCalc.setBounds(223, 396, 75, 35);
+            add(buttonCalc);
         }
 
         /**
@@ -370,7 +313,6 @@ class CalendarUI extends TransparentPanelUI {
          */
         @Override
         protected void createAction() {
-            int day;
 
             comboBoxStartDay.addMouseListener(new MouseListener() {
 
@@ -392,7 +334,7 @@ class CalendarUI extends TransparentPanelUI {
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    int day = setDay((int) comboBoxStartYear.getSelectedItem(),
+                    int day = DateCalculate.setDay((int) comboBoxStartYear.getSelectedItem(),
                             (int) comboBoxStartMonth.getSelectedItem());
                     comboBoxStartDay.removeAllItems();
                     for (int i = 1; i <= day; i++) {
@@ -400,11 +342,6 @@ class CalendarUI extends TransparentPanelUI {
                     }
                 }
             });
-            day = setDay((int) comboBoxStartYear.getSelectedItem(), (int) comboBoxStartMonth.getSelectedItem());
-            for (int i = 1; i <= day; i++) {
-                comboBoxStartDay.addItem(i);
-            }
-            comboBoxStartDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
             comboBoxEndDay.addMouseListener(new MouseListener() {
 
@@ -426,32 +363,28 @@ class CalendarUI extends TransparentPanelUI {
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    int day = setDay((int) comboBoxEndYear.getSelectedItem(), (int) comboBoxEndMonth.getSelectedItem());
+                    int day = DateCalculate.setDay((int) comboBoxEndYear.getSelectedItem(), (int) comboBoxEndMonth.getSelectedItem());
                     comboBoxEndDay.removeAllItems();
                     for (int i = 1; i <= day; i++) {
                         comboBoxEndDay.addItem(i);
                     }
                 }
             });
-            day = setDay((int) comboBoxEndYear.getSelectedItem(), (int) comboBoxEndMonth.getSelectedItem());
-            for (int i = 1; i <= day; i++) {
-                comboBoxEndDay.addItem(i);
-            }
-            comboBoxEndDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
-            buttonClac.addActionListener(e -> {
-                DateTime start = new DateTime((int) comboBoxStartYear.getSelectedItem(),
-                        (int) comboBoxStartMonth.getSelectedItem(), (int) comboBoxStartDay.getSelectedItem(), 0, 0);
-                DateTime end = new DateTime((int) comboBoxEndYear.getSelectedItem(),
-                        (int) comboBoxEndMonth.getSelectedItem(), (int) comboBoxEndDay.getSelectedItem(), 0, 0);
+            buttonCalc.addActionListener(e -> {
+                int startYear = (int) comboBoxStartYear.getSelectedItem();
+                int startMonth = (int) comboBoxStartMonth.getSelectedItem();
+                int startDay = (int) comboBoxStartDay.getSelectedItem();
 
-                Period period = new DateCalculate(start, end).getIntervalDate();
-                labelIntervalDay.setText(period.getDays() + period.getWeeks() * 7 + "");
-                labelIntervalMonth.setText(period.getMonths() + "");
-                labelIntervalYear.setText(period.getYears() + "");
+                int endYear = (int) comboBoxEndYear.getSelectedItem();
+                int endMonth = (int) comboBoxEndMonth.getSelectedItem();
+                int endDay = (int) comboBoxEndDay.getSelectedItem();
 
-                int day1 = Days.daysBetween(start, end).getDays();
-                textFieldTotalDay.setText(Math.abs(day1) + "");
+                DateCalculate dateCalculate = new DateCalculate(startYear, startMonth, startDay, endYear, endMonth, endDay);
+                labelIntervalDay.setText(dateCalculate.getIntervalDay());
+                labelIntervalMonth.setText(dateCalculate.getIntervalMonth());
+                labelIntervalYear.setText(dateCalculate.getIntervalYear());
+                textFieldTotalDay.setText(dateCalculate.getTotalDay());
             });
 
         }
@@ -495,9 +428,9 @@ class CalendarUI extends TransparentPanelUI {
         private JComboBox<Integer> comboBoxAddMonth;
         private JComboBox<Integer> comboBoxAddDay;
         private JComboBox<Integer> comboBoxAddYear;
-        private JComboBox<Integer> comboBoxFromYear;
-        private JComboBox<Integer> comboBoxFromMonth;
-        private JComboBox<Integer> comboBoxFromDay;
+        private JComboBox<Integer> comboBoxStartYear;
+        private JComboBox<Integer> comboBoxStartMonth;
+        private JComboBox<Integer> comboBoxStartDay;
         private JLabel plusOrMinusYear;
         private JLabel plusOrMinusMonth;
         private JLabel plusOrMinusDay;
@@ -527,9 +460,9 @@ class CalendarUI extends TransparentPanelUI {
             comboBoxAddMonth = new JComboBox<>();
             comboBoxAddDay = new JComboBox<>();
             comboBoxAddYear = new JComboBox<>();
-            comboBoxFromYear = new JComboBox<>();
-            comboBoxFromMonth = new JComboBox<>();
-            comboBoxFromDay = new JComboBox<>();
+            comboBoxStartYear = new JComboBox<>();
+            comboBoxStartMonth = new JComboBox<>();
+            comboBoxStartDay = new JComboBox<>();
             plusOrMinusYear = new JLabel("", JLabel.CENTER);
             plusOrMinusMonth = new JLabel("", JLabel.CENTER);
             plusOrMinusDay = new JLabel("", JLabel.CENTER);
@@ -581,7 +514,6 @@ class CalendarUI extends TransparentPanelUI {
             labelFromMonth.setBounds(252, 166, 54, 15);
             add(labelFromMonth);
 
-
             labelFromDay.setFont(fontBold);
             labelFromDay.setBounds(345, 166, 54, 15);
             add(labelFromDay);
@@ -607,25 +539,30 @@ class CalendarUI extends TransparentPanelUI {
                 comboBoxAddYear.addItem(i);
             }
 
-            comboBoxFromYear.setBounds(97, 157, 65, 35);
-            comboBoxFromYear.setBackground(normal);
-            add(comboBoxFromYear);
+            comboBoxStartYear.setBounds(97, 157, 65, 35);
+            comboBoxStartYear.setBackground(normal);
+            add(comboBoxStartYear);
             for (int i = 1970; i < 3000; i++) {
-                comboBoxFromYear.addItem(i);
+                comboBoxStartYear.addItem(i);
             }
-            comboBoxFromYear.setSelectedItem(DateTime.now().getYear());
+            comboBoxStartYear.setSelectedItem(DateTime.now().getYear());
 
-            comboBoxFromMonth.setBounds(187, 157, 65, 35);
-            comboBoxFromMonth.setBackground(normal);
-            add(comboBoxFromMonth);
+            comboBoxStartMonth.setBounds(187, 157, 65, 35);
+            comboBoxStartMonth.setBackground(normal);
+            add(comboBoxStartMonth);
             for (int i = 1; i <= 12; i++) {
-                comboBoxFromMonth.addItem(i);
+                comboBoxStartMonth.addItem(i);
             }
-            comboBoxFromMonth.setSelectedItem(DateTime.now().getMonthOfYear());
+            comboBoxStartMonth.setSelectedItem(DateTime.now().getMonthOfYear());
 
-            comboBoxFromDay.setBounds(280, 157, 65, 35);
-            comboBoxFromDay.setBackground(normal);
-            add(comboBoxFromDay);
+            comboBoxStartDay.setBounds(280, 157, 65, 35);
+            comboBoxStartDay.setBackground(normal);
+            add(comboBoxStartDay);
+            int day = DateCalculate.setDay((int) comboBoxStartYear.getSelectedItem(), (int) comboBoxStartMonth.getSelectedItem());
+            for (int i = 1; i <= day; i++) {
+                comboBoxStartDay.addItem(i);
+            }
+            comboBoxStartDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
             // 这个是最下面那四个或三个
             plusOrMinusYear.setBackground(new Color(224, 255, 255));
@@ -650,7 +587,6 @@ class CalendarUI extends TransparentPanelUI {
             labelmonth.setBounds(251, 377, 54, 15);
             add(labelmonth);
 
-
             labelday.setFont(fontBold);
             labelday.setBounds(345, 377, 54, 15);
             add(labelday);
@@ -669,7 +605,7 @@ class CalendarUI extends TransparentPanelUI {
             radioButtonAdd.addActionListener(e -> isAdd = true);
             radioButtonMinus.addActionListener(e -> isAdd = false);
 
-            comboBoxFromDay.addMouseListener(new MouseListener() {
+            comboBoxStartDay.addMouseListener(new MouseListener() {
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
@@ -689,34 +625,27 @@ class CalendarUI extends TransparentPanelUI {
 
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    int day = setDay((int) comboBoxAddYear.getSelectedItem(), (int) comboBoxFromMonth.getSelectedItem());
-                    comboBoxFromDay.removeAllItems();
+                    int day = DateCalculate.setDay((int) comboBoxStartYear.getSelectedItem(), (int) comboBoxStartMonth.getSelectedItem());
+                    comboBoxStartDay.removeAllItems();
                     for (int i = 1; i <= day; i++) {
-                        comboBoxFromDay.addItem(i);
+                        comboBoxStartDay.addItem(i);
                     }
                 }
             });
-            int day = setDay((int) comboBoxFromYear.getSelectedItem(), (int) comboBoxFromMonth.getSelectedItem());
-            for (int i = 1; i <= day; i++) {
-                comboBoxFromDay.addItem(i);
-            }
-            comboBoxFromDay.setSelectedItem(DateTime.now().getDayOfMonth());
 
             buttonCalc.addActionListener(e -> {
-                DateTime start = new DateTime((int) comboBoxFromYear.getSelectedItem(),
-                        (int) comboBoxFromMonth.getSelectedItem(), (int) comboBoxFromDay.getSelectedItem(), 0, 0);
-                Period period = new Period((int) comboBoxAddYear.getSelectedItem(),
-                        (int) comboBoxAddMonth.getSelectedItem(), 0, (int) comboBoxAddDay.getSelectedItem(), 0, 0,
-                        0, 0);
-                DateTime target;
-                if (isAdd) {
-                    target = start.plus(period);
-                } else {
-                    target = start.minus(period);
-                }
-                plusOrMinusDay.setText(target.getDayOfMonth() + "");
-                plusOrMinusMonth.setText(target.getMonthOfYear() + "");
-                plusOrMinusYear.setText(target.getYear() + "");
+                int startYear = (int) comboBoxStartYear.getSelectedItem();
+                int startMonth = (int) comboBoxStartMonth.getSelectedItem();
+                int startDay = (int) comboBoxStartDay.getSelectedItem();
+
+                int year = (int) comboBoxAddYear.getSelectedItem();
+                int month = (int) comboBoxAddMonth.getSelectedItem();
+                int days = (int) comboBoxAddDay.getSelectedItem();
+
+                DateCalculate dateCalculate = new DateCalculate(startYear, startMonth, startDay, year, month, days, isAdd);
+                plusOrMinusDay.setText(dateCalculate.getEndDay());
+                plusOrMinusMonth.setText(dateCalculate.getEndMonth());
+                plusOrMinusYear.setText(dateCalculate.getEndYear());
             });
         }
 
