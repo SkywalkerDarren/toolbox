@@ -125,6 +125,8 @@ public class Calculator {
                 }
                 val.push(c);
                 break;
+            default:
+                break;
         }
     }
 

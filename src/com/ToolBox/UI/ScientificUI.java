@@ -464,6 +464,8 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 }
                 expTextArea.setText(number.toString());
                 break;
+            default:
+                break;
         }
 
     }
