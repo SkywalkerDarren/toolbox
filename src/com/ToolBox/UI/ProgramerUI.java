@@ -97,32 +97,31 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     @Override
     protected void initUI() {
 
-        //最上方显示区域
+        // 最上方显示区域
         textAreaTop.setEditable(false);
         textAreaTop.setBackground(new Color(250, 255, 255));
         textAreaTop.setFont(new Font("微软雅黑", Font.PLAIN, 14));
         textAreaTop.setBounds(13, 12, 570, 60);
         textAreaTop.setColumns(1000);
-        textAreaTop.addMouseListener(this);
         add(textAreaTop);
 
-        //二进制
+        // 二进制
         btnBinary.setBounds(13, 89, 51, 23);
         add(btnBinary);
 
-        //八进制
+        // 八进制
         btnOctonary.setBounds(13, 140, 51, 23);
         add(btnOctonary);
 
-        //十进制
+        // 十进制
         btnDecimal.setBounds(13, 191, 51, 23);
         add(btnDecimal);
 
-        //十六进制
+        // 十六进制
         btnHexadecimal.setBounds(13, 244, 51, 23);
         add(btnHexadecimal);
 
-        //二进制文本框
+        // 二进制文本框
         textFieldBinary.setEditable(false);
         textFieldBinary.setBackground(color);
         textFieldBinary.setFont(font);
@@ -130,7 +129,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         textFieldBinary.setColumns(100);
         add(textFieldBinary);
 
-        //八进制文本框
+        // 八进制文本框
         textFieldOctonary.setEditable(false);
         textFieldOctonary.setBackground(color);
         textFieldOctonary.setFont(font);
@@ -138,7 +137,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         textFieldOctonary.setBounds(83, 136, 500, 30);
         add(textFieldOctonary);
 
-        //十进制文本框
+        // 十进制文本框
         textFieldDecimal.setEditable(false);
         textFieldDecimal.setBackground(color);
         textFieldDecimal.setFont(font);
@@ -147,7 +146,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         add(textFieldDecimal);
 
 
-        //十六进制文本框
+        // 十六进制文本框
         textFieldHexadecimal.setEditable(false);
         textFieldHexadecimal.setBackground(color);
         textFieldHexadecimal.setFont(font);
@@ -155,7 +154,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         textFieldHexadecimal.setBounds(83, 240, 500, 30);
         add(textFieldHexadecimal);
 
-        //最下方标签页
+        // 最下方标签页
         JTabbedPane tabbedPaneDisplay = new JTabbedPane(JTabbedPane.TOP);
         tabbedPaneDisplay.setFont(font);
         tabbedPaneDisplay.setBounds(13, 275, 567, 214);
@@ -181,6 +180,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
      */
     @Override
     protected void createAction() {
+        textAreaTop.addMouseListener(this);
         textFieldBinary.addMouseListener(this);
         textFieldOctonary.addMouseListener(this);
         textFieldDecimal.addMouseListener(this);
@@ -214,6 +214,11 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         textFieldHexadecimal.setText(Long.toHexString(temp));
     }
 
+    /**
+     * 全键盘面板布局
+     *
+     * @param panel 为panel加入控件
+     */
     private void fullKeyboard(JPanel panel) {
         btnRol.setFont(font);
         btnRol.setBackground(color);
@@ -444,6 +449,11 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
 
     }
 
+    /**
+     * 比特键盘布局
+     *
+     * @param panel 为panel加入控件
+     */
     private void bitKeyboard(JPanel panel) {
         JLabel[] lblIndex = new JLabel[16];
         final Font bitFont = new Font("微软雅黑", Font.BOLD, 10);
@@ -468,6 +478,11 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         }
     }
 
+    /**
+     * 比特键盘动作
+     *
+     * @param i 键盘序号
+     */
     private void bitAction(int i) {
         expression.replace(0, expression.length(), "");
         if (btnBit[i].getText().equals("0")) {
@@ -510,6 +525,11 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         return (c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f');
     }
 
+    /**
+     * 设定进制
+     *
+     * @param radix 进制
+     */
     private static void setRadix(int radix) {
         ProgramerUI.radix = radix;
     }
