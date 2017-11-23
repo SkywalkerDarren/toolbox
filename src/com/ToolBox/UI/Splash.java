@@ -44,11 +44,12 @@ public class Splash extends JWindow implements Runnable {
     @Override
     public void run() {
         setVisible(true);
+        progress.setString(waiting + 0 + "%");
         JFrame ui = new UserInterFace();
         try {
             for (int i = 0; i < 100; i++) {
                 progress.setString(waiting + i + "%");
-                Thread.sleep(20);
+                Thread.sleep(5);
                 progress.setValue(i);
                 switch (i) {
                     case 40:
