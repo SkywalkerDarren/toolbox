@@ -119,9 +119,9 @@ public class Calculator {
             case 1:
                 a = val.pop();
                 if (radix > 0) {
-                    c = BigDecimal.valueOf(op.calc(a.longValueExact(), null));
+                    c = BigDecimal.valueOf(op.calc(a.longValueExact()));
                 } else {
-                    c = op.calc(a, null);
+                    c = op.calc(a);
                 }
                 val.push(c);
                 break;
