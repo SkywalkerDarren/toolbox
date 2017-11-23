@@ -325,6 +325,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
      */
     private void action(String btnName) {
         switch (btnName) {
+            // 数字
             case "0":
             case "1":
             case "2":
@@ -342,11 +343,13 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 number.append(btnName);
                 expTextArea.setText(number.toString());
                 break;
+            // 特殊
             case ".":
                 wasAnswer = false;
                 number.append(".");
                 expTextArea.setText(number.toString());
                 break;
+            // 双目
             case "/":
                 wasAnswer = false;
                 if (!(number.length() > 0 && prevIsSpace())) {
@@ -367,67 +370,12 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
             case "+":
             case "(":
             case ")":
-                wasAnswer = false;
-                if (!(number.length() > 0 && prevIsSpace())) {
-                    number.append(" ");
-                }
-                number.append(btnName).append(" ");
-                expTextArea.setText(number.toString());
-                break;
-            case "sin":
-                wasAnswer = false;
-                if (!(number.length() > 0 && prevIsSpace())) {
-                    number.append(" ");
-                }
-                number.append("sin ");
-                expTextArea.setText(number.toString());
-                break;
-            case "cos":
-                wasAnswer = false;
-                if (!(number.length() > 0 && prevIsSpace())) {
-                    number.append(" ");
-                }
-                number.append("cos ");
-                expTextArea.setText(number.toString());
-                break;
-            case "tan":
-                wasAnswer = false;
-                if (!(number.length() > 0 && prevIsSpace())) {
-                    number.append(" ");
-                }
-                number.append("tan ");
-                expTextArea.setText(number.toString());
-                break;
             case "mod":
                 wasAnswer = false;
                 if (!(number.length() > 0 && prevIsSpace())) {
                     number.append(" ");
                 }
-                number.append("mod ");
-                expTextArea.setText(number.toString());
-                break;
-            case "log":
-                wasAnswer = false;
-                if (!(number.length() > 0 && prevIsSpace())) {
-                    number.append(" ");
-                }
-                number.append("log ");
-                expTextArea.setText(number.toString());
-                break;
-            case "abs":
-                wasAnswer = false;
-                if (!(number.length() > 0 && prevIsSpace())) {
-                    number.append(" ");
-                }
-                number.append("abs ");
-                expTextArea.setText(number.toString());
-                break;
-            case "fact":
-                wasAnswer = false;
-                if (!(number.length() > 0 && prevIsSpace())) {
-                    number.append(" ");
-                }
-                number.append("fact ");
+                number.append(btnName).append(" ");
                 expTextArea.setText(number.toString());
                 break;
             case "^":
@@ -447,6 +395,24 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 number.append("√ ");
                 expTextArea.setText(number.toString());
                 break;
+            // 单目
+            case "sin":
+            case "cos":
+            case "tan":
+            case "abs":
+            case "fact":
+            case "log":
+                if (wasAnswer) {
+                    number.replace(0, number.length(), "");
+                    wasAnswer = false;
+                }
+                if (!(number.length() > 0 && prevIsSpace())) {
+                    number.append(" ");
+                }
+                number.append(btnName).append(" ( ");
+                expTextArea.setText(number.toString());
+                break;
+            // 控制符
             case "\n":
             case "=":
                 String r;
@@ -469,7 +435,6 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
             case "CE":
                 wasAnswer = false;
                 while (number.length() > 0 && isDigit(number.charAt(number.length() - 1))) {
-                    // delete
                     number.deleteCharAt(number.length() - 1);
                     expTextArea.setText(number.toString());
                 }
