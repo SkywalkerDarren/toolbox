@@ -168,9 +168,11 @@ public class Calculator {
         if (!c.getResult("1 + F", HEX).equals("16")) throw new AssertionError();
         if (!c.getResult("1 + f", HEX).equals("16")) throw new AssertionError();
         if (!c.getResult("( 1 Or 2 + 4 ) And 8 Xor 7", DEC).equals("7")) throw new AssertionError();
-        if (!c.getResult("Not - 1", DEC).equals("0")) throw new AssertionError();
+        if (!c.getResult("Not 0", DEC).equals("-1")) throw new AssertionError();
+        if (!c.getResult("Not ( - 1", DEC).equals("0")) throw new AssertionError();
+        if (!c.getResult("2 And ( - 3", DEC).equals("0")) throw new AssertionError();
         if (!c.getResult("1 Lsh 1", DEC).equals("2")) throw new AssertionError();
-        if (!c.getResult("1 Lsh 1 ( - 1 + 2 )", DEC).equals("4")) throw new AssertionError();
+        if (!c.getResult("1 Lsh 1 + ( - 1 + 2 )", DEC).equals("3")) throw new AssertionError();
         if (!c.getResult("4 Rsh 1", DEC).equals("2")) throw new AssertionError();
         if (!c.getResult("1 RoL 1", DEC).equals("2")) throw new AssertionError();
         if (!c.getResult("1 RoR 1", DEC).equals(Long.MIN_VALUE + "")) throw new AssertionError();

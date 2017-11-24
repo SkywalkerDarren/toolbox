@@ -649,11 +649,17 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
             //*************************运算符*************
             case "RoL":
             case "RoR":
+            case "Not":
+                if (expression.length() > 0 && prevIsDigit()) {
+                    expression.append(" ");
+                }
+                expression.append(btnName).append(" ( ");
+                textAreaTop.setText(expression.toString());
+                break;
             case "Lsh":
             case "Rsh":
             case "Or":
             case "Xor":
-            case "Not":
             case "And":
             case "Mod":
             case "(":
