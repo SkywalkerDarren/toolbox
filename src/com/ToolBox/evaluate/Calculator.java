@@ -131,8 +131,51 @@ public class Calculator {
     }
 
     public static void main(String[] args) {
-//        String[] s = {"(","50","+","4","*","3","/","2","+","799","-","180","+","9","+","8","+","(","3","/","3",")","+","8","+","(","9","+","3",")","/","3",")"};
-//        String s = "( RR )";
-        System.out.println(new Calculator().getResult("Not 0", 10));
+        Calculator c = new Calculator();
+        // 科学计算器
+        assert c.getResult("").equals("0");
+        assert c.getResult("1 + 1").equals("2");
+        assert c.getResult("( 1 + 1 )").equals("2");
+        assert c.getResult("( - 1 + 1 )").equals("0");
+        assert c.getResult("sin ( 3.1415926535").equals("0.0000000000897932");
+        assert c.getResult("cos ( - 1 + 1 )").equals("1");
+        assert c.getResult("tan ( 3.1415926535").equals("-0.0000000000897932");
+        assert c.getResult("sin ( cos ( tan ( 10").equals("0.7153149717720886");
+        assert c.getResult("fact ( 20").equals("2432902008176640000");
+        assert c.getResult("log ( 100").equals("2");
+        assert c.getResult("abs ( - 100").equals("100");
+        assert c.getResult("9 mod 7").equals("2");
+        assert c.getResult("3.5 mod 0.2").equals("0.1");
+        assert c.getResult("3 ^ 2").equals("9");
+        assert c.getResult("3 ^ 0.5").startsWith("1.73");
+        assert c.getResult("3 ^ 0").startsWith("1");
+        assert c.getResult("2 √ 9").equals("3");
+        assert c.getResult("2 √ 0").equals("0");
+        assert c.getResult("0.5 √ 2").equals("4");
+        assert c.getResult("- 1").equals("-1");
+        assert c.getResult("( ( ( ( ( 0 )").equals("0");
+        assert c.getResult("( ( ( ( (").equals("0");
+        assert c.getResult("( - 1").equals("-1");
+        assert c.getResult("3 + 3 × 3 - 3 ÷ 3").equals("11");
+        assert c.getResult("( 50 + 4 * 3 / 2 + 799 - 180 + 9 + 8 + ( 3 / 3 ) + 8 + ( 9 + 3 ) / 3 )").equals("705");
+        System.out.println("科学计算器成功");
+
+        // 程序员计算器
+        if (!c.getResult("", BIN).equals("0")) throw new AssertionError();
+        if (!c.getResult("1 + 1", BIN).equals("2")) throw new AssertionError();
+        if (!c.getResult("1 + 7", OCT).equals("8")) throw new AssertionError();
+        if (!c.getResult("1 + 9", DEC).equals("10")) throw new AssertionError();
+        if (!c.getResult("1 + F", HEX).equals("16")) throw new AssertionError();
+        if (!c.getResult("1 + f", HEX).equals("16")) throw new AssertionError();
+        if (!c.getResult("( 1 Or 2 + 4 ) And 8 Xor 7", DEC).equals("7")) throw new AssertionError();
+        if (!c.getResult("Not - 1", DEC).equals("0")) throw new AssertionError();
+        if (!c.getResult("1 Lsh 1", DEC).equals("2")) throw new AssertionError();
+        if (!c.getResult("1 Lsh 1 ( - 1 + 2 )", DEC).equals("4")) throw new AssertionError();
+        if (!c.getResult("4 Rsh 1", DEC).equals("2")) throw new AssertionError();
+        if (!c.getResult("1 RoL 1", DEC).equals("2")) throw new AssertionError();
+        if (!c.getResult("1 RoR 1", DEC).equals(Long.MIN_VALUE + "")) throw new AssertionError();
+        if (!c.getResult("( 50 + 4 * 3 / 2 + 799 - 180 + 9 + 8 + ( 3 / 3 ) + 8 + ( 9 + 3 ) / 3 )", DEC).equals("705"))
+            throw new AssertionError();
+        System.out.println("程序员计算器成功");
     }
 }

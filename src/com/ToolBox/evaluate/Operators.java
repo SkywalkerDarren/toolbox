@@ -174,7 +174,7 @@ class Operators {
 
             @Override
             public BigDecimal calc(BigDecimal... args) {
-                return null;
+                return args[0].multiply(args[1]);
             }
 
             @Override
@@ -201,7 +201,7 @@ class Operators {
 
             @Override
             public BigDecimal calc(BigDecimal... args) {
-                return null;
+                return args[0].divide(args[1], 32, BigDecimal.ROUND_HALF_UP);
             }
 
             @Override
@@ -554,7 +554,7 @@ class Operators {
             public BigDecimal calc(BigDecimal... args) {
                 try {
                     return BigDecimalMath.factorial(args[0].intValueExact());
-                } catch (Exception e) {
+                } catch (ArithmeticException e) {
                     throw new IllegalArgumentException("阶乘应为整数");
                 }
             }
