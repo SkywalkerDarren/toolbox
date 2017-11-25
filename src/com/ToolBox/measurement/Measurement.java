@@ -293,6 +293,11 @@ public class Measurement {
         return s.multiply(BigDecimal.valueOf(10)).divide(BigDecimal.valueOf(9), MathContext.DECIMAL128);
     }
 
+    /**
+     * 单元测试
+     *
+     * @param args unuse
+     */
     public static void main(String[] args) {
         Measurement m = new Measurement();
         BigDecimal test = new BigDecimal(1);

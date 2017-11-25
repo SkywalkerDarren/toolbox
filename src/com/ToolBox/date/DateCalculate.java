@@ -163,4 +163,17 @@ public class DateCalculate {
         return day;
     }
 
+    /**
+     * 单元测试
+     *
+     * @param args unused
+     */
+    public static void main(String[] args) {
+        DateCalculate dInterval = new DateCalculate(1970, 1, 1, 3000, 12, 31);
+        DateCalculate dIncrease = new DateCalculate(3000, 1, 1, 999, 999, 999, true);
+        DateCalculate dDecrease = new DateCalculate(1970, 1, 1, 999, 999, 999, false);
+        System.out.println(dInterval.getIntervalYear() + " " + dInterval.getIntervalMonth() + " " + dInterval.getIntervalDay() + dInterval.getTotalDay());
+        System.out.println(dIncrease.getEndYear() + " " + dIncrease.getEndMonth() + " " + dIncrease.getEndDay());
+        System.out.println(dDecrease.getEndYear() + " " + dDecrease.getEndMonth() + " " + dDecrease.getEndDay());
+    }
 }
