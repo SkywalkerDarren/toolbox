@@ -137,27 +137,27 @@ public class Measurement {
         BigDecimal s;
         BigDecimal t;
         switch (type) {
-            case "\u957f\u5ea6":
+            case "长度":
                 s = length.get(source);
                 t = length.get(target);
                 return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
-            case "\u9762\u79ef":
+            case "面积":
                 s = area.get(source);
                 t = area.get(target);
                 return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
-            case "\u4f53\u79ef":
+            case "体积":
                 s = volume.get(source);
                 t = volume.get(target);
                 return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
-            case "\u901f\u5ea6":
+            case "速度":
                 s = speed.get(source);
                 t = speed.get(target);
                 return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
-            case "\u8d28\u91cf":
+            case "质量":
                 s = mass.get(source);
                 t = mass.get(target);
                 return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
-            case "\u6e29\u5ea6":
+            case "温度":
                 String st = temp.get(source);
                 String tt = temp.get(target);
 
