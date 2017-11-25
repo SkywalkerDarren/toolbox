@@ -23,11 +23,18 @@ public class Measurement {
     public final HashMap<String, BigDecimal> mass = new HashMap<>();
     public final HashMap<String, String> temp = new HashMap<>();
     public final HashMap<String, String> angle = new HashMap<>();
+    private final HashMap<String, HashMap<String, BigDecimal>> hashMapType = new HashMap<>();
 
     /**
      * 初始化各单位到国际单位的换算值，除温度，角度
      */
     public Measurement() {
+        hashMapType.put("长度", length);
+        hashMapType.put("面积", area);
+        hashMapType.put("体积", volume);
+        hashMapType.put("速度", speed);
+        hashMapType.put("质量", mass);
+
         length.put("千米(km)", BigDecimal.valueOf(1000));
         length.put("米(m)", BigDecimal.valueOf(1));
         length.put("分米(dm)", BigDecimal.valueOf(0.1));
@@ -138,24 +145,12 @@ public class Measurement {
         BigDecimal t;
         switch (type) {
             case "长度":
-                s = length.get(source);
-                t = length.get(target);
-                return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
             case "面积":
-                s = area.get(source);
-                t = area.get(target);
-                return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
             case "体积":
-                s = volume.get(source);
-                t = volume.get(target);
-                return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
             case "速度":
-                s = speed.get(source);
-                t = speed.get(target);
-                return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
             case "质量":
-                s = mass.get(source);
-                t = mass.get(target);
+                s = hashMapType.get(type).get(source);
+                t = hashMapType.get(type).get(target);
                 return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));
             case "温度":
                 String st = temp.get(source);
