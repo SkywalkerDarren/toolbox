@@ -50,9 +50,10 @@ public class Calculator {
                 expression.add(s);
         }
         // [-|+]?\d\.{0,1}\d* 判断是否是数字
-        Pattern patternFloat = Pattern.compile("[-|+]?\\d+\\.\\d+");
-        Pattern patternInteger = Pattern.compile("[-|+]?\\d+");
-        Pattern patternHex = Pattern.compile("[-|+]?[\\d[a-f][A-F]]+");
+        Pattern patternFloat = Pattern.compile("[-+]?\\d+\\.\\d+");
+        Pattern patternExp = Pattern.compile("[-+]?\\d+\\.\\d+[Ee]+\\++\\d+");
+        Pattern patternInteger = Pattern.compile("[-+]?\\d+");
+        Pattern patternHex = Pattern.compile("[-+]?[\\d[a-f][A-F]]+");
         int l = 0, r = 0;
         //      neg,    num,    double, single, left,   right,  """ "
         boolean FSM[][] = new boolean[][]{
@@ -78,7 +79,8 @@ public class Calculator {
         // 设定状态机有效入口
         if (patternFloat.matcher(start).matches() ||
                 patternInteger.matcher(start).matches() ||
-                patternHex.matcher(start).matches()) {
+                patternHex.matcher(start).matches() ||
+                patternExp.matcher(start).matches()) {
             j = 1;
         } else if (start.equals("-") || start.equals("+")) {
             j = 0;
@@ -93,7 +95,8 @@ public class Calculator {
             i = j;
             if (patternFloat.matcher(expression.get(k)).matches() ||
                     patternInteger.matcher(expression.get(k)).matches() ||
-                    patternHex.matcher(expression.get(k)).matches()) {
+                    patternHex.matcher(expression.get(k)).matches() ||
+                    patternExp.matcher(expression.get(k)).matches()) {
                 j = 1;
             } else if (i == 4 && (expression.get(k).equals("-") || expression.get(k).equals("+"))) {
                 j = 0;
