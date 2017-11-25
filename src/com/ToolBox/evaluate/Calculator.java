@@ -40,6 +40,15 @@ public class Calculator {
 
     /**
      * 有限状态机检查表达式是否合法
+     * 状态转移表：
+     * 正负号, 数值, 双目运算符, 单目运算符, 左括号, 右括号
+     * **0 1 2 3 4 5
+     * 0   T
+     * 1     T     T
+     * 2   T   T T
+     * 3         T
+     * 4 T T   T T
+     * 5     T
      *
      * @param exp 表达式数组
      */
@@ -55,7 +64,7 @@ public class Calculator {
         Pattern patternInteger = Pattern.compile("[-+]?\\d+");
         Pattern patternHex = Pattern.compile("[-+]?[\\d[a-f][A-F]]+");
         int l = 0, r = 0;
-        //      neg,    num,    double, single, left,   right,  """ "
+        //      neg,    num,    double, single, left,   right
         boolean FSM[][] = new boolean[][]{
                 {false, true, false, false, false, false}, //neg
                 {false, false, true, false, false, true},  //num
@@ -63,7 +72,6 @@ public class Calculator {
                 {false, false, false, false, true, false},  //single
                 {true, true, false, true, true, false},  //left
                 {false, false, true, false, false, false},  //right
-                {}
         };
 
         // 初始化一个无效入口
