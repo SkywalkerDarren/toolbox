@@ -762,14 +762,16 @@ class Operators {
  *
  * @author 杨弘
  */
-abstract class Operator {
-    public abstract int getAry();
+interface Operator {
+    int getAry();
 
-    public abstract int getLevel();
+    int getLevel();
 
-    public abstract String getName();
+    String getName();
 
-    public abstract BigDecimal calc(BigDecimal... args) throws EmptyStackException;
+    BigDecimal calc(BigDecimal... args) throws EmptyStackException;
 
-    public abstract Long calc(Long... args) throws EmptyStackException;
+    Long calc(Long... args) throws EmptyStackException;
 }
+
+
