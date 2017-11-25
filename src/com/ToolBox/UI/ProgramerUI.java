@@ -21,7 +21,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     private static final long serialVersionUID = 8745040693717225813L;
     private static JTextArea textAreaTop = new JTextArea();
     private static JTextField textFieldBinary = new JTextField();
-    private static JTextField textFieldOctonary = new JTextField();
+    private static JTextField textFieldOctal = new JTextField();
     private static JTextField textFieldDecimal = new JTextField();
     private static JTextField textFieldHexadecimal = new JTextField();
     private static int radix = Calculator.DEC;
@@ -34,8 +34,9 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     private JButton btnCE, btnClean, btnBackSpace;
     private JButton btnOr, btnXor, btnMinus, btnNot, btnAnd, btnMod, btnPlus, btnEqual, btnDivided, btnMultiply;
     private JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnA, btnB, btnC, btnD, btnE, btnF;
-    private JRadioButton btnBinary, btnOctonary, btnDecimal, btnHexadecimal;
+    private JRadioButton btnBinary, btnOctal, btnDecimal, btnHexadecimal;
     private JPanel fullKeyPanel, bitKeyPanel;
+    private Boolean wasAnswer = false;
 
     /**
      * 初始化组件
@@ -81,13 +82,13 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         btnDivided = new JButton("/");
         btnMultiply = new JButton("*");
         btnBinary = new JRadioButton("BIN");
-        btnOctonary = new JRadioButton("OCT");
+        btnOctal = new JRadioButton("OCT");
         btnDecimal = new JRadioButton("DEC", true);
         btnHexadecimal = new JRadioButton("HEX");
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(btnHexadecimal);
         buttonGroup.add(btnDecimal);
-        buttonGroup.add(btnOctonary);
+        buttonGroup.add(btnOctal);
         buttonGroup.add(btnBinary);
     }
 
@@ -110,8 +111,8 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         add(btnBinary);
 
         // 八进制
-        btnOctonary.setBounds(13, 140, 51, 23);
-        add(btnOctonary);
+        btnOctal.setBounds(13, 140, 51, 23);
+        add(btnOctal);
 
         // 十进制
         btnDecimal.setBounds(13, 191, 51, 23);
@@ -130,12 +131,12 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         add(textFieldBinary);
 
         // 八进制文本框
-        textFieldOctonary.setEditable(false);
-        textFieldOctonary.setBackground(color);
-        textFieldOctonary.setFont(font);
-        textFieldOctonary.setColumns(100);
-        textFieldOctonary.setBounds(83, 136, 500, 30);
-        add(textFieldOctonary);
+        textFieldOctal.setEditable(false);
+        textFieldOctal.setBackground(color);
+        textFieldOctal.setFont(font);
+        textFieldOctal.setColumns(100);
+        textFieldOctal.setBounds(83, 136, 500, 30);
+        add(textFieldOctal);
 
         // 十进制文本框
         textFieldDecimal.setEditable(false);
@@ -182,7 +183,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
     protected void createAction() {
         textAreaTop.addMouseListener(this);
         textFieldBinary.addMouseListener(this);
-        textFieldOctonary.addMouseListener(this);
+        textFieldOctal.addMouseListener(this);
         textFieldDecimal.addMouseListener(this);
         textFieldHexadecimal.addMouseListener(this);
     }
@@ -209,7 +210,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         expression.append(Long.toString(temp, radix));
         textAreaTop.setText(expression.toString());
         textFieldBinary.setText(Long.toBinaryString(temp));
-        textFieldOctonary.setText(Long.toOctalString(temp));
+        textFieldOctal.setText(Long.toOctalString(temp));
         textFieldDecimal.setText(Long.toString(temp));
         textFieldHexadecimal.setText(Long.toHexString(temp));
     }
@@ -441,7 +442,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
 
         btnBinary.addActionListener(this);
 
-        btnOctonary.addActionListener(this);
+        btnOctal.addActionListener(this);
 
         btnDecimal.addActionListener(this);
 
@@ -493,7 +494,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
             result -= 1L << i;
         }
         textFieldBinary.setText(Long.toBinaryString(result));
-        textFieldOctonary.setText(Long.toOctalString(result));
+        textFieldOctal.setText(Long.toOctalString(result));
         textFieldDecimal.setText(result + "");
         textFieldHexadecimal.setText(Long.toHexString(result).toUpperCase());
         switch (radix) {
@@ -501,7 +502,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 textAreaTop.setText(textFieldBinary.getText());
                 break;
             case Calculator.OCT:
-                textAreaTop.setText(textFieldOctonary.getText());
+                textAreaTop.setText(textFieldOctal.getText());
                 break;
             case Calculator.DEC:
                 textAreaTop.setText(textFieldDecimal.getText());
@@ -582,9 +583,9 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                 btnE.setEnabled(false);
                 btnF.setEnabled(false);
                 radix = Calculator.OCT;
-                textAreaTop.setText(textFieldOctonary.getText());
+                textAreaTop.setText(textFieldOctal.getText());
                 expression.replace(0, expression.length(), "");
-                expression.append(textFieldOctonary.getText());
+                expression.append(textFieldOctal.getText());
                 break;
             case "DEC":
                 btn2.setEnabled(true);
@@ -643,31 +644,40 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
             case "D":
             case "E":
             case "F":
+                if (wasAnswer) {
+                    wasAnswer = false;
+                    expression.replace(0, expression.length(), "");
+                }
                 expression.append(btnName);
                 textAreaTop.setText(expression.toString());
                 break;
             //*************************运算符*************
+            case "Not":
+                if (wasAnswer) {
+                    expression.replace(0, expression.length(), "");
+                }
             case "RoL":
             case "RoR":
-            case "Not":
-                if (expression.length() > 0 && prevIsDigit()) {
-                    expression.append(" ");
-                }
-                expression.append(btnName).append(" ( ");
-                textAreaTop.setText(expression.toString());
-                break;
             case "Lsh":
             case "Rsh":
             case "Or":
             case "Xor":
             case "And":
             case "Mod":
+                wasAnswer = false;
+                if (expression.length() > 0 && prevIsDigit()) {
+                    expression.append(" ");
+                }
+                expression.append(btnName).append(" ( ");
+                textAreaTop.setText(expression.toString());
+                break;
             case "(":
             case ")":
             case "+":
             case "-":
             case "*":
             case "/":
+                wasAnswer = false;
                 if (expression.length() > 0 && prevIsDigit()) {
                     expression.append(" ");
                 }
@@ -677,13 +687,14 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
             //*************************控制符***********
             case "\n":
             case "=":
+                wasAnswer = true;
                 String r;
                 try {
                     r = new Calculator().getResult(expression.toString(), radix);
                     result = Long.valueOf(r);
                     textAreaTop.setText(Long.toString(result, radix));
                     textFieldBinary.setText(Long.toBinaryString(result));
-                    textFieldOctonary.setText(Long.toOctalString(result));
+                    textFieldOctal.setText(Long.toOctalString(result));
                     textFieldDecimal.setText(Long.toString(result));
                     textFieldHexadecimal.setText(Long.toHexString(result).toUpperCase());
                     HistoryUI.updateRecord(Long.toString(result));
@@ -702,7 +713,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
                     r = "表达式无效";
                     textAreaTop.setText(r);
                     textFieldBinary.setText("");
-                    textFieldOctonary.setText("");
+                    textFieldOctal.setText("");
                     textFieldDecimal.setText("");
                     textFieldHexadecimal.setText("");
                     expression.replace(0, expression.length(), "");
