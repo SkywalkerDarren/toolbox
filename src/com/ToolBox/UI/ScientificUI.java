@@ -368,6 +368,18 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
                 break;
             case "-":
             case "+":
+                wasAnswer = false;
+                if (!(number.length() > 0 && prevIsSpace())) {
+                    number.append(" ");
+                }
+                try {
+                    if (number.charAt(number.length() - 2) == '(') number.append(btnName);
+                    else number.append(btnName).append(" ");
+                } catch (StringIndexOutOfBoundsException e) {
+                    number.append(btnName).append(" ");
+                }
+                expTextArea.setText(number.toString());
+                break;
             case "(":
             case ")":
             case "mod":
@@ -478,7 +490,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
      * @return true 如果是数字的一部分
      */
     private boolean isDigit(char c) {
-        return (c == '.' || c >= '0' && c <= '9');
+        return (c == '+' || c == '-' || c == '.' || c >= '0' && c <= '9');
     }
 
     /**

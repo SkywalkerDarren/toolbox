@@ -1,6 +1,7 @@
 package com.ToolBox.evaluate;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.Stack;
 import java.util.regex.Pattern;
@@ -40,28 +41,34 @@ public class Calculator {
     /**
      * 有限状态机检查表达式是否合法
      *
-     * @param expression 表达式数组
+     * @param exp 表达式数组
      */
-    private boolean checkExpression(String[] expression) {
+    private boolean checkExpression(String[] exp) {
+        ArrayList<String> expression = new ArrayList<>();
+        for (String s : exp) {
+            if (!s.matches(" *"))
+                expression.add(s);
+        }
         // [-|+]?\d\.{0,1}\d* 判断是否是数字
         Pattern patternFloat = Pattern.compile("[-|+]?\\d+\\.\\d+");
         Pattern patternInteger = Pattern.compile("[-|+]?\\d+");
         Pattern patternHex = Pattern.compile("[-|+]?[\\d[a-f][A-F]]+");
         int l = 0, r = 0;
-        //      neg,    num,    double, single, left,   right
+        //      neg,    num,    double, single, left,   right,  """ "
         boolean FSM[][] = new boolean[][]{
                 {false, true, false, false, false, false}, //neg
                 {false, false, true, false, false, true},  //num
                 {false, true, false, true, true, false}, //double
                 {false, false, false, false, true, false},  //single
                 {true, true, false, true, true, false},  //left
-                {false, false, true, false, false, false}  //right
+                {false, false, true, false, false, false},  //right
+                {}
         };
 
         // 初始化一个无效入口
         int i = 0, j = 0;
         boolean single = false;
-        String start = expression[0];
+        String start = expression.get(0);
         try {
             single = Operators.operatorHashMap.get(start).getAry() == 1;
         } catch (NullPointerException ignored) {
@@ -82,23 +89,23 @@ public class Calculator {
             j = 3;
         }
 
-        for (int k = 1; k < expression.length; k++) {
+        for (int k = 1; k < expression.size(); k++) {
             i = j;
-            if (patternFloat.matcher(expression[k]).matches() ||
-                    patternInteger.matcher(expression[k]).matches() ||
-                    patternHex.matcher(expression[k]).matches()) {
+            if (patternFloat.matcher(expression.get(k)).matches() ||
+                    patternInteger.matcher(expression.get(k)).matches() ||
+                    patternHex.matcher(expression.get(k)).matches()) {
                 j = 1;
-            } else if (i == 4 && (expression[k].equals("-") || expression[k].equals("+"))) {
+            } else if (i == 4 && (expression.get(k).equals("-") || expression.get(k).equals("+"))) {
                 j = 0;
-            } else if (expression[k].equals("(")) {
+            } else if (expression.get(k).equals("(")) {
                 l++;
                 j = 4;
-            } else if (expression[k].equals(")")) {
+            } else if (expression.get(k).equals(")")) {
                 r++;
                 j = 5;
-            } else if (Operators.operatorHashMap.get(expression[k]).getAry() == 2) {
+            } else if (Operators.operatorHashMap.get(expression.get(k)).getAry() == 2) {
                 j = 2;
-            } else if (Operators.operatorHashMap.get(expression[k]).getAry() == 1) {
+            } else if (Operators.operatorHashMap.get(expression.get(k)).getAry() == 1) {
                 j = 3;
             }
 
@@ -216,11 +223,11 @@ public class Calculator {
     public static void main(String[] args) {
         Calculator s = new Calculator();
         Calculator p = new Calculator();
+        System.out.println(s.getResult(" 1 + 1"));
         if (!p.getResult("Not ( 0", DEC).equals("-1")) throw new AssertionError();
 //        assert c.checkExpression("( 50 + 4 * 3 / 2 + 799 - 180 + 9 + 8 + ( 3 / 3 ) + 8 + ( 9 + 3 ) / 3 )".split(" "));
         // 科学计算器
 //        assert c.getResult("").equals("0");
-        System.out.println(s.getResult("1 + 1"));
         assert s.getResult("( 50 + 4 * 3 / 2 + 799 - 180 + 9 + 8 + ( 3 / 3 ) + 8 + ( 9 + 3 ) / 3 )").equals("705");
         assert s.getResult("1 + 1").equals("2");
         assert s.getResult("( 1 + 1 )").equals("2");
