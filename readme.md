@@ -1,4 +1,4 @@
-# Universial ToolBox开发文档
+# Universal ToolBox开发文档
 
 > 组长：[杨弘](https://skywalkerdarren.github.io)
 >
