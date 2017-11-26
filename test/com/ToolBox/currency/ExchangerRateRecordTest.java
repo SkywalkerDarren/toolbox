@@ -8,7 +8,6 @@ import static org.junit.Assert.fail;
 
 public class ExchangerRateRecordTest {
     private ExchangerRateRecord e;
-    private Currency[] c;
 
     @Before
     public void setUp() throws Exception {
