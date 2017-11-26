@@ -65,7 +65,7 @@ class UserInterFace extends JFrame implements ActionListener {
         Dimension screenSize = getToolkit().getScreenSize();
 
         setVisible(false);
-        setTitle(" ToolBox     v1.0 ");
+        setTitle("Universal ToolBox   v1.0 ");
         setAlwaysOnTop(false);
         getContentPane().setFont(new Font("Consolas", Font.BOLD, 17));
         // 设置坐标：x起点，y起点，组件长度，组件宽度

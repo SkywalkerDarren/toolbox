@@ -19,7 +19,7 @@ class AboutWindow extends JDialog {
     AboutWindow() {
         FileResource resource = new FileResource();
 
-        setTitle("About ToolBox");
+        setTitle("About Universal ToolBox");
         setResizable(false);
         setFocusable(true);
         getContentPane().setLayout(null);
@@ -33,20 +33,20 @@ class AboutWindow extends JDialog {
         getContentPane().add(panel);
         panel.setLayout(null);
 
-        JLabel lblCopyright = new JLabel("Copyright 2017 - ToolBox. ");
+        JLabel lblCopyright = new JLabel("Copyright 2017 - Universal ToolBox.");
         setIconImage(new ImageIcon(resource.toolboxURL).getImage());
         lblCopyright.setFont(new Font("Consolas", Font.PLAIN, 15));
-        lblCopyright.setBounds(36, 88, 229, 54);
+        lblCopyright.setBounds(6, 88, 294, 54);
         panel.add(lblCopyright);
 
         JLabel lblRights = new JLabel("All Rights Reserved.");
         lblRights.setFont(new Font("Consolas", Font.PLAIN, 15));
-        lblRights.setBounds(60, 152, 188, 39);
+        lblRights.setBounds(70, 152, 188, 39);
         panel.add(lblRights);
 
-        JLabel lblVersion = new JLabel("ToolBox   v1.0");
+        JLabel lblVersion = new JLabel("Universal ToolBox v1.0");
         lblVersion.setFont(new Font("Consolas", Font.PLAIN, 15));
-        lblVersion.setBounds(82, 40, 183, 32);
+        lblVersion.setBounds(60, 40, 183, 32);
         panel.add(lblVersion);
 
         ImageIcon ic = new ImageIcon(resource.toolboxURL);
@@ -54,7 +54,7 @@ class AboutWindow extends JDialog {
 
         JLabel lblIcon = new JLabel();
         lblIcon.setIcon(ic);
-        lblIcon.setBounds(56, 40, 25, 32);
+        lblIcon.setBounds(36, 40, 25, 32);
         panel.add(lblIcon);
 
         JLabel lblBackGround = new JLabel();
