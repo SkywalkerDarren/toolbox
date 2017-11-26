@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 测量单位
@@ -24,7 +23,7 @@ public class Measurement {
     public final HashMap<String, BigDecimal> mass = new HashMap<>();
     public final HashMap<String, String> temp = new HashMap<>();
     public final HashMap<String, String> angle = new HashMap<>();
-    private final HashMap<String, HashMap<String, BigDecimal>> hashMapType = new HashMap<>();
+    final HashMap<String, HashMap<String, BigDecimal>> hashMapType = new HashMap<>();
 
     /**
      * 初始化各单位到国际单位的换算值，除温度，角度
@@ -291,43 +290,5 @@ public class Measurement {
 
     private BigDecimal gradToDeg(BigDecimal s) {
         return s.multiply(BigDecimal.valueOf(10)).divide(BigDecimal.valueOf(9), MathContext.DECIMAL128);
-    }
-
-    /**
-     * 单元测试
-     *
-     * @param args unuse
-     */
-    public static void main(String[] args) {
-        Measurement m = new Measurement();
-        BigDecimal test = new BigDecimal(1);
-        System.out.println("测试值：" + test);
-        for (Map.Entry<String, HashMap<String, BigDecimal>> type : m.hashMapType.entrySet()) {
-            String ty = type.getKey();
-            HashMap<String, BigDecimal> hm = type.getValue();
-            for (Map.Entry<String, BigDecimal> source : hm.entrySet()) {
-                String s = source.getKey();
-                for (Map.Entry<String, BigDecimal> target : hm.entrySet()) {
-                    String t = target.getKey();
-                    System.out.println("类型：" + ty + " 源单位：" + s + "\t目标单位：" + t + "\t转换值：" + m.conver(s, t, test, ty));
-                }
-            }
-        }
-
-        for (Map.Entry<String, String> source : m.temp.entrySet()) {
-            String s = source.getKey();
-            for (Map.Entry<String, String> target : m.temp.entrySet()) {
-                String t = target.getKey();
-                System.out.println("类型：温度 源单位：" + s + "\t目标单位：" + t + "\t转换值：" + m.conver(s, t, test, "温度"));
-            }
-        }
-
-        for (Map.Entry<String, String> source : m.angle.entrySet()) {
-            String s = source.getKey();
-            for (Map.Entry<String, String> target : m.angle.entrySet()) {
-                String t = target.getKey();
-                System.out.println("类型：角度 源单位：" + s + "\t目标单位：" + t + "\t转换值：" + m.conver(s, t, test, "角度"));
-            }
-        }
     }
 }

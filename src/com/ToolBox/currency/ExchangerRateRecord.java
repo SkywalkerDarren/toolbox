@@ -166,24 +166,4 @@ public class ExchangerRateRecord {
         BigDecimal s = new BigDecimal(source.getRateToUSD());
         return m.multiply(t.divide(s, MathContext.DECIMAL128));
     }
-
-    /**
-     * 单元测试
-     *
-     * @param args unuse
-     */
-    public static void main(String[] args) {
-        ExchangerRateRecord e = new ExchangerRateRecord();
-        Currency[] c = e.getRates();
-        double m = 1;
-        System.out.println("测试值：" + m);
-        System.out.println("日期：" + e.getDate());
-        for (Currency s : c) {
-            for (Currency t : c) {
-                System.out.println("源货币：" + s.getName() + " 目标货币：" + t.getName() + " 兑换得：" + e.calcRate(s, m, t));
-            }
-        }
-        System.out.println("更新成功：" + e.update());
-        System.out.println("更新日期：" + e.getDate());
-    }
 }

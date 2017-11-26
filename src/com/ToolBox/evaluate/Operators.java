@@ -152,7 +152,7 @@ class Operators {
 
             @Override
             public Long calc(Long... args) {
-                return null;
+                return args[0] / args[1];
             }
         });
 
