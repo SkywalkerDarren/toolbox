@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: UserInterFace</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.UI</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: UserInterFace (com.ToolBox.UI)</h1>
+
+    <table class="coverageStats">
+
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">UserInterFace</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (7/ 7)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    98.2%
+  </span>
+                <span class="absValue">
+    (107/ 109)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">UserInterFace$1</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (2/ 2)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+                <span class="absValue">
+    (6/ 8)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">UserInterFace$2</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (2/ 2)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (3/ 3)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name"><strong>total</strong></td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (11/ 11)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    96.7%
+  </span>
+                <span class="absValue">
+    (116/ 120)
+  </span>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.UI;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import javax.imageio.ImageIO;
+        <i>4</i>&nbsp;import javax.swing.*;
+        <i>5</i>&nbsp;import java.awt.*;
+        <i>6</i>&nbsp;import java.awt.event.ActionEvent;
+        <i>7</i>&nbsp;import java.awt.event.ActionListener;
+        <i>8</i>&nbsp;import java.awt.event.WindowAdapter;
+        <i>9</i>&nbsp;import java.awt.event.WindowEvent;
+        <i>10</i>&nbsp;import java.awt.image.BufferedImage;
+        <i>11</i>&nbsp;import java.io.IOException;
+        <i>12</i>&nbsp;
+        <i>13</i>&nbsp;
+        <i>14</i>&nbsp;/**
+        <i>15</i>&nbsp; * �����ܲ��ֵ�����
+        <i>16</i>&nbsp; *
+        <i>17</i>&nbsp; * @author ��룬�������������
+        <i>18</i>&nbsp; * @version 1.0
+        <i>19</i>&nbsp; */
+        <i>20</i>&nbsp;class UserInterFace extends JFrame implements ActionListener {
+        <i>21</i>&nbsp;
+        <i>22</i>&nbsp; private static final long serialVersionUID = -5503828920612138533L;
+        <i>23</i>&nbsp; private final static String CALCTOOLS = &quot; ���㻻�㹤�� &quot;;
+        <i>24</i>&nbsp; private final static String ENCODETOOLS = &quot; ������빤�� &quot;;
+        <i>25</i>&nbsp; private final static String QRCODETOOLS = &quot; ��ά������ &quot;;
+        <b class="fc"><i>26</i>&nbsp; private JPanel cardPanel = new JPanel() {</b>
+        <i>27</i>&nbsp; private static final long serialVersionUID = -1572461108315996809L;
+        <i>28</i>&nbsp; private BufferedImage img;
+        <i>29</i>&nbsp;
+        <i>30</i>&nbsp; @Override
+        <i>31</i>&nbsp; protected void paintComponent(Graphics g) {
+        <i>32</i>&nbsp; try {
+        <b class="fc"><i>33</i>&nbsp; img = ImageIO.read(new FileResource().backgroundURL);</b>
+        <b class="nc"><i>34</i>&nbsp; } catch (IOException e) {</b>
+        <b class="nc"><i>35</i>&nbsp; e.printStackTrace();</b>
+        <b class="fc"><i>36</i>&nbsp; }</b>
+        <b class="fc"><i>37</i>&nbsp; super.paintComponent(g);</b>
+        <b class="fc"><i>38</i>&nbsp; g.drawImage(img, 0, 0, this);</b>
+        <b class="fc"><i>39</i>&nbsp; }</b>
+        <i>40</i>&nbsp; };
+        <i>41</i>&nbsp;
+        <i>42</i>&nbsp; /**
+        <i>43</i>&nbsp; * ��ʼ������
+        <i>44</i>&nbsp; */
+        <b class="fc"><i>45</i>&nbsp; UserInterFace() {</b>
+        <i>46</i>&nbsp;
+        <b class="fc"><i>47</i>&nbsp; JFrame.setDefaultLookAndFeelDecorated(true);</b>
+        <i>48</i>&nbsp; try {
+        <b class="fc"><i>49</i>&nbsp; UIManager.setLookAndFeel(&quot;com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel&quot;);</b>
+        <b class="nc"><i>50</i>&nbsp; } catch (Exception e) {</b>
+        <b class="nc"><i>51</i>&nbsp; e.printStackTrace();</b>
+        <b class="fc"><i>52</i>&nbsp; }</b>
+        <b class="fc"><i>53</i>&nbsp; initializeFrame();</b>
+        <b class="fc"><i>54</i>&nbsp; initializeMenuBar();</b>
+        <b class="fc"><i>55</i>&nbsp; initializeJPanel();</b>
+        <i>56</i>&nbsp;
+        <b class="fc"><i>57</i>&nbsp; }</b>
+        <i>58</i>&nbsp;
+        <i>59</i>&nbsp; /**
+        <i>60</i>&nbsp; * ��ܳ�ʼ��
+        <i>61</i>&nbsp; * ���س�������ܣ�������ͣ����ý������ͣ��������壬��������������
+        <i>62</i>&nbsp; */
+        <i>63</i>&nbsp; private void initializeFrame() {
+        <i>64</i>&nbsp;
+        <b class="fc"><i>65</i>&nbsp; Dimension screenSize = getToolkit().getScreenSize();</b>
+        <i>66</i>&nbsp;
+        <b class="fc"><i>67</i>&nbsp; setVisible(false);</b>
+        <b class="fc"><i>68</i>&nbsp; setTitle(&quot; ToolBox v1.0 &quot;);</b>
+        <b class="fc"><i>69</i>&nbsp; setAlwaysOnTop(false);</b>
+        <b class="fc"><i>70</i>&nbsp; getContentPane().setFont(new Font(&quot;Consolas&quot;, Font.BOLD, 17));</b>
+        <i>71</i>&nbsp; // �������꣺x��㣬y��㣬������ȣ�������
+        <b class="fc"><i>72</i>&nbsp; setBounds((screenSize.width - 800) / 2, (screenSize.height - 600) / 2, 800, 600);</b>
+        <b class="fc"><i>73</i>&nbsp; setLocationRelativeTo(null);</b>
+        <i>74</i>&nbsp; // �ɷ�������ڴ�С
+        <b class="fc"><i>75</i>&nbsp; setResizable(false);</b>
+        <i>76</i>&nbsp; // �û��������ڵĹرհ�ťʱ����ִ�еĲ���
+        <b class="fc"><i>77</i>&nbsp; setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);</b>
+        <b class="fc"><i>78</i>&nbsp; setFocusable(true);</b>
+        <b class="fc"><i>79</i>&nbsp; setIconImage(Toolkit.getDefaultToolkit()</b>
+        <b class="fc"><i>80</i>&nbsp; .getImage(new FileResource().toolboxURL));</b>
+        <i>81</i>&nbsp;
+        <b class="fc"><i>82</i>&nbsp; }</b>
+        <i>83</i>&nbsp;
+        <i>84</i>&nbsp; /**
+        <i>85</i>&nbsp; * ��ʼ���˵�������Ӹ���ѡ��
+        <i>86</i>&nbsp; */
+        <i>87</i>&nbsp; private void initializeMenuBar() {
+        <i>88</i>&nbsp; // ��Ӳ˵�������
+        <b class="fc"><i>89</i>&nbsp; final Font font = new Font(&quot;΢���ź�&quot;, Font.PLAIN, 14);</b>
+        <b class="fc"><i>90</i>&nbsp; final Color color = new Color(240, 255, 255);</b>
+        <b class="fc"><i>91</i>&nbsp; final Dimension dimensionStart = new Dimension(90, 25);</b>
+        <b class="fc"><i>92</i>&nbsp; final Dimension dimensionFunction = new Dimension(135, 25);</b>
+        <b class="fc"><i>93</i>&nbsp; final Dimension dimensionAbout = new Dimension(90, 25);</b>
+        <i>94</i>&nbsp;
+        <b class="fc"><i>95</i>&nbsp; JMenuBar menuBar = new JMenuBar();</b>
+        <b class="fc"><i>96</i>&nbsp; setJMenuBar(menuBar);</b>
+        <i>97</i>&nbsp;
+        <i>98</i>&nbsp; // �ļ��˵�
+        <b class="fc"><i>99</i>&nbsp; JMenu mnMenuStart = new JMenu(&quot; �� �� &quot;);</b>
+        <b class="fc"><i>100</i>&nbsp; mnMenuStart.setFont(font);</b>
+        <b class="fc"><i>101</i>&nbsp; menuBar.add(mnMenuStart);</b>
+        <i>102</i>&nbsp;
+        <i>103</i>&nbsp; // ѡ��˵�
+        <b class="fc"><i>104</i>&nbsp; JMenu mnMenuFunction = new JMenu(&quot; �� �� &quot;);</b>
+        <b class="fc"><i>105</i>&nbsp; mnMenuFunction.setFont(font);</b>
+        <b class="fc"><i>106</i>&nbsp; menuBar.add(mnMenuFunction);</b>
+        <i>107</i>&nbsp;
+        <i>108</i>&nbsp; // �����˵�
+        <b class="fc"><i>109</i>&nbsp; JMenu mnMenuHelp = new JMenu(&quot; �� �� &quot;);</b>
+        <b class="fc"><i>110</i>&nbsp; mnMenuHelp.setFont(font);</b>
+        <b class="fc"><i>111</i>&nbsp; menuBar.add(mnMenuHelp);</b>
+        <i>112</i>&nbsp;
+        <i>113</i>&nbsp; // ��ͼ�˵�
+        <b class="fc"><i>114</i>&nbsp; JMenuItem mnMenuOpen = new JMenuItem(&quot; �� ͼ &quot;);</b>
+        <b class="fc"><i>115</i>&nbsp; mnMenuOpen.setAlignmentX(JMenu.CENTER_ALIGNMENT);</b>
+        <b class="fc"><i>116</i>&nbsp; mnMenuStart.add(mnMenuOpen);</b>
+        <b class="fc"><i>117</i>&nbsp; mnMenuOpen.setFont(font);</b>
+        <b class="fc"><i>118</i>&nbsp; mnMenuOpen.setBackground(color);</b>
+        <b class="fc"><i>119</i>&nbsp; mnMenuOpen.setPreferredSize(dimensionStart);</b>
+        <b class="fc"><i>120</i>&nbsp; mnMenuOpen.setOpaque(true);</b>
+        <b class="fc"><i>121</i>&nbsp; mnMenuOpen.addActionListener(e -&gt; {</b>
+        <b class="fc"><i>122</i>&nbsp; setVisible(false);</b>
+        <b class="fc"><i>123</i>&nbsp; SnapShot shot = new SnapShot();</b>
+        <b class="fc"><i>124</i>&nbsp; shot.addWindowListener(new WindowAdapter() {</b>
+        <i>125</i>&nbsp; @Override
+        <i>126</i>&nbsp; public void windowClosing(WindowEvent e) {
+        <b class="fc"><i>127</i>&nbsp; setVisible(true);</b>
+        <b class="fc"><i>128</i>&nbsp; }</b>
+        <i>129</i>&nbsp; });
+        <b class="fc"><i>130</i>&nbsp; });</b>
+        <i>131</i>&nbsp;
+        <i>132</i>&nbsp; // �˳��˵�
+        <b class="fc"><i>133</i>&nbsp; JMenuItem menuItemExit = new JMenuItem(&quot; �� �� &quot;);</b>
+        <b class="fc"><i>134</i>&nbsp; menuItemExit.setAlignmentX(JMenuItem.CENTER_ALIGNMENT);</b>
+        <b class="fc"><i>135</i>&nbsp; mnMenuStart.add(menuItemExit);</b>
+        <b class="fc"><i>136</i>&nbsp; menuItemExit.setOpaque(true);</b>
+        <b class="fc"><i>137</i>&nbsp; menuItemExit.setFont(font);</b>
+        <b class="fc"><i>138</i>&nbsp; menuItemExit.setBackground(color);</b>
+        <b class="fc"><i>139</i>&nbsp; menuItemExit.setPreferredSize(dimensionStart);</b>
+        <b class="fc"><i>140</i>&nbsp; menuItemExit.addActionListener(e -&gt; System.exit(0));</b>
+        <i>141</i>&nbsp;
+        <i>142</i>&nbsp; // ���㹤�߲˵�
+        <b class="fc"><i>143</i>&nbsp; JMenuItem menuItemCalculateTool = new JMenuItem(CALCTOOLS);</b>
+        <b class="fc"><i>144</i>&nbsp; menuItemCalculateTool.setAlignmentX(JMenuItem.CENTER_ALIGNMENT);</b>
+        <b class="fc"><i>145</i>&nbsp; mnMenuFunction.add(menuItemCalculateTool);</b>
+        <b class="fc"><i>146</i>&nbsp; menuItemCalculateTool.setOpaque(true);</b>
+        <b class="fc"><i>147</i>&nbsp; menuItemCalculateTool.setFont(font);</b>
+        <b class="fc"><i>148</i>&nbsp; menuItemCalculateTool.setPreferredSize(dimensionFunction);</b>
+        <b class="fc"><i>149</i>&nbsp; menuItemCalculateTool.setBackground(color);</b>
+        <b class="fc"><i>150</i>&nbsp; menuItemCalculateTool.addActionListener(this);</b>
+        <i>151</i>&nbsp;
+        <i>152</i>&nbsp; // ������빤�߲˵�
+        <b class="fc"><i>153</i>&nbsp; JMenuItem menuItemEncodeAndDecode = new JMenuItem(ENCODETOOLS);</b>
+        <b class="fc"><i>154</i>&nbsp; menuItemEncodeAndDecode.setAlignmentX(JMenuItem.CENTER_ALIGNMENT);</b>
+        <b class="fc"><i>155</i>&nbsp; mnMenuFunction.add(menuItemEncodeAndDecode);</b>
+        <b class="fc"><i>156</i>&nbsp; menuItemEncodeAndDecode.setOpaque(true);</b>
+        <b class="fc"><i>157</i>&nbsp; menuItemEncodeAndDecode.setFont(font);</b>
+        <b class="fc"><i>158</i>&nbsp; menuItemEncodeAndDecode.setPreferredSize(dimensionFunction);</b>
+        <b class="fc"><i>159</i>&nbsp; menuItemEncodeAndDecode.setBackground(color);</b>
+        <b class="fc"><i>160</i>&nbsp; menuItemEncodeAndDecode.addActionListener(this);</b>
+        <i>161</i>&nbsp;
+        <i>162</i>&nbsp; // ��ά��˵�
+        <b class="fc"><i>163</i>&nbsp; JMenuItem menuItemQRCode = new JMenuItem(QRCODETOOLS);</b>
+        <b class="fc"><i>164</i>&nbsp; menuItemQRCode.setAlignmentX(JMenuItem.CENTER_ALIGNMENT);</b>
+        <b class="fc"><i>165</i>&nbsp; mnMenuFunction.add(menuItemQRCode);</b>
+        <b class="fc"><i>166</i>&nbsp; menuItemQRCode.setOpaque(true);</b>
+        <b class="fc"><i>167</i>&nbsp; menuItemQRCode.setFont(font);</b>
+        <b class="fc"><i>168</i>&nbsp; menuItemQRCode.setPreferredSize(dimensionFunction);</b>
+        <b class="fc"><i>169</i>&nbsp; menuItemQRCode.setBackground(color);</b>
+        <b class="fc"><i>170</i>&nbsp; menuItemQRCode.addActionListener(this);</b>
+        <i>171</i>&nbsp;
+        <i>172</i>&nbsp; // ���ڲ˵�
+        <b class="fc"><i>173</i>&nbsp; JMenuItem menuItemAbout = new JMenuItem(&quot; �� �� &quot;);</b>
+        <b class="fc"><i>174</i>&nbsp; mnMenuHelp.add(menuItemAbout);</b>
+        <b class="fc"><i>175</i>&nbsp; menuItemAbout.setOpaque(true);</b>
+        <b class="fc"><i>176</i>&nbsp; menuItemAbout.setFont(font);</b>
+        <b class="fc"><i>177</i>&nbsp; menuItemAbout.setPreferredSize(dimensionAbout);</b>
+        <b class="fc"><i>178</i>&nbsp; menuItemAbout.setBackground(color);</b>
+        <b class="fc"><i>179</i>&nbsp; menuItemAbout.addActionListener(e -&gt; {</b>
+        <i>180</i>&nbsp; // �������ڴ���
+        <b class="fc"><i>181</i>&nbsp; new AboutWindow();</b>
+        <b class="fc"><i>182</i>&nbsp; });</b>
+        <b class="fc"><i>183</i>&nbsp; }</b>
+        <i>184</i>&nbsp;
+        <i>185</i>&nbsp; /**
+        <i>186</i>&nbsp; * ��ʼ�������
+        <i>187</i>&nbsp; */
+        <i>188</i>&nbsp; private void initializeJPanel() {
+        <i>189</i>&nbsp; // ʹ�ÿ�Ƭ����
+        <b class="fc"><i>190</i>&nbsp; cardPanel.setLayout(new CardLayout());</b>
+        <b class="fc"><i>191</i>&nbsp; getContentPane().add(cardPanel);</b>
+        <i>192</i>&nbsp;
+        <i>193</i>&nbsp; // ����������������
+        <b class="fc"><i>194</i>&nbsp; JPanel calculateTools = new CalculatorUI();</b>
+        <b class="fc"><i>195</i>&nbsp; calculateTools.setLayout(null);</b>
+        <b class="fc"><i>196</i>&nbsp; cardPanel.add(calculateTools, CALCTOOLS);</b>
+        <i>197</i>&nbsp;
+        <i>198</i>&nbsp; // ���������빤�����
+        <b class="fc"><i>199</i>&nbsp; JPanel encodeAndDecodeTools = new EncodeAndDecodeUI();</b>
+        <b class="fc"><i>200</i>&nbsp; encodeAndDecodeTools.setLayout(null);</b>
+        <b class="fc"><i>201</i>&nbsp; cardPanel.add(encodeAndDecodeTools, ENCODETOOLS);</b>
+        <i>202</i>&nbsp;
+        <i>203</i>&nbsp; // QR�����ά�빤�����
+        <b class="fc"><i>204</i>&nbsp; JPanel qrCodeTools = new QRCodeUI();</b>
+        <b class="fc"><i>205</i>&nbsp; qrCodeTools.setLayout(null);</b>
+        <b class="fc"><i>206</i>&nbsp; cardPanel.add(qrCodeTools, QRCODETOOLS);</b>
+        <b class="fc"><i>207</i>&nbsp; }</b>
+        <i>208</i>&nbsp;
+        <i>209</i>&nbsp; @Override
+        <i>210</i>&nbsp; public void actionPerformed(ActionEvent e) {
+        <b class="fc"><i>211</i>&nbsp; CardLayout cl = (CardLayout) (cardPanel.getLayout());</b>
+        <b class="fc"><i>212</i>&nbsp; cl.show(cardPanel, e.getActionCommand());</b>
+        <b class="fc"><i>213</i>&nbsp; }</b>
+        <i>214</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-26 16:46</div>
+</div>
+</body>
+</html>

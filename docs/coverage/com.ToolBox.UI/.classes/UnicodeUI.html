@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: UnicodeUI</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.UI</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: UnicodeUI (com.ToolBox.UI)</h1>
+
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Class, %
+            </th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">UnicodeUI</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (44/ 44)
+  </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.UI;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import com.ToolBox.coding.Unicode;
+        <i>4</i>&nbsp;
+        <i>5</i>&nbsp;import javax.swing.*;
+        <i>6</i>&nbsp;import java.awt.*;
+        <i>7</i>&nbsp;
+        <i>8</i>&nbsp;/**
+        <i>9</i>&nbsp; * �������Unicode��֧������Unicode����ת��
+        <i>10</i>&nbsp; *
+        <i>11</i>&nbsp; * @author ��룬�������������
+        <i>12</i>&nbsp; */
+        <i>13</i>&nbsp;class UnicodeUI extends TransparentPanelUI {
+        <i>14</i>&nbsp;
+        <i>15</i>&nbsp; private static final long serialVersionUID = 7188547339103719919L;
+        <i>16</i>&nbsp; private static final String leftTip = &quot;���Ľ��&quot;;
+        <i>17</i>&nbsp; private static final String rightTip = &quot;Unicode���&quot;;
+        <i>18</i>&nbsp; private static final String encode = &quot; ���� ת Unicode &gt; &quot;;
+        <i>19</i>&nbsp; private static final String decode = &quot; &lt; Unicode ת ���� &quot;;
+        <i>20</i>&nbsp; private TextBox textAreaLeft;
+        <i>21</i>&nbsp; private TextBox textAreaRight;
+        <i>22</i>&nbsp; private JScrollPane jspTextLeft;
+        <i>23</i>&nbsp; private JScrollPane jspTextRight;
+        <i>24</i>&nbsp; private JButton buttonUnicodeToCHN;
+        <i>25</i>&nbsp; private JButton buttonCHNToUnicode;
+        <i>26</i>&nbsp;
+        <i>27</i>&nbsp; /**
+        <i>28</i>&nbsp; * ��ʼ�����
+        <i>29</i>&nbsp; */
+        <i>30</i>&nbsp; @Override
+        <i>31</i>&nbsp; protected void initCompoment() {
+        <b class="fc"><i>32</i>&nbsp; textAreaLeft = new TextBox(leftTip);</b>
+        <b class="fc"><i>33</i>&nbsp; textAreaRight = new TextBox(rightTip);</b>
+        <b class="fc"><i>34</i>&nbsp; jspTextLeft = new JScrollPane();</b>
+        <b class="fc"><i>35</i>&nbsp; jspTextRight = new JScrollPane();</b>
+        <b class="fc"><i>36</i>&nbsp; buttonUnicodeToCHN = new JButton(encode);</b>
+        <b class="fc"><i>37</i>&nbsp; buttonCHNToUnicode = new JButton(decode);</b>
+        <b class="fc"><i>38</i>&nbsp; }</b>
+        <i>39</i>&nbsp;
+        <i>40</i>&nbsp; /**
+        <i>41</i>&nbsp; * ��ʼ������
+        <i>42</i>&nbsp; */
+        <i>43</i>&nbsp; @Override
+        <i>44</i>&nbsp; protected void initUI() {
+        <b class="fc"><i>45</i>&nbsp; Color normal = new Color(240, 255, 255);</b>
+        <i>46</i>&nbsp;
+        <b class="fc"><i>47</i>&nbsp; jspTextLeft.setBounds(35, 60, 250, 350);</b>
+        <b class="fc"><i>48</i>&nbsp; jspTextLeft.setViewportView(textAreaLeft);</b>
+        <b class="fc"><i>49</i>&nbsp; jspTextLeft.add(textAreaLeft);</b>
+        <b class="fc"><i>50</i>&nbsp; jspTextLeft.setViewportView(textAreaLeft);</b>
+        <b class="fc"><i>51</i>&nbsp; add(jspTextLeft);</b>
+        <i>52</i>&nbsp;
+        <i>53</i>&nbsp;
+        <b class="fc"><i>54</i>&nbsp; jspTextRight.setBounds(510, 60, 250, 350);</b>
+        <b class="fc"><i>55</i>&nbsp; jspTextRight.setViewportView(textAreaRight);</b>
+        <b class="fc"><i>56</i>&nbsp; jspTextRight.add(textAreaRight);</b>
+        <b class="fc"><i>57</i>&nbsp; jspTextRight.setViewportView(textAreaRight);</b>
+        <b class="fc"><i>58</i>&nbsp; add(jspTextRight);</b>
+        <i>59</i>&nbsp;
+        <b class="fc"><i>60</i>&nbsp; buttonUnicodeToCHN.setVisible(true);</b>
+        <b class="fc"><i>61</i>&nbsp; buttonUnicodeToCHN.setBackground(normal);</b>
+        <b class="fc"><i>62</i>&nbsp; buttonUnicodeToCHN.setBounds(328, 150, 140, 30);</b>
+        <b class="fc"><i>63</i>&nbsp; add(buttonUnicodeToCHN);</b>
+        <i>64</i>&nbsp;
+        <b class="fc"><i>65</i>&nbsp; buttonCHNToUnicode.setVisible(true);</b>
+        <b class="fc"><i>66</i>&nbsp; buttonCHNToUnicode.setBackground(normal);</b>
+        <b class="fc"><i>67</i>&nbsp; buttonCHNToUnicode.setBounds(328, 225, 140, 30);</b>
+        <b class="fc"><i>68</i>&nbsp; add(buttonCHNToUnicode);</b>
+        <i>69</i>&nbsp;
+        <b class="fc"><i>70</i>&nbsp; }</b>
+        <i>71</i>&nbsp;
+        <i>72</i>&nbsp; /**
+        <i>73</i>&nbsp; * ���������¼�
+        <i>74</i>&nbsp; */
+        <i>75</i>&nbsp; @Override
+        <i>76</i>&nbsp; protected void createAction() {
+        <b class="fc"><i>77</i>&nbsp; buttonUnicodeToCHN.addActionListener(e -&gt; {</b>
+        <b class="fc"><i>78</i>&nbsp; String src = textAreaLeft.getText();</b>
+        <b class="fc"><i>79</i>&nbsp; String tar = Unicode.stringToUnicode(src);</b>
+        <b class="fc"><i>80</i>&nbsp; textAreaRight.setText(tar);</b>
+        <b class="fc"><i>81</i>&nbsp; textAreaLeft.setForeground(Color.BLACK);</b>
+        <b class="fc"><i>82</i>&nbsp; textAreaRight.setForeground(Color.BLACK);</b>
+        <b class="fc"><i>83</i>&nbsp; });</b>
+        <i>84</i>&nbsp;
+        <b class="fc"><i>85</i>&nbsp; buttonCHNToUnicode.addActionListener(e -&gt; {</b>
+        <b class="fc"><i>86</i>&nbsp; String src = textAreaRight.getText();</b>
+        <b class="fc"><i>87</i>&nbsp; String tar = Unicode.unicodeToString(src);</b>
+        <b class="fc"><i>88</i>&nbsp; textAreaLeft.setText(tar);</b>
+        <b class="fc"><i>89</i>&nbsp; textAreaLeft.setForeground(Color.BLACK);</b>
+        <b class="fc"><i>90</i>&nbsp; textAreaRight.setForeground(Color.BLACK);</b>
+        <b class="fc"><i>91</i>&nbsp; });</b>
+        <b class="fc"><i>92</i>&nbsp; }</b>
+        <i>93</i>&nbsp;
+        <i>94</i>&nbsp; /**
+        <i>95</i>&nbsp; * ����Unicode���Ļ�ת���
+        <i>96</i>&nbsp; */
+        <i>97</i>&nbsp; UnicodeUI() {
+        <b class="fc"><i>98</i>&nbsp; super();</b>
+        <b class="fc"><i>99</i>&nbsp; }</b>
+        <i>100</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-26 16:46</div>
+</div>
+</body>
+</html>

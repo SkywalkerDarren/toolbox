@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: ConversionUI</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.UI</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: ConversionUI (com.ToolBox.UI)</h1>
+
+    <table class="coverageStats">
+
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">ConversionUI</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (8/ 8)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    64.7%
+  </span>
+                <span class="absValue">
+    (75/ 116)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">ConversionUI$1</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    77.8%
+  </span>
+                <span class="absValue">
+    (7/ 9)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">ConversionUI$2</td>
+            <td class="coverageStat">
+  <span class="percent">
+    16.7%
+  </span>
+                <span class="absValue">
+    (1/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    11.1%
+  </span>
+                <span class="absValue">
+    (1/ 9)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name"><strong>total</strong></td>
+            <td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+                <span class="absValue">
+    (15/ 20)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    61.9%
+  </span>
+                <span class="absValue">
+    (83/ 134)
+  </span>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.UI;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import com.ToolBox.measurement.Measurement;
+        <i>4</i>&nbsp;
+        <i>5</i>&nbsp;import javax.swing.*;
+        <i>6</i>&nbsp;import javax.swing.text.JTextComponent;
+        <i>7</i>&nbsp;import java.awt.*;
+        <i>8</i>&nbsp;import java.awt.event.MouseEvent;
+        <i>9</i>&nbsp;import java.awt.event.MouseListener;
+        <i>10</i>&nbsp;import java.math.BigDecimal;
+        <i>11</i>&nbsp;import java.util.Map.Entry;
+        <i>12</i>&nbsp;
+        <i>13</i>&nbsp;/**
+        <i>14</i>&nbsp; * ������������λ���л��㲢������
+        <i>15</i>&nbsp; * ֧����ʷ��¼����
+        <i>16</i>&nbsp; *
+        <i>17</i>&nbsp; * @author ��룬�������������
+        <i>18</i>&nbsp; */
+        <i>19</i>&nbsp;class ConversionUI extends TransparentPanelUI {
+        <i>20</i>&nbsp;
+        <i>21</i>&nbsp; public static final long serialVersionUID = -1342718738933302379L;
+        <i>22</i>&nbsp; private static final String type = &quot;��ѡ��������&quot;;
+        <i>23</i>&nbsp; private static final String unit = &quot;��ѡ���㵥λ&quot;;
+        <i>24</i>&nbsp; private static final String exchange = &quot;����&quot;;
+        <b class="fc"><i>25</i>&nbsp; private static JTextField tfSource = new JTextField();</b>
+        <i>26</i>&nbsp; private JTextField tfTarget;
+        <i>27</i>&nbsp; private JComboBox&lt;String&gt; comboBoxType;
+        <i>28</i>&nbsp; private JComboBox&lt;String&gt; comboBoxSource;
+        <i>29</i>&nbsp; private JComboBox&lt;String&gt; comboBoxTarget;
+        <i>30</i>&nbsp; private JLabel lblType;
+        <i>31</i>&nbsp; private JLabel lblUnit;
+        <i>32</i>&nbsp; private JButton btnConvert;
+        <i>33</i>&nbsp; private Measurement m;
+        <i>34</i>&nbsp;
+        <i>35</i>&nbsp; /**
+        <i>36</i>&nbsp; * ��ʼ�����
+        <i>37</i>&nbsp; */
+        <i>38</i>&nbsp; @Override
+        <i>39</i>&nbsp; protected void initCompoment() {
+        <b class="fc"><i>40</i>&nbsp; m = new Measurement();</b>
+        <b class="fc"><i>41</i>&nbsp; tfTarget = new JTextField();</b>
+        <b class="fc"><i>42</i>&nbsp; comboBoxType = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>43</i>&nbsp; comboBoxSource = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>44</i>&nbsp; comboBoxTarget = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>45</i>&nbsp; lblType = new JLabel(type);</b>
+        <b class="fc"><i>46</i>&nbsp; lblUnit = new JLabel(unit);</b>
+        <b class="fc"><i>47</i>&nbsp; btnConvert = new JButton(exchange);</b>
+        <b class="fc"><i>48</i>&nbsp; }</b>
+        <i>49</i>&nbsp;
+        <i>50</i>&nbsp; /**
+        <i>51</i>&nbsp; * ��ʼ������
+        <i>52</i>&nbsp; */
+        <i>53</i>&nbsp; @Override
+        <i>54</i>&nbsp; protected void initUI() {
+        <i>55</i>&nbsp;
+        <i>56</i>&nbsp; // ����
+        <b class="fc"><i>57</i>&nbsp; Color color = new Color(240, 255, 255);</b>
+        <b class="fc"><i>58</i>&nbsp; comboBoxType.setBackground(color);</b>
+        <b class="fc"><i>59</i>&nbsp; comboBoxType.setFont(new Font(&quot;΢���ź�&quot;, Font.PLAIN, 13));</b>
+        <b class="fc"><i>60</i>&nbsp; comboBoxType.setBounds(103, 95, 150, 30);</b>
+        <b class="fc"><i>61</i>&nbsp; add(comboBoxType);</b>
+        <b class="fc"><i>62</i>&nbsp; for (String type : m.measureType) {</b>
+        <b class="fc"><i>63</i>&nbsp; comboBoxType.addItem(type);</b>
+        <i>64</i>&nbsp; }
+        <i>65</i>&nbsp;
+        <i>66</i>&nbsp; // Դ��ֵ
+        <b class="fc"><i>67</i>&nbsp; tfSource.setFont(new Font(&quot;΢���ź�&quot;, Font.PLAIN, 13));</b>
+        <b class="fc"><i>68</i>&nbsp; tfSource.setBackground(color);</b>
+        <b class="fc"><i>69</i>&nbsp; tfSource.setBounds(297, 208, 151, 31);</b>
+        <b class="fc"><i>70</i>&nbsp; tfSource.setColumns(10);</b>
+        <b class="fc"><i>71</i>&nbsp; add(tfSource);</b>
+        <i>72</i>&nbsp;
+        <i>73</i>&nbsp; // Դ��λ
+        <b class="fc"><i>74</i>&nbsp; comboBoxSource.setFont(new Font(&quot;΢���ź�&quot;, Font.PLAIN, 13));</b>
+        <b class="fc"><i>75</i>&nbsp; comboBoxSource.setBackground(color);</b>
+        <b class="fc"><i>76</i>&nbsp; comboBoxSource.setBounds(103, 207, 150, 30);</b>
+        <b class="fc"><i>77</i>&nbsp; add(comboBoxSource);</b>
+        <i>78</i>&nbsp;
+        <i>79</i>&nbsp; // Ŀ����ֵ
+        <b class="fc"><i>80</i>&nbsp; tfTarget.setEditable(false);</b>
+        <b class="fc"><i>81</i>&nbsp; tfTarget.setFont(new Font(&quot;΢���ź�&quot;, Font.PLAIN, 13));</b>
+        <b class="fc"><i>82</i>&nbsp; tfTarget.setColumns(10);</b>
+        <b class="fc"><i>83</i>&nbsp; tfTarget.setBackground(color);</b>
+        <b class="fc"><i>84</i>&nbsp; tfTarget.setBounds(297, 326, 151, 31);</b>
+        <b class="fc"><i>85</i>&nbsp; add(tfTarget);</b>
+        <i>86</i>&nbsp;
+        <i>87</i>&nbsp; // Ŀ�굥λ
+        <b class="fc"><i>88</i>&nbsp; comboBoxTarget.setFont(new Font(&quot;΢���ź�&quot;, Font.PLAIN, 13));</b>
+        <b class="fc"><i>89</i>&nbsp; comboBoxTarget.setBackground(color);</b>
+        <b class="fc"><i>90</i>&nbsp; comboBoxTarget.setBounds(103, 326, 150, 30);</b>
+        <b class="fc"><i>91</i>&nbsp; add(comboBoxTarget);</b>
+        <i>92</i>&nbsp;
+        <b class="fc"><i>93</i>&nbsp; for (Entry&lt;String, BigDecimal&gt; entry : m.length.entrySet()) {</b>
+        <b class="fc"><i>94</i>&nbsp; comboBoxSource.addItem(entry.getKey());</b>
+        <b class="fc"><i>95</i>&nbsp; comboBoxTarget.addItem(entry.getKey());</b>
+        <b class="fc"><i>96</i>&nbsp; }</b>
+        <i>97</i>&nbsp;
+        <i>98</i>&nbsp; // ��������
+        <b class="fc"><i>99</i>&nbsp; lblType.setFont(new Font(&quot;����&quot;, Font.PLAIN, 15));</b>
+        <b class="fc"><i>100</i>&nbsp; lblType.setBounds(103, 40, 150, 30);</b>
+        <b class="fc"><i>101</i>&nbsp; add(lblType);</b>
+        <i>102</i>&nbsp;
+        <i>103</i>&nbsp; // ���㵥λ
+        <b class="fc"><i>104</i>&nbsp; lblUnit.setFont(new Font(&quot;����&quot;, Font.PLAIN, 14));</b>
+        <b class="fc"><i>105</i>&nbsp; lblUnit.setBounds(103, 150, 150, 30);</b>
+        <b class="fc"><i>106</i>&nbsp; add(lblUnit);</b>
+        <i>107</i>&nbsp;
+        <i>108</i>&nbsp; // ���㰴ť
+        <b class="fc"><i>109</i>&nbsp; btnConvert.setBackground(new Color(245, 255, 250));</b>
+        <b class="fc"><i>110</i>&nbsp; btnConvert.setFont(new Font(&quot;΢���ź�&quot;, Font.PLAIN, 13));</b>
+        <b class="fc"><i>111</i>&nbsp; btnConvert.setBounds(338, 268, 70, 35);</b>
+        <b class="fc"><i>112</i>&nbsp; add(btnConvert);</b>
+        <i>113</i>&nbsp;
+        <b class="fc"><i>114</i>&nbsp; }</b>
+        <i>115</i>&nbsp;
+        <i>116</i>&nbsp; /**
+        <i>117</i>&nbsp; * ���������¼�
+        <i>118</i>&nbsp; */
+        <i>119</i>&nbsp; @Override
+        <i>120</i>&nbsp; protected void createAction() {
+        <b class="fc"><i>121</i>&nbsp; comboBoxType.addActionListener(e -&gt; {</b>
+        <b class="fc"><i>122</i>&nbsp; switch (comboBoxType.getSelectedIndex()) {</b>
+        <i>123</i>&nbsp; case 0:
+        <b class="nc"><i>124</i>&nbsp; comboBoxSource.removeAllItems();</b>
+        <b class="nc"><i>125</i>&nbsp; comboBoxTarget.removeAllItems();</b>
+        <b class="nc"><i>126</i>&nbsp; for (Entry&lt;String, BigDecimal&gt; entry : m.length.entrySet()) {</b>
+        <b class="nc"><i>127</i>&nbsp; comboBoxSource.addItem(entry.getKey());</b>
+        <b class="nc"><i>128</i>&nbsp; comboBoxTarget.addItem(entry.getKey());</b>
+        <b class="nc"><i>129</i>&nbsp; }</b>
+        <b class="nc"><i>130</i>&nbsp; break;</b>
+        <i>131</i>&nbsp; case 1:
+        <b class="nc"><i>132</i>&nbsp; comboBoxSource.removeAllItems();</b>
+        <b class="nc"><i>133</i>&nbsp; comboBoxTarget.removeAllItems();</b>
+        <b class="nc"><i>134</i>&nbsp; for (Entry&lt;String, BigDecimal&gt; entry : m.area.entrySet()) {</b>
+        <b class="nc"><i>135</i>&nbsp; comboBoxSource.addItem(entry.getKey());</b>
+        <b class="nc"><i>136</i>&nbsp; comboBoxTarget.addItem(entry.getKey());</b>
+        <b class="nc"><i>137</i>&nbsp; }</b>
+        <b class="nc"><i>138</i>&nbsp; break;</b>
+        <i>139</i>&nbsp; case 2:
+        <b class="fc"><i>140</i>&nbsp; comboBoxSource.removeAllItems();</b>
+        <b class="fc"><i>141</i>&nbsp; comboBoxTarget.removeAllItems();</b>
+        <b class="fc"><i>142</i>&nbsp; for (Entry&lt;String, BigDecimal&gt; entry : m.volume.entrySet()) {</b>
+        <b class="fc"><i>143</i>&nbsp; comboBoxSource.addItem(entry.getKey());</b>
+        <b class="fc"><i>144</i>&nbsp; comboBoxTarget.addItem(entry.getKey());</b>
+        <b class="fc"><i>145</i>&nbsp; }</b>
+        <b class="fc"><i>146</i>&nbsp; break;</b>
+        <i>147</i>&nbsp; case 3:
+        <b class="nc"><i>148</i>&nbsp; comboBoxSource.removeAllItems();</b>
+        <b class="nc"><i>149</i>&nbsp; comboBoxTarget.removeAllItems();</b>
+        <b class="nc"><i>150</i>&nbsp; for (Entry&lt;String, BigDecimal&gt; entry : m.speed.entrySet()) {</b>
+        <b class="nc"><i>151</i>&nbsp; comboBoxSource.addItem(entry.getKey());</b>
+        <b class="nc"><i>152</i>&nbsp; comboBoxTarget.addItem(entry.getKey());</b>
+        <b class="nc"><i>153</i>&nbsp; }</b>
+        <b class="nc"><i>154</i>&nbsp; break;</b>
+        <i>155</i>&nbsp; case 4:
+        <b class="nc"><i>156</i>&nbsp; comboBoxSource.removeAllItems();</b>
+        <b class="nc"><i>157</i>&nbsp; comboBoxTarget.removeAllItems();</b>
+        <b class="nc"><i>158</i>&nbsp; for (Entry&lt;String, BigDecimal&gt; entry : m.mass.entrySet()) {</b>
+        <b class="nc"><i>159</i>&nbsp; comboBoxSource.addItem(entry.getKey());</b>
+        <b class="nc"><i>160</i>&nbsp; comboBoxTarget.addItem(entry.getKey());</b>
+        <b class="nc"><i>161</i>&nbsp; }</b>
+        <b class="nc"><i>162</i>&nbsp; break;</b>
+        <i>163</i>&nbsp; case 5:
+        <b class="nc"><i>164</i>&nbsp; comboBoxSource.removeAllItems();</b>
+        <b class="nc"><i>165</i>&nbsp; comboBoxTarget.removeAllItems();</b>
+        <b class="nc"><i>166</i>&nbsp; for (Entry&lt;String, String&gt; entry : m.temp.entrySet()) {</b>
+        <b class="nc"><i>167</i>&nbsp; comboBoxSource.addItem(entry.getKey());</b>
+        <b class="nc"><i>168</i>&nbsp; comboBoxTarget.addItem(entry.getKey());</b>
+        <b class="nc"><i>169</i>&nbsp; }</b>
+        <b class="nc"><i>170</i>&nbsp; break;</b>
+        <i>171</i>&nbsp; case 6:
+        <b class="nc"><i>172</i>&nbsp; comboBoxSource.removeAllItems();</b>
+        <b class="nc"><i>173</i>&nbsp; comboBoxTarget.removeAllItems();</b>
+        <b class="nc"><i>174</i>&nbsp; for (Entry&lt;String, String&gt; entry : m.angle.entrySet()) {</b>
+        <b class="nc"><i>175</i>&nbsp; comboBoxSource.addItem(entry.getKey());</b>
+        <b class="nc"><i>176</i>&nbsp; comboBoxTarget.addItem(entry.getKey());</b>
+        <b class="nc"><i>177</i>&nbsp; }</b>
+        <i>178</i>&nbsp; break;
+        <i>179</i>&nbsp; }
+        <b class="fc"><i>180</i>&nbsp; });</b>
+        <b class="fc"><i>181</i>&nbsp; tfSource.addMouseListener(new MouseListener() {</b>
+        <i>182</i>&nbsp; @Override
+        <i>183</i>&nbsp; public void mouseClicked(MouseEvent e) {
+        <b class="fc"><i>184</i>&nbsp; if (e.getButton() == MouseEvent.BUTTON3) {</b>
+        <b class="nc"><i>185</i>&nbsp; RightClickMenu menu = new RightClickMenu((JTextComponent) e.getComponent());</b>
+        <b class="nc"><i>186</i>&nbsp; menu.show(e.getComponent(), e.getX(), e.getY());</b>
+        <i>187</i>&nbsp; }
+        <b class="fc"><i>188</i>&nbsp; }</b>
+        <i>189</i>&nbsp;
+        <i>190</i>&nbsp; @Override
+        <i>191</i>&nbsp; public void mousePressed(MouseEvent e) {
+        <i>192</i>&nbsp;
+        <b class="fc"><i>193</i>&nbsp; }</b>
+        <i>194</i>&nbsp;
+        <i>195</i>&nbsp; @Override
+        <i>196</i>&nbsp; public void mouseReleased(MouseEvent e) {
+        <i>197</i>&nbsp;
+        <b class="fc"><i>198</i>&nbsp; }</b>
+        <i>199</i>&nbsp;
+        <i>200</i>&nbsp; @Override
+        <i>201</i>&nbsp; public void mouseEntered(MouseEvent e) {
+        <i>202</i>&nbsp;
+        <b class="fc"><i>203</i>&nbsp; }</b>
+        <i>204</i>&nbsp;
+        <i>205</i>&nbsp; @Override
+        <i>206</i>&nbsp; public void mouseExited(MouseEvent e) {
+        <i>207</i>&nbsp;
+        <b class="fc"><i>208</i>&nbsp; }</b>
+        <i>209</i>&nbsp; });
+        <b class="fc"><i>210</i>&nbsp; tfTarget.addMouseListener(new MouseListener() {</b>
+        <i>211</i>&nbsp; @Override
+        <i>212</i>&nbsp; public void mouseClicked(MouseEvent e) {
+        <b class="nc"><i>213</i>&nbsp; if (e.getButton() == MouseEvent.BUTTON3) {</b>
+        <b class="nc"><i>214</i>&nbsp; RightClickMenu menu = new RightClickMenu((JTextComponent) e.getComponent());</b>
+        <b class="nc"><i>215</i>&nbsp; menu.show(e.getComponent(), e.getX(), e.getY());</b>
+        <i>216</i>&nbsp; }
+        <b class="nc"><i>217</i>&nbsp; }</b>
+        <i>218</i>&nbsp;
+        <i>219</i>&nbsp; @Override
+        <i>220</i>&nbsp; public void mousePressed(MouseEvent e) {
+        <i>221</i>&nbsp;
+        <b class="nc"><i>222</i>&nbsp; }</b>
+        <i>223</i>&nbsp;
+        <i>224</i>&nbsp; @Override
+        <i>225</i>&nbsp; public void mouseReleased(MouseEvent e) {
+        <i>226</i>&nbsp;
+        <b class="nc"><i>227</i>&nbsp; }</b>
+        <i>228</i>&nbsp;
+        <i>229</i>&nbsp; @Override
+        <i>230</i>&nbsp; public void mouseEntered(MouseEvent e) {
+        <i>231</i>&nbsp;
+        <b class="nc"><i>232</i>&nbsp; }</b>
+        <i>233</i>&nbsp;
+        <i>234</i>&nbsp; @Override
+        <i>235</i>&nbsp; public void mouseExited(MouseEvent e) {
+        <i>236</i>&nbsp;
+        <b class="nc"><i>237</i>&nbsp; }</b>
+        <i>238</i>&nbsp; });
+        <b class="fc"><i>239</i>&nbsp; btnConvert.addActionListener(e -&gt; {</b>
+        <b class="fc"><i>240</i>&nbsp; BigDecimal r = m.conver((String) comboBoxSource.getSelectedItem(), (String)
+            comboBoxTarget.getSelectedItem(),</b>
+        <b class="fc"><i>241</i>&nbsp; new BigDecimal(tfSource.getText()), (String) comboBoxType.getSelectedItem());</b>
+        <b class="fc"><i>242</i>&nbsp; String result = r.setScale(6,
+            BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();</b>
+        <b class="fc"><i>243</i>&nbsp; tfTarget.setText(result);</b>
+        <b class="fc"><i>244</i>&nbsp; HistoryUI.updateRecord(result);</b>
+        <b class="fc"><i>245</i>&nbsp; });</b>
+        <b class="fc"><i>246</i>&nbsp; }</b>
+        <i>247</i>&nbsp;
+        <i>248</i>&nbsp; /**
+        <i>249</i>&nbsp; * ��ʼ������������Ļ�������
+        <i>250</i>&nbsp; */
+        <i>251</i>&nbsp; public ConversionUI() {
+        <b class="fc"><i>252</i>&nbsp; super();</b>
+        <b class="fc"><i>253</i>&nbsp; }</b>
+        <i>254</i>&nbsp;
+        <i>255</i>&nbsp; /**
+        <i>256</i>&nbsp; * �趨����ʷ��¼����ȡ�Ľ������ʾ��UI�ϲ����ص����ʽ��
+        <i>257</i>&nbsp; *
+        <i>258</i>&nbsp; * @param s ��ȡ�Ľ��
+        <i>259</i>&nbsp; */
+        <i>260</i>&nbsp; static void setTempResult(String s) {
+        <b class="fc"><i>261</i>&nbsp; tfSource.setText(s);</b>
+        <b class="fc"><i>262</i>&nbsp; }</b>
+        <i>263</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-26 16:46</div>
+</div>
+</body>
+</html>
