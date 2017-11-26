@@ -69,8 +69,8 @@ public class ScreenWindow extends JFrame implements MouseListener, MouseMotionLi
             BufferedImage image = GraphicsUtils.getScreenImage(Math.min(x, xEnd), Math.min(y, yEnd), Math.abs(xEnd - x),
                     Math.abs(yEnd - y));
             Intent.setObj(serialVersionUID, imageIntent, image);
-        } catch (Exception e1) {
-            e1.printStackTrace();
+        } catch (Exception ignored) {
+
         }
         ScreenWindow.this.dispose();
     }

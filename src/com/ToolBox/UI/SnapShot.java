@@ -20,6 +20,9 @@ import java.nio.file.Path;
  * @author 杨弘
  */
 class SnapShot extends JFrame {
+    public static void main(String[] args) {
+        new SnapShot();
+    }
 
     private static final long serialVersionUID = 2593517177840717431L;
     private final static int SMALL = 2;
@@ -143,8 +146,8 @@ class SnapShot extends JFrame {
             setVisible(false);
             try {
                 Thread.sleep(200);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
+            } catch (InterruptedException ignored) {
+
             }
             try {
                 JFrame screenShot = new ScreenWindow();
@@ -157,8 +160,8 @@ class SnapShot extends JFrame {
                         imageLabel.setIcon(new ImageIcon(image));
                     }
                 });
-            } catch (Exception e1) {
-                e1.printStackTrace();
+            } catch (Exception ignored) {
+
             }
 
 
@@ -195,8 +198,8 @@ class SnapShot extends JFrame {
                     Image image = ((ImageIcon) imageLabel.getIcon()).getImage();
                     try {
                         ImageIO.write((BufferedImage) image, "png", file);
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
+                    } catch (IOException ignored) {
+
                     }
                     break;
                 default:

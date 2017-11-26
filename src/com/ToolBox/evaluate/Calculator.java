@@ -196,16 +196,11 @@ public class Calculator {
         BigDecimal a;
         BigDecimal c;
         String f = flag.pop();
-//        System.out.println(Operators.operatorHashMap.get(f).getName());
         Operator op = Operators.operatorHashMap.get(f);
         switch (op.getAry()) {
             case 2:
                 b = val.pop();
                 try {
-//                    if ((op.getName().equals("+") || op.getName().equals("-")) &&
-//                            (flag.peek().equals("(") || flag.peek().equals("@")))
-//                        a = BigDecimal.ZERO;
-//                    else
                     a = val.pop();
                 } catch (EmptyStackException e) {
                     a = BigDecimal.ZERO;
