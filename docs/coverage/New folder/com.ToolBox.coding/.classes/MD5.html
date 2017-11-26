@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: MD5</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.coding</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: MD5 (com.ToolBox.coding)</h1>
+
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Class, %
+            </th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">MD5</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+                <span class="absValue">
+    (3/ 4)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    95.2%
+  </span>
+                <span class="absValue">
+    (20/ 21)
+  </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.coding;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import java.io.IOException;
+        <i>4</i>&nbsp;import java.nio.file.Files;
+        <i>5</i>&nbsp;import java.nio.file.Path;
+        <i>6</i>&nbsp;import java.nio.file.Paths;
+        <i>7</i>&nbsp;import java.security.GeneralSecurityException;
+        <i>8</i>&nbsp;import java.security.MessageDigest;
+        <i>9</i>&nbsp;
+        <i>10</i>&nbsp;/**
+        <i>11</i>&nbsp; * md5���ܺ���
+        <i>12</i>&nbsp; *
+        <i>13</i>&nbsp; * @author ���
+        <i>14</i>&nbsp; */
+        <b class="nc"><i>15</i>&nbsp;public class MD5 {</b>
+        <i>16</i>&nbsp; /**
+        <i>17</i>&nbsp; * ���ı�ת����MD5ժҪ
+        <i>18</i>&nbsp; *
+        <i>19</i>&nbsp; * @param content Ҫת�����ı�
+        <i>20</i>&nbsp; * @return 32λ��д��MD5ժҪ
+        <i>21</i>&nbsp; * @throws Exception �������
+        <i>22</i>&nbsp; */
+        <i>23</i>&nbsp; public static String converToMD5(String content) throws Exception {
+        <b class="fc"><i>24</i>&nbsp; MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</b>
+        <b class="fc"><i>25</i>&nbsp; byte[] src = content.getBytes(&quot;utf-8&quot;);</b>
+        <b class="fc"><i>26</i>&nbsp; md.update(src);</b>
+        <b class="fc"><i>27</i>&nbsp; byte[] buff = md.digest();</b>
+        <b class="fc"><i>28</i>&nbsp; return toHex(buff);</b>
+        <i>29</i>&nbsp;
+        <i>30</i>&nbsp;
+        <i>31</i>&nbsp; }
+        <i>32</i>&nbsp;
+        <i>33</i>&nbsp; /**
+        <i>34</i>&nbsp; * ����ļ�MD5ժҪ
+        <i>35</i>&nbsp; *
+        <i>36</i>&nbsp; * @param filePath ҪժҪ���ļ�
+        <i>37</i>&nbsp; * @return 32λ��д��MD5ժҪ
+        <i>38</i>&nbsp; * @throws IOException ��д����
+        <i>39</i>&nbsp; * @throws GeneralSecurityException ���ɴ���
+        <i>40</i>&nbsp; */
+        <i>41</i>&nbsp; public static String checkFileMD5(String filePath) throws IOException, GeneralSecurityException
+        {
+        <b class="fc"><i>42</i>&nbsp; MessageDigest md = MessageDigest.getInstance(&quot;MD5&quot;);</b>
+        <b class="fc"><i>43</i>&nbsp; Path path = Paths.get(filePath);</b>
+        <b class="fc"><i>44</i>&nbsp; byte[] data = Files.readAllBytes(path);</b>
+        <b class="fc"><i>45</i>&nbsp; md.update(data);</b>
+        <b class="fc"><i>46</i>&nbsp; byte[] buff = md.digest();</b>
+        <b class="fc"><i>47</i>&nbsp; return toHex(buff);</b>
+        <i>48</i>&nbsp; }
+        <i>49</i>&nbsp;
+        <i>50</i>&nbsp; /**
+        <i>51</i>&nbsp; * 128λ������ת��Ϊ32λ��д�ַ���
+        <i>52</i>&nbsp; *
+        <i>53</i>&nbsp; * @param buff ��������
+        <i>54</i>&nbsp; * @return 32λ��д�ַ���
+        <i>55</i>&nbsp; */
+        <i>56</i>&nbsp; private static String toHex(byte[] buff) {
+        <b class="fc"><i>57</i>&nbsp; StringBuilder sb = new StringBuilder(&quot;&quot;);</b>
+        <i>58</i>&nbsp; int digit;
+        <b class="fc"><i>59</i>&nbsp; for (byte b : buff) {</b>
+        <b class="fc"><i>60</i>&nbsp; digit = b;</b>
+        <b class="fc"><i>61</i>&nbsp; if (digit &lt; 0) {</b>
+        <b class="fc"><i>62</i>&nbsp; digit &amp;= 0xff;</b>
+        <i>63</i>&nbsp; }
+        <b class="fc"><i>64</i>&nbsp; if (digit &lt; 0x10) {</b>
+        <b class="fc"><i>65</i>&nbsp; sb.append(&quot;0&quot;);</b>
+        <i>66</i>&nbsp; }
+        <b class="fc"><i>67</i>&nbsp; sb.append(Integer.toHexString(digit));</b>
+        <i>68</i>&nbsp; }
+        <b class="fc"><i>69</i>&nbsp; return sb.toString().toUpperCase();</b>
+        <i>70</i>&nbsp; }
+        <i>71</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-26 16:14</div>
+</div>
+</body>
+</html>

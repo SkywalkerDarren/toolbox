@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: Calculator</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.evaluate</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: Calculator (com.ToolBox.evaluate)</h1>
+
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Class, %
+            </th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">Calculator</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    94.9%
+  </span>
+                <span class="absValue">
+    (112/ 118)
+  </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.evaluate;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import java.math.BigDecimal;
+        <i>4</i>&nbsp;import java.util.ArrayList;
+        <i>5</i>&nbsp;import java.util.EmptyStackException;
+        <i>6</i>&nbsp;import java.util.Stack;
+        <i>7</i>&nbsp;import java.util.regex.Pattern;
+        <i>8</i>&nbsp;
+        <i>9</i>&nbsp;/**
+        <i>10</i>&nbsp; * �����������㷨
+        <i>11</i>&nbsp; *
+        <i>12</i>&nbsp; * @author ���
+        <i>13</i>&nbsp; */
+        <b class="fc"><i>14</i>&nbsp;public class Calculator {</b>
+        <i>15</i>&nbsp; public final static int HEX = 16;
+        <i>16</i>&nbsp; public final static int DEC = 10;
+        <i>17</i>&nbsp; public final static int OCT = 8;
+        <i>18</i>&nbsp; public final static int BIN = 2;
+        <i>19</i>&nbsp; private final static int NORMAL = 0;
+        <b class="fc"><i>20</i>&nbsp; private int radix = NORMAL;</b>
+        <i>21</i>&nbsp;
+        <i>22</i>&nbsp; /**
+        <i>23</i>&nbsp; * @param exp ���ʽ���ɵ��ַ���
+        <i>24</i>&nbsp; * @return ���ʽ�Ľ��
+        <i>25</i>&nbsp; */
+        <i>26</i>&nbsp; public String getResult(String exp) {
+        <b class="fc"><i>27</i>&nbsp; String[] expression = exp.split(&quot; &quot;);</b>
+        <b class="fc"><i>28</i>&nbsp; if (!checkExpression(expression)) {</b>
+        <b class="nc"><i>29</i>&nbsp; throw new IllegalArgumentException(&quot;���ʽ���Ϸ�&quot;);</b>
+        <i>30</i>&nbsp; }
+        <i>31</i>&nbsp;
+        <b class="fc"><i>32</i>&nbsp; BigDecimal answer = evaluate(expression);</b>
+        <b class="fc"><i>33</i>&nbsp; String result = answer.setScale(16,
+            BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toPlainString();</b>
+        <b class="fc"><i>34</i>&nbsp; if (result.length() &lt; 32) {</b>
+        <b class="fc"><i>35</i>&nbsp; return result;</b>
+        <i>36</i>&nbsp; } else {
+        <b class="nc"><i>37</i>&nbsp; return answer.setScale(16,
+            BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toEngineeringString();</b>
+        <i>38</i>&nbsp; }
+        <i>39</i>&nbsp; }
+        <i>40</i>&nbsp;
+        <i>41</i>&nbsp; /**
+        <i>42</i>&nbsp; * ����״̬�������ʽ�Ƿ�Ϸ�
+        <i>43</i>&nbsp; * ״̬ת�Ʊ�
+        <i>44</i>&nbsp; * ������, ��ֵ, ˫Ŀ�����, ��Ŀ�����, ������, ������
+        <i>45</i>&nbsp; * **0 1 2 3 4 5
+        <i>46</i>&nbsp; * 0 T
+        <i>47</i>&nbsp; * 1 T T
+        <i>48</i>&nbsp; * 2 T T T
+        <i>49</i>&nbsp; * 3 T
+        <i>50</i>&nbsp; * 4 T T T T
+        <i>51</i>&nbsp; * 5 T T
+        <i>52</i>&nbsp; *
+        <i>53</i>&nbsp; * @param exp ���ʽ����
+        <i>54</i>&nbsp; */
+        <i>55</i>&nbsp; private boolean checkExpression(String[] exp) {
+        <b class="fc"><i>56</i>&nbsp; ArrayList&lt;String&gt; expression = new ArrayList&lt;&gt;();</b>
+        <b class="fc"><i>57</i>&nbsp; for (String s : exp) {</b>
+        <b class="fc"><i>58</i>&nbsp; if (!s.matches(&quot; *&quot;))</b>
+        <b class="fc"><i>59</i>&nbsp; expression.add(s);</b>
+        <i>60</i>&nbsp; }
+        <i>61</i>&nbsp; // [-|+]?\d\.{0,1}\d* �ж��Ƿ�������
+        <b class="fc"><i>62</i>&nbsp; Pattern patternFloat = Pattern.compile(&quot;[-+]?\\d+\\.\\d+&quot;);</b>
+        <b class="fc"><i>63</i>&nbsp; Pattern patternExp =
+            Pattern.compile(&quot;[-+]?\\d+\\.\\d+[Ee]+\\++\\d+&quot;);</b>
+        <b class="fc"><i>64</i>&nbsp; Pattern patternInteger = Pattern.compile(&quot;[-+]?\\d+&quot;);</b>
+        <b class="fc"><i>65</i>&nbsp; Pattern patternHex = Pattern.compile(&quot;[-+]?[\\d[a-f][A-F]]+&quot;);</b>
+        <b class="fc"><i>66</i>&nbsp; int l = 0, r = 0;</b>
+        <i>67</i>&nbsp; // neg, num, double, single, left, right
+        <b class="fc"><i>68</i>&nbsp; boolean FSM[][] = new boolean[][]{</b>
+        <i>69</i>&nbsp; {false, true, false, false, false, false}, //neg
+        <i>70</i>&nbsp; {false, false, true, false, false, true}, //num
+        <i>71</i>&nbsp; {false, true, false, true, true, false}, //double
+        <i>72</i>&nbsp; {false, false, false, false, true, false}, //single
+        <i>73</i>&nbsp; {true, true, false, true, true, false}, //left
+        <i>74</i>&nbsp; {false, false, true, false, false, true}, //right
+        <i>75</i>&nbsp; };
+        <i>76</i>&nbsp;
+        <i>77</i>&nbsp; // ��ʼ��һ����Ч���
+        <b class="fc"><i>78</i>&nbsp; int i = 0, j = 0;</b>
+        <b class="fc"><i>79</i>&nbsp; boolean single = false;</b>
+        <b class="fc"><i>80</i>&nbsp; String start = expression.get(0);</b>
+        <i>81</i>&nbsp; try {
+        <b class="fc"><i>82</i>&nbsp; single = Operators.operatorHashMap.get(start).getAry() == 1;</b>
+        <b class="fc"><i>83</i>&nbsp; } catch (NullPointerException ignored) {</b>
+        <i>84</i>&nbsp;
+        <b class="fc"><i>85</i>&nbsp; }</b>
+        <i>86</i>&nbsp;
+        <i>87</i>&nbsp; // �趨״̬����Ч���
+        <b class="fc"><i>88</i>&nbsp; if (patternFloat.matcher(start).matches() ||</b>
+        <b class="fc"><i>89</i>&nbsp; patternInteger.matcher(start).matches() ||</b>
+        <b class="fc"><i>90</i>&nbsp; patternHex.matcher(start).matches() ||</b>
+        <b class="fc"><i>91</i>&nbsp; patternExp.matcher(start).matches()) {</b>
+        <b class="fc"><i>92</i>&nbsp; j = 1;</b>
+        <b class="fc"><i>93</i>&nbsp; } else if (start.equals(&quot;-&quot;) || start.equals(&quot;+&quot;)) {</b>
+        <b class="fc"><i>94</i>&nbsp; j = 0;</b>
+        <b class="fc"><i>95</i>&nbsp; } else if (start.equals(&quot;(&quot;)) {</b>
+        <b class="fc"><i>96</i>&nbsp; l = 1;</b>
+        <b class="fc"><i>97</i>&nbsp; j = 4;</b>
+        <b class="fc"><i>98</i>&nbsp; } else if (single) {</b>
+        <b class="fc"><i>99</i>&nbsp; j = 3;</b>
+        <i>100</i>&nbsp; }
+        <i>101</i>&nbsp;
+        <b class="fc"><i>102</i>&nbsp; for (int k = 1; k &lt; expression.size(); k++) {</b>
+        <b class="fc"><i>103</i>&nbsp; i = j;</b>
+        <b class="fc"><i>104</i>&nbsp; if (patternFloat.matcher(expression.get(k)).matches() ||</b>
+        <b class="fc"><i>105</i>&nbsp; patternInteger.matcher(expression.get(k)).matches() ||</b>
+        <b class="fc"><i>106</i>&nbsp; patternHex.matcher(expression.get(k)).matches() ||</b>
+        <b class="fc"><i>107</i>&nbsp; patternExp.matcher(expression.get(k)).matches()) {</b>
+        <b class="fc"><i>108</i>&nbsp; j = 1;</b>
+        <b class="fc"><i>109</i>&nbsp; } else if (i == 4 &amp;&amp; (expression.get(k).equals(&quot;-&quot;) ||
+            expression.get(k).equals(&quot;+&quot;))) {</b>
+        <b class="fc"><i>110</i>&nbsp; j = 0;</b>
+        <b class="fc"><i>111</i>&nbsp; } else if (expression.get(k).equals(&quot;(&quot;)) {</b>
+        <b class="fc"><i>112</i>&nbsp; l++;</b>
+        <b class="fc"><i>113</i>&nbsp; j = 4;</b>
+        <b class="fc"><i>114</i>&nbsp; } else if (expression.get(k).equals(&quot;)&quot;)) {</b>
+        <b class="fc"><i>115</i>&nbsp; r++;</b>
+        <b class="fc"><i>116</i>&nbsp; j = 5;</b>
+        <b class="fc"><i>117</i>&nbsp; } else if (Operators.operatorHashMap.get(expression.get(k)).getAry() == 2) {</b>
+        <b class="fc"><i>118</i>&nbsp; j = 2;</b>
+        <b class="fc"><i>119</i>&nbsp; } else if (Operators.operatorHashMap.get(expression.get(k)).getAry() == 1) {</b>
+        <b class="fc"><i>120</i>&nbsp; j = 3;</b>
+        <i>121</i>&nbsp; }
+        <i>122</i>&nbsp;
+        <b class="fc"><i>123</i>&nbsp; if (!FSM[i][j]) return false;</b>
+        <i>124</i>&nbsp;
+        <i>125</i>&nbsp; }
+        <i>126</i>&nbsp;
+        <b class="fc"><i>127</i>&nbsp; return FSM[i][j] &amp;&amp; r &lt;= l;</b>
+        <i>128</i>&nbsp; }
+        <i>129</i>&nbsp;
+        <i>130</i>&nbsp; public String getResult(String exp, int radix) {
+        <b class="fc"><i>131</i>&nbsp; this.radix = radix;</b>
+        <b class="fc"><i>132</i>&nbsp; return getResult(exp);</b>
+        <i>133</i>&nbsp; }
+        <i>134</i>&nbsp;
+        <i>135</i>&nbsp; /**
+        <i>136</i>&nbsp; * ���ʽ����ĺ��ķ���
+        <i>137</i>&nbsp; *
+        <i>138</i>&nbsp; * @param expression: һ���ɵ�����ֵ����Ź��ɵı��ʽ����(e.g., s[] = {&quot;3.56&quot;,&quot;+&quot;,&quot;4&quot;})
+        <i>139</i>&nbsp; * @return ��ֵ���
+        <i>140</i>&nbsp; */
+        <i>141</i>&nbsp; private BigDecimal evaluate(String[] expression) {
+        <b class="fc"><i>142</i>&nbsp; if (expression.length &lt; 1) {</b>
+        <b class="nc"><i>143</i>&nbsp; throw new IllegalArgumentException(&quot;���ʽΪ��&quot;);</b>
+        <i>144</i>&nbsp; }
+        <b class="fc"><i>145</i>&nbsp; Stack&lt;BigDecimal&gt; val = new Stack&lt;&gt;();</b>
+        <b class="fc"><i>146</i>&nbsp; Stack&lt;String&gt; flag = new Stack&lt;&gt;();</b>
+        <i>147</i>&nbsp; // ��ֹ��
+        <b class="fc"><i>148</i>&nbsp; flag.push(&quot;@&quot;);</b>
+        <b class="fc"><i>149</i>&nbsp; for (String s : expression) {</b>
+        <i>150</i>&nbsp; try {
+        <b class="fc"><i>151</i>&nbsp; if (radix &gt; 0) {</b>
+        <b class="fc"><i>152</i>&nbsp; s = Long.parseLong(s, radix) + &quot;&quot;;</b>
+        <i>153</i>&nbsp; }
+        <b class="fc"><i>154</i>&nbsp; val.push(new BigDecimal(s));</b>
+        <b class="fc"><i>155</i>&nbsp; } catch (NumberFormatException e) {</b>
+        <i>156</i>&nbsp; // �����
+        <b class="fc"><i>157</i>&nbsp; switch (s) {</b>
+        <i>158</i>&nbsp; case &quot;)&quot;:
+        <b class="fc"><i>159</i>&nbsp; while (!flag.peek().equals(&quot;(&quot;)) {</b>
+        <b class="fc"><i>160</i>&nbsp; calcExp(val, flag);</b>
+        <i>161</i>&nbsp; }
+        <b class="fc"><i>162</i>&nbsp; flag.pop();</b>
+        <b class="fc"><i>163</i>&nbsp; break;</b>
+        <i>164</i>&nbsp; case &quot;(&quot;:
+        <b class="fc"><i>165</i>&nbsp; flag.push(s);</b>
+        <b class="fc"><i>166</i>&nbsp; break;</b>
+        <i>167</i>&nbsp; case &quot;&quot;:
+        <b class="fc"><i>168</i>&nbsp; break;</b>
+        <i>169</i>&nbsp; default:
+        <b class="fc"><i>170</i>&nbsp; while (Operators.operatorHashMap.get(s).getLevel() &lt;=</b>
+        <b class="fc"><i>171</i>&nbsp; Operators.operatorHashMap.get(flag.peek()).getLevel()) {</b>
+        <b class="fc"><i>172</i>&nbsp; calcExp(val, flag);</b>
+        <i>173</i>&nbsp; }
+        <b class="fc"><i>174</i>&nbsp; flag.push(s);</b>
+        <i>175</i>&nbsp; break;
+        <i>176</i>&nbsp; }
+        <b class="fc"><i>177</i>&nbsp; }</b>
+        <i>178</i>&nbsp; }
+        <b class="fc"><i>179</i>&nbsp; while (!flag.peek().equals(&quot;@&quot;)) {</b>
+        <b class="fc"><i>180</i>&nbsp; calcExp(val, flag);</b>
+        <i>181</i>&nbsp; }
+        <b class="fc"><i>182</i>&nbsp; if (val.isEmpty()) {</b>
+        <b class="fc"><i>183</i>&nbsp; return BigDecimal.ZERO;</b>
+        <i>184</i>&nbsp; }
+        <b class="fc"><i>185</i>&nbsp; return val.pop();</b>
+        <i>186</i>&nbsp; }
+        <i>187</i>&nbsp;
+        <i>188</i>&nbsp; /**
+        <i>189</i>&nbsp; * ��˫ջ������ʽ���
+        <i>190</i>&nbsp; *
+        <i>191</i>&nbsp; * @param val �洢��ֵ��ջ
+        <i>192</i>&nbsp; * @param flag: �洢��������ջ
+        <i>193</i>&nbsp; */
+        <i>194</i>&nbsp; private void calcExp(Stack&lt;BigDecimal&gt; val, Stack&lt;String&gt; flag) {
+        <i>195</i>&nbsp; BigDecimal b;
+        <i>196</i>&nbsp; BigDecimal a;
+        <i>197</i>&nbsp; BigDecimal c;
+        <b class="fc"><i>198</i>&nbsp; String f = flag.pop();</b>
+        <b class="fc"><i>199</i>&nbsp; Operator op = Operators.operatorHashMap.get(f);</b>
+        <b class="fc"><i>200</i>&nbsp; switch (op.getAry()) {</b>
+        <b class="fc"><i>201</i>&nbsp; case 2:</b>
+        <b class="fc"><i>202</i>&nbsp; b = val.pop();</b>
+        <b class="fc"><i>203</i>&nbsp; try {</b>
+        <b class="fc"><i>204</i>&nbsp; a = val.pop();</b>
+        <b class="nc"><i>205</i>&nbsp; } catch (EmptyStackException e) {</b>
+        <b class="nc"><i>206</i>&nbsp; a = BigDecimal.ZERO;</b>
+        <b class="fc"><i>207</i>&nbsp; }</b>
+        <b class="fc"><i>208</i>&nbsp; if (radix &gt; 0) {</b>
+        <b class="fc"><i>209</i>&nbsp; c = BigDecimal.valueOf(op.calc(a.longValueExact(), b.longValueExact()));</b>
+        <b class="fc"><i>210</i>&nbsp; } else {</b>
+        <b class="fc"><i>211</i>&nbsp; c = op.calc(a, b);</b>
+        <b class="fc"><i>212</i>&nbsp; }</b>
+        <b class="fc"><i>213</i>&nbsp; val.push(c);</b>
+        <b class="fc"><i>214</i>&nbsp; break;</b>
+        <i>215</i>&nbsp; case 1:
+        <b class="fc"><i>216</i>&nbsp; a = val.pop();</b>
+        <b class="fc"><i>217</i>&nbsp; if (radix &gt; 0) {</b>
+        <b class="fc"><i>218</i>&nbsp; c = BigDecimal.valueOf(op.calc(a.longValueExact()));</b>
+        <b class="fc"><i>219</i>&nbsp; } else {</b>
+        <b class="nc"><i>220</i>&nbsp; c = op.calc(a);</b>
+        <b class="fc"><i>221</i>&nbsp; }</b>
+        <b class="fc"><i>222</i>&nbsp; val.push(c);</b>
+        <b class="fc"><i>223</i>&nbsp; break;</b>
+        <i>224</i>&nbsp; default:
+        <b class="fc"><i>225</i>&nbsp; break;</b>
+        <i>226</i>&nbsp; }
+        <b class="fc"><i>227</i>&nbsp; }</b>
+        <b class="fc"><i>228</i>&nbsp;}</b>
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-26 16:14</div>
+</div>
+</body>
+</html>

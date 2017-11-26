@@ -1,0 +1,865 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: ProgramerUI</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.UI</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: ProgramerUI (com.ToolBox.UI)</h1>
+
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Class, %
+            </th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">ProgramerUI</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    82.4%
+  </span>
+                <span class="absValue">
+    (14/ 17)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    94%
+  </span>
+                <span class="absValue">
+    (488/ 519)
+  </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.UI;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import com.ToolBox.evaluate.Calculator;
+        <i>4</i>&nbsp;
+        <i>5</i>&nbsp;import javax.swing.*;
+        <i>6</i>&nbsp;import javax.swing.text.JTextComponent;
+        <i>7</i>&nbsp;import java.awt.*;
+        <i>8</i>&nbsp;import java.awt.event.ActionEvent;
+        <i>9</i>&nbsp;import java.awt.event.ActionListener;
+        <i>10</i>&nbsp;import java.awt.event.MouseEvent;
+        <i>11</i>&nbsp;import java.awt.event.MouseListener;
+        <i>12</i>&nbsp;
+        <i>13</i>&nbsp;/**
+        <i>14</i>&nbsp; * ����Ա��������֧�ֶ����Ƽ��̣�����ֵ���н���ת����λ�����
+        <i>15</i>&nbsp; * ȫ���̿��Զ���ֵ���п��ٱ༭������ֵһ���༭�������ý��
+        <i>16</i>&nbsp; *
+        <i>17</i>&nbsp; * @author ��룬�������������
+        <i>18</i>&nbsp; */
+        <i>19</i>&nbsp;class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseListener {
+        <i>20</i>&nbsp;
+        <i>21</i>&nbsp; private static final long serialVersionUID = 8745040693717225813L;
+        <b class="fc"><i>22</i>&nbsp; private static JTextArea textAreaTop = new JTextArea();</b>
+        <b class="fc"><i>23</i>&nbsp; private static JTextField textFieldBinary = new JTextField();</b>
+        <b class="fc"><i>24</i>&nbsp; private static JTextField textFieldOctal = new JTextField();</b>
+        <b class="fc"><i>25</i>&nbsp; private static JTextField textFieldDecimal = new JTextField();</b>
+        <b class="fc"><i>26</i>&nbsp; private static JTextField textFieldHexadecimal = new JTextField();</b>
+        <b class="fc"><i>27</i>&nbsp; private static int radix = Calculator.DEC;</b>
+        <b class="fc"><i>28</i>&nbsp; private static StringBuilder expression = new StringBuilder();</b>
+        <b class="fc"><i>29</i>&nbsp; private static final Color color = new Color(240, 255, 255);</b>
+        <b class="fc"><i>30</i>&nbsp; private static final Font font = new Font(&quot;΢���ź�&quot;, Font.PLAIN, 13);</b>
+        <b class="fc"><i>31</i>&nbsp; private Long result = 0L;</b>
+        <i>32</i>&nbsp; private JButton[] btnBit;
+        <i>33</i>&nbsp; private JButton btnRol, btnRor, btnLsh, btnRsh, btnLeft, btnRight;
+        <i>34</i>&nbsp; private JButton btnCE, btnClean, btnBackSpace;
+        <i>35</i>&nbsp; private JButton btnOr, btnXor, btnMinus, btnNot, btnAnd, btnMod, btnPlus, btnEqual, btnDivided,
+        btnMultiply;
+        <i>36</i>&nbsp; private JButton btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btnA, btnB, btnC,
+        btnD, btnE, btnF;
+        <i>37</i>&nbsp; private JRadioButton btnBinary, btnOctal, btnDecimal, btnHexadecimal;
+        <i>38</i>&nbsp; private JPanel fullKeyPanel, bitKeyPanel;
+        <b class="fc"><i>39</i>&nbsp; private Boolean wasAnswer = false;</b>
+        <i>40</i>&nbsp;
+        <i>41</i>&nbsp; /**
+        <i>42</i>&nbsp; * ��ʼ�����
+        <i>43</i>&nbsp; */
+        <i>44</i>&nbsp; @Override
+        <i>45</i>&nbsp; protected void initCompoment() {
+        <b class="fc"><i>46</i>&nbsp; fullKeyPanel = new JPanel();</b>
+        <b class="fc"><i>47</i>&nbsp; bitKeyPanel = new JPanel();</b>
+        <b class="fc"><i>48</i>&nbsp; btnBit = new JButton[64];</b>
+        <b class="fc"><i>49</i>&nbsp; btnRol = new JButton(&quot;RoL&quot;);</b>
+        <b class="fc"><i>50</i>&nbsp; btnRor = new JButton(&quot;RoR&quot;);</b>
+        <b class="fc"><i>51</i>&nbsp; btnLsh = new JButton(&quot;Lsh&quot;);</b>
+        <b class="fc"><i>52</i>&nbsp; btnRsh = new JButton(&quot;Rsh&quot;);</b>
+        <b class="fc"><i>53</i>&nbsp; btnCE = new JButton(&quot;CE&quot;);</b>
+        <b class="fc"><i>54</i>&nbsp; btnClean = new JButton(&quot;c&quot;);</b>
+        <b class="fc"><i>55</i>&nbsp; btnBackSpace = new JButton(&quot;\u2190&quot;);</b>
+        <b class="fc"><i>56</i>&nbsp; btnOr = new JButton(&quot;Or&quot;);</b>
+        <b class="fc"><i>57</i>&nbsp; btnA = new JButton(&quot;A&quot;);</b>
+        <b class="fc"><i>58</i>&nbsp; btnB = new JButton(&quot;B&quot;);</b>
+        <b class="fc"><i>59</i>&nbsp; btn7 = new JButton(&quot;7&quot;);</b>
+        <b class="fc"><i>60</i>&nbsp; btn8 = new JButton(&quot;8&quot;);</b>
+        <b class="fc"><i>61</i>&nbsp; btn9 = new JButton(&quot;9&quot;);</b>
+        <b class="fc"><i>62</i>&nbsp; btnPlus = new JButton(&quot;+&quot;);</b>
+        <b class="fc"><i>63</i>&nbsp; btnXor = new JButton(&quot;Xor&quot;);</b>
+        <b class="fc"><i>64</i>&nbsp; btnC = new JButton(&quot;C&quot;);</b>
+        <b class="fc"><i>65</i>&nbsp; btnD = new JButton(&quot;D&quot;);</b>
+        <b class="fc"><i>66</i>&nbsp; btn4 = new JButton(&quot;4&quot;);</b>
+        <b class="fc"><i>67</i>&nbsp; btn5 = new JButton(&quot;5&quot;);</b>
+        <b class="fc"><i>68</i>&nbsp; btn6 = new JButton(&quot;6&quot;);</b>
+        <b class="fc"><i>69</i>&nbsp; btnMinus = new JButton(&quot;-&quot;);</b>
+        <b class="fc"><i>70</i>&nbsp; btnNot = new JButton(&quot;Not&quot;);</b>
+        <b class="fc"><i>71</i>&nbsp; btnE = new JButton(&quot;E&quot;);</b>
+        <b class="fc"><i>72</i>&nbsp; btnF = new JButton(&quot;F&quot;);</b>
+        <b class="fc"><i>73</i>&nbsp; btn1 = new JButton(&quot;1&quot;);</b>
+        <b class="fc"><i>74</i>&nbsp; btn2 = new JButton(&quot;2&quot;);</b>
+        <b class="fc"><i>75</i>&nbsp; btn3 = new JButton(&quot;3&quot;);</b>
+        <b class="fc"><i>76</i>&nbsp; btnAnd = new JButton(&quot;And&quot;);</b>
+        <b class="fc"><i>77</i>&nbsp; btnMod = new JButton(&quot;Mod&quot;);</b>
+        <b class="fc"><i>78</i>&nbsp; btnLeft = new JButton(&quot;(&quot;);</b>
+        <b class="fc"><i>79</i>&nbsp; btnRight = new JButton(&quot;)&quot;);</b>
+        <b class="fc"><i>80</i>&nbsp; btn0 = new JButton(&quot;0&quot;);</b>
+        <b class="fc"><i>81</i>&nbsp; btnEqual = new JButton(&quot;=&quot;);</b>
+        <b class="fc"><i>82</i>&nbsp; btnDivided = new JButton(&quot;/&quot;);</b>
+        <b class="fc"><i>83</i>&nbsp; btnMultiply = new JButton(&quot;*&quot;);</b>
+        <b class="fc"><i>84</i>&nbsp; btnBinary = new JRadioButton(&quot;BIN&quot;);</b>
+        <b class="fc"><i>85</i>&nbsp; btnOctal = new JRadioButton(&quot;OCT&quot;);</b>
+        <b class="fc"><i>86</i>&nbsp; btnDecimal = new JRadioButton(&quot;DEC&quot;, true);</b>
+        <b class="fc"><i>87</i>&nbsp; btnHexadecimal = new JRadioButton(&quot;HEX&quot;);</b>
+        <b class="fc"><i>88</i>&nbsp; ButtonGroup buttonGroup = new ButtonGroup();</b>
+        <b class="fc"><i>89</i>&nbsp; buttonGroup.add(btnHexadecimal);</b>
+        <b class="fc"><i>90</i>&nbsp; buttonGroup.add(btnDecimal);</b>
+        <b class="fc"><i>91</i>&nbsp; buttonGroup.add(btnOctal);</b>
+        <b class="fc"><i>92</i>&nbsp; buttonGroup.add(btnBinary);</b>
+        <b class="fc"><i>93</i>&nbsp; }</b>
+        <i>94</i>&nbsp;
+        <i>95</i>&nbsp; /**
+        <i>96</i>&nbsp; * ��ʼ������
+        <i>97</i>&nbsp; */
+        <i>98</i>&nbsp; @Override
+        <i>99</i>&nbsp; protected void initUI() {
+        <i>100</i>&nbsp;
+        <i>101</i>&nbsp; // ���Ϸ���ʾ����
+        <b class="fc"><i>102</i>&nbsp; textAreaTop.setEditable(false);</b>
+        <b class="fc"><i>103</i>&nbsp; textAreaTop.setBackground(new Color(250, 255, 255));</b>
+        <b class="fc"><i>104</i>&nbsp; textAreaTop.setFont(new Font(&quot;΢���ź�&quot;, Font.PLAIN, 14));</b>
+        <b class="fc"><i>105</i>&nbsp; textAreaTop.setBounds(13, 12, 570, 60);</b>
+        <b class="fc"><i>106</i>&nbsp; textAreaTop.setColumns(1000);</b>
+        <b class="fc"><i>107</i>&nbsp; add(textAreaTop);</b>
+        <i>108</i>&nbsp;
+        <i>109</i>&nbsp; // ������
+        <b class="fc"><i>110</i>&nbsp; btnBinary.setBounds(13, 89, 51, 23);</b>
+        <b class="fc"><i>111</i>&nbsp; add(btnBinary);</b>
+        <i>112</i>&nbsp;
+        <i>113</i>&nbsp; // �˽���
+        <b class="fc"><i>114</i>&nbsp; btnOctal.setBounds(13, 140, 51, 23);</b>
+        <b class="fc"><i>115</i>&nbsp; add(btnOctal);</b>
+        <i>116</i>&nbsp;
+        <i>117</i>&nbsp; // ʮ����
+        <b class="fc"><i>118</i>&nbsp; btnDecimal.setBounds(13, 191, 51, 23);</b>
+        <b class="fc"><i>119</i>&nbsp; add(btnDecimal);</b>
+        <i>120</i>&nbsp;
+        <i>121</i>&nbsp; // ʮ������
+        <b class="fc"><i>122</i>&nbsp; btnHexadecimal.setBounds(13, 244, 51, 23);</b>
+        <b class="fc"><i>123</i>&nbsp; add(btnHexadecimal);</b>
+        <i>124</i>&nbsp;
+        <i>125</i>&nbsp; // �������ı���
+        <b class="fc"><i>126</i>&nbsp; textFieldBinary.setEditable(false);</b>
+        <b class="fc"><i>127</i>&nbsp; textFieldBinary.setBackground(color);</b>
+        <b class="fc"><i>128</i>&nbsp; textFieldBinary.setFont(font);</b>
+        <b class="fc"><i>129</i>&nbsp; textFieldBinary.setBounds(83, 85, 500, 30);</b>
+        <b class="fc"><i>130</i>&nbsp; textFieldBinary.setColumns(100);</b>
+        <b class="fc"><i>131</i>&nbsp; add(textFieldBinary);</b>
+        <i>132</i>&nbsp;
+        <i>133</i>&nbsp; // �˽����ı���
+        <b class="fc"><i>134</i>&nbsp; textFieldOctal.setEditable(false);</b>
+        <b class="fc"><i>135</i>&nbsp; textFieldOctal.setBackground(color);</b>
+        <b class="fc"><i>136</i>&nbsp; textFieldOctal.setFont(font);</b>
+        <b class="fc"><i>137</i>&nbsp; textFieldOctal.setColumns(100);</b>
+        <b class="fc"><i>138</i>&nbsp; textFieldOctal.setBounds(83, 136, 500, 30);</b>
+        <b class="fc"><i>139</i>&nbsp; add(textFieldOctal);</b>
+        <i>140</i>&nbsp;
+        <i>141</i>&nbsp; // ʮ�����ı���
+        <b class="fc"><i>142</i>&nbsp; textFieldDecimal.setEditable(false);</b>
+        <b class="fc"><i>143</i>&nbsp; textFieldDecimal.setBackground(color);</b>
+        <b class="fc"><i>144</i>&nbsp; textFieldDecimal.setFont(font);</b>
+        <b class="fc"><i>145</i>&nbsp; textFieldDecimal.setColumns(100);</b>
+        <b class="fc"><i>146</i>&nbsp; textFieldDecimal.setBounds(83, 187, 500, 30);</b>
+        <b class="fc"><i>147</i>&nbsp; add(textFieldDecimal);</b>
+        <i>148</i>&nbsp;
+        <i>149</i>&nbsp;
+        <i>150</i>&nbsp; // ʮ�������ı���
+        <b class="fc"><i>151</i>&nbsp; textFieldHexadecimal.setEditable(false);</b>
+        <b class="fc"><i>152</i>&nbsp; textFieldHexadecimal.setBackground(color);</b>
+        <b class="fc"><i>153</i>&nbsp; textFieldHexadecimal.setFont(font);</b>
+        <b class="fc"><i>154</i>&nbsp; textFieldHexadecimal.setColumns(100);</b>
+        <b class="fc"><i>155</i>&nbsp; textFieldHexadecimal.setBounds(83, 240, 500, 30);</b>
+        <b class="fc"><i>156</i>&nbsp; add(textFieldHexadecimal);</b>
+        <i>157</i>&nbsp;
+        <i>158</i>&nbsp; // ���·���ǩҳ
+        <b class="fc"><i>159</i>&nbsp; JTabbedPane tabbedPaneDisplay = new JTabbedPane(JTabbedPane.TOP);</b>
+        <b class="fc"><i>160</i>&nbsp; tabbedPaneDisplay.setFont(font);</b>
+        <b class="fc"><i>161</i>&nbsp; tabbedPaneDisplay.setBounds(13, 275, 567, 214);</b>
+        <b class="fc"><i>162</i>&nbsp; add(tabbedPaneDisplay);</b>
+        <i>163</i>&nbsp;
+        <b class="fc"><i>164</i>&nbsp; fullKeyPanel.setOpaque(false);</b>
+        <b class="fc"><i>165</i>&nbsp; fullKeyPanel.setBorder(BorderFactory.createEtchedBorder());</b>
+        <b class="fc"><i>166</i>&nbsp; fullKeyPanel.setBackground(new Color(245, 255, 255));</b>
+        <b class="fc"><i>167</i>&nbsp; tabbedPaneDisplay.addTab(&quot;ȫ����&quot;, null, fullKeyPanel, null);</b>
+        <b class="fc"><i>168</i>&nbsp; fullKeyPanel.setLayout(null);</b>
+        <b class="fc"><i>169</i>&nbsp; fullKeyboard(fullKeyPanel);</b>
+        <i>170</i>&nbsp;
+        <b class="fc"><i>171</i>&nbsp; bitKeyPanel.setOpaque(false);</b>
+        <b class="fc"><i>172</i>&nbsp; bitKeyPanel.setBorder(BorderFactory.createEtchedBorder());</b>
+        <b class="fc"><i>173</i>&nbsp; bitKeyPanel.setBackground(new Color(245, 255, 255));</b>
+        <b class="fc"><i>174</i>&nbsp; tabbedPaneDisplay.addTab(&quot;���ؼ���&quot;, null, bitKeyPanel, null);</b>
+        <b class="fc"><i>175</i>&nbsp; bitKeyPanel.setLayout(null);</b>
+        <b class="fc"><i>176</i>&nbsp; bitKeyboard(bitKeyPanel);</b>
+        <b class="fc"><i>177</i>&nbsp; }</b>
+        <i>178</i>&nbsp;
+        <i>179</i>&nbsp; /**
+        <i>180</i>&nbsp; * ���������¼�
+        <i>181</i>&nbsp; */
+        <i>182</i>&nbsp; @Override
+        <i>183</i>&nbsp; protected void createAction() {
+        <b class="fc"><i>184</i>&nbsp; textAreaTop.addMouseListener(this);</b>
+        <b class="fc"><i>185</i>&nbsp; textFieldBinary.addMouseListener(this);</b>
+        <b class="fc"><i>186</i>&nbsp; textFieldOctal.addMouseListener(this);</b>
+        <b class="fc"><i>187</i>&nbsp; textFieldDecimal.addMouseListener(this);</b>
+        <b class="fc"><i>188</i>&nbsp; textFieldHexadecimal.addMouseListener(this);</b>
+        <b class="fc"><i>189</i>&nbsp; }</b>
+        <i>190</i>&nbsp;
+        <i>191</i>&nbsp; /**
+        <i>192</i>&nbsp; * ��ʼ��UI���ڣ��ڷſؼ�λ�ü��趨��������
+        <i>193</i>&nbsp; */
+        <i>194</i>&nbsp; public ProgramerUI() {
+        <b class="fc"><i>195</i>&nbsp; super();</b>
+        <b class="fc"><i>196</i>&nbsp; }</b>
+        <i>197</i>&nbsp;
+        <i>198</i>&nbsp; /**
+        <i>199</i>&nbsp; * �趨����ʷ��¼����ȡ�Ľ������ʾ��UI�ϲ����ص����ʽ��
+        <i>200</i>&nbsp; *
+        <i>201</i>&nbsp; * @param tempResult ��ȡ�Ľ��
+        <i>202</i>&nbsp; */
+        <i>203</i>&nbsp; static void setTempResult(String tempResult) {
+        <b class="fc"><i>204</i>&nbsp; if (tempResult.contains(&quot;.&quot;)) {</b>
+        <b class="nc"><i>205</i>&nbsp; StringBuilder sb = new StringBuilder(tempResult);</b>
+        <b class="nc"><i>206</i>&nbsp; sb.delete(tempResult.indexOf(&quot;.&quot;), sb.length());</b>
+        <b class="nc"><i>207</i>&nbsp; tempResult = sb.toString();</b>
+        <i>208</i>&nbsp; }
+        <b class="fc"><i>209</i>&nbsp; Long temp = Long.valueOf(tempResult);</b>
+        <b class="fc"><i>210</i>&nbsp; expression.append(Long.toString(temp, radix));</b>
+        <b class="fc"><i>211</i>&nbsp; textAreaTop.setText(expression.toString());</b>
+        <b class="fc"><i>212</i>&nbsp; textFieldBinary.setText(Long.toBinaryString(temp));</b>
+        <b class="fc"><i>213</i>&nbsp; textFieldOctal.setText(Long.toOctalString(temp));</b>
+        <b class="fc"><i>214</i>&nbsp; textFieldDecimal.setText(Long.toString(temp));</b>
+        <b class="fc"><i>215</i>&nbsp; textFieldHexadecimal.setText(Long.toHexString(temp));</b>
+        <b class="fc"><i>216</i>&nbsp; }</b>
+        <i>217</i>&nbsp;
+        <i>218</i>&nbsp; /**
+        <i>219</i>&nbsp; * ȫ������岼��
+        <i>220</i>&nbsp; *
+        <i>221</i>&nbsp; * @param panel Ϊpanel����ؼ�
+        <i>222</i>&nbsp; */
+        <i>223</i>&nbsp; private void fullKeyboard(JPanel panel) {
+        <b class="fc"><i>224</i>&nbsp; btnRol.setFont(font);</b>
+        <b class="fc"><i>225</i>&nbsp; btnRol.setBackground(color);</b>
+        <b class="fc"><i>226</i>&nbsp; btnRol.setBounds(75, 16, 60, 30);</b>
+        <b class="fc"><i>227</i>&nbsp; panel.add(btnRol);</b>
+        <b class="fc"><i>228</i>&nbsp; btnRol.addActionListener(this);</b>
+        <i>229</i>&nbsp;
+        <i>230</i>&nbsp;
+        <b class="fc"><i>231</i>&nbsp; btnRor.setBackground(color);</b>
+        <b class="fc"><i>232</i>&nbsp; btnRor.setFont(font);</b>
+        <b class="fc"><i>233</i>&nbsp; btnRor.setBounds(134, 16, 60, 30);</b>
+        <b class="fc"><i>234</i>&nbsp; panel.add(btnRor);</b>
+        <b class="fc"><i>235</i>&nbsp; btnRor.addActionListener(this);</b>
+        <i>236</i>&nbsp;
+        <b class="fc"><i>237</i>&nbsp; btnLsh.setBackground(color);</b>
+        <b class="fc"><i>238</i>&nbsp; btnLsh.setFont(font);</b>
+        <b class="fc"><i>239</i>&nbsp; btnLsh.setBounds(193, 16, 60, 30);</b>
+        <b class="fc"><i>240</i>&nbsp; panel.add(btnLsh);</b>
+        <b class="fc"><i>241</i>&nbsp; btnLsh.addActionListener(this);</b>
+        <i>242</i>&nbsp;
+        <b class="fc"><i>243</i>&nbsp; btnRsh.setBackground(color);</b>
+        <b class="fc"><i>244</i>&nbsp; btnRsh.setFont(font);</b>
+        <b class="fc"><i>245</i>&nbsp; btnRsh.setBounds(252, 16, 60, 30);</b>
+        <b class="fc"><i>246</i>&nbsp; panel.add(btnRsh);</b>
+        <b class="fc"><i>247</i>&nbsp; btnRsh.addActionListener(this);</b>
+        <i>248</i>&nbsp;
+        <b class="fc"><i>249</i>&nbsp; btnCE.setBackground(color);</b>
+        <b class="fc"><i>250</i>&nbsp; btnCE.setFont(font);</b>
+        <b class="fc"><i>251</i>&nbsp; btnCE.setBounds(311, 16, 60, 30);</b>
+        <b class="fc"><i>252</i>&nbsp; panel.add(btnCE);</b>
+        <b class="fc"><i>253</i>&nbsp; btnCE.addActionListener(this);</b>
+        <i>254</i>&nbsp;
+        <b class="fc"><i>255</i>&nbsp; btnClean.setBackground(color);</b>
+        <b class="fc"><i>256</i>&nbsp; btnClean.setFont(font);</b>
+        <b class="fc"><i>257</i>&nbsp; btnClean.setBounds(370, 16, 60, 30);</b>
+        <b class="fc"><i>258</i>&nbsp; panel.add(btnClean);</b>
+        <b class="fc"><i>259</i>&nbsp; btnClean.addActionListener(this);</b>
+        <i>260</i>&nbsp;
+        <b class="fc"><i>261</i>&nbsp; btnBackSpace.setBackground(color);</b>
+        <b class="fc"><i>262</i>&nbsp; btnBackSpace.setFont(font);</b>
+        <b class="fc"><i>263</i>&nbsp; btnBackSpace.setBounds(429, 16, 60, 30);</b>
+        <b class="fc"><i>264</i>&nbsp; panel.add(btnBackSpace);</b>
+        <b class="fc"><i>265</i>&nbsp; btnBackSpace.addActionListener(this);</b>
+        <i>266</i>&nbsp;
+        <i>267</i>&nbsp;
+        <b class="fc"><i>268</i>&nbsp; btnOr.setFont(font);</b>
+        <b class="fc"><i>269</i>&nbsp; btnOr.setBackground(color);</b>
+        <b class="fc"><i>270</i>&nbsp; btnOr.setBounds(75, 45, 60, 30);</b>
+        <b class="fc"><i>271</i>&nbsp; panel.add(btnOr);</b>
+        <b class="fc"><i>272</i>&nbsp; btnOr.addActionListener(this);</b>
+        <i>273</i>&nbsp;
+        <b class="fc"><i>274</i>&nbsp; btnA.setBackground(color);</b>
+        <b class="fc"><i>275</i>&nbsp; btnA.setFont(font);</b>
+        <b class="fc"><i>276</i>&nbsp; btnA.setBounds(134, 45, 60, 30);</b>
+        <b class="fc"><i>277</i>&nbsp; btnA.setEnabled(false);</b>
+        <b class="fc"><i>278</i>&nbsp; panel.add(btnA);</b>
+        <b class="fc"><i>279</i>&nbsp; btnA.addActionListener(this);</b>
+        <i>280</i>&nbsp;
+        <b class="fc"><i>281</i>&nbsp; btnB.setBackground(color);</b>
+        <b class="fc"><i>282</i>&nbsp; btnB.setFont(font);</b>
+        <b class="fc"><i>283</i>&nbsp; btnB.setBounds(193, 45, 60, 30);</b>
+        <b class="fc"><i>284</i>&nbsp; btnB.setEnabled(false);</b>
+        <b class="fc"><i>285</i>&nbsp; panel.add(btnB);</b>
+        <b class="fc"><i>286</i>&nbsp; btnB.addActionListener(this);</b>
+        <i>287</i>&nbsp;
+        <b class="fc"><i>288</i>&nbsp; btn7.setBackground(color);</b>
+        <b class="fc"><i>289</i>&nbsp; btn7.setFont(font);</b>
+        <b class="fc"><i>290</i>&nbsp; btn7.setBounds(252, 45, 60, 30);</b>
+        <b class="fc"><i>291</i>&nbsp; panel.add(btn7);</b>
+        <b class="fc"><i>292</i>&nbsp; btn7.addActionListener(this);</b>
+        <i>293</i>&nbsp;
+        <b class="fc"><i>294</i>&nbsp; btn8.setBackground(color);</b>
+        <b class="fc"><i>295</i>&nbsp; btn8.setFont(font);</b>
+        <b class="fc"><i>296</i>&nbsp; btn8.setBounds(311, 45, 60, 30);</b>
+        <b class="fc"><i>297</i>&nbsp; panel.add(btn8);</b>
+        <b class="fc"><i>298</i>&nbsp; btn8.addActionListener(this);</b>
+        <i>299</i>&nbsp;
+        <b class="fc"><i>300</i>&nbsp; btn9.setBackground(color);</b>
+        <b class="fc"><i>301</i>&nbsp; btn9.setFont(font);</b>
+        <b class="fc"><i>302</i>&nbsp; btn9.setBounds(370, 45, 60, 30);</b>
+        <b class="fc"><i>303</i>&nbsp; panel.add(btn9);</b>
+        <b class="fc"><i>304</i>&nbsp; btn9.addActionListener(this);</b>
+        <i>305</i>&nbsp;
+        <b class="fc"><i>306</i>&nbsp; btnPlus.setBackground(color);</b>
+        <b class="fc"><i>307</i>&nbsp; btnPlus.setFont(font);</b>
+        <b class="fc"><i>308</i>&nbsp; btnPlus.setBounds(429, 45, 60, 30);</b>
+        <b class="fc"><i>309</i>&nbsp; panel.add(btnPlus);</b>
+        <b class="fc"><i>310</i>&nbsp; btnPlus.addActionListener(this);</b>
+        <i>311</i>&nbsp;
+        <b class="fc"><i>312</i>&nbsp; btnXor.setFont(font);</b>
+        <b class="fc"><i>313</i>&nbsp; btnXor.setBackground(color);</b>
+        <b class="fc"><i>314</i>&nbsp; btnXor.setBounds(75, 74, 60, 30);</b>
+        <b class="fc"><i>315</i>&nbsp; panel.add(btnXor);</b>
+        <b class="fc"><i>316</i>&nbsp; btnXor.addActionListener(this);</b>
+        <i>317</i>&nbsp;
+        <i>318</i>&nbsp;
+        <b class="fc"><i>319</i>&nbsp; btnC.setBackground(color);</b>
+        <b class="fc"><i>320</i>&nbsp; btnC.setFont(font);</b>
+        <b class="fc"><i>321</i>&nbsp; btnC.setBounds(134, 74, 60, 30);</b>
+        <b class="fc"><i>322</i>&nbsp; btnC.setEnabled(false);</b>
+        <b class="fc"><i>323</i>&nbsp; panel.add(btnC);</b>
+        <b class="fc"><i>324</i>&nbsp; btnC.addActionListener(this);</b>
+        <i>325</i>&nbsp;
+        <b class="fc"><i>326</i>&nbsp; btnD.setBackground(color);</b>
+        <b class="fc"><i>327</i>&nbsp; btnD.setFont(font);</b>
+        <b class="fc"><i>328</i>&nbsp; btnD.setBounds(193, 74, 60, 30);</b>
+        <b class="fc"><i>329</i>&nbsp; btnD.setEnabled(false);</b>
+        <b class="fc"><i>330</i>&nbsp; panel.add(btnD);</b>
+        <b class="fc"><i>331</i>&nbsp; btnD.addActionListener(this);</b>
+        <i>332</i>&nbsp;
+        <b class="fc"><i>333</i>&nbsp; btn4.setBackground(color);</b>
+        <b class="fc"><i>334</i>&nbsp; btn4.setFont(font);</b>
+        <b class="fc"><i>335</i>&nbsp; btn4.setBounds(252, 74, 60, 30);</b>
+        <b class="fc"><i>336</i>&nbsp; panel.add(btn4);</b>
+        <b class="fc"><i>337</i>&nbsp; btn4.addActionListener(this);</b>
+        <i>338</i>&nbsp;
+        <b class="fc"><i>339</i>&nbsp; btn5.setBackground(color);</b>
+        <b class="fc"><i>340</i>&nbsp; btn5.setFont(font);</b>
+        <b class="fc"><i>341</i>&nbsp; btn5.setBounds(311, 74, 60, 30);</b>
+        <b class="fc"><i>342</i>&nbsp; panel.add(btn5);</b>
+        <b class="fc"><i>343</i>&nbsp; btn5.addActionListener(this);</b>
+        <i>344</i>&nbsp;
+        <b class="fc"><i>345</i>&nbsp; btn6.setBackground(color);</b>
+        <b class="fc"><i>346</i>&nbsp; btn6.setFont(font);</b>
+        <b class="fc"><i>347</i>&nbsp; btn6.setBounds(370, 74, 60, 30);</b>
+        <b class="fc"><i>348</i>&nbsp; panel.add(btn6);</b>
+        <b class="fc"><i>349</i>&nbsp; btn6.addActionListener(this);</b>
+        <i>350</i>&nbsp;
+        <b class="fc"><i>351</i>&nbsp; btnMinus.setBackground(color);</b>
+        <b class="fc"><i>352</i>&nbsp; btnMinus.setFont(font);</b>
+        <b class="fc"><i>353</i>&nbsp; btnMinus.setBounds(429, 74, 60, 30);</b>
+        <b class="fc"><i>354</i>&nbsp; panel.add(btnMinus);</b>
+        <b class="fc"><i>355</i>&nbsp; btnMinus.addActionListener(this);</b>
+        <i>356</i>&nbsp;
+        <b class="fc"><i>357</i>&nbsp; btnNot.setFont(font);</b>
+        <b class="fc"><i>358</i>&nbsp; btnNot.setBackground(color);</b>
+        <b class="fc"><i>359</i>&nbsp; btnNot.setBounds(75, 103, 60, 30);</b>
+        <b class="fc"><i>360</i>&nbsp; panel.add(btnNot);</b>
+        <b class="fc"><i>361</i>&nbsp; btnNot.addActionListener(this);</b>
+        <i>362</i>&nbsp;
+        <b class="fc"><i>363</i>&nbsp; btnE.setBackground(color);</b>
+        <b class="fc"><i>364</i>&nbsp; btnE.setFont(font);</b>
+        <b class="fc"><i>365</i>&nbsp; btnE.setBounds(134, 103, 60, 30);</b>
+        <b class="fc"><i>366</i>&nbsp; btnE.setEnabled(false);</b>
+        <b class="fc"><i>367</i>&nbsp; panel.add(btnE);</b>
+        <b class="fc"><i>368</i>&nbsp; btnE.addActionListener(this);</b>
+        <i>369</i>&nbsp;
+        <b class="fc"><i>370</i>&nbsp; btnF.setBackground(color);</b>
+        <b class="fc"><i>371</i>&nbsp; btnF.setFont(font);</b>
+        <b class="fc"><i>372</i>&nbsp; btnF.setBounds(193, 103, 60, 30);</b>
+        <b class="fc"><i>373</i>&nbsp; btnF.setEnabled(false);</b>
+        <b class="fc"><i>374</i>&nbsp; panel.add(btnF);</b>
+        <b class="fc"><i>375</i>&nbsp; btnF.addActionListener(this);</b>
+        <i>376</i>&nbsp;
+        <b class="fc"><i>377</i>&nbsp; btn1.setBackground(color);</b>
+        <b class="fc"><i>378</i>&nbsp; btn1.setFont(font);</b>
+        <b class="fc"><i>379</i>&nbsp; btn1.setBounds(252, 103, 60, 30);</b>
+        <b class="fc"><i>380</i>&nbsp; panel.add(btn1);</b>
+        <b class="fc"><i>381</i>&nbsp; btn1.addActionListener(this);</b>
+        <i>382</i>&nbsp;
+        <b class="fc"><i>383</i>&nbsp; btn2.setBackground(color);</b>
+        <b class="fc"><i>384</i>&nbsp; btn2.setFont(font);</b>
+        <b class="fc"><i>385</i>&nbsp; btn2.setBounds(311, 103, 60, 30);</b>
+        <b class="fc"><i>386</i>&nbsp; panel.add(btn2);</b>
+        <b class="fc"><i>387</i>&nbsp; btn2.addActionListener(this);</b>
+        <i>388</i>&nbsp;
+        <b class="fc"><i>389</i>&nbsp; btn3.setBackground(color);</b>
+        <b class="fc"><i>390</i>&nbsp; btn3.setFont(font);</b>
+        <b class="fc"><i>391</i>&nbsp; btn3.setBounds(370, 103, 60, 30);</b>
+        <b class="fc"><i>392</i>&nbsp; panel.add(btn3);</b>
+        <b class="fc"><i>393</i>&nbsp; btn3.addActionListener(this);</b>
+        <i>394</i>&nbsp;
+        <b class="fc"><i>395</i>&nbsp; btnMultiply.setBackground(color);</b>
+        <b class="fc"><i>396</i>&nbsp; btnMultiply.setFont(font);</b>
+        <b class="fc"><i>397</i>&nbsp; btnMultiply.setBounds(429, 103, 60, 30);</b>
+        <b class="fc"><i>398</i>&nbsp; panel.add(btnMultiply);</b>
+        <b class="fc"><i>399</i>&nbsp; btnMultiply.addActionListener(this);</b>
+        <i>400</i>&nbsp;
+        <b class="fc"><i>401</i>&nbsp; btnAnd.setFont(font);</b>
+        <b class="fc"><i>402</i>&nbsp; btnAnd.setBackground(color);</b>
+        <b class="fc"><i>403</i>&nbsp; btnAnd.setBounds(75, 132, 60, 30);</b>
+        <b class="fc"><i>404</i>&nbsp; panel.add(btnAnd);</b>
+        <b class="fc"><i>405</i>&nbsp; btnAnd.addActionListener(this);</b>
+        <i>406</i>&nbsp;
+        <b class="fc"><i>407</i>&nbsp; btnMod.setBackground(color);</b>
+        <b class="fc"><i>408</i>&nbsp; btnMod.setFont(font);</b>
+        <b class="fc"><i>409</i>&nbsp; btnMod.setBounds(134, 132, 60, 30);</b>
+        <b class="fc"><i>410</i>&nbsp; panel.add(btnMod);</b>
+        <b class="fc"><i>411</i>&nbsp; btnMod.addActionListener(this);</b>
+        <i>412</i>&nbsp;
+        <b class="fc"><i>413</i>&nbsp; btnLeft.setBackground(color);</b>
+        <b class="fc"><i>414</i>&nbsp; btnLeft.setFont(font);</b>
+        <b class="fc"><i>415</i>&nbsp; btnLeft.setBounds(193, 132, 60, 30);</b>
+        <b class="fc"><i>416</i>&nbsp; panel.add(btnLeft);</b>
+        <b class="fc"><i>417</i>&nbsp; btnLeft.addActionListener(this);</b>
+        <i>418</i>&nbsp;
+        <b class="fc"><i>419</i>&nbsp; btnRight.setBackground(color);</b>
+        <b class="fc"><i>420</i>&nbsp; btnRight.setFont(font);</b>
+        <b class="fc"><i>421</i>&nbsp; btnRight.setBounds(252, 132, 60, 30);</b>
+        <b class="fc"><i>422</i>&nbsp; panel.add(btnRight);</b>
+        <b class="fc"><i>423</i>&nbsp; btnRight.addActionListener(this);</b>
+        <i>424</i>&nbsp;
+        <b class="fc"><i>425</i>&nbsp; btn0.setBackground(color);</b>
+        <b class="fc"><i>426</i>&nbsp; btn0.setFont(font);</b>
+        <b class="fc"><i>427</i>&nbsp; btn0.setBounds(311, 132, 60, 30);</b>
+        <b class="fc"><i>428</i>&nbsp; panel.add(btn0);</b>
+        <b class="fc"><i>429</i>&nbsp; btn0.addActionListener(this);</b>
+        <i>430</i>&nbsp;
+        <b class="fc"><i>431</i>&nbsp; btnEqual.setBackground(color);</b>
+        <b class="fc"><i>432</i>&nbsp; btnEqual.setFont(font);</b>
+        <b class="fc"><i>433</i>&nbsp; btnEqual.setBounds(370, 132, 60, 30);</b>
+        <b class="fc"><i>434</i>&nbsp; panel.add(btnEqual);</b>
+        <b class="fc"><i>435</i>&nbsp; btnEqual.addActionListener(this);</b>
+        <i>436</i>&nbsp;
+        <b class="fc"><i>437</i>&nbsp; btnDivided.setBackground(color);</b>
+        <b class="fc"><i>438</i>&nbsp; btnDivided.setFont(font);</b>
+        <b class="fc"><i>439</i>&nbsp; btnDivided.setBounds(429, 132, 60, 30);</b>
+        <b class="fc"><i>440</i>&nbsp; panel.add(btnDivided);</b>
+        <b class="fc"><i>441</i>&nbsp; btnDivided.addActionListener(this);</b>
+        <i>442</i>&nbsp;
+        <b class="fc"><i>443</i>&nbsp; btnBinary.addActionListener(this);</b>
+        <i>444</i>&nbsp;
+        <b class="fc"><i>445</i>&nbsp; btnOctal.addActionListener(this);</b>
+        <i>446</i>&nbsp;
+        <b class="fc"><i>447</i>&nbsp; btnDecimal.addActionListener(this);</b>
+        <i>448</i>&nbsp;
+        <b class="fc"><i>449</i>&nbsp; btnHexadecimal.addActionListener(this);</b>
+        <i>450</i>&nbsp;
+        <b class="fc"><i>451</i>&nbsp; }</b>
+        <i>452</i>&nbsp;
+        <i>453</i>&nbsp; /**
+        <i>454</i>&nbsp; * ���ؼ��̲���
+        <i>455</i>&nbsp; *
+        <i>456</i>&nbsp; * @param panel Ϊpanel����ؼ�
+        <i>457</i>&nbsp; */
+        <i>458</i>&nbsp; private void bitKeyboard(JPanel panel) {
+        <b class="fc"><i>459</i>&nbsp; JLabel[] lblIndex = new JLabel[16];</b>
+        <b class="fc"><i>460</i>&nbsp; final Font bitFont = new Font(&quot;΢���ź�&quot;, Font.BOLD, 10);</b>
+        <b class="fc"><i>461</i>&nbsp; int index = 0;</b>
+        <b class="fc"><i>462</i>&nbsp; for (int i = 0; i &lt; 4; i++) {</b>
+        <b class="fc"><i>463</i>&nbsp; for (int j = 0; j &lt; 4; j++) {</b>
+        <b class="fc"><i>464</i>&nbsp; for (int k = 0; k &lt; 4; k++) {</b>
+        <b class="fc"><i>465</i>&nbsp; btnBit[index] = new JButton(&quot;0&quot;);</b>
+        <b class="fc"><i>466</i>&nbsp; btnBit[index].setBackground(color);</b>
+        <b class="fc"><i>467</i>&nbsp; btnBit[index].setFont(bitFont);</b>
+        <b class="fc"><i>468</i>&nbsp; btnBit[index].setBounds(j * 143 + k * 34, i * 44, 34, 30);</b>
+        <b class="fc"><i>469</i>&nbsp; panel.add(btnBit[index]);</b>
+        <b class="fc"><i>470</i>&nbsp; btnBit[index].addActionListener(this);</b>
+        <b class="fc"><i>471</i>&nbsp; index++;</b>
+        <i>472</i>&nbsp; }
+        <b class="fc"><i>473</i>&nbsp; lblIndex[4 * i + j] = new JLabel((4 * (4 * i + j)) + &quot;&quot;,
+            JLabel.CENTER);</b>
+        <b class="fc"><i>474</i>&nbsp; lblIndex[4 * i + j].setBackground(color);</b>
+        <b class="fc"><i>475</i>&nbsp; lblIndex[4 * i + j].setFont(bitFont);</b>
+        <b class="fc"><i>476</i>&nbsp; lblIndex[4 * i + j].setBounds(j * 143, i * 44 + 21, 34, 30);</b>
+        <b class="fc"><i>477</i>&nbsp; panel.add(lblIndex[4 * i + j]);</b>
+        <i>478</i>&nbsp; }
+        <i>479</i>&nbsp; }
+        <b class="fc"><i>480</i>&nbsp; }</b>
+        <i>481</i>&nbsp;
+        <i>482</i>&nbsp; /**
+        <i>483</i>&nbsp; * ���ؼ��̶���
+        <i>484</i>&nbsp; *
+        <i>485</i>&nbsp; * @param i �������
+        <i>486</i>&nbsp; */
+        <i>487</i>&nbsp; private void bitAction(int i) {
+        <b class="fc"><i>488</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <b class="fc"><i>489</i>&nbsp; if (btnBit[i].getText().equals(&quot;0&quot;)) {</b>
+        <b class="fc"><i>490</i>&nbsp; btnBit[i].setText(&quot;1&quot;);</b>
+        <b class="fc"><i>491</i>&nbsp; result += 1L &lt;&lt; i;</b>
+        <i>492</i>&nbsp; } else {
+        <b class="fc"><i>493</i>&nbsp; btnBit[i].setText(&quot;0&quot;);</b>
+        <b class="fc"><i>494</i>&nbsp; result -= 1L &lt;&lt; i;</b>
+        <i>495</i>&nbsp; }
+        <b class="fc"><i>496</i>&nbsp; textFieldBinary.setText(Long.toBinaryString(result));</b>
+        <b class="fc"><i>497</i>&nbsp; textFieldOctal.setText(Long.toOctalString(result));</b>
+        <b class="fc"><i>498</i>&nbsp; textFieldDecimal.setText(result + &quot;&quot;);</b>
+        <b class="fc"><i>499</i>&nbsp; textFieldHexadecimal.setText(Long.toHexString(result).toUpperCase());</b>
+        <b class="fc"><i>500</i>&nbsp; switch (radix) {</b>
+        <i>501</i>&nbsp; case Calculator.BIN:
+        <b class="nc"><i>502</i>&nbsp; textAreaTop.setText(textFieldBinary.getText());</b>
+        <b class="nc"><i>503</i>&nbsp; break;</b>
+        <i>504</i>&nbsp; case Calculator.OCT:
+        <b class="nc"><i>505</i>&nbsp; textAreaTop.setText(textFieldOctal.getText());</b>
+        <b class="nc"><i>506</i>&nbsp; break;</b>
+        <i>507</i>&nbsp; case Calculator.DEC:
+        <b class="fc"><i>508</i>&nbsp; textAreaTop.setText(textFieldDecimal.getText());</b>
+        <b class="fc"><i>509</i>&nbsp; break;</b>
+        <i>510</i>&nbsp; case Calculator.HEX:
+        <b class="nc"><i>511</i>&nbsp; textAreaTop.setText(textFieldHexadecimal.getText());</b>
+        <b class="nc"><i>512</i>&nbsp; break;</b>
+        <i>513</i>&nbsp; default:
+        <b class="nc"><i>514</i>&nbsp; throw new IllegalArgumentException(&quot;�޴˽���&quot;);</b>
+        <i>515</i>&nbsp; }
+        <b class="fc"><i>516</i>&nbsp; expression.append(Long.toString(result, radix));</b>
+        <b class="fc"><i>517</i>&nbsp; }</b>
+        <i>518</i>&nbsp;
+        <i>519</i>&nbsp; /**
+        <i>520</i>&nbsp; * �ж�ǰһ�ַ��Ƿ�Ϊ����
+        <i>521</i>&nbsp; *
+        <i>522</i>&nbsp; * @return true ���ǰһ�ַ�������
+        <i>523</i>&nbsp; */
+        <i>524</i>&nbsp; private boolean prevIsDigit() {
+        <b class="fc"><i>525</i>&nbsp; char c = expression.charAt(expression.length() - 1);</b>
+        <b class="fc"><i>526</i>&nbsp; return (c &gt;= &#39;0&#39; &amp;&amp; c &lt;= &#39;9&#39;) || (c &gt;= &#39;A&#39;
+            &amp;&amp; c &lt;= &#39;F&#39;) || (c &gt;= &#39;a&#39; &amp;&amp; c &lt;= &#39;f&#39;);</b>
+        <i>527</i>&nbsp; }
+        <i>528</i>&nbsp;
+        <i>529</i>&nbsp; /**
+        <i>530</i>&nbsp; * �趨����
+        <i>531</i>&nbsp; *
+        <i>532</i>&nbsp; * @param radix ����
+        <i>533</i>&nbsp; */
+        <i>534</i>&nbsp; private static void setRadix(int radix) {
+        <b class="fc"><i>535</i>&nbsp; ProgramerUI.radix = radix;</b>
+        <b class="fc"><i>536</i>&nbsp; }</b>
+        <i>537</i>&nbsp;
+        <i>538</i>&nbsp; @Override
+        <i>539</i>&nbsp; public void actionPerformed(ActionEvent e) {
+        <i>540</i>&nbsp;
+        <b class="fc"><i>541</i>&nbsp; for (int i = 0; i &lt; btnBit.length; i++) {</b>
+        <b class="fc"><i>542</i>&nbsp; if (e.getSource().equals(btnBit[i])) {</b>
+        <b class="fc"><i>543</i>&nbsp; bitAction(i);</b>
+        <b class="fc"><i>544</i>&nbsp; return;</b>
+        <i>545</i>&nbsp; }
+        <i>546</i>&nbsp; }
+        <b class="fc"><i>547</i>&nbsp; String btnName = e.getActionCommand();</b>
+        <b class="fc"><i>548</i>&nbsp; switch (btnName) {</b>
+        <i>549</i>&nbsp; //**************����ѡ��*********************
+        <i>550</i>&nbsp; case &quot;BIN&quot;:
+        <b class="fc"><i>551</i>&nbsp; btn2.setEnabled(false);</b>
+        <b class="fc"><i>552</i>&nbsp; btn3.setEnabled(false);</b>
+        <b class="fc"><i>553</i>&nbsp; btn4.setEnabled(false);</b>
+        <b class="fc"><i>554</i>&nbsp; btn5.setEnabled(false);</b>
+        <b class="fc"><i>555</i>&nbsp; btn6.setEnabled(false);</b>
+        <b class="fc"><i>556</i>&nbsp; btn7.setEnabled(false);</b>
+        <b class="fc"><i>557</i>&nbsp; btn8.setEnabled(false);</b>
+        <b class="fc"><i>558</i>&nbsp; btn9.setEnabled(false);</b>
+        <b class="fc"><i>559</i>&nbsp; btnA.setEnabled(false);</b>
+        <b class="fc"><i>560</i>&nbsp; btnB.setEnabled(false);</b>
+        <b class="fc"><i>561</i>&nbsp; btnC.setEnabled(false);</b>
+        <b class="fc"><i>562</i>&nbsp; btnD.setEnabled(false);</b>
+        <b class="fc"><i>563</i>&nbsp; btnE.setEnabled(false);</b>
+        <b class="fc"><i>564</i>&nbsp; btnF.setEnabled(false);</b>
+        <b class="fc"><i>565</i>&nbsp; setRadix(Calculator.BIN);</b>
+        <b class="fc"><i>566</i>&nbsp; textAreaTop.setText(textFieldBinary.getText());</b>
+        <b class="fc"><i>567</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <b class="fc"><i>568</i>&nbsp; expression.append(textFieldBinary.getText());</b>
+        <b class="fc"><i>569</i>&nbsp; break;</b>
+        <i>570</i>&nbsp; case &quot;OCT&quot;:
+        <b class="fc"><i>571</i>&nbsp; btn2.setEnabled(true);</b>
+        <b class="fc"><i>572</i>&nbsp; btn3.setEnabled(true);</b>
+        <b class="fc"><i>573</i>&nbsp; btn4.setEnabled(true);</b>
+        <b class="fc"><i>574</i>&nbsp; btn5.setEnabled(true);</b>
+        <b class="fc"><i>575</i>&nbsp; btn6.setEnabled(true);</b>
+        <b class="fc"><i>576</i>&nbsp; btn7.setEnabled(true);</b>
+        <b class="fc"><i>577</i>&nbsp; btn8.setEnabled(false);</b>
+        <b class="fc"><i>578</i>&nbsp; btn9.setEnabled(false);</b>
+        <b class="fc"><i>579</i>&nbsp; btnA.setEnabled(false);</b>
+        <b class="fc"><i>580</i>&nbsp; btnB.setEnabled(false);</b>
+        <b class="fc"><i>581</i>&nbsp; btnC.setEnabled(false);</b>
+        <b class="fc"><i>582</i>&nbsp; btnD.setEnabled(false);</b>
+        <b class="fc"><i>583</i>&nbsp; btnE.setEnabled(false);</b>
+        <b class="fc"><i>584</i>&nbsp; btnF.setEnabled(false);</b>
+        <b class="fc"><i>585</i>&nbsp; radix = Calculator.OCT;</b>
+        <b class="fc"><i>586</i>&nbsp; textAreaTop.setText(textFieldOctal.getText());</b>
+        <b class="fc"><i>587</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <b class="fc"><i>588</i>&nbsp; expression.append(textFieldOctal.getText());</b>
+        <b class="fc"><i>589</i>&nbsp; break;</b>
+        <i>590</i>&nbsp; case &quot;DEC&quot;:
+        <b class="fc"><i>591</i>&nbsp; btn2.setEnabled(true);</b>
+        <b class="fc"><i>592</i>&nbsp; btn3.setEnabled(true);</b>
+        <b class="fc"><i>593</i>&nbsp; btn4.setEnabled(true);</b>
+        <b class="fc"><i>594</i>&nbsp; btn5.setEnabled(true);</b>
+        <b class="fc"><i>595</i>&nbsp; btn6.setEnabled(true);</b>
+        <b class="fc"><i>596</i>&nbsp; btn7.setEnabled(true);</b>
+        <b class="fc"><i>597</i>&nbsp; btn8.setEnabled(true);</b>
+        <b class="fc"><i>598</i>&nbsp; btn9.setEnabled(true);</b>
+        <b class="fc"><i>599</i>&nbsp; btnA.setEnabled(false);</b>
+        <b class="fc"><i>600</i>&nbsp; btnB.setEnabled(false);</b>
+        <b class="fc"><i>601</i>&nbsp; btnC.setEnabled(false);</b>
+        <b class="fc"><i>602</i>&nbsp; btnD.setEnabled(false);</b>
+        <b class="fc"><i>603</i>&nbsp; btnE.setEnabled(false);</b>
+        <b class="fc"><i>604</i>&nbsp; btnF.setEnabled(false);</b>
+        <b class="fc"><i>605</i>&nbsp; radix = Calculator.DEC;</b>
+        <b class="fc"><i>606</i>&nbsp; textAreaTop.setText(textFieldDecimal.getText());</b>
+        <b class="fc"><i>607</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <b class="fc"><i>608</i>&nbsp; expression.append(textFieldDecimal.getText());</b>
+        <b class="fc"><i>609</i>&nbsp; break;</b>
+        <i>610</i>&nbsp; case &quot;HEX&quot;:
+        <b class="fc"><i>611</i>&nbsp; btn2.setEnabled(true);</b>
+        <b class="fc"><i>612</i>&nbsp; btn3.setEnabled(true);</b>
+        <b class="fc"><i>613</i>&nbsp; btn4.setEnabled(true);</b>
+        <b class="fc"><i>614</i>&nbsp; btn5.setEnabled(true);</b>
+        <b class="fc"><i>615</i>&nbsp; btn6.setEnabled(true);</b>
+        <b class="fc"><i>616</i>&nbsp; btn7.setEnabled(true);</b>
+        <b class="fc"><i>617</i>&nbsp; btn8.setEnabled(true);</b>
+        <b class="fc"><i>618</i>&nbsp; btn9.setEnabled(true);</b>
+        <b class="fc"><i>619</i>&nbsp; btnA.setEnabled(true);</b>
+        <b class="fc"><i>620</i>&nbsp; btnB.setEnabled(true);</b>
+        <b class="fc"><i>621</i>&nbsp; btnC.setEnabled(true);</b>
+        <b class="fc"><i>622</i>&nbsp; btnD.setEnabled(true);</b>
+        <b class="fc"><i>623</i>&nbsp; btnE.setEnabled(true);</b>
+        <b class="fc"><i>624</i>&nbsp; btnF.setEnabled(true);</b>
+        <b class="fc"><i>625</i>&nbsp; radix = Calculator.HEX;</b>
+        <b class="fc"><i>626</i>&nbsp; textAreaTop.setText(textFieldHexadecimal.getText());</b>
+        <b class="fc"><i>627</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <b class="fc"><i>628</i>&nbsp; expression.append(textFieldHexadecimal.getText());</b>
+        <b class="fc"><i>629</i>&nbsp; break;</b>
+        <i>630</i>&nbsp; //***************************��ֵ����***********
+        <i>631</i>&nbsp; case &quot;0&quot;:
+        <i>632</i>&nbsp; case &quot;1&quot;:
+        <i>633</i>&nbsp; case &quot;2&quot;:
+        <i>634</i>&nbsp; case &quot;3&quot;:
+        <i>635</i>&nbsp; case &quot;4&quot;:
+        <i>636</i>&nbsp; case &quot;5&quot;:
+        <i>637</i>&nbsp; case &quot;6&quot;:
+        <i>638</i>&nbsp; case &quot;7&quot;:
+        <i>639</i>&nbsp; case &quot;8&quot;:
+        <i>640</i>&nbsp; case &quot;9&quot;:
+        <i>641</i>&nbsp; case &quot;A&quot;:
+        <i>642</i>&nbsp; case &quot;B&quot;:
+        <i>643</i>&nbsp; case &quot;C&quot;:
+        <i>644</i>&nbsp; case &quot;D&quot;:
+        <i>645</i>&nbsp; case &quot;E&quot;:
+        <i>646</i>&nbsp; case &quot;F&quot;:
+        <b class="fc"><i>647</i>&nbsp; if (wasAnswer) {</b>
+        <b class="fc"><i>648</i>&nbsp; wasAnswer = false;</b>
+        <b class="fc"><i>649</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <i>650</i>&nbsp; }
+        <b class="fc"><i>651</i>&nbsp; expression.append(btnName);</b>
+        <b class="fc"><i>652</i>&nbsp; textAreaTop.setText(expression.toString());</b>
+        <b class="fc"><i>653</i>&nbsp; break;</b>
+        <i>654</i>&nbsp; //*************************�����*************
+        <i>655</i>&nbsp; case &quot;Not&quot;:
+        <b class="fc"><i>656</i>&nbsp; if (wasAnswer) {</b>
+        <b class="nc"><i>657</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <i>658</i>&nbsp; }
+        <i>659</i>&nbsp; case &quot;RoL&quot;:
+        <i>660</i>&nbsp; case &quot;RoR&quot;:
+        <i>661</i>&nbsp; case &quot;Lsh&quot;:
+        <i>662</i>&nbsp; case &quot;Rsh&quot;:
+        <i>663</i>&nbsp; case &quot;Or&quot;:
+        <i>664</i>&nbsp; case &quot;Xor&quot;:
+        <i>665</i>&nbsp; case &quot;And&quot;:
+        <i>666</i>&nbsp; case &quot;Mod&quot;:
+        <b class="fc"><i>667</i>&nbsp; wasAnswer = false;</b>
+        <b class="fc"><i>668</i>&nbsp; if (expression.length() &gt; 0 &amp;&amp; prevIsDigit()) {</b>
+        <b class="nc"><i>669</i>&nbsp; expression.append(&quot; &quot;);</b>
+        <i>670</i>&nbsp; }
+        <b class="fc"><i>671</i>&nbsp; expression.append(btnName).append(&quot; ( &quot;);</b>
+        <b class="fc"><i>672</i>&nbsp; textAreaTop.setText(expression.toString());</b>
+        <b class="fc"><i>673</i>&nbsp; break;</b>
+        <i>674</i>&nbsp; case &quot;(&quot;:
+        <i>675</i>&nbsp; case &quot;)&quot;:
+        <i>676</i>&nbsp; case &quot;+&quot;:
+        <i>677</i>&nbsp; case &quot;-&quot;:
+        <i>678</i>&nbsp; case &quot;*&quot;:
+        <i>679</i>&nbsp; case &quot;/&quot;:
+        <b class="fc"><i>680</i>&nbsp; wasAnswer = false;</b>
+        <b class="fc"><i>681</i>&nbsp; if (expression.length() &gt; 0 &amp;&amp; prevIsDigit()) {</b>
+        <b class="fc"><i>682</i>&nbsp; expression.append(&quot; &quot;);</b>
+        <i>683</i>&nbsp; }
+        <b class="fc"><i>684</i>&nbsp; expression.append(btnName).append(&quot; &quot;);</b>
+        <b class="fc"><i>685</i>&nbsp; textAreaTop.setText(expression.toString());</b>
+        <b class="fc"><i>686</i>&nbsp; break;</b>
+        <i>687</i>&nbsp; //*************************���Ʒ�***********
+        <i>688</i>&nbsp; case &quot;\n&quot;:
+        <i>689</i>&nbsp; case &quot;=&quot;:
+        <b class="fc"><i>690</i>&nbsp; wasAnswer = true;</b>
+        <i>691</i>&nbsp; String r;
+        <i>692</i>&nbsp; try {
+        <b class="fc"><i>693</i>&nbsp; r = new Calculator().getResult(expression.toString(), radix);</b>
+        <b class="fc"><i>694</i>&nbsp; result = Long.valueOf(r);</b>
+        <b class="fc"><i>695</i>&nbsp; textAreaTop.setText(Long.toString(result, radix));</b>
+        <b class="fc"><i>696</i>&nbsp; textFieldBinary.setText(Long.toBinaryString(result));</b>
+        <b class="fc"><i>697</i>&nbsp; textFieldOctal.setText(Long.toOctalString(result));</b>
+        <b class="fc"><i>698</i>&nbsp; textFieldDecimal.setText(Long.toString(result));</b>
+        <b class="fc"><i>699</i>&nbsp; textFieldHexadecimal.setText(Long.toHexString(result).toUpperCase());</b>
+        <b class="fc"><i>700</i>&nbsp; HistoryUI.updateRecord(Long.toString(result));</b>
+        <i>701</i>&nbsp;
+        <b class="fc"><i>702</i>&nbsp; int len = Long.toBinaryString(result).length();</b>
+        <b class="fc"><i>703</i>&nbsp; for (int i = 0; i &lt; 64; i++) {</b>
+        <b class="fc"><i>704</i>&nbsp; if (i &lt; len) {</b>
+        <b class="fc"><i>705</i>&nbsp; btnBit[i].setText(Long.toBinaryString(result).charAt(len - 1 - i) + &quot;&quot;);</b>
+        <i>706</i>&nbsp; } else {
+        <b class="fc"><i>707</i>&nbsp; btnBit[i].setText(&quot;0&quot;);</b>
+        <i>708</i>&nbsp; }
+        <i>709</i>&nbsp; }
+        <b class="fc"><i>710</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <b class="fc"><i>711</i>&nbsp; expression.append(Long.toString(result, radix));</b>
+        <b class="nc"><i>712</i>&nbsp; } catch (Exception e2) {</b>
+        <b class="nc"><i>713</i>&nbsp; r = &quot;���ʽ��Ч&quot;;</b>
+        <b class="nc"><i>714</i>&nbsp; textAreaTop.setText(r);</b>
+        <b class="nc"><i>715</i>&nbsp; textFieldBinary.setText(&quot;&quot;);</b>
+        <b class="nc"><i>716</i>&nbsp; textFieldOctal.setText(&quot;&quot;);</b>
+        <b class="nc"><i>717</i>&nbsp; textFieldDecimal.setText(&quot;&quot;);</b>
+        <b class="nc"><i>718</i>&nbsp; textFieldHexadecimal.setText(&quot;&quot;);</b>
+        <b class="nc"><i>719</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <b class="nc"><i>720</i>&nbsp; e2.printStackTrace();</b>
+        <b class="fc"><i>721</i>&nbsp; }</b>
+        <b class="nc"><i>722</i>&nbsp; break;</b>
+        <i>723</i>&nbsp; case &quot;CE&quot;:
+        <b class="fc"><i>724</i>&nbsp; while (expression.length() &gt; 0 &amp;&amp; prevIsDigit()) {</b>
+        <b class="nc"><i>725</i>&nbsp; expression.deleteCharAt(expression.length() - 1);</b>
+        <i>726</i>&nbsp; }
+        <b class="fc"><i>727</i>&nbsp; textAreaTop.setText(expression.toString());</b>
+        <b class="fc"><i>728</i>&nbsp; break;</b>
+        <i>729</i>&nbsp; case &quot;c&quot;:
+        <b class="fc"><i>730</i>&nbsp; expression.replace(0, expression.length(), &quot;&quot;);</b>
+        <b class="fc"><i>731</i>&nbsp; textAreaTop.setText(expression.toString());</b>
+        <b class="fc"><i>732</i>&nbsp; break;</b>
+        <i>733</i>&nbsp; case &quot;\b&quot;:
+        <i>734</i>&nbsp; case &quot;��&quot;:
+        <b class="fc"><i>735</i>&nbsp; if (expression.length() == 0) {</b>
+        <b class="nc"><i>736</i>&nbsp; return;</b>
+        <i>737</i>&nbsp; }
+        <i>738</i>&nbsp;
+        <b class="fc"><i>739</i>&nbsp; if (expression.charAt(expression.length() - 1) == &#39; &#39;) {</b>
+        <i>740</i>&nbsp; do {
+        <b class="fc"><i>741</i>&nbsp; expression.deleteCharAt(expression.length() - 1);</b>
+        <b class="fc"><i>742</i>&nbsp; } while (expression.length() &gt; 0 &amp;&amp;
+            expression.charAt(expression.length() - 1) != &#39; &#39;);</b>
+        <i>743</i>&nbsp; } else {
+        <b class="fc"><i>744</i>&nbsp; expression.deleteCharAt(expression.length() - 1);</b>
+        <i>745</i>&nbsp; }
+        <b class="fc"><i>746</i>&nbsp; textAreaTop.setText(expression.toString());</b>
+        <b class="fc"><i>747</i>&nbsp; break;</b>
+        <i>748</i>&nbsp; default:
+        <b class="nc"><i>749</i>&nbsp; throw new IllegalArgumentException(&quot;�޴˲�����&quot;);</b>
+        <i>750</i>&nbsp; }
+        <b class="fc"><i>751</i>&nbsp; }</b>
+        <i>752</i>&nbsp;
+        <i>753</i>&nbsp; @Override
+        <i>754</i>&nbsp; public void mouseClicked(MouseEvent e) {
+        <b class="nc"><i>755</i>&nbsp; if (e.getButton() == MouseEvent.BUTTON3) {</b>
+        <b class="nc"><i>756</i>&nbsp; RightClickMenu menu = new RightClickMenu((JTextComponent) e.getComponent());</b>
+        <b class="nc"><i>757</i>&nbsp; menu.show(e.getComponent(), e.getX(), e.getY());</b>
+        <i>758</i>&nbsp; }
+        <b class="nc"><i>759</i>&nbsp; }</b>
+        <i>760</i>&nbsp;
+        <i>761</i>&nbsp; @Override
+        <i>762</i>&nbsp; public void mousePressed(MouseEvent e) {
+        <i>763</i>&nbsp;
+        <b class="nc"><i>764</i>&nbsp; }</b>
+        <i>765</i>&nbsp;
+        <i>766</i>&nbsp; @Override
+        <i>767</i>&nbsp; public void mouseReleased(MouseEvent e) {
+        <i>768</i>&nbsp;
+        <b class="nc"><i>769</i>&nbsp; }</b>
+        <i>770</i>&nbsp;
+        <i>771</i>&nbsp; @Override
+        <i>772</i>&nbsp; public void mouseEntered(MouseEvent e) {
+        <i>773</i>&nbsp;
+        <b class="fc"><i>774</i>&nbsp; }</b>
+        <i>775</i>&nbsp;
+        <i>776</i>&nbsp; @Override
+        <i>777</i>&nbsp; public void mouseExited(MouseEvent e) {
+        <i>778</i>&nbsp;
+        <b class="fc"><i>779</i>&nbsp; }</b>
+        <i>780</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-26 16:14</div>
+</div>
+</body>
+</html>
