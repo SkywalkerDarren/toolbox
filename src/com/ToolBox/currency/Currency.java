@@ -6,7 +6,13 @@ package com.ToolBox.currency;
  * @author 杨弘
  */
 public class Currency {
+    /**
+     * 货币名称
+     */
     String name;
+    /**
+     * 货币兑美元汇率
+     */
     double rateToUSD;
 
     /**

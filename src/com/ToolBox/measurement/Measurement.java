@@ -13,16 +13,42 @@ import java.util.HashMap;
  * @author 杨弘，徐祥亮
  */
 public class Measurement {
+    /**
+     * 测量类型
+     */
     public final String[] measureType = {"长度", "面积", "体积",
             "速度", "质量", "温度", "角度"};
-
+    /**
+     * 长度单位
+     */
     public final HashMap<String, BigDecimal> length = new HashMap<>();
+    /**
+     * 面积单位
+     */
     public final HashMap<String, BigDecimal> area = new HashMap<>();
+    /**
+     * 体积单位
+     */
     public final HashMap<String, BigDecimal> volume = new HashMap<>();
+    /**
+     * 速度单位
+     */
     public final HashMap<String, BigDecimal> speed = new HashMap<>();
+    /**
+     * 质量单位
+     */
     public final HashMap<String, BigDecimal> mass = new HashMap<>();
+    /**
+     * 温度单位
+     */
     public final HashMap<String, String> temp = new HashMap<>();
+    /**
+     * 角度单位
+     */
     public final HashMap<String, String> angle = new HashMap<>();
+    /**
+     * 存储各个单位（除温度，角度）的哈希表
+     */
     final HashMap<String, HashMap<String, BigDecimal>> hashMapType = new HashMap<>();
 
     /**
@@ -195,7 +221,7 @@ public class Measurement {
                     default:
                         throw new IllegalArgumentException("单位不存在");
                 }
-                return rt;
+                return rt.setScale(16, RoundingMode.HALF_UP);
             case "角度":
                 String sa = angle.get(source);
                 String ta = angle.get(target);
@@ -227,7 +253,7 @@ public class Measurement {
                     default:
                         throw new IllegalArgumentException("单位不存在");
                 }
-                return ra;
+                return ra.setScale(16, RoundingMode.HALF_UP);
             default:
                 throw new IllegalArgumentException("未实现");
         }
@@ -281,7 +307,7 @@ public class Measurement {
     }
 
     private BigDecimal degToGrad(BigDecimal s) {
-        return s.divide(BigDecimal.valueOf(9), MathContext.DECIMAL128).multiply(BigDecimal.valueOf(10));
+        return s.multiply(BigDecimal.valueOf(10).divide(BigDecimal.valueOf(9), MathContext.DECIMAL128));
     }
 
     private BigDecimal radToDeg(BigDecimal s) {
@@ -289,6 +315,6 @@ public class Measurement {
     }
 
     private BigDecimal gradToDeg(BigDecimal s) {
-        return s.multiply(BigDecimal.valueOf(10)).divide(BigDecimal.valueOf(9), MathContext.DECIMAL128);
+        return s.multiply(BigDecimal.valueOf(9)).divide(BigDecimal.valueOf(10), MathContext.DECIMAL128);
     }
 }

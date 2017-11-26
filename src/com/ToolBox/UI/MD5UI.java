@@ -35,7 +35,7 @@ class MD5UI extends TransparentPanelUI {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         textAreaUp = new TextBox(upTip);
         textFieldMiddle = new TextBox(middleTip);
         textFieldDown = new TextBox(downTip);

@@ -23,8 +23,17 @@ import java.util.HashMap;
  */
 public class Qrcode {
 
+    /**
+     * 大图
+     */
     public static final int LARGE = 350;
+    /**
+     * 中图
+     */
     public static final int MEDIUM = 250;
+    /**
+     * 小图
+     */
     public static final int SMALL = 150;
 
     private static BufferedImage image;
@@ -63,11 +72,24 @@ public class Qrcode {
      * 纠错等级设置
      *
      * @param level 纠错等级 在ErrorCorrectionLevel类中
+     * @see ErrorCorrectionLevel
+     * @see ErrorCorrectionLevel#H
+     * @see ErrorCorrectionLevel#Q
+     * @see ErrorCorrectionLevel#M
+     * @see ErrorCorrectionLevel#L
      */
     public static void setCorrection(ErrorCorrectionLevel level) {
         hints.put(EncodeHintType.ERROR_CORRECTION, level);
     }
 
+    /**
+     * 设定图片大小
+     *
+     * @param size 图片大小
+     * @see Qrcode#LARGE
+     * @see Qrcode#MEDIUM
+     * @see Qrcode#SMALL
+     */
     public static void setSize(int size) {
         Qrcode.width = size;
         Qrcode.height = size;
@@ -79,6 +101,7 @@ public class Qrcode {
      * @param content 二维码原始信息
      * @param path    保存路径
      * @throws IOException 文件读写错误
+     * @see File#toPath()
      */
     public static void generateFile(String content, Path path) throws IOException {
         generateImage(content);

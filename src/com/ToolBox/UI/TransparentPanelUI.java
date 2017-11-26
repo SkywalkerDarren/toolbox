@@ -13,7 +13,7 @@ public abstract class TransparentPanelUI extends JPanel {
     /**
      * 初始化组件
      */
-    protected abstract void initCompoment();
+    protected abstract void initComponent();
 
     /**
      * 初始化布局
@@ -29,7 +29,7 @@ public abstract class TransparentPanelUI extends JPanel {
      * 构建文字编码转换框架
      */
     protected TransparentPanelUI() {
-        initCompoment();
+        initComponent();
         initUI();
         createAction();
 

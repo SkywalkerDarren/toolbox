@@ -47,7 +47,7 @@ class LiteralCodeUI extends TransparentPanelUI {
     /**
      * 初始化组件
      */
-    protected void initCompoment() {
+    protected void initComponent() {
         btnChooseFile = new JButton();
         btnExchangeFile = new JButton();
         textFieldRoute = new JTextField();
@@ -252,6 +252,7 @@ class LiteralCodeUI extends TransparentPanelUI {
 
         }
     }
+
     /**
      * 构建文字编码转换框架
      */

@@ -36,7 +36,7 @@ class ConversionUI extends TransparentPanelUI {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         m = new Measurement();
         tfTarget = new JTextField();
         comboBoxType = new JComboBox<>();

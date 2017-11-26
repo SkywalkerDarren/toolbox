@@ -206,6 +206,11 @@ class UserInterFace extends JFrame implements ActionListener {
         cardPanel.add(qrCodeTools, QRCODETOOLS);
     }
 
+    /**
+     * 通过菜单切换卡片布局
+     *
+     * @param e 菜单选单事件
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         CardLayout cl = (CardLayout) (cardPanel.getLayout());

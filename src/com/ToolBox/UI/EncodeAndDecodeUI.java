@@ -29,7 +29,7 @@ class EncodeAndDecodeUI extends TransparentPanelUI {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         tabbedPane = new JTabbedPane(JTabbedPane.TOP);
         panelBase64 = new Base64UI();
         panelUnicode = new UnicodeUI();

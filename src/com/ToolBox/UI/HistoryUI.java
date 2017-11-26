@@ -35,7 +35,7 @@ class HistoryUI extends TransparentPanelUI {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         title = new JLabel(history);
         btnCopy = new JButton(copy);
         btnClear = new JButton(clear);

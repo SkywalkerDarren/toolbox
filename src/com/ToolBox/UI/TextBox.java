@@ -39,6 +39,11 @@ public class TextBox extends JTextArea implements MouseListener, FocusListener {
         addFocusListener(this);
     }
 
+    /**
+     * 设定右键菜单
+     *
+     * @param e 鼠标事件
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3) {
@@ -62,6 +67,11 @@ public class TextBox extends JTextArea implements MouseListener, FocusListener {
 
     }
 
+    /**
+     * 按下鼠标提示消失
+     *
+     * @param e 鼠标事件
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         if (getText().equals(hint)) {
@@ -75,6 +85,11 @@ public class TextBox extends JTextArea implements MouseListener, FocusListener {
 
     }
 
+    /**
+     * 失去焦点且无文字则设定提示
+     *
+     * @param e 鼠标事件
+     */
     @Override
     public void focusLost(FocusEvent e) {
         if (getText().length() == 0) {

@@ -28,7 +28,7 @@ class UnicodeUI extends TransparentPanelUI {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         textAreaLeft = new TextBox(leftTip);
         textAreaRight = new TextBox(rightTip);
         jspTextLeft = new JScrollPane();
@@ -66,7 +66,6 @@ class UnicodeUI extends TransparentPanelUI {
         buttonCHNToUnicode.setBackground(normal);
         buttonCHNToUnicode.setBounds(328, 225, 140, 30);
         add(buttonCHNToUnicode);
-
     }
 
     /**

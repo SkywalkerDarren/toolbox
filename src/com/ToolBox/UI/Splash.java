@@ -41,6 +41,9 @@ public class Splash extends JWindow implements Runnable {
         splashThread.start();
     }
 
+    /**
+     * 设定进度条
+     */
     @Override
     public void run() {
         setVisible(true);

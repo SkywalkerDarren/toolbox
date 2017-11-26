@@ -20,9 +20,6 @@ import java.nio.file.Path;
  * @author 杨弘
  */
 class SnapShot extends JFrame {
-    public static void main(String[] args) {
-        new SnapShot();
-    }
 
     private static final long serialVersionUID = 2593517177840717431L;
     private final static int SMALL = 2;
@@ -190,7 +187,7 @@ class SnapShot extends JFrame {
 
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            switch (fileChooser.showOpenDialog(null)) {
+            switch (fileChooser.showSaveDialog(null)) {
                 case JFileChooser.APPROVE_OPTION:
                     Path path = fileChooser.getSelectedFile().toPath();
                     File file = new File(path.toString() + "\\screen capture " +

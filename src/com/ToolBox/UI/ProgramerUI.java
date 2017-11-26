@@ -42,7 +42,7 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         fullKeyPanel = new JPanel();
         bitKeyPanel = new JPanel();
         btnBit = new JButton[64];
@@ -535,6 +535,11 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         ProgramerUI.radix = radix;
     }
 
+    /**
+     * 各个按钮的详细事件
+     *
+     * @param e 按钮事件
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -750,6 +755,11 @@ class ProgramerUI extends TransparentPanelUI implements ActionListener, MouseLis
         }
     }
 
+    /**
+     * 右键调出菜单
+     *
+     * @param e 鼠标事件
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3) {

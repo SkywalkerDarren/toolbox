@@ -29,14 +29,13 @@ class Base64UI extends TransparentPanelUI {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         textAreaLeft = new TextBox(leftTips);
         textAreaRight = new TextBox(rightTips);
         jspTextLeft = new JScrollPane();
         jspTextRight = new JScrollPane();
         buttonRecode = new JButton(encoding);
         buttonDecode = new JButton(decoding);
-
     }
 
     /**

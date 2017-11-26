@@ -43,7 +43,7 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         exchange = new ExchangerRateRecord();
         comboBoxSource = new JComboBox<>();
         comboBoxTarget = new JComboBox<>();
@@ -169,6 +169,11 @@ class ExchangeRateUI extends TransparentPanelUI implements MouseListener {
         textFieldSource.setText(s);
     }
 
+    /**
+     * 右键调出菜单
+     *
+     * @param e 鼠标事件
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON3) {

@@ -16,6 +16,11 @@ import java.util.HashMap;
  */
 class Operators {
     private final static MathContext mc = new MathContext(64, RoundingMode.HALF_UP);
+    /**
+     * 存放运算符的哈希表，通过运算符字符串获取Operator运算符
+     *
+     * @see Operator
+     */
     static HashMap<String, Operator> operatorHashMap = new HashMap<>(32);
 
     // 运算符初始化

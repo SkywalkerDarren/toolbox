@@ -64,7 +64,7 @@ class QRCodeUI extends TransparentPanelUI {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         textAreaTop = new TextBox(topTip);
         comboBoxLevel = new JComboBox<>();
         comboBoxSize = new JComboBox<>();
@@ -246,7 +246,7 @@ class QRCodeUI extends TransparentPanelUI {
             imageFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             FileFilter imageFilter = new FileNameExtensionFilter("图片文件", "png", "jpg");
             imageFileChooser.setFileFilter(imageFilter);
-            int state = imageFileChooser.showSaveDialog(null);
+            int state = imageFileChooser.showOpenDialog(null);
             switch (state) {
                 case JFileChooser.CANCEL_OPTION:
                     break;

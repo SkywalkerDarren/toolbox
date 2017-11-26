@@ -32,7 +32,7 @@ class CalendarUI extends TransparentPanelUI {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         comboBoxCalcMethod = new JComboBox<>();
         panelPlusOrMinus = new PlusOrMinusPanel();
         panelInterval = new IntervalPanel();
@@ -141,7 +141,7 @@ class CalendarUI extends TransparentPanelUI {
          * 初始化组件
          */
         @Override
-        protected void initCompoment() {
+        protected void initComponent() {
             comboBoxStartYear = new JComboBox<>();
             comboBoxStartMonth = new JComboBox<>();
             comboBoxStartDay = new JComboBox<>();
@@ -443,7 +443,7 @@ class CalendarUI extends TransparentPanelUI {
          * 初始化组件
          */
         @Override
-        protected void initCompoment() {
+        protected void initComponent() {
             labelFrom = new JLabel(from);
             labelYear = new JLabel(year);
             labelMonth = new JLabel(month);

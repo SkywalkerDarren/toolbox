@@ -37,7 +37,7 @@ class CalculatorUI extends TransparentPanelUI {
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         panelCalculator = new ScientificUI();
         panelExchangeRate = new ExchangeRateUI();
         panelKeyBoard = new ProgramerUI();

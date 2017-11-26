@@ -12,14 +12,31 @@ import java.util.regex.Pattern;
  * @author 杨弘
  */
 public class Calculator {
+    /**
+     * 十六进制，不支持浮点数计算
+     */
     public final static int HEX = 16;
+    /**
+     * 十进制，不支持浮点数计算
+     */
     public final static int DEC = 10;
+    /**
+     * 八进制，不支持浮点数计算
+     */
     public final static int OCT = 8;
+    /**
+     * 二进制，不支持浮点数计算
+     */
     public final static int BIN = 2;
+    /**
+     * 支持浮点数的十进制模式
+     */
     private final static int NORMAL = 0;
     private int radix = NORMAL;
 
     /**
+     * 通过表达式获取计算结果
+     *
      * @param exp 表达式构成的字符串
      * @return 表达式的结果
      */
@@ -36,6 +53,18 @@ public class Calculator {
         } else {
             return answer.setScale(16, BigDecimal.ROUND_HALF_UP).stripTrailingZeros().toEngineeringString();
         }
+    }
+
+    /**
+     * 通过表达式获取计算结果
+     *
+     * @param exp   表达式构成的字符串
+     * @param radix 当前的进制
+     * @return 表达式的结果
+     */
+    public String getResult(String exp, int radix) {
+        this.radix = radix;
+        return getResult(exp);
     }
 
     /**
@@ -125,11 +154,6 @@ public class Calculator {
         }
 
         return FSM[i][j] && r <= l;
-    }
-
-    public String getResult(String exp, int radix) {
-        this.radix = radix;
-        return getResult(exp);
     }
 
     /**

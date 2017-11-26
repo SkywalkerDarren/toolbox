@@ -29,7 +29,7 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
      * 初始化组件
      */
     @Override
-    protected void initCompoment() {
+    protected void initComponent() {
         btn0 = new JButton("0");
         btn1 = new JButton("1");
         btn2 = new JButton("2");
@@ -313,7 +313,9 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
     }
 
     /**
-     * @param tempResult 设定存储结果
+     * 设定存储结果
+     *
+     * @param tempResult 字符串数值
      */
     static void setTempResult(String tempResult) {
         number.append(tempResult);
@@ -321,7 +323,9 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
     }
 
     /**
-     * 各个按钮事件
+     * 各个可触发事件
+     * @see ScientificUI#actionPerformed(ActionEvent)
+     * @see ScientificUI#keyPressed(KeyEvent)
      */
     private void action(String btnName) {
         switch (btnName) {
@@ -502,6 +506,11 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
         return (number.charAt(number.length() - 1) == ' ');
     }
 
+    /**
+     * 通过按钮键入表达式
+     *
+     * @param e 按钮事件
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String btnName = e.getActionCommand();
@@ -513,6 +522,11 @@ class ScientificUI extends TransparentPanelUI implements ActionListener, KeyList
 
     }
 
+    /**
+     * 通过按键键入表达式
+     *
+     * @param e 键盘事件
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         String btnName = e.getKeyChar() + "";

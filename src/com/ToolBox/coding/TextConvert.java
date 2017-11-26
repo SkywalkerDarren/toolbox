@@ -5,18 +5,35 @@ import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 
 /**
- * 文本转换
+ * 文本编码转换
  *
  * @author 杨弘
  */
 public class TextConvert {
-
-    public final static String UTF_8 = "UTF-8"; // 通用
-    public final static String BIG5 = "BIG5"; // 繁体
-    public final static String GBK = "GBK"; //简体
-    public final static String GB2312 = "GB2312"; //简体
-    public final static String SJIS = "SJIS"; // 日语
-    public final static String JIS = "JIS"; // 日语
+    /**
+     * 通用字符集
+     */
+    public final static String UTF_8 = "UTF-8";
+    /**
+     * 繁体字符集
+     */
+    public final static String BIG5 = "BIG5";
+    /**
+     * 简体字符集
+     */
+    public final static String GBK = "GBK";
+    /**
+     * 简体字符集
+     */
+    public final static String GB2312 = "GB2312";
+    /**
+     * 日语字符集
+     */
+    public final static String SJIS = "SJIS";
+    /**
+     * 日语字符集
+     */
+    public final static String JIS = "JIS";
 
     private final static String txt = "txt";
     private static final String js = "js";

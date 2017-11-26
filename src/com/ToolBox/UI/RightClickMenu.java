@@ -14,7 +14,7 @@ class RightClickMenu extends JPopupMenu {
     private static final long serialVersionUID = 4254117594980050625L;
 
     /**
-     * 添加右键菜单组件逻辑
+     * 为文本框添加右键菜单组件逻辑
      *
      * @param jTextComponent 文本框
      */

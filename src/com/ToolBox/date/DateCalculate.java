@@ -69,30 +69,65 @@ public class DateCalculate {
         return dt.toPeriod();
     }
 
+    /**
+     * 获取日期间距
+     *
+     * @return 这个月的第几天
+     */
     public String getIntervalDay() {
         return period.getDays() + period.getWeeks() * 7 + "";
     }
 
+    /**
+     * 获取日期间距
+     *
+     * @return 这个年的第几月
+     */
     public String getIntervalMonth() {
         return period.getMonths() + "";
     }
 
+    /**
+     * 获取日期间距
+     *
+     * @return 间距几年
+     */
     public String getIntervalYear() {
         return period.getYears() + "";
     }
 
+    /**
+     * 获取日期间距
+     *
+     * @return 日期间距总天数
+     */
     public String getTotalDay() {
         return Math.abs(Days.daysBetween(startDate, endDate).getDays()) + "";
     }
 
+    /**
+     * 获取结果日期
+     *
+     * @return 结果日期的日数
+     */
     public String getEndDay() {
         return endDate.getDayOfMonth() + "";
     }
 
+    /**
+     * 获取结果日期
+     *
+     * @return 结果日期的月份
+     */
     public String getEndMonth() {
         return endDate.getMonthOfYear() + "";
     }
 
+    /**
+     * 获取结果日期
+     *
+     * @return 结果日期的年份
+     */
     public String getEndYear() {
         return endDate.getYear() + "";
     }
@@ -108,7 +143,8 @@ public class DateCalculate {
     }
 
     /**
-     * 根据年月设定日期
+     * 根据是否闰年，年月设定日期
+     * @see DateCalculate#isLeapYear(int)
      *
      * @param year  年份
      * @param month 月份
