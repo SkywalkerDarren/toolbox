@@ -11,7 +11,7 @@ import java.io.File;
 
 public class QrcodeTest {
 
-    BufferedImage image;
+    private BufferedImage image;
 
     @BeforeClass
     public static void init() throws Exception {

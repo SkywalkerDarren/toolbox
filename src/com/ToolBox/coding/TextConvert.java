@@ -47,6 +47,17 @@ public class TextConvert {
     private final static String h = "h";
     private final static String md = "md";
     private final static String sh = "sh";
+    private final static String html = "html";
+
+    private final static FileFilter filter = file -> {
+        String name = file.getName();
+        return (name.lastIndexOf(".") == -1 ||
+                name.lastIndexOf(".") != -1 && (name.endsWith(txt) || name.endsWith(c) || name.endsWith(java) ||
+                        name.endsWith(cpp) || name.endsWith(json) || name.endsWith(yaml) || name.endsWith(xml) ||
+                        name.endsWith(h) || name.endsWith(log) || name.endsWith(js) || name.endsWith(md) ||
+                        name.endsWith(sh) || name.endsWith(html)));
+
+    };
 
     /**
      * 把文件或目录转换成指定的编码
@@ -56,30 +67,19 @@ public class TextConvert {
      * @param toCharset   要转换的编码
      */
     public static void convertRoot(File file, String fromCharset, String toCharset) {
-        if (file.isDirectory()) {
-            File[] files = file.listFiles((dir, name) -> (name.lastIndexOf(".") == -1 ||
-                    name.lastIndexOf(".") != -1 && (name.endsWith(txt) || name.endsWith(c) || name.endsWith(java) ||
-                            name.endsWith(cpp) || name.endsWith(json) || name.endsWith(yaml) || name.endsWith(xml) ||
-                            name.endsWith(h) || name.endsWith(log) || name.endsWith(js) || name.endsWith(md) ||
-                            name.endsWith(sh))));
-            try {
-                assert files != null;
-                for (File f : files) {
-                    if (f.isDirectory()) {
-                        convertRoot(f, fromCharset, toCharset);
-                    } else {
-                        convert(f, fromCharset, toCharset);
-                    }
+        File[] files = file.listFiles();
+        try {
+            assert files != null;
+            for (File f : files) {
+                if (f.isDirectory()) {
+                    convertRoot(f, fromCharset, toCharset);
+                } else {
+                    convert(f, fromCharset, toCharset);
+                    System.out.println(f.getName());
                 }
-            } catch (Exception e1) {
-                e1.printStackTrace();
             }
-        } else if (file.isFile()) {
-            try {
-                convert(file, fromCharset, toCharset);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
         }
     }
 
@@ -91,8 +91,10 @@ public class TextConvert {
      * @param toCharsetName   要转换的编码
      */
     private static void convert(File file, String fromCharsetName, String toCharsetName) {
-        String fileContent = getContentFromCharset(file, fromCharsetName);
-        saveFile2Charset(file, toCharsetName, fileContent);
+        if (filter.accept(file)) {
+            String fileContent = getContentFromCharset(file, fromCharsetName);
+            saveFile2Charset(file, toCharsetName, fileContent);
+        }
     }
 
     /**
