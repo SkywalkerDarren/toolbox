@@ -83,7 +83,7 @@
 
 ## Javadoc
 
-参见<a href="./docs/index.html" target="_blank">Javadoc</a>
+参见[Javadoc](https://skywalkerdarren.github.io/toolbox/javadoc/index.html)
 
 ## License
 
