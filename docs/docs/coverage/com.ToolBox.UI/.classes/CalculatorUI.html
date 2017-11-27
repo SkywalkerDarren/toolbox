@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: CalculatorUI</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.UI</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: CalculatorUI (com.ToolBox.UI)</h1>
+
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Class, %
+            </th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">CalculatorUI</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (34/ 34)
+  </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.UI;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import com.ToolBox.history.Intent;
+        <i>4</i>&nbsp;
+        <i>5</i>&nbsp;import javax.swing.*;
+        <i>6</i>&nbsp;import java.awt.*;
+        <i>7</i>&nbsp;
+        <i>8</i>&nbsp;/**
+        <i>9</i>&nbsp; * 一个全能的科学计算器，带有历史记录功能，支持结果的保存，调用及复制，可进行复杂的带优先级的高精度计算，
+        <i>10</i>&nbsp; * 程序员键盘提供二进制，八进制，十进制，十六进制的换算，以及各种位运算，
+        <i>11</i>&nbsp; * 还可以通过比特键盘直接操纵二进制数值，支持带优先级的计算，支持十进制计算结果保存，调用及复制。
+        <i>12</i>&nbsp; * 汇率计算器可从联网获取最新汇率，默认使用内置的汇率，换算结果并显示当前货币兑换汇率，并支持结果的保存，调用及复制。
+        <i>13</i>&nbsp; * 换算计算器可根据类型对一个单位换算到另一个单位，支持结果保存，调用及复制。
+        <i>14</i>&nbsp; * 日期计算器有两部分组成，一个是日期间距计算，即一个日期到另一个日期的天数，以及周期，另一部分是对日期的增减，
+        <i>15</i>&nbsp; * 选择一个日期，再选择增减的周期数，返回增减后的日期。
+        <i>16</i>&nbsp; *
+        <i>17</i>&nbsp; * @author 杨弘，徐祥亮，朱可欣
+        <i>18</i>&nbsp; */
+        <i>19</i>&nbsp;class CalculatorUI extends TransparentPanelUI {
+        <i>20</i>&nbsp;
+        <i>21</i>&nbsp; public static final long serialVersionUID = -7067036135688239326L;
+        <i>22</i>&nbsp; static final String strTabbed = &quot;标签页&quot;;
+        <b class="fc"><i>23</i>&nbsp; private static final JTabbedPane tabbedPane = new
+            JTabbedPane(JTabbedPane.TOP);</b>
+        <i>24</i>&nbsp; private static final String scientifc = &quot;科学计算器&quot;;
+        <i>25</i>&nbsp; private static final String exchange = &quot;汇率计算器&quot;;
+        <i>26</i>&nbsp; private static final String programer = &quot;程序员计算器&quot;;
+        <i>27</i>&nbsp; private static final String convertion = &quot;单位换算器&quot;;
+        <i>28</i>&nbsp; private static final String calendar = &quot;日期计算器&quot;;
+        <i>29</i>&nbsp; private JPanel panelCalculator;
+        <i>30</i>&nbsp; private JPanel panelExchangeRate;
+        <i>31</i>&nbsp; private JPanel panelKeyBoard;
+        <i>32</i>&nbsp; private JPanel panelConversion;
+        <i>33</i>&nbsp; private JPanel panelCalendar;
+        <i>34</i>&nbsp; private JPanel panelHistory;
+        <i>35</i>&nbsp;
+        <i>36</i>&nbsp; /**
+        <i>37</i>&nbsp; * 初始化组件
+        <i>38</i>&nbsp; */
+        <i>39</i>&nbsp; @Override
+        <i>40</i>&nbsp; protected void initComponent() {
+        <b class="fc"><i>41</i>&nbsp; panelCalculator = new ScientificUI();</b>
+        <b class="fc"><i>42</i>&nbsp; panelExchangeRate = new ExchangeRateUI();</b>
+        <b class="fc"><i>43</i>&nbsp; panelKeyBoard = new ProgramerUI();</b>
+        <b class="fc"><i>44</i>&nbsp; panelConversion = new ConversionUI();</b>
+        <b class="fc"><i>45</i>&nbsp; panelCalendar = new CalendarUI();</b>
+        <b class="fc"><i>46</i>&nbsp; panelHistory = new HistoryUI();</b>
+        <b class="fc"><i>47</i>&nbsp; }</b>
+        <i>48</i>&nbsp;
+        <i>49</i>&nbsp; /**
+        <i>50</i>&nbsp; * 初始化布局
+        <i>51</i>&nbsp; */
+        <i>52</i>&nbsp; @Override
+        <i>53</i>&nbsp; protected void initUI() {
+        <i>54</i>&nbsp;
+        <i>55</i>&nbsp; // 构造标签页
+        <b class="fc"><i>56</i>&nbsp; tabbedPane.setFont(new Font(&quot;微软雅黑&quot;, Font.PLAIN, 16));</b>
+        <b class="fc"><i>57</i>&nbsp; tabbedPane.setBounds(-2, -2, 597, 550);</b>
+        <b class="fc"><i>58</i>&nbsp; tabbedPane.setBorder(BorderFactory.createEtchedBorder());</b>
+        <b class="fc"><i>59</i>&nbsp; add(tabbedPane);</b>
+        <i>60</i>&nbsp;
+        <i>61</i>&nbsp; // 科学计算器标签页
+        <b class="fc"><i>62</i>&nbsp; panelCalculator.setLayout(null);</b>
+        <b class="fc"><i>63</i>&nbsp; tabbedPane.addTab(scientifc, null, panelCalculator, null);</b>
+        <i>64</i>&nbsp;
+        <i>65</i>&nbsp; // 程序员计算器标签页
+        <b class="fc"><i>66</i>&nbsp; tabbedPane.addTab(programer, null, panelKeyBoard, null);</b>
+        <b class="fc"><i>67</i>&nbsp; panelKeyBoard.setLayout(null);</b>
+        <i>68</i>&nbsp;
+        <i>69</i>&nbsp; // 汇率计算器标签页
+        <b class="fc"><i>70</i>&nbsp; panelExchangeRate.setLayout(null);</b>
+        <b class="fc"><i>71</i>&nbsp; tabbedPane.addTab(exchange, null, panelExchangeRate, null);</b>
+        <i>72</i>&nbsp;
+        <i>73</i>&nbsp; // 单位换算器标签页
+        <b class="fc"><i>74</i>&nbsp; panelConversion.setLayout(null);</b>
+        <b class="fc"><i>75</i>&nbsp; tabbedPane.addTab(convertion, null, panelConversion, null);</b>
+        <i>76</i>&nbsp;
+        <i>77</i>&nbsp; // 日期万年历标签页
+        <b class="fc"><i>78</i>&nbsp; panelCalendar.setLayout(null);</b>
+        <b class="fc"><i>79</i>&nbsp; tabbedPane.addTab(calendar, null, panelCalendar, null);</b>
+        <i>80</i>&nbsp;
+        <i>81</i>&nbsp; // 历史记录
+        <b class="fc"><i>82</i>&nbsp; panelHistory.setBorder(BorderFactory.createTitledBorder(&quot;&quot;));</b>
+        <b class="fc"><i>83</i>&nbsp; panelHistory.setBounds(595, -13, 199, 566);</b>
+        <b class="fc"><i>84</i>&nbsp; panelHistory.setLayout(null);</b>
+        <b class="fc"><i>85</i>&nbsp; add(panelHistory);</b>
+        <b class="fc"><i>86</i>&nbsp; }</b>
+        <i>87</i>&nbsp;
+        <i>88</i>&nbsp; /**
+        <i>89</i>&nbsp; * 建立监听事件
+        <i>90</i>&nbsp; */
+        <i>91</i>&nbsp; @Override
+        <i>92</i>&nbsp; protected void createAction() {
+        <b class="fc"><i>93</i>&nbsp; tabbedPane.addChangeListener(e -&gt;
+            setSelectedComponent(tabbedPane.getSelectedComponent().getClass().getName()));</b>
+        <b class="fc"><i>94</i>&nbsp; }</b>
+        <i>95</i>&nbsp;
+        <i>96</i>&nbsp; /**
+        <i>97</i>&nbsp; * 初始化标签页
+        <i>98</i>&nbsp; * 添加科学计算器标签页，汇率计算器标签页，
+        <i>99</i>&nbsp; * 程序员键盘标签页，单位换算器标签页，日期万年历标签页
+        <i>100</i>&nbsp; * 以及历史记录侧边栏
+        <i>101</i>&nbsp; */
+        <i>102</i>&nbsp; CalculatorUI() {
+        <b class="fc"><i>103</i>&nbsp; super();</b>
+        <b class="fc"><i>104</i>&nbsp; Intent.setObj(serialVersionUID, strTabbed,
+            tabbedPane.getSelectedComponent().getClass().getName());</b>
+        <b class="fc"><i>105</i>&nbsp; }</b>
+        <i>106</i>&nbsp;
+        <i>107</i>&nbsp; /**
+        <i>108</i>&nbsp; * 设定当前所在组件
+        <i>109</i>&nbsp; */
+        <i>110</i>&nbsp; private void setSelectedComponent(String panel) {
+        <b class="fc"><i>111</i>&nbsp; Intent.setObj(serialVersionUID, strTabbed, panel);</b>
+        <b class="fc"><i>112</i>&nbsp; }</b>
+        <i>113</i>&nbsp;
+        <i>114</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-27 03:36</div>
+</div>
+</body>
+</html>

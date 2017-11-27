@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: FileResource</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.UI</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: FileResource (com.ToolBox.UI)</h1>
+
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Class, %
+            </th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">FileResource</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.UI;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import java.io.InputStream;
+        <i>4</i>&nbsp;import java.net.URL;
+        <i>5</i>&nbsp;
+        <i>6</i>&nbsp;/**
+        <i>7</i>&nbsp; * 用类加载器加载资源文件
+        <i>8</i>&nbsp; *
+        <i>9</i>&nbsp; * @author 杨弘
+        <i>10</i>&nbsp; */
+        <b class="fc"><i>11</i>&nbsp;public class FileResource {</b>
+        <i>12</i>&nbsp; /**
+        <i>13</i>&nbsp; * 关于图片
+        <i>14</i>&nbsp; */
+        <b class="fc"><i>15</i>&nbsp; final URL aboutURL = getClass().getResource(&quot;/com/ToolBox/resource/About.jpg&quot;);</b>
+        <i>16</i>&nbsp; /**
+        <i>17</i>&nbsp; * 背景图片
+        <i>18</i>&nbsp; */
+        <b class="fc"><i>19</i>&nbsp; final URL backgroundURL = getClass().getResource(&quot;/com/ToolBox/resource/Background.jpg&quot;);</b>
+        <i>20</i>&nbsp; /**
+        <i>21</i>&nbsp; * 图标
+        <i>22</i>&nbsp; */
+        <b class="fc"><i>23</i>&nbsp; final URL toolboxURL = getClass().getResource(&quot;/com/ToolBox/resource/Toolbox.png&quot;);</b>
+        <i>24</i>&nbsp; /**
+        <i>25</i>&nbsp; * 启动画面
+        <i>26</i>&nbsp; */
+        <b class="fc"><i>27</i>&nbsp; final URL splashURL = getClass().getResource(&quot;/com/ToolBox/resource/Splash.jpg&quot;);</b>
+        <i>28</i>&nbsp; /**
+        <i>29</i>&nbsp; * 初始汇率资源
+        <i>30</i>&nbsp; */
+        <b class="fc"><i>31</i>&nbsp; public final InputStream exchangeRateIS = getClass().getResourceAsStream(&quot;/com/ToolBox/resource/exchangeRate.json&quot;);</b>
+        <i>32</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-27 03:36</div>
+</div>
+</body>
+</html>

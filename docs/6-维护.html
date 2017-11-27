@@ -1,0 +1,1139 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>6 维护 · Universal ToolBox 开发文档</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content="">
+    <meta name="generator" content="GitBook 3.2.3">
+    <meta name="author" content="杨弘，徐祥亮，朱可欣">
+
+
+    <link rel="stylesheet" href="gitbook/style.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-atoc/atoc.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+
+
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+
+    <link rel="next" href="6-维护.html"/>
+
+
+    <link rel="prev" href="5-实现.html"/>
+
+
+</head>
+<body>
+
+<div class="book">
+    <div class="book-summary">
+
+
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="Type to search"/>
+        </div>
+
+
+        <nav role="navigation">
+
+
+            <ul class="summary">
+
+
+                <li>
+                    <a href="https://github.com/SkywalkerDarren/toolbox" target="_blank"
+                       class="custom-link">Github项目地址</a>
+                </li>
+
+
+                <li>
+                    <a href="https://gitlab.com/SkywalkerDarren/toolbox" target="_blank"
+                       class="custom-link">Gitlab项目地址</a>
+                </li>
+
+
+                <li class="divider"></li>
+
+
+                <li class="chapter " data-level="1.1" data-path="./">
+
+                    <a href="./">
+
+
+                        Universal ToolBox 开发文档
+
+                    </a>
+
+
+                </li>
+
+                <li class="chapter " data-level="1.2" data-path="1-概述.html">
+
+                    <a href="1-概述.html">
+
+
+                        1 概述
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.2.1" data-path="1-概述.html">
+
+                            <a href="1-概述.html#11-开发背景">
+
+
+                                1.1 开发背景
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.2.2" data-path="1-概述.html">
+
+                            <a href="1-概述.html#12-开发目标">
+
+
+                                1.2 开发目标
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.2.3" data-path="1-概述.html">
+
+                            <a href="1-概述.html#13-参考资料">
+
+
+                                1.3 参考资料
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.2.4" data-path="1-概述.html">
+
+                            <a href="1-概述.html#14-设计原则">
+
+
+                                1.4 设计原则
+
+                            </a>
+
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter " data-level="1.3" data-path="2-需求分析.html">
+
+                    <a href="2-需求分析.html">
+
+
+                        2 需求分析
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.3.1" data-path="2-需求分析.html">
+
+                            <a href="2-需求分析.html#21-需求陈述">
+
+
+                                2.1 需求陈述
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.3.2" data-path="2-需求分析.html">
+
+                            <a href="2-需求分析.html#22-功能分析划分">
+
+
+                                2.2 功能分析划分
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.3.3" data-path="2-需求分析.html">
+
+                            <a href="2-需求分析.html#23-运行环境">
+
+
+                                2.3 运行环境
+
+                            </a>
+
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter " data-level="1.4" data-path="3-总体设计.html">
+
+                    <a href="3-总体设计.html">
+
+
+                        3 总体设计
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.4.1" data-path="3-总体设计.html">
+
+                            <a href="3-总体设计.html#31-类图设计">
+
+
+                                3.1 类图设计
+
+                            </a>
+
+
+                            <ul class="articles">
+
+
+                                <li class="chapter " data-level="1.4.1.1" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#311-全局图">
+
+
+                                        3.1.1 全局图
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.2" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#312-主界面ui">
+
+
+                                        3.1.2 主界面UI
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.3" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#313-计算器">
+
+
+                                        3.1.3 计算器
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.4" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#314-汇率">
+
+
+                                        3.1.4 汇率
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.5" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#315-换算">
+
+
+                                        3.1.5 换算
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.6" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#316-历史记录">
+
+
+                                        3.1.6 历史记录
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.7" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#317-日期">
+
+
+                                        3.1.7 日期
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.8" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#318-编码解码">
+
+
+                                        3.1.8 编码解码
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.9" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#319-二维码">
+
+
+                                        3.1.9 二维码
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.10" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3110-截图">
+
+
+                                        3.1.10 截图
+
+                                    </a>
+
+
+                                </li>
+
+
+                            </ul>
+
+                        </li>
+
+                        <li class="chapter " data-level="1.4.2" data-path="3-总体设计.html">
+
+                            <a href="3-总体设计.html#32-接口设计">
+
+
+                                3.2 接口设计
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.4.3" data-path="3-总体设计.html">
+
+                            <a href="3-总体设计.html#33-界面设计">
+
+
+                                3.3 界面设计
+
+                            </a>
+
+
+                            <ul class="articles">
+
+
+                                <li class="chapter " data-level="1.4.3.1" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#331-启动欢迎界面">
+
+
+                                        3.3.1 启动欢迎界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.2" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#332-程序主界面">
+
+
+                                        3.3.2 程序主界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.3" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#333-截图画图界面">
+
+
+                                        3.3.3 截图画图界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.4" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#334-科学计算器界面">
+
+
+                                        3.3.4 科学计算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.5" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#335-程序员计算器界面">
+
+
+                                        3.3.5 程序员计算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.6" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#336-汇率计算器界面">
+
+
+                                        3.3.6 汇率计算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.7" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#337-单位换算器界面">
+
+
+                                        3.3.7 单位换算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.8" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#338-日期计算器界面">
+
+
+                                        3.3.8 日期计算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.9" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#339-base64编码解码界面">
+
+
+                                        3.3.9 Base64编码/解码界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.10" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3310-unicode中文互转界面">
+
+
+                                        3.3.10 Unicode中文互转界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.11" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3311-md5生成校验界面">
+
+
+                                        3.3.11 MD5生成校验界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.12" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3312-文字文件编码批量转换界面">
+
+
+                                        3.3.12 文字/文件编码批量转换界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.13" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3313-二维码生成界面">
+
+
+                                        3.3.13 二维码生成界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.14" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3314-关于界面">
+
+
+                                        3.3.14 关于界面
+
+                                    </a>
+
+
+                                </li>
+
+
+                            </ul>
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter " data-level="1.5" data-path="4-详细设计.html">
+
+                    <a href="4-详细设计.html">
+
+
+                        4 详细设计
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.5.1" data-path="4-详细设计.html">
+
+                            <a href="4-详细设计.html#41-程序流程图">
+
+
+                                4.1 程序流程图
+
+                            </a>
+
+
+                            <ul class="articles">
+
+
+                                <li class="chapter " data-level="1.5.1.1" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#411-主流程">
+
+
+                                        4.1.1 主流程
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.2" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#412-计算器">
+
+
+                                        4.1.2 计算器
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.3" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#413-汇率">
+
+
+                                        4.1.3 汇率
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.4" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#414-换算">
+
+
+                                        4.1.4 换算
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.5" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#415-日期计算">
+
+
+                                        4.1.5 日期计算
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.6" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#416-历史记录">
+
+
+                                        4.1.6 历史记录
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.7" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#417-编码解码">
+
+
+                                        4.1.7 编码解码
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.8" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#418-二维码">
+
+
+                                        4.1.8 二维码
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.9" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#419-截图">
+
+
+                                        4.1.9 截图
+
+                                    </a>
+
+
+                                </li>
+
+
+                            </ul>
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter " data-level="1.6" data-path="5-实现.html">
+
+                    <a href="5-实现.html">
+
+
+                        5 实现
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.6.1" data-path="5-实现.html">
+
+                            <a href="5-实现.html#51-编码">
+
+
+                                5.1 编码
+
+                            </a>
+
+
+                            <ul class="articles">
+
+
+                                <li class="chapter " data-level="1.6.1.1" data-path="5-实现.html">
+
+                                    <a href="5-实现.html#511-开发环境">
+
+
+                                        5.1.1 开发环境
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.6.1.2" data-path="5-实现.html">
+
+                                    <a href="5-实现.html#512-代码约定">
+
+
+                                        5.1.2 代码约定
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.6.1.3" data-path="5-实现.html">
+
+                                    <a href="5-实现.html#513-代码编写原则">
+
+
+                                        5.1.3 代码编写原则
+
+                                    </a>
+
+
+                                </li>
+
+
+                            </ul>
+
+                        </li>
+
+                        <li class="chapter " data-level="1.6.2" data-path="5-实现.html">
+
+                            <a href="5-实现.html#52-测试要点">
+
+
+                                5.2 测试要点
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.6.3" data-path="5-实现.html">
+
+                            <a href="5-实现.html#53-测试结果和总结">
+
+
+                                5.3 测试结果和总结
+
+                            </a>
+
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter active" data-level="1.7" data-path="6-维护.html">
+
+                    <a href="6-维护.html">
+
+
+                        6 维护
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.7.1" data-path="6-维护.html">
+
+                            <a href="6-维护.html#61-维护方法">
+
+
+                                6.1 维护方法
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.7.2" data-path="6-维护.html">
+
+                            <a href="6-维护.html#62-维护文档">
+
+
+                                6.2 维护文档
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.7.3" data-path="6-维护.html">
+
+                            <a href="6-维护.html#63-功能拓展方法">
+
+
+                                6.3 功能拓展方法
+
+                            </a>
+
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+
+                <li class="divider"></li>
+
+                <li>
+                    <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                        Published with GitBook
+                    </a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+
+    </div>
+
+    <div class="book-body">
+
+        <div class="body-inner">
+
+
+            <div class="book-header" role="navigation">
+
+
+                <!-- Title -->
+                <h1>
+                    <i class="fa fa-circle-o-notch fa-spin"></i>
+                    <a href=".">6 维护</a>
+                </h1>
+            </div>
+
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+
+                            <section class="normal markdown-section">
+
+                                <h1 id="6-&#x7EF4;&#x62A4;"><a name="6-&#x7EF4;&#x62A4;" class="plugin-anchor"
+                                                               href="#6-&#x7EF4;&#x62A4;"><i class="fa fa-link"
+                                                                                             aria-hidden="true"></i></a>6
+                                    &#x7EF4;&#x62A4;</h1>
+                                <!-- toc -->
+                                <ul>
+                                    <li><a href="#61-&#x7EF4;&#x62A4;&#x65B9;&#x6CD5;">6.1 &#x7EF4;&#x62A4;&#x65B9;&#x6CD5;</a>
+                                    </li>
+                                    <li><a href="#62-&#x7EF4;&#x62A4;&#x6587;&#x6863;">6.2 &#x7EF4;&#x62A4;&#x6587;&#x6863;</a>
+                                    </li>
+                                    <li><a href="#63-&#x529F;&#x80FD;&#x62D3;&#x5C55;&#x65B9;&#x6CD5;">6.3 &#x529F;&#x80FD;&#x62D3;&#x5C55;&#x65B9;&#x6CD5;</a>
+                                    </li>
+                                </ul>
+                                <!-- tocstop -->
+                                <h2 id="61-&#x7EF4;&#x62A4;&#x65B9;&#x6CD5;"><a
+                                        name="61-&#x7EF4;&#x62A4;&#x65B9;&#x6CD5;" class="plugin-anchor"
+                                        href="#61-&#x7EF4;&#x62A4;&#x65B9;&#x6CD5;"><i class="fa fa-link"
+                                                                                       aria-hidden="true"></i></a>6.1
+                                    &#x7EF4;&#x62A4;&#x65B9;&#x6CD5;</h2>
+                                <p><img src="example/&#x7EF4;&#x62A4;&#x6D41;&#x7A0B;.png" alt=""></p>
+                                <p>&#x7EF4;&#x62A4;&#x8FC7;&#x7A0B;&#x4E2D;&#x4F7F;&#x7528;Git&#x7248;&#x672C;&#x63A7;&#x5236;&#x3002;</p>
+                                <p>&#x5E38;&#x8BBE;&#x5206;&#x652F;<code>master</code>, <code>develop</code>&#x3002;</p>
+                                <p>&#x5F00;&#x53D1;&#x65B0;feature&#x7684;&#x65F6;&#x5019;&#x8981;&#x5F00;&#x65B0;branch&#xFF0C;branch&#x547D;&#x540D;&#x4E3A;<code>feature_&#x529F;&#x80FD;</code>&#x3002;
+                                </p>
+                                <p>&#x4FEE;&#x590D;Bug&#x7684;&#x65F6;&#x5019;&#x5F00;&#x65B0;branch&#xFF0C;&#x547D;&#x540D;&#x4E3A;<code>fixbug_Bug&#x540D;</code>&#x3002;
+                                </p>
+                                <p>&#x9884;&#x53D1;&#x5E03;&#x7684;&#x65F6;&#x5019;&#x5F00;&#x65B0;branch&#xFF0C;&#x547D;&#x540D;&#x4E3A;<code>release_&#x7248;&#x672C;&#x53F7;</code>&#x3002;
+                                </p>
+                                <p>&#x4E34;&#x65F6;&#x6027;&#x5206;&#x652F;&#x7528;&#x5B8C;&#x540E;&#x9700;&#x8981;&#x5220;&#x9664;&#x3002;</p>
+                                <h2 id="62-&#x7EF4;&#x62A4;&#x6587;&#x6863;"><a
+                                        name="62-&#x7EF4;&#x62A4;&#x6587;&#x6863;" class="plugin-anchor"
+                                        href="#62-&#x7EF4;&#x62A4;&#x6587;&#x6863;"><i class="fa fa-link"
+                                                                                       aria-hidden="true"></i></a>6.2
+                                    &#x7EF4;&#x62A4;&#x6587;&#x6863;</h2>
+                                <p>&#x672A;&#x8FDB;&#x5165;&#x6B64;&#x9636;&#x6BB5;&#xFF0C;&#x6682;&#x65E0;&#x3002;</p>
+                                <h2 id="63-&#x529F;&#x80FD;&#x62D3;&#x5C55;&#x65B9;&#x6CD5;"><a
+                                        name="63-&#x529F;&#x80FD;&#x62D3;&#x5C55;&#x65B9;&#x6CD5;" class="plugin-anchor"
+                                        href="#63-&#x529F;&#x80FD;&#x62D3;&#x5C55;&#x65B9;&#x6CD5;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>6.3 &#x529F;&#x80FD;&#x62D3;&#x5C55;&#x65B9;&#x6CD5;
+                                </h2>
+                                <p>&#x65B0;&#x529F;&#x80FD;&#x8981;&#x6C42;&#x5199;&#x6210;&#x540E;&#x7AEF;&#x7684;&#x529F;&#x80FD;&#x5305;&#xFF0C;&#x5177;&#x4F53;&#x8C03;&#x7528;&#x7531;&#x524D;&#x7AEF;&#x8D1F;&#x8D23;&#x3002;&#x7EDD;&#x4E0D;&#x53EF;&#x5197;&#x6742;&#x5728;&#x4E00;&#x8D77;&#x3002;</p>
+                                <p>&#x65B0;&#x4E00;&#x7C7B;&#x7684;&#x5DE5;&#x5177;&#x9762;&#x677F;&#x8981;&#x6C42;&#x653E;&#x5728;<code>UserInterface</code>&#x7684;<code>mnMenuFunction</code>&#x4E2D;&#xFF0C;&#x65B0;&#x9762;&#x677F;&#x8981;&#x6DFB;&#x52A0;&#x8FDB;<code>CardLayout</code>&#x4E2D;&#x3002;<code>JFrame</code>&#x5219;&#x8981;&#x6C42;&#x653E;&#x5728;<code>mnMenuStart</code>&#x4E2D;&#xFF0C;&#x89C6;&#x60C5;&#x51B5;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x7A97;&#x53E3;&#x76D1;&#x89C6;&#x5668;&#x3002;
+                                </p>
+                                <p>&#x5982;&#x679C;&#x662F;&#x6709;&#x591A;&#x4E2A;&#x5B50;&#x5DE5;&#x5177;&#x9762;&#x677F;&#x5219;&#x9700;&#x8981;&#x6DFB;&#x52A0;<code>JTabbedPane</code>&#x6765;&#x5B58;&#x653E;&#x5B50;&#x5DE5;&#x5177;&#xFF0C;&#x5B50;&#x5DE5;&#x5177;&#x95F4;&#x7684;&#x4EA4;&#x4E92;&#x6570;&#x636E;&#x7531;<code>Intent</code>&#x4F20;&#x9012;&#x3002;
+                                </p>
+                                <p>
+                                    &#x6240;&#x6709;&#x7684;<code>JPanel</code>&#x8981;&#x6C42;&#x7EE7;&#x627F;&#x81F3;<code>TransparentPanelUI</code>&#x3002;
+                                </p>
+                                <p>&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x653E;&#x5728;<code>resource</code>&#x6587;&#x4EF6;&#x5939;&#x4E2D;&#xFF0C;&#x518D;&#x5199;&#x8FDB;<code>FileResource</code>&#x5185;&#xFF0C;&#x7531;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x8C03;&#x7528;&#x3002;
+                                </p>
+                                <script type="text/javascript">var className = 'atoc';</script>
+
+                            </section>
+
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+
+                                <h1 class="search-results-title"><span class='search-results-count'></span> results
+                                    matching "<span class='search-query'></span>"</h1>
+                                <ul class="search-results-list"></ul>
+
+                            </div>
+                            <div class="no-results">
+
+                                <h1 class="search-results-title">No results matching "<span class='search-query'></span>"
+                                </h1>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <a href="5-实现.html#53-测试结果和总结" class="navigation navigation-prev " aria-label="Previous page: 5.3 测试结果和总结">
+            <i class="fa fa-angle-left"></i>
+        </a>
+
+
+        <a href="6-维护.html#61-维护方法" class="navigation navigation-next " aria-label="Next page: 6.1 维护方法">
+            <i class="fa fa-angle-right"></i>
+        </a>
+
+
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function () {
+            gitbook.page.hasChanged({
+                "page": {
+                    "title": "6 维护",
+                    "level": "1.7",
+                    "depth": 1,
+                    "next": {
+                        "title": "6.1 维护方法",
+                        "level": "1.7.1",
+                        "depth": 2,
+                        "anchor": "#61-维护方法",
+                        "path": "6-维护.md",
+                        "ref": "6-维护.md#61-维护方法",
+                        "articles": []
+                    },
+                    "previous": {
+                        "title": "5.3 测试结果和总结",
+                        "level": "1.6.3",
+                        "depth": 2,
+                        "anchor": "#53-测试结果和总结",
+                        "path": "5-实现.md",
+                        "ref": "5-实现.md#53-测试结果和总结",
+                        "articles": []
+                    },
+                    "dir": "ltr"
+                },
+                "config": {
+                    "plugins": ["expandable-chapters-small", "anchors", "atoc", "livereload"],
+                    "styles": {
+                        "website": "styles/website.css",
+                        "pdf": "styles/pdf.css",
+                        "epub": "styles/epub.css",
+                        "mobi": "styles/mobi.css",
+                        "ebook": "styles/ebook.css",
+                        "print": "styles/print.css"
+                    },
+                    "pluginsConfig": {
+                        "livereload": {},
+                        "atoc": {"addClass": true, "className": "atoc"},
+                        "search": {},
+                        "lunr": {"maxIndexSize": 1000000, "ignoreSpecialCharacters": false},
+                        "fontsettings": {"theme": "white", "family": "sans", "size": 2},
+                        "highlight": {},
+                        "expandable-chapters-small": {},
+                        "sharing": {
+                            "facebook": false,
+                            "twitter": false,
+                            "google": false,
+                            "weibo": false,
+                            "instapaper": false,
+                            "vk": false,
+                            "all": []
+                        },
+                        "theme-default": {
+                            "styles": {
+                                "website": "styles/website.css",
+                                "pdf": "styles/pdf.css",
+                                "epub": "styles/epub.css",
+                                "mobi": "styles/mobi.css",
+                                "ebook": "styles/ebook.css",
+                                "print": "styles/print.css"
+                            }, "showLevel": false
+                        },
+                        "anchors": {}
+                    },
+                    "theme": "default",
+                    "author": "杨弘，徐祥亮，朱可欣",
+                    "pdf": {
+                        "pageBreaksBefore": "/",
+                        "headerTemplate": null,
+                        "paperSize": "a4",
+                        "margin": {"right": 62, "left": 62, "top": 36, "bottom": 36},
+                        "fontSize": 12,
+                        "fontFamily": "Arial",
+                        "footerTemplate": null,
+                        "chapterMark": "pagebreak",
+                        "pageNumbers": false
+                    },
+                    "structure": {
+                        "langs": "LANGS.md",
+                        "readme": "README.md",
+                        "glossary": "GLOSSARY.md",
+                        "summary": "SUMMARY.md"
+                    },
+                    "variables": {},
+                    "title": "Universal ToolBox 开发文档",
+                    "links": {
+                        "sharing": {
+                            "all": false,
+                            "facebook": false,
+                            "google": false,
+                            "twitter": false,
+                            "weibo": false
+                        },
+                        "sidebar": {
+                            "Github项目地址": "https://github.com/SkywalkerDarren/toolbox",
+                            "Gitlab项目地址": "https://gitlab.com/SkywalkerDarren/toolbox"
+                        }
+                    },
+                    "gitbook": "*",
+                    "description": "Universal ToolBox 开发文档",
+                    "extension": null
+                },
+                "file": {"path": "6-维护.md", "mtime": "2017-11-27T11:39:51.703Z", "type": "markdown"},
+                "gitbook": {"version": "3.2.3", "time": "2017-11-27T14:28:18.793Z"},
+                "basePath": ".",
+                "book": {"language": ""}
+            });
+        });
+    </script>
+</div>
+
+
+<script src="gitbook/gitbook.js"></script>
+<script src="gitbook/theme.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-atoc/atoc.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-search/search.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+
+
+</body>
+</html>
+

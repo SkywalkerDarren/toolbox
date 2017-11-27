@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: Measurement</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.measurement</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: Measurement (com.ToolBox.measurement)</h1>
+
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Class, %
+            </th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">Measurement</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (16/ 16)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    97%
+  </span>
+                <span class="absValue">
+    (164/ 169)
+  </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.measurement;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import java.math.BigDecimal;
+        <i>4</i>&nbsp;import java.math.MathContext;
+        <i>5</i>&nbsp;import java.math.RoundingMode;
+        <i>6</i>&nbsp;import java.util.HashMap;
+        <i>7</i>&nbsp;
+        <i>8</i>&nbsp;/**
+        <i>9</i>&nbsp; * 测量单位
+        <i>10</i>&nbsp; * 设定默认相对国际单位的换算
+        <i>11</i>&nbsp; * 增加温度，角度的换算函数
+        <i>12</i>&nbsp; *
+        <i>13</i>&nbsp; * @author 杨弘，徐祥亮
+        <i>14</i>&nbsp; */
+        <i>15</i>&nbsp;public class Measurement {
+        <i>16</i>&nbsp; /**
+        <i>17</i>&nbsp; * 测量类型
+        <i>18</i>&nbsp; */
+        <b class="fc"><i>19</i>&nbsp; public final String[] measureType = {&quot;长度&quot;, &quot;面积&quot;, &quot;体积&quot;,</b>
+        <i>20</i>&nbsp; &quot;速度&quot;, &quot;质量&quot;, &quot;温度&quot;, &quot;角度&quot;};
+        <i>21</i>&nbsp; /**
+        <i>22</i>&nbsp; * 长度单位
+        <i>23</i>&nbsp; */
+        <b class="fc"><i>24</i>&nbsp; public final HashMap&lt;String, BigDecimal&gt; length = new HashMap&lt;&gt;();</b>
+        <i>25</i>&nbsp; /**
+        <i>26</i>&nbsp; * 面积单位
+        <i>27</i>&nbsp; */
+        <b class="fc"><i>28</i>&nbsp; public final HashMap&lt;String, BigDecimal&gt; area = new HashMap&lt;&gt;();</b>
+        <i>29</i>&nbsp; /**
+        <i>30</i>&nbsp; * 体积单位
+        <i>31</i>&nbsp; */
+        <b class="fc"><i>32</i>&nbsp; public final HashMap&lt;String, BigDecimal&gt; volume = new HashMap&lt;&gt;();</b>
+        <i>33</i>&nbsp; /**
+        <i>34</i>&nbsp; * 速度单位
+        <i>35</i>&nbsp; */
+        <b class="fc"><i>36</i>&nbsp; public final HashMap&lt;String, BigDecimal&gt; speed = new HashMap&lt;&gt;();</b>
+        <i>37</i>&nbsp; /**
+        <i>38</i>&nbsp; * 质量单位
+        <i>39</i>&nbsp; */
+        <b class="fc"><i>40</i>&nbsp; public final HashMap&lt;String, BigDecimal&gt; mass = new HashMap&lt;&gt;();</b>
+        <i>41</i>&nbsp; /**
+        <i>42</i>&nbsp; * 温度单位
+        <i>43</i>&nbsp; */
+        <b class="fc"><i>44</i>&nbsp; public final HashMap&lt;String, String&gt; temp = new HashMap&lt;&gt;();</b>
+        <i>45</i>&nbsp; /**
+        <i>46</i>&nbsp; * 角度单位
+        <i>47</i>&nbsp; */
+        <b class="fc"><i>48</i>&nbsp; public final HashMap&lt;String, String&gt; angle = new HashMap&lt;&gt;();</b>
+        <i>49</i>&nbsp; /**
+        <i>50</i>&nbsp; * 存储各个单位（除温度，角度）的哈希表
+        <i>51</i>&nbsp; */
+        <b class="fc"><i>52</i>&nbsp; final HashMap&lt;String, HashMap&lt;String, BigDecimal&gt;&gt; hashMapType = new
+            HashMap&lt;&gt;();</b>
+        <i>53</i>&nbsp;
+        <i>54</i>&nbsp; /**
+        <i>55</i>&nbsp; * 初始化各单位到国际单位的换算值，除温度，角度
+        <i>56</i>&nbsp; */
+        <b class="fc"><i>57</i>&nbsp; public Measurement() {</b>
+        <b class="fc"><i>58</i>&nbsp; hashMapType.put(&quot;长度&quot;, length);</b>
+        <b class="fc"><i>59</i>&nbsp; hashMapType.put(&quot;面积&quot;, area);</b>
+        <b class="fc"><i>60</i>&nbsp; hashMapType.put(&quot;体积&quot;, volume);</b>
+        <b class="fc"><i>61</i>&nbsp; hashMapType.put(&quot;速度&quot;, speed);</b>
+        <b class="fc"><i>62</i>&nbsp; hashMapType.put(&quot;质量&quot;, mass);</b>
+        <i>63</i>&nbsp;
+        <b class="fc"><i>64</i>&nbsp; length.put(&quot;千米(km)&quot;, BigDecimal.valueOf(1000));</b>
+        <b class="fc"><i>65</i>&nbsp; length.put(&quot;米(m)&quot;, BigDecimal.valueOf(1));</b>
+        <b class="fc"><i>66</i>&nbsp; length.put(&quot;分米(dm)&quot;, BigDecimal.valueOf(0.1));</b>
+        <b class="fc"><i>67</i>&nbsp; length.put(&quot;厘米(cm)&quot;, BigDecimal.valueOf(0.01));</b>
+        <b class="fc"><i>68</i>&nbsp; length.put(&quot;毫米(mm)&quot;, BigDecimal.valueOf(0.001));</b>
+        <b class="fc"><i>69</i>&nbsp; length.put(&quot;微米(μm)&quot;, BigDecimal.valueOf(0.000001));</b>
+        <b class="fc"><i>70</i>&nbsp; length.put(&quot;纳米(nm)&quot;, BigDecimal.valueOf(0.000000001));</b>
+        <b class="fc"><i>71</i>&nbsp; length.put(&quot;英寸(in)&quot;, BigDecimal.valueOf(0.0254));</b>
+        <b class="fc"><i>72</i>&nbsp; length.put(&quot;英尺(ft)&quot;, BigDecimal.valueOf(0.3048));</b>
+        <b class="fc"><i>73</i>&nbsp; length.put(&quot;码(yd)&quot;, BigDecimal.valueOf(0.9144));</b>
+        <b class="fc"><i>74</i>&nbsp; length.put(&quot;英里(mi)&quot;, BigDecimal.valueOf(1609.344));</b>
+        <b class="fc"><i>75</i>&nbsp; length.put(&quot;海里(nmi)&quot;, BigDecimal.valueOf(1853.249));</b>
+        <b class="fc"><i>76</i>&nbsp; length.put(&quot;里&quot;, BigDecimal.valueOf(500));</b>
+        <b class="fc"><i>77</i>&nbsp; length.put(&quot;丈&quot;, BigDecimal.valueOf(3.333333333));</b>
+        <b class="fc"><i>78</i>&nbsp; length.put(&quot;尺&quot;, BigDecimal.valueOf(0.333333333));</b>
+        <b class="fc"><i>79</i>&nbsp; length.put(&quot;寸&quot;, BigDecimal.valueOf(0.033333333));</b>
+        <b class="fc"><i>80</i>&nbsp; length.put(&quot;分&quot;, BigDecimal.valueOf(0.003333333));</b>
+        <b class="fc"><i>81</i>&nbsp; length.put(&quot;厘&quot;, BigDecimal.valueOf(0.000333333));</b>
+        <b class="fc"><i>82</i>&nbsp; length.put(&quot;毫&quot;, BigDecimal.valueOf(0.000033333));</b>
+        <i>83</i>&nbsp;
+        <b class="fc"><i>84</i>&nbsp; area.put(&quot;平方千米(km^2)&quot;, BigDecimal.valueOf(1000000));</b>
+        <b class="fc"><i>85</i>&nbsp; area.put(&quot;公顷(ha)&quot;, BigDecimal.valueOf(10000));</b>
+        <b class="fc"><i>86</i>&nbsp; area.put(&quot;公亩(are)&quot;, BigDecimal.valueOf(100));</b>
+        <b class="fc"><i>87</i>&nbsp; area.put(&quot;平方米(m^2)&quot;, BigDecimal.valueOf(1));</b>
+        <b class="fc"><i>88</i>&nbsp; area.put(&quot;平方分米(dm^2)&quot;, BigDecimal.valueOf(0.01));</b>
+        <b class="fc"><i>89</i>&nbsp; area.put(&quot;平方厘米(cm^2)&quot;, BigDecimal.valueOf(0.0001));</b>
+        <b class="fc"><i>90</i>&nbsp; area.put(&quot;平方毫米(mm^2)&quot;, BigDecimal.valueOf(0.000001));</b>
+        <b class="fc"><i>91</i>&nbsp; area.put(&quot;平方英里(sq.mi)&quot;, BigDecimal.valueOf(2589988));</b>
+        <b class="fc"><i>92</i>&nbsp; area.put(&quot;英亩(acre)&quot;, BigDecimal.valueOf(4046.864798));</b>
+        <b class="fc"><i>93</i>&nbsp; area.put(&quot;平方竿(sq.rd)&quot;, BigDecimal.valueOf(25.29285264));</b>
+        <b class="fc"><i>94</i>&nbsp; area.put(&quot;平方码(sq.yd)&quot;, BigDecimal.valueOf(0.83612736));</b>
+        <b class="fc"><i>95</i>&nbsp; area.put(&quot;平方英尺(sq.ft)&quot;, BigDecimal.valueOf(0.09290304));</b>
+        <b class="fc"><i>96</i>&nbsp; area.put(&quot;平方英寸(sq.in)&quot;, BigDecimal.valueOf(0.00064516));</b>
+        <b class="fc"><i>97</i>&nbsp; area.put(&quot;顷&quot;, BigDecimal.valueOf(66666.666666666));</b>
+        <b class="fc"><i>98</i>&nbsp; area.put(&quot;亩&quot;, BigDecimal.valueOf(666.666666666));</b>
+        <b class="fc"><i>99</i>&nbsp; area.put(&quot;分&quot;, BigDecimal.valueOf(66.666666666));</b>
+        <i>100</i>&nbsp;
+        <b class="fc"><i>101</i>&nbsp; volume.put(&quot;立方米(m^3)&quot;, BigDecimal.valueOf(1));</b>
+        <b class="fc"><i>102</i>&nbsp; volume.put(&quot;立方厘米(cm^3)&quot;, BigDecimal.valueOf(0.000001));</b>
+        <b class="fc"><i>103</i>&nbsp; volume.put(&quot;立方分米(dm^3)&quot;, BigDecimal.valueOf(0.001));</b>
+        <b class="fc"><i>104</i>&nbsp; volume.put(&quot;立方毫米(mm^3)&quot;, BigDecimal.valueOf(0.000000001));</b>
+        <b class="fc"><i>105</i>&nbsp; volume.put(&quot;升(l)&quot;, BigDecimal.valueOf(0.001));</b>
+        <b class="fc"><i>106</i>&nbsp; volume.put(&quot;分升(dl)&quot;, BigDecimal.valueOf(0.0001));</b>
+        <b class="fc"><i>107</i>&nbsp; volume.put(&quot;厘升(cl)&quot;, BigDecimal.valueOf(0.00001));</b>
+        <b class="fc"><i>108</i>&nbsp; volume.put(&quot;毫升(ml)&quot;, BigDecimal.valueOf(0.000001));</b>
+        <b class="fc"><i>109</i>&nbsp; volume.put(&quot;微升(ul)&quot;, BigDecimal.valueOf(0.000000001));</b>
+        <b class="fc"><i>110</i>&nbsp; volume.put(&quot;公石(hl)&quot;, BigDecimal.valueOf(0.1));</b>
+        <b class="fc"><i>111</i>&nbsp; volume.put(&quot;立方码(cu yd)&quot;, BigDecimal.valueOf(0.764555));</b>
+        <b class="fc"><i>112</i>&nbsp; volume.put(&quot;立方英尺(cu ft)&quot;, BigDecimal.valueOf(0.028316846592));</b>
+        <b class="fc"><i>113</i>&nbsp; volume.put(&quot;立方英寸(cu in)&quot;, BigDecimal.valueOf(0.00001638706));</b>
+        <b class="fc"><i>114</i>&nbsp; volume.put(&quot;品脱(pint)&quot;, BigDecimal.valueOf(0.000568));</b>
+        <b class="fc"><i>115</i>&nbsp; volume.put(&quot;夸脱(quart)&quot;, BigDecimal.valueOf(0.00114));</b>
+        <b class="fc"><i>116</i>&nbsp; volume.put(&quot;英制加仑(uk gal)&quot;, BigDecimal.valueOf(0.00454609));</b>
+        <b class="fc"><i>117</i>&nbsp; volume.put(&quot;美制加仑(us gal)&quot;, BigDecimal.valueOf(0.003785412));</b>
+        <b class="fc"><i>118</i>&nbsp; volume.put(&quot;英制液体盎司(oz)&quot;, BigDecimal.valueOf(0.00002841));</b>
+        <b class="fc"><i>119</i>&nbsp; volume.put(&quot;美制液体盎司(oz)&quot;, BigDecimal.valueOf(0.00002957));</b>
+        <i>120</i>&nbsp;
+        <b class="fc"><i>121</i>&nbsp; speed.put(&quot;米/秒(m/s)&quot;, BigDecimal.valueOf(1));</b>
+        <b class="fc"><i>122</i>&nbsp; speed.put(&quot;千米/秒(km/s)&quot;, BigDecimal.valueOf(1000));</b>
+        <b class="fc"><i>123</i>&nbsp; speed.put(&quot;千米/时(km/h)&quot;, BigDecimal.valueOf(0.27777778));</b>
+        <b class="fc"><i>124</i>&nbsp; speed.put(&quot;英寸/秒(in/s)&quot;, BigDecimal.valueOf(0.0254));</b>
+        <b class="fc"><i>125</i>&nbsp; speed.put(&quot;英里/时(mile/h)&quot;, BigDecimal.valueOf(0.44704));</b>
+        <b class="fc"><i>126</i>&nbsp; speed.put(&quot;节&quot;, BigDecimal.valueOf(0.51444445));</b>
+        <b class="fc"><i>127</i>&nbsp; speed.put(&quot;马赫(mach)&quot;, BigDecimal.valueOf(340.29));</b>
+        <i>128</i>&nbsp;
+        <b class="fc"><i>129</i>&nbsp; mass.put(&quot;吨(t)&quot;, BigDecimal.valueOf(1000));</b>
+        <b class="fc"><i>130</i>&nbsp; mass.put(&quot;千克(kg)&quot;, BigDecimal.valueOf(1));</b>
+        <b class="fc"><i>131</i>&nbsp; mass.put(&quot;克(g)&quot;, BigDecimal.valueOf(0.001));</b>
+        <b class="fc"><i>132</i>&nbsp; mass.put(&quot;毫克(mg)&quot;, BigDecimal.valueOf(0.000001));</b>
+        <b class="fc"><i>133</i>&nbsp; mass.put(&quot;微克(μg)&quot;, BigDecimal.valueOf(0.000000001));</b>
+        <b class="fc"><i>134</i>&nbsp; mass.put(&quot;克拉(ct)&quot;, BigDecimal.valueOf(0.0002));</b>
+        <b class="fc"><i>135</i>&nbsp; mass.put(&quot;英吨(lt)&quot;, BigDecimal.valueOf(1016));</b>
+        <b class="fc"><i>136</i>&nbsp; mass.put(&quot;美吨(st)&quot;, BigDecimal.valueOf(907));</b>
+        <b class="fc"><i>137</i>&nbsp; mass.put(&quot;英担(hundredweight)&quot;, BigDecimal.valueOf(50.8));</b>
+        <b class="fc"><i>138</i>&nbsp; mass.put(&quot;夸特(quarter)&quot;, BigDecimal.valueOf(12.7));</b>
+        <b class="fc"><i>139</i>&nbsp; mass.put(&quot;英石(stone)&quot;, BigDecimal.valueOf(6.35));</b>
+        <b class="fc"><i>140</i>&nbsp; mass.put(&quot;磅(lb)&quot;, BigDecimal.valueOf(0.454));</b>
+        <b class="fc"><i>141</i>&nbsp; mass.put(&quot;盎司(oz)&quot;, BigDecimal.valueOf(0.0283));</b>
+        <b class="fc"><i>142</i>&nbsp; mass.put(&quot;打兰(dr)&quot;, BigDecimal.valueOf(0.00177));</b>
+        <b class="fc"><i>143</i>&nbsp; mass.put(&quot;格令(gr)&quot;, BigDecimal.valueOf(0.0000648));</b>
+        <b class="fc"><i>144</i>&nbsp; mass.put(&quot;担&quot;, BigDecimal.valueOf(50));</b>
+        <b class="fc"><i>145</i>&nbsp; mass.put(&quot;斤&quot;, BigDecimal.valueOf(0.5));</b>
+        <b class="fc"><i>146</i>&nbsp; mass.put(&quot;两&quot;, BigDecimal.valueOf(0.03125));</b>
+        <b class="fc"><i>147</i>&nbsp; mass.put(&quot;钱&quot;, BigDecimal.valueOf(0.003125));</b>
+        <i>148</i>&nbsp;
+        <b class="fc"><i>149</i>&nbsp; temp.put(&quot;摄氏度(°C)&quot;, &quot;C&quot;);</b>
+        <b class="fc"><i>150</i>&nbsp; temp.put(&quot;华氏度(°F)&quot;, &quot;F&quot;);</b>
+        <b class="fc"><i>151</i>&nbsp; temp.put(&quot;开氏度(K)&quot;, &quot;K&quot;);</b>
+        <b class="fc"><i>152</i>&nbsp; temp.put(&quot;兰氏度(°R)&quot;, &quot;R&quot;);</b>
+        <b class="fc"><i>153</i>&nbsp; temp.put(&quot;列氏度(°Re)&quot;, &quot;Re&quot;);</b>
+        <i>154</i>&nbsp;
+        <b class="fc"><i>155</i>&nbsp; angle.put(&quot;百分度(grad)&quot;, &quot;grad&quot;);</b>
+        <b class="fc"><i>156</i>&nbsp; angle.put(&quot;度(°)&quot;, &quot;°&quot;);</b>
+        <b class="fc"><i>157</i>&nbsp; angle.put(&quot;弧度(rad)&quot;, &quot;rad&quot;);</b>
+        <b class="fc"><i>158</i>&nbsp; }</b>
+        <i>159</i>&nbsp;
+        <i>160</i>&nbsp; /**
+        <i>161</i>&nbsp; * 指示一个类型，给定一定数额，并从源单位到目标单位的换算，以及返回结果
+        <i>162</i>&nbsp; *
+        <i>163</i>&nbsp; * @param source 源单位
+        <i>164</i>&nbsp; * @param target 目标单位
+        <i>165</i>&nbsp; * @param number 换算数值
+        <i>166</i>&nbsp; * @param type 换算类型
+        <i>167</i>&nbsp; * @return 换算结果
+        <i>168</i>&nbsp; */
+        <i>169</i>&nbsp; public BigDecimal conver(String source, String target, BigDecimal number, String type) {
+        <i>170</i>&nbsp; BigDecimal s;
+        <i>171</i>&nbsp; BigDecimal t;
+        <b class="fc"><i>172</i>&nbsp; switch (type) {</b>
+        <i>173</i>&nbsp; case &quot;长度&quot;:
+        <i>174</i>&nbsp; case &quot;面积&quot;:
+        <i>175</i>&nbsp; case &quot;体积&quot;:
+        <i>176</i>&nbsp; case &quot;速度&quot;:
+        <i>177</i>&nbsp; case &quot;质量&quot;:
+        <b class="fc"><i>178</i>&nbsp; s = hashMapType.get(type).get(source);</b>
+        <b class="fc"><i>179</i>&nbsp; t = hashMapType.get(type).get(target);</b>
+        <b class="fc"><i>180</i>&nbsp; return number.multiply(s.divide(t, 9, RoundingMode.HALF_UP));</b>
+        <i>181</i>&nbsp; case &quot;温度&quot;:
+        <b class="fc"><i>182</i>&nbsp; String st = temp.get(source);</b>
+        <b class="fc"><i>183</i>&nbsp; String tt = temp.get(target);</b>
+        <i>184</i>&nbsp;
+        <i>185</i>&nbsp; BigDecimal rt;
+        <b class="fc"><i>186</i>&nbsp; switch (st) {</b>
+        <i>187</i>&nbsp; case &quot;C&quot;:
+        <b class="fc"><i>188</i>&nbsp; rt = CtoC(number);</b>
+        <b class="fc"><i>189</i>&nbsp; break;</b>
+        <i>190</i>&nbsp; case &quot;K&quot;:
+        <b class="fc"><i>191</i>&nbsp; rt = KtoC(number);</b>
+        <b class="fc"><i>192</i>&nbsp; break;</b>
+        <i>193</i>&nbsp; case &quot;F&quot;:
+        <b class="fc"><i>194</i>&nbsp; rt = FtoC(number);</b>
+        <b class="fc"><i>195</i>&nbsp; break;</b>
+        <i>196</i>&nbsp; case &quot;R&quot;:
+        <b class="fc"><i>197</i>&nbsp; rt = RtoC(number);</b>
+        <b class="fc"><i>198</i>&nbsp; break;</b>
+        <i>199</i>&nbsp; case &quot;Re&quot;:
+        <b class="fc"><i>200</i>&nbsp; rt = RetoC(number);</b>
+        <b class="fc"><i>201</i>&nbsp; break;</b>
+        <i>202</i>&nbsp; default:
+        <b class="nc"><i>203</i>&nbsp; throw new IllegalArgumentException(&quot;单位不存在&quot;);</b>
+        <i>204</i>&nbsp; }
+        <b class="fc"><i>205</i>&nbsp; switch (tt) {</b>
+        <i>206</i>&nbsp; case &quot;C&quot;:
+        <b class="fc"><i>207</i>&nbsp; rt = CtoC(rt);</b>
+        <b class="fc"><i>208</i>&nbsp; break;</b>
+        <i>209</i>&nbsp; case &quot;K&quot;:
+        <b class="fc"><i>210</i>&nbsp; rt = CtoK(rt);</b>
+        <b class="fc"><i>211</i>&nbsp; break;</b>
+        <i>212</i>&nbsp; case &quot;F&quot;:
+        <b class="fc"><i>213</i>&nbsp; rt = CtoF(rt);</b>
+        <b class="fc"><i>214</i>&nbsp; break;</b>
+        <i>215</i>&nbsp; case &quot;R&quot;:
+        <b class="fc"><i>216</i>&nbsp; rt = CtoR(rt);</b>
+        <b class="fc"><i>217</i>&nbsp; break;</b>
+        <i>218</i>&nbsp; case &quot;Re&quot;:
+        <b class="fc"><i>219</i>&nbsp; rt = CtoRe(rt);</b>
+        <b class="fc"><i>220</i>&nbsp; break;</b>
+        <i>221</i>&nbsp; default:
+        <b class="nc"><i>222</i>&nbsp; throw new IllegalArgumentException(&quot;单位不存在&quot;);</b>
+        <i>223</i>&nbsp; }
+        <b class="fc"><i>224</i>&nbsp; return rt.setScale(16, RoundingMode.HALF_UP);</b>
+        <i>225</i>&nbsp; case &quot;角度&quot;:
+        <b class="fc"><i>226</i>&nbsp; String sa = angle.get(source);</b>
+        <b class="fc"><i>227</i>&nbsp; String ta = angle.get(target);</b>
+        <i>228</i>&nbsp;
+        <i>229</i>&nbsp; BigDecimal ra;
+        <b class="fc"><i>230</i>&nbsp; switch (sa) {</b>
+        <i>231</i>&nbsp; case &quot;°&quot;:
+        <b class="fc"><i>232</i>&nbsp; ra = degToDeg(number);</b>
+        <b class="fc"><i>233</i>&nbsp; break;</b>
+        <i>234</i>&nbsp; case &quot;grad&quot;:
+        <b class="fc"><i>235</i>&nbsp; ra = gradToDeg(number);</b>
+        <b class="fc"><i>236</i>&nbsp; break;</b>
+        <i>237</i>&nbsp; case &quot;rad&quot;:
+        <b class="fc"><i>238</i>&nbsp; ra = radToDeg(number);</b>
+        <b class="fc"><i>239</i>&nbsp; break;</b>
+        <i>240</i>&nbsp; default:
+        <b class="nc"><i>241</i>&nbsp; throw new IllegalArgumentException(&quot;单位不存在&quot;);</b>
+        <i>242</i>&nbsp; }
+        <b class="fc"><i>243</i>&nbsp; switch (ta) {</b>
+        <i>244</i>&nbsp; case &quot;°&quot;:
+        <b class="fc"><i>245</i>&nbsp; ra = degToDeg(ra);</b>
+        <b class="fc"><i>246</i>&nbsp; break;</b>
+        <i>247</i>&nbsp; case &quot;grad&quot;:
+        <b class="fc"><i>248</i>&nbsp; ra = degToGrad(ra);</b>
+        <b class="fc"><i>249</i>&nbsp; break;</b>
+        <i>250</i>&nbsp; case &quot;rad&quot;:
+        <b class="fc"><i>251</i>&nbsp; ra = degToRad(ra);</b>
+        <b class="fc"><i>252</i>&nbsp; break;</b>
+        <i>253</i>&nbsp; default:
+        <b class="nc"><i>254</i>&nbsp; throw new IllegalArgumentException(&quot;单位不存在&quot;);</b>
+        <i>255</i>&nbsp; }
+        <b class="fc"><i>256</i>&nbsp; return ra.setScale(16, RoundingMode.HALF_UP);</b>
+        <i>257</i>&nbsp; default:
+        <b class="nc"><i>258</i>&nbsp; throw new IllegalArgumentException(&quot;未实现&quot;);</b>
+        <i>259</i>&nbsp; }
+        <i>260</i>&nbsp;
+        <i>261</i>&nbsp; }
+        <i>262</i>&nbsp;
+        <i>263</i>&nbsp; //温度换算
+        <i>264</i>&nbsp; private BigDecimal KtoC(BigDecimal s) {
+        <b class="fc"><i>265</i>&nbsp; return s.subtract(BigDecimal.valueOf(273.15));</b>
+        <i>266</i>&nbsp; }
+        <i>267</i>&nbsp;
+        <i>268</i>&nbsp; private BigDecimal FtoC(BigDecimal s) {
+        <b class="fc"><i>269</i>&nbsp; return
+            s.subtract(BigDecimal.valueOf(32)).multiply(BigDecimal.valueOf(5).divide(BigDecimal.valueOf(9),
+            MathContext.DECIMAL128));</b>
+        <i>270</i>&nbsp; }
+        <i>271</i>&nbsp;
+        <i>272</i>&nbsp; private BigDecimal RtoC(BigDecimal s) {
+        <b class="fc"><i>273</i>&nbsp; return
+            s.subtract(BigDecimal.valueOf(491.67)).multiply(BigDecimal.valueOf(5).divide(BigDecimal.valueOf(9),
+            MathContext.DECIMAL128));</b>
+        <i>274</i>&nbsp; }
+        <i>275</i>&nbsp;
+        <i>276</i>&nbsp; private BigDecimal RetoC(BigDecimal s) {
+        <b class="fc"><i>277</i>&nbsp; return s.multiply(BigDecimal.valueOf(5).divide(BigDecimal.valueOf(4),
+            MathContext.DECIMAL128));</b>
+        <i>278</i>&nbsp; }
+        <i>279</i>&nbsp;
+        <i>280</i>&nbsp; private BigDecimal CtoC(BigDecimal s) {
+        <b class="fc"><i>281</i>&nbsp; return s;</b>
+        <i>282</i>&nbsp; }
+        <i>283</i>&nbsp;
+        <i>284</i>&nbsp; private BigDecimal CtoK(BigDecimal s) {
+        <b class="fc"><i>285</i>&nbsp; return s.add(BigDecimal.valueOf(273.15));</b>
+        <i>286</i>&nbsp; }
+        <i>287</i>&nbsp;
+        <i>288</i>&nbsp; private BigDecimal CtoF(BigDecimal s) {
+        <b class="fc"><i>289</i>&nbsp; return s.multiply(BigDecimal.valueOf(9).divide(BigDecimal.valueOf(5),
+            MathContext.DECIMAL128)).add(BigDecimal.valueOf(32));</b>
+        <i>290</i>&nbsp; }
+        <i>291</i>&nbsp;
+        <i>292</i>&nbsp; private BigDecimal CtoR(BigDecimal s) {
+        <b class="fc"><i>293</i>&nbsp; return
+            s.add(BigDecimal.valueOf(273.15)).multiply(BigDecimal.valueOf(9).divide(BigDecimal.valueOf(5),
+            MathContext.DECIMAL128));</b>
+        <i>294</i>&nbsp; }
+        <i>295</i>&nbsp;
+        <i>296</i>&nbsp; private BigDecimal CtoRe(BigDecimal s) {
+        <b class="fc"><i>297</i>&nbsp; return s.multiply(BigDecimal.valueOf(4).divide(BigDecimal.valueOf(5),
+            MathContext.DECIMAL128));</b>
+        <i>298</i>&nbsp; }
+        <i>299</i>&nbsp;
+        <i>300</i>&nbsp; //角度换算
+        <i>301</i>&nbsp; private BigDecimal degToDeg(BigDecimal s) {
+        <b class="fc"><i>302</i>&nbsp; return s;</b>
+        <i>303</i>&nbsp; }
+        <i>304</i>&nbsp;
+        <i>305</i>&nbsp; private BigDecimal degToRad(BigDecimal s) {
+        <b class="fc"><i>306</i>&nbsp; return s.multiply(BigDecimal.valueOf(Math.PI).divide(BigDecimal.valueOf(180),
+            MathContext.DECIMAL128));</b>
+        <i>307</i>&nbsp; }
+        <i>308</i>&nbsp;
+        <i>309</i>&nbsp; private BigDecimal degToGrad(BigDecimal s) {
+        <b class="fc"><i>310</i>&nbsp; return s.multiply(BigDecimal.valueOf(10).divide(BigDecimal.valueOf(9),
+            MathContext.DECIMAL128));</b>
+        <i>311</i>&nbsp; }
+        <i>312</i>&nbsp;
+        <i>313</i>&nbsp; private BigDecimal radToDeg(BigDecimal s) {
+        <b class="fc"><i>314</i>&nbsp; return s.multiply(BigDecimal.valueOf(180).divide(BigDecimal.valueOf(Math.PI),
+            MathContext.DECIMAL128));</b>
+        <i>315</i>&nbsp; }
+        <i>316</i>&nbsp;
+        <i>317</i>&nbsp; private BigDecimal gradToDeg(BigDecimal s) {
+        <b class="fc"><i>318</i>&nbsp; return s.multiply(BigDecimal.valueOf(9)).divide(BigDecimal.valueOf(10),
+            MathContext.DECIMAL128);</b>
+        <i>319</i>&nbsp; }
+        <i>320</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-27 03:36</div>
+</div>
+</body>
+</html>

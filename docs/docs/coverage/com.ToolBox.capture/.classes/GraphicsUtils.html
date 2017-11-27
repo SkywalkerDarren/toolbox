@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: GraphicsUtils</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.capture</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: GraphicsUtils (com.ToolBox.capture)</h1>
+
+    <table class="coverageStats">
+
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">GraphicsUtils</td>
+            <td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+                <span class="absValue">
+    (2/ 3)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+                <span class="absValue">
+    (5/ 6)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">GraphicsUtils$1</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (4/ 4)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+                <span class="absValue">
+    (5/ 6)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name"><strong>total</strong></td>
+            <td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+                <span class="absValue">
+    (6/ 7)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+                <span class="absValue">
+    (10/ 12)
+  </span>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.capture;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import java.awt.*;
+        <i>4</i>&nbsp;import java.awt.datatransfer.DataFlavor;
+        <i>5</i>&nbsp;import java.awt.datatransfer.Transferable;
+        <i>6</i>&nbsp;import java.awt.datatransfer.UnsupportedFlavorException;
+        <i>7</i>&nbsp;import java.awt.image.BufferedImage;
+        <i>8</i>&nbsp;import java.io.IOException;
+        <i>9</i>&nbsp;
+        <i>10</i>&nbsp;/**
+        <i>11</i>&nbsp; * 截图工具
+        <i>12</i>&nbsp; *
+        <i>13</i>&nbsp; * @author 杨弘
+        <i>14</i>&nbsp; */
+        <b class="nc"><i>15</i>&nbsp;public class GraphicsUtils {</b>
+        <i>16</i>&nbsp; /**
+        <i>17</i>&nbsp; * 截图屏幕中制定区域的图片
+        <i>18</i>&nbsp; *
+        <i>19</i>&nbsp; * @param x 左上角横坐标
+        <i>20</i>&nbsp; * @param y 左上角纵坐标
+        <i>21</i>&nbsp; * @param w 宽度
+        <i>22</i>&nbsp; * @param h 高度
+        <i>23</i>&nbsp; * @return 被截部分的BufferedImage对象
+        <i>24</i>&nbsp; * @throws Exception 截图异常
+        <i>25</i>&nbsp; */
+        <i>26</i>&nbsp; static BufferedImage getScreenImage(int x, int y, int w, int h) throws Exception {
+        <b class="fc"><i>27</i>&nbsp; Robot robot = new Robot();</b>
+        <b class="fc"><i>28</i>&nbsp; return robot.createScreenCapture(new Rectangle(x, y, w, h));</b>
+        <i>29</i>&nbsp; }
+        <i>30</i>&nbsp;
+        <i>31</i>&nbsp; /**
+        <i>32</i>&nbsp; * 将指定图片写入系统剪贴板
+        <i>33</i>&nbsp; *
+        <i>34</i>&nbsp; * @param image 图片
+        <i>35</i>&nbsp; */
+        <i>36</i>&nbsp; public static void setClipboardImage(final Image image) {
+        <b class="fc"><i>37</i>&nbsp; Transferable trans = new Transferable() {</b>
+        <i>38</i>&nbsp; public DataFlavor[] getTransferDataFlavors() {
+        <b class="fc"><i>39</i>&nbsp; return new DataFlavor[]{DataFlavor.imageFlavor};</b>
+        <i>40</i>&nbsp; }
+        <i>41</i>&nbsp;
+        <i>42</i>&nbsp; public boolean isDataFlavorSupported(DataFlavor flavor) {
+        <b class="fc"><i>43</i>&nbsp; return DataFlavor.imageFlavor.equals(flavor);</b>
+        <i>44</i>&nbsp; }
+        <i>45</i>&nbsp;
+        <i>46</i>&nbsp; public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException
+        {
+        <b class="fc"><i>47</i>&nbsp; if (isDataFlavorSupported(flavor))</b>
+        <b class="fc"><i>48</i>&nbsp; return image;</b>
+        <b class="nc"><i>49</i>&nbsp; throw new UnsupportedFlavorException(flavor);</b>
+        <i>50</i>&nbsp; }
+        <i>51</i>&nbsp;
+        <i>52</i>&nbsp; };
+        <b class="fc"><i>53</i>&nbsp; Toolkit.getDefaultToolkit().getSystemClipboard().setContents(trans, null);</b>
+        <b class="fc"><i>54</i>&nbsp; }</b>
+        <i>55</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-27 03:36</div>
+</div>
+</body>
+</html>

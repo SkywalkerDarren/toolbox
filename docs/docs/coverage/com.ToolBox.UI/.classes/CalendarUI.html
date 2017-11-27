@@ -1,0 +1,850 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: CalendarUI</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">com.ToolBox.UI</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: CalendarUI (com.ToolBox.UI)</h1>
+
+    <table class="coverageStats">
+
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">CalendarUI</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (7/ 7)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    92.3%
+  </span>
+                <span class="absValue">
+    (36/ 39)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">CalendarUI$IntervalPanel</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (135/ 135)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">CalendarUI$IntervalPanel$1</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (11/ 11)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">CalendarUI$IntervalPanel$2</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (10/ 10)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">CalendarUI$PlusOrMinusPanel</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (136/ 136)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name">CalendarUI$PlusOrMinusPanel$1</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (6/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (10/ 10)
+  </span>
+            </td>
+        </tr>
+        <tr>
+            <td class="name"><strong>total</strong></td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+                <span class="absValue">
+    (37/ 37)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    99.1%
+  </span>
+                <span class="absValue">
+    (338/ 341)
+  </span>
+            </td>
+        </tr>
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package com.ToolBox.UI;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import com.ToolBox.date.DateCalculate;
+        <i>4</i>&nbsp;import org.joda.time.DateTime;
+        <i>5</i>&nbsp;
+        <i>6</i>&nbsp;import javax.swing.*;
+        <i>7</i>&nbsp;import java.awt.*;
+        <i>8</i>&nbsp;import java.awt.event.MouseEvent;
+        <i>9</i>&nbsp;import java.awt.event.MouseListener;
+        <i>10</i>&nbsp;
+        <i>11</i>&nbsp;/**
+        <i>12</i>&nbsp; * 日期计算器，支持日期间隔计算及日期增减天数计算
+        <i>13</i>&nbsp; * 显示总天数，周期时间
+        <i>14</i>&nbsp; * 不支持历史记录
+        <i>15</i>&nbsp; *
+        <i>16</i>&nbsp; * @author 杨弘，徐祥亮，朱可欣
+        <i>17</i>&nbsp; */
+        <b class="fc"><i>18</i>&nbsp;class CalendarUI extends TransparentPanelUI {</b>
+        <i>19</i>&nbsp;
+        <i>20</i>&nbsp; private static final long serialVersionUID = -4791068421614363948L;
+        <i>21</i>&nbsp; private static final String interval = &quot;日期之间的相隔时间&quot;;
+        <i>22</i>&nbsp; private static final String addAndMinusDay = &quot;添加或减去天数&quot;;
+        <b class="fc"><i>23</i>&nbsp; private static final Font fontPlain = new Font(&quot;微软雅黑&quot;, Font.PLAIN, 14);</b>
+        <b class="fc"><i>24</i>&nbsp; private static final Font fontBold = new Font(&quot;微软雅黑&quot;, Font.BOLD,
+            14);</b>
+        <b class="fc"><i>25</i>&nbsp; private static final Color normal = new Color(245, 255, 255);</b>
+        <i>26</i>&nbsp; private JComboBox&lt;String&gt; comboBoxCalcMethod;
+        <i>27</i>&nbsp; private JPanel panelPlusOrMinus;
+        <i>28</i>&nbsp; private JPanel panelInterval;
+        <i>29</i>&nbsp;
+        <i>30</i>&nbsp;
+        <i>31</i>&nbsp; /**
+        <i>32</i>&nbsp; * 初始化组件
+        <i>33</i>&nbsp; */
+        <i>34</i>&nbsp; @Override
+        <i>35</i>&nbsp; protected void initComponent() {
+        <b class="fc"><i>36</i>&nbsp; comboBoxCalcMethod = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>37</i>&nbsp; panelPlusOrMinus = new PlusOrMinusPanel();</b>
+        <b class="fc"><i>38</i>&nbsp; panelInterval = new IntervalPanel();</b>
+        <b class="fc"><i>39</i>&nbsp; }</b>
+        <i>40</i>&nbsp;
+        <i>41</i>&nbsp; /**
+        <i>42</i>&nbsp; * 初始化布局
+        <i>43</i>&nbsp; */
+        <i>44</i>&nbsp; @Override
+        <i>45</i>&nbsp; protected void initUI() {
+        <b class="fc"><i>46</i>&nbsp; comboBoxCalcMethod.setBackground(normal);</b>
+        <b class="fc"><i>47</i>&nbsp; comboBoxCalcMethod.setBounds(97, 72, 160, 40);</b>
+        <b class="fc"><i>48</i>&nbsp; comboBoxCalcMethod.setFont(new Font(&quot;微软雅黑&quot;, Font.BOLD, 13));</b>
+        <b class="fc"><i>49</i>&nbsp; comboBoxCalcMethod.addItem(interval);</b>
+        <b class="fc"><i>50</i>&nbsp; comboBoxCalcMethod.addItem(addAndMinusDay);</b>
+        <b class="fc"><i>51</i>&nbsp; comboBoxCalcMethod.setVisible(true);</b>
+        <b class="fc"><i>52</i>&nbsp; add(comboBoxCalcMethod);</b>
+        <i>53</i>&nbsp;
+        <i>54</i>&nbsp; //日期增减
+        <b class="fc"><i>55</i>&nbsp; panelPlusOrMinus.setOpaque(false);</b>
+        <b class="fc"><i>56</i>&nbsp; panelPlusOrMinus.setLayout(null);</b>
+        <b class="fc"><i>57</i>&nbsp; panelPlusOrMinus.setVisible(true);</b>
+        <b class="fc"><i>58</i>&nbsp; panelPlusOrMinus.setBounds(0, 0, 590, 509);</b>
+        <b class="fc"><i>59</i>&nbsp; add(panelPlusOrMinus);</b>
+        <i>60</i>&nbsp;
+        <i>61</i>&nbsp; //日期间隔
+        <b class="fc"><i>62</i>&nbsp; panelInterval.setOpaque(false);</b>
+        <b class="fc"><i>63</i>&nbsp; panelInterval.setLayout(null);</b>
+        <b class="fc"><i>64</i>&nbsp; panelPlusOrMinus.setVisible(false);</b>
+        <b class="fc"><i>65</i>&nbsp; panelInterval.setBounds(0, 0, 600, 509);</b>
+        <b class="fc"><i>66</i>&nbsp; add(panelInterval);</b>
+        <b class="fc"><i>67</i>&nbsp; }</b>
+        <i>68</i>&nbsp;
+        <i>69</i>&nbsp; /**
+        <i>70</i>&nbsp; * 建立监听事件
+        <i>71</i>&nbsp; */
+        <i>72</i>&nbsp; @Override
+        <i>73</i>&nbsp; protected void createAction() {
+        <b class="fc"><i>74</i>&nbsp; comboBoxCalcMethod.addActionListener(e -&gt; {</b>
+        <b class="fc"><i>75</i>&nbsp; if (e.getSource() == comboBoxCalcMethod) {</b>
+        <i>76</i>&nbsp;
+        <b class="fc"><i>77</i>&nbsp; int index = comboBoxCalcMethod.getSelectedIndex();</b>
+        <b class="fc"><i>78</i>&nbsp; switch (index) {</b>
+        <i>79</i>&nbsp; case 0:
+        <b class="nc"><i>80</i>&nbsp; panelPlusOrMinus.setVisible(false);</b>
+        <b class="nc"><i>81</i>&nbsp; panelInterval.setVisible(true);</b>
+        <b class="nc"><i>82</i>&nbsp; break;</b>
+        <i>83</i>&nbsp; case 1:
+        <b class="fc"><i>84</i>&nbsp; panelPlusOrMinus.setVisible(true);</b>
+        <b class="fc"><i>85</i>&nbsp; panelInterval.setVisible(false);</b>
+        <i>86</i>&nbsp; break;
+        <i>87</i>&nbsp; }
+        <i>88</i>&nbsp;
+        <i>89</i>&nbsp; }
+        <b class="fc"><i>90</i>&nbsp; });</b>
+        <b class="fc"><i>91</i>&nbsp; }</b>
+        <i>92</i>&nbsp;
+        <i>93</i>&nbsp; /**
+        <i>94</i>&nbsp; * 构建日期计算的UI基本框架
+        <i>95</i>&nbsp; */
+        <i>96</i>&nbsp; CalendarUI() {
+        <b class="fc"><i>97</i>&nbsp; super();</b>
+        <b class="fc"><i>98</i>&nbsp; }</b>
+        <i>99</i>&nbsp;
+        <i>100</i>&nbsp; /**
+        <i>101</i>&nbsp; * 日期距离类
+        <i>102</i>&nbsp; * 获得两个日期的间隔日期及总天数
+        <i>103</i>&nbsp; */
+        <b class="fc"><i>104</i>&nbsp; private class IntervalPanel extends TransparentPanelUI {</b>
+        <i>105</i>&nbsp;
+        <i>106</i>&nbsp;
+        <i>107</i>&nbsp; private static final long serialVersionUID = 1851775115929217134L;
+        <i>108</i>&nbsp; private static final String from = &quot;自&quot;;
+        <i>109</i>&nbsp; private static final String year = &quot;年，&quot;;
+        <i>110</i>&nbsp; private static final String month = &quot;月，&quot;;
+        <i>111</i>&nbsp; private static final String day = &quot;日&quot;;
+        <i>112</i>&nbsp; private static final String days = &quot;天&quot;;
+        <i>113</i>&nbsp; private static final String to = &quot;至&quot;;
+        <i>114</i>&nbsp; private static final String interval = &quot;间隔天数&quot;;
+        <i>115</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxStartYear;
+        <i>116</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxStartMonth;
+        <i>117</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxStartDay;
+        <i>118</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxEndYear;
+        <i>119</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxEndMonth;
+        <i>120</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxEndDay;
+        <i>121</i>&nbsp; private JLabel labelBetweenFrom;
+        <i>122</i>&nbsp; private JLabel labelStartYear;
+        <i>123</i>&nbsp; private JLabel labelStartMonth;
+        <i>124</i>&nbsp; private JLabel labelStartDay;
+        <i>125</i>&nbsp; private JLabel labelTo;
+        <i>126</i>&nbsp; private JLabel labelEndYear;
+        <i>127</i>&nbsp; private JLabel labelEndMonth;
+        <i>128</i>&nbsp; private JLabel labelEndDay;
+        <i>129</i>&nbsp; private JLabel labelInterval;
+        <i>130</i>&nbsp; private JLabel labelIntervalYear;
+        <i>131</i>&nbsp; private JLabel labelIntervalMonth;
+        <i>132</i>&nbsp; private JLabel labelIntervalDay;
+        <i>133</i>&nbsp; private JLabel labelBetweenYear;
+        <i>134</i>&nbsp; private JLabel labelBetweenMonth;
+        <i>135</i>&nbsp; private JLabel labelBetweenDay;
+        <i>136</i>&nbsp; private JLabel textFieldTotalDay;
+        <i>137</i>&nbsp; private JLabel labelTotalDay;
+        <i>138</i>&nbsp; private JButton buttonCalc;
+        <i>139</i>&nbsp;
+        <i>140</i>&nbsp; /**
+        <i>141</i>&nbsp; * 初始化组件
+        <i>142</i>&nbsp; */
+        <i>143</i>&nbsp; @Override
+        <i>144</i>&nbsp; protected void initComponent() {
+        <b class="fc"><i>145</i>&nbsp; comboBoxStartYear = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>146</i>&nbsp; comboBoxStartMonth = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>147</i>&nbsp; comboBoxStartDay = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>148</i>&nbsp; comboBoxEndYear = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>149</i>&nbsp; comboBoxEndMonth = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>150</i>&nbsp; comboBoxEndDay = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>151</i>&nbsp; labelBetweenFrom = new JLabel(from);</b>
+        <b class="fc"><i>152</i>&nbsp; labelStartYear = new JLabel(year);</b>
+        <b class="fc"><i>153</i>&nbsp; labelStartMonth = new JLabel(month);</b>
+        <b class="fc"><i>154</i>&nbsp; labelStartDay = new JLabel(day);</b>
+        <b class="fc"><i>155</i>&nbsp; labelTo = new JLabel(to);</b>
+        <b class="fc"><i>156</i>&nbsp; labelEndYear = new JLabel(year);</b>
+        <b class="fc"><i>157</i>&nbsp; labelEndMonth = new JLabel(month);</b>
+        <b class="fc"><i>158</i>&nbsp; labelEndDay = new JLabel(day);</b>
+        <b class="fc"><i>159</i>&nbsp; labelInterval = new JLabel(interval);</b>
+        <b class="fc"><i>160</i>&nbsp; labelIntervalYear = new JLabel(&quot;&quot;, JLabel.CENTER);</b>
+        <b class="fc"><i>161</i>&nbsp; labelIntervalMonth = new JLabel(&quot;&quot;, JLabel.CENTER);</b>
+        <b class="fc"><i>162</i>&nbsp; labelIntervalDay = new JLabel(&quot;&quot;, JLabel.CENTER);</b>
+        <b class="fc"><i>163</i>&nbsp; labelBetweenYear = new JLabel(year);</b>
+        <b class="fc"><i>164</i>&nbsp; labelBetweenMonth = new JLabel(month);</b>
+        <b class="fc"><i>165</i>&nbsp; labelBetweenDay = new JLabel(day);</b>
+        <b class="fc"><i>166</i>&nbsp; textFieldTotalDay = new JLabel(&quot;&quot;, JLabel.CENTER);</b>
+        <b class="fc"><i>167</i>&nbsp; labelTotalDay = new JLabel(days);</b>
+        <b class="fc"><i>168</i>&nbsp; buttonCalc = new JButton(&quot;计算&quot;);</b>
+        <b class="fc"><i>169</i>&nbsp; }</b>
+        <i>170</i>&nbsp;
+        <i>171</i>&nbsp; /**
+        <i>172</i>&nbsp; * 初始化布局
+        <i>173</i>&nbsp; */
+        <i>174</i>&nbsp; @Override
+        <i>175</i>&nbsp; protected void initUI() {
+        <i>176</i>&nbsp; int day;
+        <i>177</i>&nbsp;
+        <i>178</i>&nbsp; // 开始年份
+        <b class="fc"><i>179</i>&nbsp; comboBoxStartYear.setBounds(97, 157, 65, 35);</b>
+        <b class="fc"><i>180</i>&nbsp; comboBoxStartYear.setBackground(normal);</b>
+        <b class="fc"><i>181</i>&nbsp; add(comboBoxStartYear);</b>
+        <b class="fc"><i>182</i>&nbsp; for (int i = 1970; i &lt; 3000; i++) {</b>
+        <b class="fc"><i>183</i>&nbsp; comboBoxStartYear.addItem(i);</b>
+        <i>184</i>&nbsp; }
+        <b class="fc"><i>185</i>&nbsp; comboBoxStartYear.setSelectedItem(DateTime.now().getYear());</b>
+        <i>186</i>&nbsp;
+        <i>187</i>&nbsp; // 开始月份
+        <b class="fc"><i>188</i>&nbsp; comboBoxStartMonth.setBounds(187, 157, 65, 35);</b>
+        <b class="fc"><i>189</i>&nbsp; comboBoxStartMonth.setBackground(normal);</b>
+        <b class="fc"><i>190</i>&nbsp; add(comboBoxStartMonth);</b>
+        <b class="fc"><i>191</i>&nbsp; for (int i = 1; i &lt;= 12; i++) {</b>
+        <b class="fc"><i>192</i>&nbsp; comboBoxStartMonth.addItem(i);</b>
+        <i>193</i>&nbsp; }
+        <b class="fc"><i>194</i>&nbsp; comboBoxStartMonth.setSelectedItem(DateTime.now().getMonthOfYear());</b>
+        <i>195</i>&nbsp;
+        <i>196</i>&nbsp; // 开始天数
+        <b class="fc"><i>197</i>&nbsp; comboBoxStartDay.setBounds(280, 157, 65, 35);</b>
+        <b class="fc"><i>198</i>&nbsp; comboBoxStartDay.setBackground(normal);</b>
+        <b class="fc"><i>199</i>&nbsp; add(comboBoxStartDay);</b>
+        <b class="fc"><i>200</i>&nbsp; day = DateCalculate.setDay((int) comboBoxStartYear.getSelectedItem(), (int)
+            comboBoxStartMonth.getSelectedItem());</b>
+        <b class="fc"><i>201</i>&nbsp; for (int i = 1; i &lt;= day; i++) {</b>
+        <b class="fc"><i>202</i>&nbsp; comboBoxStartDay.addItem(i);</b>
+        <i>203</i>&nbsp; }
+        <b class="fc"><i>204</i>&nbsp; comboBoxStartDay.setSelectedItem(DateTime.now().getDayOfMonth());</b>
+        <i>205</i>&nbsp;
+        <i>206</i>&nbsp; // 结束年份
+        <b class="fc"><i>207</i>&nbsp; comboBoxEndYear.setBounds(97, 244, 65, 35);</b>
+        <b class="fc"><i>208</i>&nbsp; comboBoxEndYear.setBackground(normal);</b>
+        <b class="fc"><i>209</i>&nbsp; add(comboBoxEndYear);</b>
+        <b class="fc"><i>210</i>&nbsp; for (int i = 1970; i &lt; 3000; i++) {</b>
+        <b class="fc"><i>211</i>&nbsp; comboBoxEndYear.addItem(i);</b>
+        <i>212</i>&nbsp; }
+        <b class="fc"><i>213</i>&nbsp; comboBoxEndYear.setSelectedItem(DateTime.now().getYear());</b>
+        <i>214</i>&nbsp;
+        <i>215</i>&nbsp; // 结束月份
+        <b class="fc"><i>216</i>&nbsp; comboBoxEndMonth.setBounds(187, 244, 65, 35);</b>
+        <b class="fc"><i>217</i>&nbsp; comboBoxEndMonth.setBackground(normal);</b>
+        <b class="fc"><i>218</i>&nbsp; add(comboBoxEndMonth);</b>
+        <b class="fc"><i>219</i>&nbsp; for (int i = 1; i &lt;= 12; i++) {</b>
+        <b class="fc"><i>220</i>&nbsp; comboBoxEndMonth.addItem(i);</b>
+        <i>221</i>&nbsp; }
+        <b class="fc"><i>222</i>&nbsp; comboBoxEndMonth.setSelectedItem(DateTime.now().getMonthOfYear());</b>
+        <i>223</i>&nbsp;
+        <i>224</i>&nbsp; // 结束天数
+        <b class="fc"><i>225</i>&nbsp; comboBoxEndDay.setBounds(280, 244, 65, 35);</b>
+        <b class="fc"><i>226</i>&nbsp; comboBoxEndDay.setBackground(normal);</b>
+        <b class="fc"><i>227</i>&nbsp; add(comboBoxEndDay);</b>
+        <b class="fc"><i>228</i>&nbsp; day = DateCalculate.setDay((int) comboBoxEndYear.getSelectedItem(), (int)
+            comboBoxEndMonth.getSelectedItem());</b>
+        <b class="fc"><i>229</i>&nbsp; for (int i = 1; i &lt;= day; i++) {</b>
+        <b class="fc"><i>230</i>&nbsp; comboBoxEndDay.addItem(i);</b>
+        <i>231</i>&nbsp; }
+        <b class="fc"><i>232</i>&nbsp; comboBoxEndDay.setSelectedItem(DateTime.now().getDayOfMonth());</b>
+        <i>233</i>&nbsp;
+        <i>234</i>&nbsp; // 标签组********************************
+        <b class="fc"><i>235</i>&nbsp; labelBetweenFrom.setFont(fontPlain);</b>
+        <b class="fc"><i>236</i>&nbsp; labelBetweenFrom.setBounds(97, 122, 42, 25);</b>
+        <b class="fc"><i>237</i>&nbsp; add(labelBetweenFrom);</b>
+        <i>238</i>&nbsp;
+        <b class="fc"><i>239</i>&nbsp; labelStartYear.setFont(fontBold);</b>
+        <b class="fc"><i>240</i>&nbsp; labelStartYear.setBounds(162, 166, 54, 15);</b>
+        <b class="fc"><i>241</i>&nbsp; add(labelStartYear);</b>
+        <i>242</i>&nbsp;
+        <b class="fc"><i>243</i>&nbsp; labelStartMonth.setFont(fontBold);</b>
+        <b class="fc"><i>244</i>&nbsp; labelStartMonth.setBounds(252, 166, 54, 15);</b>
+        <b class="fc"><i>245</i>&nbsp; add(labelStartMonth);</b>
+        <i>246</i>&nbsp;
+        <b class="fc"><i>247</i>&nbsp; labelStartDay.setFont(fontBold);</b>
+        <b class="fc"><i>248</i>&nbsp; labelStartDay.setBounds(345, 166, 54, 15);</b>
+        <b class="fc"><i>249</i>&nbsp; add(labelStartDay);</b>
+        <i>250</i>&nbsp;
+        <b class="fc"><i>251</i>&nbsp; labelTo.setFont(fontPlain);</b>
+        <b class="fc"><i>252</i>&nbsp; labelTo.setBounds(97, 212, 54, 15);</b>
+        <b class="fc"><i>253</i>&nbsp; add(labelTo);</b>
+        <i>254</i>&nbsp;
+        <b class="fc"><i>255</i>&nbsp; labelEndYear.setFont(fontBold);</b>
+        <b class="fc"><i>256</i>&nbsp; labelEndYear.setBounds(162, 253, 54, 15);</b>
+        <b class="fc"><i>257</i>&nbsp; add(labelEndYear);</b>
+        <i>258</i>&nbsp;
+        <b class="fc"><i>259</i>&nbsp; labelEndMonth.setFont(fontBold);</b>
+        <b class="fc"><i>260</i>&nbsp; labelEndMonth.setBounds(252, 253, 54, 15);</b>
+        <b class="fc"><i>261</i>&nbsp; add(labelEndMonth);</b>
+        <i>262</i>&nbsp;
+        <b class="fc"><i>263</i>&nbsp; labelEndDay.setFont(fontBold);</b>
+        <b class="fc"><i>264</i>&nbsp; labelEndDay.setBounds(345, 253, 54, 15);</b>
+        <b class="fc"><i>265</i>&nbsp; add(labelEndDay);</b>
+        <i>266</i>&nbsp;
+        <b class="fc"><i>267</i>&nbsp; labelInterval.setFont(fontPlain);</b>
+        <b class="fc"><i>268</i>&nbsp; labelInterval.setBounds(97, 301, 83, 25);</b>
+        <b class="fc"><i>269</i>&nbsp; add(labelInterval);</b>
+        <i>270</i>&nbsp;
+        <b class="fc"><i>271</i>&nbsp; labelIntervalYear.setBounds(97, 336, 45, 35);</b>
+        <b class="fc"><i>272</i>&nbsp; add(labelIntervalYear);</b>
+        <i>273</i>&nbsp;
+        <i>274</i>&nbsp;
+        <b class="fc"><i>275</i>&nbsp; labelIntervalMonth.setBounds(175, 336, 45, 35);</b>
+        <b class="fc"><i>276</i>&nbsp; add(labelIntervalMonth);</b>
+        <i>277</i>&nbsp;
+        <b class="fc"><i>278</i>&nbsp; labelIntervalDay.setBounds(250, 336, 45, 35);</b>
+        <b class="fc"><i>279</i>&nbsp; add(labelIntervalDay);</b>
+        <i>280</i>&nbsp;
+        <i>281</i>&nbsp; // 这是最下面那四个
+        <b class="fc"><i>282</i>&nbsp; labelBetweenYear.setFont(fontBold);</b>
+        <b class="fc"><i>283</i>&nbsp; labelBetweenYear.setBounds(152, 346, 54, 15);</b>
+        <b class="fc"><i>284</i>&nbsp; add(labelBetweenYear);</b>
+        <i>285</i>&nbsp;
+        <i>286</i>&nbsp; // 这是最下面那四个
+        <b class="fc"><i>287</i>&nbsp; labelBetweenMonth.setFont(fontBold);</b>
+        <b class="fc"><i>288</i>&nbsp; labelBetweenMonth.setBounds(223, 346, 54, 15);</b>
+        <b class="fc"><i>289</i>&nbsp; add(labelBetweenMonth);</b>
+        <i>290</i>&nbsp;
+        <i>291</i>&nbsp; // 这是最下面那四个
+        <b class="fc"><i>292</i>&nbsp; labelBetweenDay.setFont(fontBold);</b>
+        <b class="fc"><i>293</i>&nbsp; labelBetweenDay.setBounds(303, 346, 54, 15);</b>
+        <b class="fc"><i>294</i>&nbsp; add(labelBetweenDay);</b>
+        <i>295</i>&nbsp;
+        <i>296</i>&nbsp; // 这是最下面那四个
+        <b class="fc"><i>297</i>&nbsp; textFieldTotalDay.setBounds(99, 398, 45, 35);</b>
+        <b class="fc"><i>298</i>&nbsp; add(textFieldTotalDay);</b>
+        <i>299</i>&nbsp;
+        <b class="fc"><i>300</i>&nbsp; labelTotalDay.setFont(fontPlain);</b>
+        <b class="fc"><i>301</i>&nbsp; labelTotalDay.setBounds(152, 406, 54, 15);</b>
+        <b class="fc"><i>302</i>&nbsp; add(labelTotalDay);</b>
+        <i>303</i>&nbsp;
+        <i>304</i>&nbsp; // 计算按钮
+        <b class="fc"><i>305</i>&nbsp; buttonCalc.setFont(fontPlain);</b>
+        <b class="fc"><i>306</i>&nbsp; buttonCalc.setBackground(normal);</b>
+        <b class="fc"><i>307</i>&nbsp; buttonCalc.setBounds(223, 396, 75, 35);</b>
+        <b class="fc"><i>308</i>&nbsp; add(buttonCalc);</b>
+        <b class="fc"><i>309</i>&nbsp; }</b>
+        <i>310</i>&nbsp;
+        <i>311</i>&nbsp; /**
+        <i>312</i>&nbsp; * 建立监听事件
+        <i>313</i>&nbsp; */
+        <i>314</i>&nbsp; @Override
+        <i>315</i>&nbsp; protected void createAction() {
+        <i>316</i>&nbsp;
+        <b class="fc"><i>317</i>&nbsp; comboBoxStartDay.addMouseListener(new MouseListener() {</b>
+        <i>318</i>&nbsp;
+        <i>319</i>&nbsp; @Override
+        <i>320</i>&nbsp; public void mouseReleased(MouseEvent e) {
+        <b class="fc"><i>321</i>&nbsp; }</b>
+        <i>322</i>&nbsp;
+        <i>323</i>&nbsp; @Override
+        <i>324</i>&nbsp; public void mousePressed(MouseEvent e) {
+        <b class="fc"><i>325</i>&nbsp; }</b>
+        <i>326</i>&nbsp;
+        <i>327</i>&nbsp; @Override
+        <i>328</i>&nbsp; public void mouseExited(MouseEvent e) {
+        <b class="fc"><i>329</i>&nbsp; }</b>
+        <i>330</i>&nbsp;
+        <i>331</i>&nbsp; @Override
+        <i>332</i>&nbsp; public void mouseEntered(MouseEvent e) {
+        <b class="fc"><i>333</i>&nbsp; }</b>
+        <i>334</i>&nbsp;
+        <i>335</i>&nbsp; @Override
+        <i>336</i>&nbsp; public void mouseClicked(MouseEvent e) {
+        <b class="fc"><i>337</i>&nbsp; int day = DateCalculate.setDay((int) comboBoxStartYear.getSelectedItem(),</b>
+        <b class="fc"><i>338</i>&nbsp; (int) comboBoxStartMonth.getSelectedItem());</b>
+        <b class="fc"><i>339</i>&nbsp; comboBoxStartDay.removeAllItems();</b>
+        <b class="fc"><i>340</i>&nbsp; for (int i = 1; i &lt;= day; i++) {</b>
+        <b class="fc"><i>341</i>&nbsp; comboBoxStartDay.addItem(i);</b>
+        <i>342</i>&nbsp; }
+        <b class="fc"><i>343</i>&nbsp; }</b>
+        <i>344</i>&nbsp; });
+        <i>345</i>&nbsp;
+        <b class="fc"><i>346</i>&nbsp; comboBoxEndDay.addMouseListener(new MouseListener() {</b>
+        <i>347</i>&nbsp;
+        <i>348</i>&nbsp; @Override
+        <i>349</i>&nbsp; public void mouseReleased(MouseEvent e) {
+        <b class="fc"><i>350</i>&nbsp; }</b>
+        <i>351</i>&nbsp;
+        <i>352</i>&nbsp; @Override
+        <i>353</i>&nbsp; public void mousePressed(MouseEvent e) {
+        <b class="fc"><i>354</i>&nbsp; }</b>
+        <i>355</i>&nbsp;
+        <i>356</i>&nbsp; @Override
+        <i>357</i>&nbsp; public void mouseExited(MouseEvent e) {
+        <b class="fc"><i>358</i>&nbsp; }</b>
+        <i>359</i>&nbsp;
+        <i>360</i>&nbsp; @Override
+        <i>361</i>&nbsp; public void mouseEntered(MouseEvent e) {
+        <b class="fc"><i>362</i>&nbsp; }</b>
+        <i>363</i>&nbsp;
+        <i>364</i>&nbsp; @Override
+        <i>365</i>&nbsp; public void mouseClicked(MouseEvent e) {
+        <b class="fc"><i>366</i>&nbsp; int day = DateCalculate.setDay((int) comboBoxEndYear.getSelectedItem(), (int)
+            comboBoxEndMonth.getSelectedItem());</b>
+        <b class="fc"><i>367</i>&nbsp; comboBoxEndDay.removeAllItems();</b>
+        <b class="fc"><i>368</i>&nbsp; for (int i = 1; i &lt;= day; i++) {</b>
+        <b class="fc"><i>369</i>&nbsp; comboBoxEndDay.addItem(i);</b>
+        <i>370</i>&nbsp; }
+        <b class="fc"><i>371</i>&nbsp; }</b>
+        <i>372</i>&nbsp; });
+        <i>373</i>&nbsp;
+        <b class="fc"><i>374</i>&nbsp; buttonCalc.addActionListener(e -&gt; {</b>
+        <b class="fc"><i>375</i>&nbsp; int startYear = (int) comboBoxStartYear.getSelectedItem();</b>
+        <b class="fc"><i>376</i>&nbsp; int startMonth = (int) comboBoxStartMonth.getSelectedItem();</b>
+        <b class="fc"><i>377</i>&nbsp; int startDay = (int) comboBoxStartDay.getSelectedItem();</b>
+        <i>378</i>&nbsp;
+        <b class="fc"><i>379</i>&nbsp; int endYear = (int) comboBoxEndYear.getSelectedItem();</b>
+        <b class="fc"><i>380</i>&nbsp; int endMonth = (int) comboBoxEndMonth.getSelectedItem();</b>
+        <b class="fc"><i>381</i>&nbsp; int endDay = (int) comboBoxEndDay.getSelectedItem();</b>
+        <i>382</i>&nbsp;
+        <b class="fc"><i>383</i>&nbsp; DateCalculate dateCalculate = new DateCalculate(startYear, startMonth, startDay,
+            endYear, endMonth, endDay);</b>
+        <b class="fc"><i>384</i>&nbsp; labelIntervalDay.setText(dateCalculate.getIntervalDay());</b>
+        <b class="fc"><i>385</i>&nbsp; labelIntervalMonth.setText(dateCalculate.getIntervalMonth());</b>
+        <b class="fc"><i>386</i>&nbsp; labelIntervalYear.setText(dateCalculate.getIntervalYear());</b>
+        <b class="fc"><i>387</i>&nbsp; textFieldTotalDay.setText(dateCalculate.getTotalDay());</b>
+        <b class="fc"><i>388</i>&nbsp; });</b>
+        <i>389</i>&nbsp;
+        <b class="fc"><i>390</i>&nbsp; }</b>
+        <i>391</i>&nbsp;
+        <i>392</i>&nbsp; /**
+        <i>393</i>&nbsp; * 日期距离的UI初始化
+        <i>394</i>&nbsp; */
+        <b class="fc"><i>395</i>&nbsp; IntervalPanel() {</b>
+        <b class="fc"><i>396</i>&nbsp; super();</b>
+        <b class="fc"><i>397</i>&nbsp; }</b>
+        <i>398</i>&nbsp; }
+        <i>399</i>&nbsp;
+        <i>400</i>&nbsp; /**
+        <i>401</i>&nbsp; * 日期增减类
+        <i>402</i>&nbsp; * 从一个已知日期增减一定的日期，来获得目标日期
+        <i>403</i>&nbsp; */
+        <b class="fc"><i>404</i>&nbsp; private class PlusOrMinusPanel extends TransparentPanelUI {</b>
+        <i>405</i>&nbsp;
+        <i>406</i>&nbsp;
+        <i>407</i>&nbsp; private static final long serialVersionUID = -2918669599707881570L;
+        <i>408</i>&nbsp; private static final String from = &quot;自&quot;;
+        <i>409</i>&nbsp; private static final String year = &quot;年，&quot;;
+        <i>410</i>&nbsp; private static final String month = &quot;月，&quot;;
+        <i>411</i>&nbsp; private static final String day = &quot;日&quot;;
+        <i>412</i>&nbsp; private static final String date = &quot;日期&quot;;
+        <i>413</i>&nbsp; private static final String calc = &quot;计算&quot;;
+        <i>414</i>&nbsp; private static final String add = &quot;添加&quot;;
+        <i>415</i>&nbsp; private static final String minus = &quot;减去&quot;;
+        <b class="fc"><i>416</i>&nbsp; private boolean isAdd = true;</b>
+        <i>417</i>&nbsp; private JLabel labelFrom;
+        <i>418</i>&nbsp; private JLabel labelYear;
+        <i>419</i>&nbsp; private JLabel labelMonth;
+        <i>420</i>&nbsp; private JLabel labelDay;
+        <i>421</i>&nbsp; private JLabel labelDate;
+        <i>422</i>&nbsp; private JRadioButton radioButtonAdd;
+        <i>423</i>&nbsp; private JRadioButton radioButtonMinus;
+        <i>424</i>&nbsp; private ButtonGroup group;
+        <i>425</i>&nbsp; private JLabel labelFromYear;
+        <i>426</i>&nbsp; private JLabel labelFromMonth;
+        <i>427</i>&nbsp; private JLabel labelFromDay;
+        <i>428</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxAddMonth;
+        <i>429</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxAddDay;
+        <i>430</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxAddYear;
+        <i>431</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxStartYear;
+        <i>432</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxStartMonth;
+        <i>433</i>&nbsp; private JComboBox&lt;Integer&gt; comboBoxStartDay;
+        <i>434</i>&nbsp; private JLabel plusOrMinusYear;
+        <i>435</i>&nbsp; private JLabel plusOrMinusMonth;
+        <i>436</i>&nbsp; private JLabel plusOrMinusDay;
+        <i>437</i>&nbsp; private JLabel labelyear;
+        <i>438</i>&nbsp; private JLabel labelmonth;
+        <i>439</i>&nbsp; private JLabel labelday;
+        <i>440</i>&nbsp; private JButton buttonCalc;
+        <i>441</i>&nbsp;
+        <i>442</i>&nbsp; /**
+        <i>443</i>&nbsp; * 初始化组件
+        <i>444</i>&nbsp; */
+        <i>445</i>&nbsp; @Override
+        <i>446</i>&nbsp; protected void initComponent() {
+        <b class="fc"><i>447</i>&nbsp; labelFrom = new JLabel(from);</b>
+        <b class="fc"><i>448</i>&nbsp; labelYear = new JLabel(year);</b>
+        <b class="fc"><i>449</i>&nbsp; labelMonth = new JLabel(month);</b>
+        <b class="fc"><i>450</i>&nbsp; labelDay = new JLabel(day);</b>
+        <b class="fc"><i>451</i>&nbsp; labelDate = new JLabel(date);</b>
+        <b class="fc"><i>452</i>&nbsp; radioButtonAdd = new JRadioButton(add, true);</b>
+        <b class="fc"><i>453</i>&nbsp; radioButtonMinus = new JRadioButton(minus);</b>
+        <b class="fc"><i>454</i>&nbsp; group = new ButtonGroup();</b>
+        <b class="fc"><i>455</i>&nbsp; group.add(radioButtonAdd);</b>
+        <b class="fc"><i>456</i>&nbsp; group.add(radioButtonMinus);</b>
+        <b class="fc"><i>457</i>&nbsp; labelFromYear = new JLabel(year);</b>
+        <b class="fc"><i>458</i>&nbsp; labelFromMonth = new JLabel(month);</b>
+        <b class="fc"><i>459</i>&nbsp; labelFromDay = new JLabel(day);</b>
+        <b class="fc"><i>460</i>&nbsp; comboBoxAddMonth = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>461</i>&nbsp; comboBoxAddDay = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>462</i>&nbsp; comboBoxAddYear = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>463</i>&nbsp; comboBoxStartYear = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>464</i>&nbsp; comboBoxStartMonth = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>465</i>&nbsp; comboBoxStartDay = new JComboBox&lt;&gt;();</b>
+        <b class="fc"><i>466</i>&nbsp; plusOrMinusYear = new JLabel(&quot;&quot;, JLabel.CENTER);</b>
+        <b class="fc"><i>467</i>&nbsp; plusOrMinusMonth = new JLabel(&quot;&quot;, JLabel.CENTER);</b>
+        <b class="fc"><i>468</i>&nbsp; plusOrMinusDay = new JLabel(&quot;&quot;, JLabel.CENTER);</b>
+        <b class="fc"><i>469</i>&nbsp; labelyear = new JLabel(year);</b>
+        <b class="fc"><i>470</i>&nbsp; labelmonth = new JLabel(month);</b>
+        <b class="fc"><i>471</i>&nbsp; labelday = new JLabel(day);</b>
+        <b class="fc"><i>472</i>&nbsp; buttonCalc = new JButton(calc);</b>
+        <b class="fc"><i>473</i>&nbsp; }</b>
+        <i>474</i>&nbsp;
+        <i>475</i>&nbsp; /**
+        <i>476</i>&nbsp; * 初始化布局
+        <i>477</i>&nbsp; */
+        <i>478</i>&nbsp; @Override
+        <i>479</i>&nbsp; protected void initUI() {
+        <b class="fc"><i>480</i>&nbsp; labelFrom.setFont(fontPlain);</b>
+        <b class="fc"><i>481</i>&nbsp; labelFrom.setBounds(97, 122, 42, 25);</b>
+        <b class="fc"><i>482</i>&nbsp; add(labelFrom);</b>
+        <i>483</i>&nbsp;
+        <b class="fc"><i>484</i>&nbsp; labelYear.setFont(fontBold);</b>
+        <b class="fc"><i>485</i>&nbsp; labelYear.setBounds(162, 274, 54, 15);</b>
+        <b class="fc"><i>486</i>&nbsp; add(labelYear);</b>
+        <i>487</i>&nbsp;
+        <b class="fc"><i>488</i>&nbsp; labelMonth.setFont(fontBold);</b>
+        <b class="fc"><i>489</i>&nbsp; labelMonth.setBounds(251, 274, 54, 15);</b>
+        <b class="fc"><i>490</i>&nbsp; add(labelMonth);</b>
+        <i>491</i>&nbsp;
+        <b class="fc"><i>492</i>&nbsp; labelDay.setFont(fontBold);</b>
+        <b class="fc"><i>493</i>&nbsp; labelDay.setBounds(345, 274, 54, 15);</b>
+        <b class="fc"><i>494</i>&nbsp; add(labelDay);</b>
+        <i>495</i>&nbsp;
+        <b class="fc"><i>496</i>&nbsp; labelDate.setFont(fontPlain);</b>
+        <b class="fc"><i>497</i>&nbsp; labelDate.setBounds(97, 336, 54, 15);</b>
+        <b class="fc"><i>498</i>&nbsp; add(labelDate);</b>
+        <i>499</i>&nbsp;
+        <b class="fc"><i>500</i>&nbsp; radioButtonAdd.setSelected(true);</b>
+        <b class="fc"><i>501</i>&nbsp; radioButtonAdd.setFont(fontPlain);</b>
+        <b class="fc"><i>502</i>&nbsp; radioButtonAdd.setBounds(162, 219, 87, 23);</b>
+        <b class="fc"><i>503</i>&nbsp; add(radioButtonAdd);</b>
+        <i>504</i>&nbsp;
+        <b class="fc"><i>505</i>&nbsp; radioButtonMinus.setFont(fontPlain);</b>
+        <b class="fc"><i>506</i>&nbsp; radioButtonMinus.setBounds(251, 219, 121, 23);</b>
+        <b class="fc"><i>507</i>&nbsp; add(radioButtonMinus);</b>
+        <i>508</i>&nbsp;
+        <b class="fc"><i>509</i>&nbsp; labelFromYear.setFont(fontBold);</b>
+        <b class="fc"><i>510</i>&nbsp; labelFromYear.setBounds(162, 166, 54, 15);</b>
+        <b class="fc"><i>511</i>&nbsp; add(labelFromYear);</b>
+        <i>512</i>&nbsp;
+        <b class="fc"><i>513</i>&nbsp; labelFromMonth.setFont(fontBold);</b>
+        <b class="fc"><i>514</i>&nbsp; labelFromMonth.setBounds(252, 166, 54, 15);</b>
+        <b class="fc"><i>515</i>&nbsp; add(labelFromMonth);</b>
+        <i>516</i>&nbsp;
+        <b class="fc"><i>517</i>&nbsp; labelFromDay.setFont(fontBold);</b>
+        <b class="fc"><i>518</i>&nbsp; labelFromDay.setBounds(345, 166, 54, 15);</b>
+        <b class="fc"><i>519</i>&nbsp; add(labelFromDay);</b>
+        <i>520</i>&nbsp;
+        <b class="fc"><i>521</i>&nbsp; comboBoxAddMonth.setBounds(187, 265, 65, 35);</b>
+        <b class="fc"><i>522</i>&nbsp; comboBoxAddMonth.setBackground(normal);</b>
+        <b class="fc"><i>523</i>&nbsp; add(comboBoxAddMonth);</b>
+        <b class="fc"><i>524</i>&nbsp; for (int i = 0; i &lt; 1000; i++) {</b>
+        <b class="fc"><i>525</i>&nbsp; comboBoxAddMonth.addItem(i);</b>
+        <i>526</i>&nbsp; }
+        <i>527</i>&nbsp;
+        <b class="fc"><i>528</i>&nbsp; comboBoxAddDay.setBounds(280, 265, 65, 35);</b>
+        <b class="fc"><i>529</i>&nbsp; comboBoxAddDay.setBackground(normal);</b>
+        <b class="fc"><i>530</i>&nbsp; add(comboBoxAddDay);</b>
+        <b class="fc"><i>531</i>&nbsp; for (int i = 0; i &lt; 1000; i++) {</b>
+        <b class="fc"><i>532</i>&nbsp; comboBoxAddDay.addItem(i);</b>
+        <i>533</i>&nbsp; }
+        <i>534</i>&nbsp;
+        <b class="fc"><i>535</i>&nbsp; comboBoxAddYear.setBounds(97, 265, 65, 35);</b>
+        <b class="fc"><i>536</i>&nbsp; comboBoxAddYear.setBackground(normal);</b>
+        <b class="fc"><i>537</i>&nbsp; add(comboBoxAddYear);</b>
+        <b class="fc"><i>538</i>&nbsp; for (int i = 0; i &lt; 1000; i++) {</b>
+        <b class="fc"><i>539</i>&nbsp; comboBoxAddYear.addItem(i);</b>
+        <i>540</i>&nbsp; }
+        <i>541</i>&nbsp;
+        <b class="fc"><i>542</i>&nbsp; comboBoxStartYear.setBounds(97, 157, 65, 35);</b>
+        <b class="fc"><i>543</i>&nbsp; comboBoxStartYear.setBackground(normal);</b>
+        <b class="fc"><i>544</i>&nbsp; add(comboBoxStartYear);</b>
+        <b class="fc"><i>545</i>&nbsp; for (int i = 1970; i &lt; 3000; i++) {</b>
+        <b class="fc"><i>546</i>&nbsp; comboBoxStartYear.addItem(i);</b>
+        <i>547</i>&nbsp; }
+        <b class="fc"><i>548</i>&nbsp; comboBoxStartYear.setSelectedItem(DateTime.now().getYear());</b>
+        <i>549</i>&nbsp;
+        <b class="fc"><i>550</i>&nbsp; comboBoxStartMonth.setBounds(187, 157, 65, 35);</b>
+        <b class="fc"><i>551</i>&nbsp; comboBoxStartMonth.setBackground(normal);</b>
+        <b class="fc"><i>552</i>&nbsp; add(comboBoxStartMonth);</b>
+        <b class="fc"><i>553</i>&nbsp; for (int i = 1; i &lt;= 12; i++) {</b>
+        <b class="fc"><i>554</i>&nbsp; comboBoxStartMonth.addItem(i);</b>
+        <i>555</i>&nbsp; }
+        <b class="fc"><i>556</i>&nbsp; comboBoxStartMonth.setSelectedItem(DateTime.now().getMonthOfYear());</b>
+        <i>557</i>&nbsp;
+        <b class="fc"><i>558</i>&nbsp; comboBoxStartDay.setBounds(280, 157, 65, 35);</b>
+        <b class="fc"><i>559</i>&nbsp; comboBoxStartDay.setBackground(normal);</b>
+        <b class="fc"><i>560</i>&nbsp; add(comboBoxStartDay);</b>
+        <b class="fc"><i>561</i>&nbsp; int day = DateCalculate.setDay((int) comboBoxStartYear.getSelectedItem(), (int)
+            comboBoxStartMonth.getSelectedItem());</b>
+        <b class="fc"><i>562</i>&nbsp; for (int i = 1; i &lt;= day; i++) {</b>
+        <b class="fc"><i>563</i>&nbsp; comboBoxStartDay.addItem(i);</b>
+        <i>564</i>&nbsp; }
+        <b class="fc"><i>565</i>&nbsp; comboBoxStartDay.setSelectedItem(DateTime.now().getDayOfMonth());</b>
+        <i>566</i>&nbsp;
+        <i>567</i>&nbsp; // 这个是最下面那四个或三个
+        <b class="fc"><i>568</i>&nbsp; plusOrMinusYear.setBackground(new Color(224, 255, 255));</b>
+        <b class="fc"><i>569</i>&nbsp; plusOrMinusYear.setBounds(97, 368, 65, 35);</b>
+        <b class="fc"><i>570</i>&nbsp; add(plusOrMinusYear);</b>
+        <i>571</i>&nbsp;
+        <i>572</i>&nbsp; // 这个是最下面那四个或三个
+        <b class="fc"><i>573</i>&nbsp; plusOrMinusMonth.setBackground(new Color(224, 255, 255));</b>
+        <b class="fc"><i>574</i>&nbsp; plusOrMinusMonth.setBounds(187, 368, 65, 35);</b>
+        <b class="fc"><i>575</i>&nbsp; add(plusOrMinusMonth);</b>
+        <i>576</i>&nbsp;
+        <i>577</i>&nbsp; // 这个是最下面那四个或三个
+        <b class="fc"><i>578</i>&nbsp; plusOrMinusDay.setBackground(new Color(224, 255, 255));</b>
+        <b class="fc"><i>579</i>&nbsp; plusOrMinusDay.setBounds(280, 368, 65, 35);</b>
+        <b class="fc"><i>580</i>&nbsp; add(plusOrMinusDay);</b>
+        <i>581</i>&nbsp;
+        <b class="fc"><i>582</i>&nbsp; labelyear.setFont(fontBold);</b>
+        <b class="fc"><i>583</i>&nbsp; labelyear.setBounds(162, 377, 54, 15);</b>
+        <b class="fc"><i>584</i>&nbsp; add(labelyear);</b>
+        <i>585</i>&nbsp;
+        <b class="fc"><i>586</i>&nbsp; labelmonth.setFont(fontBold);</b>
+        <b class="fc"><i>587</i>&nbsp; labelmonth.setBounds(251, 377, 54, 15);</b>
+        <b class="fc"><i>588</i>&nbsp; add(labelmonth);</b>
+        <i>589</i>&nbsp;
+        <b class="fc"><i>590</i>&nbsp; labelday.setFont(fontBold);</b>
+        <b class="fc"><i>591</i>&nbsp; labelday.setBounds(345, 377, 54, 15);</b>
+        <b class="fc"><i>592</i>&nbsp; add(labelday);</b>
+        <i>593</i>&nbsp;
+        <b class="fc"><i>594</i>&nbsp; buttonCalc.setFont(fontPlain);</b>
+        <b class="fc"><i>595</i>&nbsp; buttonCalc.setBackground(normal);</b>
+        <b class="fc"><i>596</i>&nbsp; buttonCalc.setBounds(197, 326, 75, 35);</b>
+        <b class="fc"><i>597</i>&nbsp; add(buttonCalc);</b>
+        <b class="fc"><i>598</i>&nbsp; }</b>
+        <i>599</i>&nbsp;
+        <i>600</i>&nbsp; /**
+        <i>601</i>&nbsp; * 建立监听事件
+        <i>602</i>&nbsp; */
+        <i>603</i>&nbsp; @Override
+        <i>604</i>&nbsp; protected void createAction() {
+        <b class="fc"><i>605</i>&nbsp; radioButtonAdd.addActionListener(e -&gt; isAdd = true);</b>
+        <b class="fc"><i>606</i>&nbsp; radioButtonMinus.addActionListener(e -&gt; isAdd = false);</b>
+        <i>607</i>&nbsp;
+        <b class="fc"><i>608</i>&nbsp; comboBoxStartDay.addMouseListener(new MouseListener() {</b>
+        <i>609</i>&nbsp;
+        <i>610</i>&nbsp; @Override
+        <i>611</i>&nbsp; public void mouseReleased(MouseEvent e) {
+        <b class="fc"><i>612</i>&nbsp; }</b>
+        <i>613</i>&nbsp;
+        <i>614</i>&nbsp; @Override
+        <i>615</i>&nbsp; public void mousePressed(MouseEvent e) {
+        <b class="fc"><i>616</i>&nbsp; }</b>
+        <i>617</i>&nbsp;
+        <i>618</i>&nbsp; @Override
+        <i>619</i>&nbsp; public void mouseExited(MouseEvent e) {
+        <b class="fc"><i>620</i>&nbsp; }</b>
+        <i>621</i>&nbsp;
+        <i>622</i>&nbsp; @Override
+        <i>623</i>&nbsp; public void mouseEntered(MouseEvent e) {
+        <b class="fc"><i>624</i>&nbsp; }</b>
+        <i>625</i>&nbsp;
+        <i>626</i>&nbsp; @Override
+        <i>627</i>&nbsp; public void mouseClicked(MouseEvent e) {
+        <b class="fc"><i>628</i>&nbsp; int day = DateCalculate.setDay((int) comboBoxStartYear.getSelectedItem(), (int)
+            comboBoxStartMonth.getSelectedItem());</b>
+        <b class="fc"><i>629</i>&nbsp; comboBoxStartDay.removeAllItems();</b>
+        <b class="fc"><i>630</i>&nbsp; for (int i = 1; i &lt;= day; i++) {</b>
+        <b class="fc"><i>631</i>&nbsp; comboBoxStartDay.addItem(i);</b>
+        <i>632</i>&nbsp; }
+        <b class="fc"><i>633</i>&nbsp; }</b>
+        <i>634</i>&nbsp; });
+        <i>635</i>&nbsp;
+        <b class="fc"><i>636</i>&nbsp; buttonCalc.addActionListener(e -&gt; {</b>
+        <b class="fc"><i>637</i>&nbsp; int startYear = (int) comboBoxStartYear.getSelectedItem();</b>
+        <b class="fc"><i>638</i>&nbsp; int startMonth = (int) comboBoxStartMonth.getSelectedItem();</b>
+        <b class="fc"><i>639</i>&nbsp; int startDay = (int) comboBoxStartDay.getSelectedItem();</b>
+        <i>640</i>&nbsp;
+        <b class="fc"><i>641</i>&nbsp; int year = (int) comboBoxAddYear.getSelectedItem();</b>
+        <b class="fc"><i>642</i>&nbsp; int month = (int) comboBoxAddMonth.getSelectedItem();</b>
+        <b class="fc"><i>643</i>&nbsp; int days = (int) comboBoxAddDay.getSelectedItem();</b>
+        <i>644</i>&nbsp;
+        <b class="fc"><i>645</i>&nbsp; DateCalculate dateCalculate = new DateCalculate(startYear, startMonth, startDay,
+            year, month, days, isAdd);</b>
+        <b class="fc"><i>646</i>&nbsp; plusOrMinusDay.setText(dateCalculate.getEndDay());</b>
+        <b class="fc"><i>647</i>&nbsp; plusOrMinusMonth.setText(dateCalculate.getEndMonth());</b>
+        <b class="fc"><i>648</i>&nbsp; plusOrMinusYear.setText(dateCalculate.getEndYear());</b>
+        <b class="fc"><i>649</i>&nbsp; });</b>
+        <b class="fc"><i>650</i>&nbsp; }</b>
+        <i>651</i>&nbsp;
+        <i>652</i>&nbsp; /**
+        <i>653</i>&nbsp; * 日期增减页面的UI构造
+        <i>654</i>&nbsp; */
+        <b class="fc"><i>655</i>&nbsp; PlusOrMinusPanel() {</b>
+        <b class="fc"><i>656</i>&nbsp; super();</b>
+        <b class="fc"><i>657</i>&nbsp; }</b>
+        <i>658</i>&nbsp; }
+        <i>659</i>&nbsp;
+        <i>660</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2017-11-27 03:36</div>
+</div>
+</body>
+</html>

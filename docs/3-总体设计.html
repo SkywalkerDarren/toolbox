@@ -1,0 +1,1548 @@
+<!DOCTYPE HTML>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>3 总体设计 · Universal ToolBox 开发文档</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content="">
+    <meta name="generator" content="GitBook 3.2.3">
+    <meta name="author" content="杨弘，徐祥亮，朱可欣">
+
+
+    <link rel="stylesheet" href="gitbook/style.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-atoc/atoc.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+
+
+    <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+
+
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+
+    <link rel="next" href="3-总体设计.html"/>
+
+
+    <link rel="prev" href="2-需求分析.html"/>
+
+
+</head>
+<body>
+
+<div class="book">
+    <div class="book-summary">
+
+
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="Type to search"/>
+        </div>
+
+
+        <nav role="navigation">
+
+
+            <ul class="summary">
+
+
+                <li>
+                    <a href="https://github.com/SkywalkerDarren/toolbox" target="_blank"
+                       class="custom-link">Github项目地址</a>
+                </li>
+
+
+                <li>
+                    <a href="https://gitlab.com/SkywalkerDarren/toolbox" target="_blank"
+                       class="custom-link">Gitlab项目地址</a>
+                </li>
+
+
+                <li class="divider"></li>
+
+
+                <li class="chapter " data-level="1.1" data-path="./">
+
+                    <a href="./">
+
+
+                        Universal ToolBox 开发文档
+
+                    </a>
+
+
+                </li>
+
+                <li class="chapter " data-level="1.2" data-path="1-概述.html">
+
+                    <a href="1-概述.html">
+
+
+                        1 概述
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.2.1" data-path="1-概述.html">
+
+                            <a href="1-概述.html#11-开发背景">
+
+
+                                1.1 开发背景
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.2.2" data-path="1-概述.html">
+
+                            <a href="1-概述.html#12-开发目标">
+
+
+                                1.2 开发目标
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.2.3" data-path="1-概述.html">
+
+                            <a href="1-概述.html#13-参考资料">
+
+
+                                1.3 参考资料
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.2.4" data-path="1-概述.html">
+
+                            <a href="1-概述.html#14-设计原则">
+
+
+                                1.4 设计原则
+
+                            </a>
+
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter " data-level="1.3" data-path="2-需求分析.html">
+
+                    <a href="2-需求分析.html">
+
+
+                        2 需求分析
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.3.1" data-path="2-需求分析.html">
+
+                            <a href="2-需求分析.html#21-需求陈述">
+
+
+                                2.1 需求陈述
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.3.2" data-path="2-需求分析.html">
+
+                            <a href="2-需求分析.html#22-功能分析划分">
+
+
+                                2.2 功能分析划分
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.3.3" data-path="2-需求分析.html">
+
+                            <a href="2-需求分析.html#23-运行环境">
+
+
+                                2.3 运行环境
+
+                            </a>
+
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter active" data-level="1.4" data-path="3-总体设计.html">
+
+                    <a href="3-总体设计.html">
+
+
+                        3 总体设计
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.4.1" data-path="3-总体设计.html">
+
+                            <a href="3-总体设计.html#31-类图设计">
+
+
+                                3.1 类图设计
+
+                            </a>
+
+
+                            <ul class="articles">
+
+
+                                <li class="chapter " data-level="1.4.1.1" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#311-全局图">
+
+
+                                        3.1.1 全局图
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.2" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#312-主界面ui">
+
+
+                                        3.1.2 主界面UI
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.3" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#313-计算器">
+
+
+                                        3.1.3 计算器
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.4" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#314-汇率">
+
+
+                                        3.1.4 汇率
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.5" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#315-换算">
+
+
+                                        3.1.5 换算
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.6" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#316-历史记录">
+
+
+                                        3.1.6 历史记录
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.7" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#317-日期">
+
+
+                                        3.1.7 日期
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.8" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#318-编码解码">
+
+
+                                        3.1.8 编码解码
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.9" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#319-二维码">
+
+
+                                        3.1.9 二维码
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.1.10" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3110-截图">
+
+
+                                        3.1.10 截图
+
+                                    </a>
+
+
+                                </li>
+
+
+                            </ul>
+
+                        </li>
+
+                        <li class="chapter " data-level="1.4.2" data-path="3-总体设计.html">
+
+                            <a href="3-总体设计.html#32-接口设计">
+
+
+                                3.2 接口设计
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.4.3" data-path="3-总体设计.html">
+
+                            <a href="3-总体设计.html#33-界面设计">
+
+
+                                3.3 界面设计
+
+                            </a>
+
+
+                            <ul class="articles">
+
+
+                                <li class="chapter " data-level="1.4.3.1" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#331-启动欢迎界面">
+
+
+                                        3.3.1 启动欢迎界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.2" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#332-程序主界面">
+
+
+                                        3.3.2 程序主界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.3" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#333-截图画图界面">
+
+
+                                        3.3.3 截图画图界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.4" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#334-科学计算器界面">
+
+
+                                        3.3.4 科学计算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.5" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#335-程序员计算器界面">
+
+
+                                        3.3.5 程序员计算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.6" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#336-汇率计算器界面">
+
+
+                                        3.3.6 汇率计算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.7" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#337-单位换算器界面">
+
+
+                                        3.3.7 单位换算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.8" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#338-日期计算器界面">
+
+
+                                        3.3.8 日期计算器界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.9" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#339-base64编码解码界面">
+
+
+                                        3.3.9 Base64编码/解码界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.10" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3310-unicode中文互转界面">
+
+
+                                        3.3.10 Unicode中文互转界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.11" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3311-md5生成校验界面">
+
+
+                                        3.3.11 MD5生成校验界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.12" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3312-文字文件编码批量转换界面">
+
+
+                                        3.3.12 文字/文件编码批量转换界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.13" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3313-二维码生成界面">
+
+
+                                        3.3.13 二维码生成界面
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.4.3.14" data-path="3-总体设计.html">
+
+                                    <a href="3-总体设计.html#3314-关于界面">
+
+
+                                        3.3.14 关于界面
+
+                                    </a>
+
+
+                                </li>
+
+
+                            </ul>
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter " data-level="1.5" data-path="4-详细设计.html">
+
+                    <a href="4-详细设计.html">
+
+
+                        4 详细设计
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.5.1" data-path="4-详细设计.html">
+
+                            <a href="4-详细设计.html#41-程序流程图">
+
+
+                                4.1 程序流程图
+
+                            </a>
+
+
+                            <ul class="articles">
+
+
+                                <li class="chapter " data-level="1.5.1.1" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#411-主流程">
+
+
+                                        4.1.1 主流程
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.2" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#412-计算器">
+
+
+                                        4.1.2 计算器
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.3" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#413-汇率">
+
+
+                                        4.1.3 汇率
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.4" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#414-换算">
+
+
+                                        4.1.4 换算
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.5" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#415-日期计算">
+
+
+                                        4.1.5 日期计算
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.6" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#416-历史记录">
+
+
+                                        4.1.6 历史记录
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.7" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#417-编码解码">
+
+
+                                        4.1.7 编码解码
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.8" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#418-二维码">
+
+
+                                        4.1.8 二维码
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.5.1.9" data-path="4-详细设计.html">
+
+                                    <a href="4-详细设计.html#419-截图">
+
+
+                                        4.1.9 截图
+
+                                    </a>
+
+
+                                </li>
+
+
+                            </ul>
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter " data-level="1.6" data-path="5-实现.html">
+
+                    <a href="5-实现.html">
+
+
+                        5 实现
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.6.1" data-path="5-实现.html">
+
+                            <a href="5-实现.html#51-编码">
+
+
+                                5.1 编码
+
+                            </a>
+
+
+                            <ul class="articles">
+
+
+                                <li class="chapter " data-level="1.6.1.1" data-path="5-实现.html">
+
+                                    <a href="5-实现.html#511-开发环境">
+
+
+                                        5.1.1 开发环境
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.6.1.2" data-path="5-实现.html">
+
+                                    <a href="5-实现.html#512-代码约定">
+
+
+                                        5.1.2 代码约定
+
+                                    </a>
+
+
+                                </li>
+
+                                <li class="chapter " data-level="1.6.1.3" data-path="5-实现.html">
+
+                                    <a href="5-实现.html#513-代码编写原则">
+
+
+                                        5.1.3 代码编写原则
+
+                                    </a>
+
+
+                                </li>
+
+
+                            </ul>
+
+                        </li>
+
+                        <li class="chapter " data-level="1.6.2" data-path="5-实现.html">
+
+                            <a href="5-实现.html#52-测试要点">
+
+
+                                5.2 测试要点
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.6.3" data-path="5-实现.html">
+
+                            <a href="5-实现.html#53-测试结果和总结">
+
+
+                                5.3 测试结果和总结
+
+                            </a>
+
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+                <li class="chapter " data-level="1.7" data-path="6-维护.html">
+
+                    <a href="6-维护.html">
+
+
+                        6 维护
+
+                    </a>
+
+
+                    <ul class="articles">
+
+
+                        <li class="chapter " data-level="1.7.1" data-path="6-维护.html">
+
+                            <a href="6-维护.html#61-维护方法">
+
+
+                                6.1 维护方法
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.7.2" data-path="6-维护.html">
+
+                            <a href="6-维护.html#62-维护文档">
+
+
+                                6.2 维护文档
+
+                            </a>
+
+
+                        </li>
+
+                        <li class="chapter " data-level="1.7.3" data-path="6-维护.html">
+
+                            <a href="6-维护.html#63-功能拓展方法">
+
+
+                                6.3 功能拓展方法
+
+                            </a>
+
+
+                        </li>
+
+
+                    </ul>
+
+                </li>
+
+
+                <li class="divider"></li>
+
+                <li>
+                    <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                        Published with GitBook
+                    </a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+
+    </div>
+
+    <div class="book-body">
+
+        <div class="body-inner">
+
+
+            <div class="book-header" role="navigation">
+
+
+                <!-- Title -->
+                <h1>
+                    <i class="fa fa-circle-o-notch fa-spin"></i>
+                    <a href=".">3 总体设计</a>
+                </h1>
+            </div>
+
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+
+                    <div id="book-search-results">
+                        <div class="search-noresults">
+
+                            <section class="normal markdown-section">
+
+                                <h1 id="3-&#x603B;&#x4F53;&#x8BBE;&#x8BA1;"><a name="3-&#x603B;&#x4F53;&#x8BBE;&#x8BA1;"
+                                                                               class="plugin-anchor"
+                                                                               href="#3-&#x603B;&#x4F53;&#x8BBE;&#x8BA1;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3 &#x603B;&#x4F53;&#x8BBE;&#x8BA1;
+                                </h1>
+                                <!-- toc -->
+                                <ul>
+                                    <li><a href="#31-&#x7C7B;&#x56FE;&#x8BBE;&#x8BA1;">3.1 &#x7C7B;&#x56FE;&#x8BBE;&#x8BA1;</a>
+                                        <ul>
+                                            <li><a href="#311-&#x5168;&#x5C40;&#x56FE;">3.1.1
+                                                &#x5168;&#x5C40;&#x56FE;</a></li>
+                                            <li><a href="#312-&#x4E3B;&#x754C;&#x9762;ui">3.1.2 &#x4E3B;&#x754C;&#x9762;UI</a>
+                                            </li>
+                                            <li><a href="#313-&#x8BA1;&#x7B97;&#x5668;">3.1.3
+                                                &#x8BA1;&#x7B97;&#x5668;</a></li>
+                                            <li><a href="#314-&#x6C47;&#x7387;">3.1.4 &#x6C47;&#x7387;</a></li>
+                                            <li><a href="#315-&#x6362;&#x7B97;">3.1.5 &#x6362;&#x7B97;</a></li>
+                                            <li><a href="#316-&#x5386;&#x53F2;&#x8BB0;&#x5F55;">3.1.6 &#x5386;&#x53F2;&#x8BB0;&#x5F55;</a>
+                                            </li>
+                                            <li><a href="#317-&#x65E5;&#x671F;">3.1.7 &#x65E5;&#x671F;</a></li>
+                                            <li><a href="#318-&#x7F16;&#x7801;&#x89E3;&#x7801;">3.1.8 &#x7F16;&#x7801;&#x89E3;&#x7801;</a>
+                                            </li>
+                                            <li><a href="#319-&#x4E8C;&#x7EF4;&#x7801;">3.1.9
+                                                &#x4E8C;&#x7EF4;&#x7801;</a></li>
+                                            <li><a href="#3110-&#x622A;&#x56FE;">3.1.10 &#x622A;&#x56FE;</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#32-&#x63A5;&#x53E3;&#x8BBE;&#x8BA1;">3.2 &#x63A5;&#x53E3;&#x8BBE;&#x8BA1;</a>
+                                    </li>
+                                    <li><a href="#33-&#x754C;&#x9762;&#x8BBE;&#x8BA1;">3.3 &#x754C;&#x9762;&#x8BBE;&#x8BA1;</a>
+                                        <ul>
+                                            <li><a href="#331-&#x542F;&#x52A8;&#x6B22;&#x8FCE;&#x754C;&#x9762;">3.3.1
+                                                &#x542F;&#x52A8;&#x6B22;&#x8FCE;&#x754C;&#x9762;</a></li>
+                                            <li><a href="#332-&#x7A0B;&#x5E8F;&#x4E3B;&#x754C;&#x9762;">3.3.2 &#x7A0B;&#x5E8F;&#x4E3B;&#x754C;&#x9762;</a>
+                                            </li>
+                                            <li><a href="#333-&#x622A;&#x56FE;&#x753B;&#x56FE;&#x754C;&#x9762;">3.3.3
+                                                &#x622A;&#x56FE;&#x753B;&#x56FE;&#x754C;&#x9762;</a></li>
+                                            <li><a href="#334-&#x79D1;&#x5B66;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;">3.3.4
+                                                &#x79D1;&#x5B66;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;</a></li>
+                                            <li>
+                                                <a href="#335-&#x7A0B;&#x5E8F;&#x5458;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;">3.3.5
+                                                    &#x7A0B;&#x5E8F;&#x5458;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;</a>
+                                            </li>
+                                            <li><a href="#336-&#x6C47;&#x7387;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;">3.3.6
+                                                &#x6C47;&#x7387;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;</a></li>
+                                            <li><a href="#337-&#x5355;&#x4F4D;&#x6362;&#x7B97;&#x5668;&#x754C;&#x9762;">3.3.7
+                                                &#x5355;&#x4F4D;&#x6362;&#x7B97;&#x5668;&#x754C;&#x9762;</a></li>
+                                            <li><a href="#338-&#x65E5;&#x671F;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;">3.3.8
+                                                &#x65E5;&#x671F;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;</a></li>
+                                            <li><a href="#339-base64&#x7F16;&#x7801;&#x89E3;&#x7801;&#x754C;&#x9762;">3.3.9
+                                                Base64&#x7F16;&#x7801;/&#x89E3;&#x7801;&#x754C;&#x9762;</a></li>
+                                            <li><a href="#3310-unicode&#x4E2D;&#x6587;&#x4E92;&#x8F6C;&#x754C;&#x9762;">3.3.10
+                                                Unicode&#x4E2D;&#x6587;&#x4E92;&#x8F6C;&#x754C;&#x9762;</a></li>
+                                            <li><a href="#3311-md5&#x751F;&#x6210;&#x6821;&#x9A8C;&#x754C;&#x9762;">3.3.11
+                                                MD5&#x751F;&#x6210;&#x6821;&#x9A8C;&#x754C;&#x9762;</a></li>
+                                            <li>
+                                                <a href="#3312-&#x6587;&#x5B57;&#x6587;&#x4EF6;&#x7F16;&#x7801;&#x6279;&#x91CF;&#x8F6C;&#x6362;&#x754C;&#x9762;">3.3.12
+                                                    &#x6587;&#x5B57;/&#x6587;&#x4EF6;&#x7F16;&#x7801;&#x6279;&#x91CF;&#x8F6C;&#x6362;&#x754C;&#x9762;</a>
+                                            </li>
+                                            <li>
+                                                <a href="#3313-&#x4E8C;&#x7EF4;&#x7801;&#x751F;&#x6210;&#x754C;&#x9762;">3.3.13
+                                                    &#x4E8C;&#x7EF4;&#x7801;&#x751F;&#x6210;&#x754C;&#x9762;</a></li>
+                                            <li><a href="#3314-&#x5173;&#x4E8E;&#x754C;&#x9762;">3.3.14 &#x5173;&#x4E8E;&#x754C;&#x9762;</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <!-- tocstop -->
+                                <h2 id="31-&#x7C7B;&#x56FE;&#x8BBE;&#x8BA1;"><a
+                                        name="31-&#x7C7B;&#x56FE;&#x8BBE;&#x8BA1;" class="plugin-anchor"
+                                        href="#31-&#x7C7B;&#x56FE;&#x8BBE;&#x8BA1;"><i class="fa fa-link"
+                                                                                       aria-hidden="true"></i></a>3.1
+                                    &#x7C7B;&#x56FE;&#x8BBE;&#x8BA1;</h2>
+                                <h3 id="311-&#x5168;&#x5C40;&#x56FE;"><a name="311-&#x5168;&#x5C40;&#x56FE;"
+                                                                         class="plugin-anchor"
+                                                                         href="#311-&#x5168;&#x5C40;&#x56FE;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.1.1 &#x5168;&#x5C40;&#x56FE;
+                                </h3>
+                                <p><img src="example/Main.png" alt=""></p>
+                                <h3 id="312-&#x4E3B;&#x754C;&#x9762;ui"><a name="312-&#x4E3B;&#x754C;&#x9762;ui"
+                                                                           class="plugin-anchor"
+                                                                           href="#312-&#x4E3B;&#x754C;&#x9762;ui"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.1.2 &#x4E3B;&#x754C;&#x9762;UI
+                                </h3>
+                                <p><img src="example/&#x603B;&#x4F53;&#x6846;&#x67B6;.png" alt=""></p>
+                                <h3 id="313-&#x8BA1;&#x7B97;&#x5668;"><a name="313-&#x8BA1;&#x7B97;&#x5668;"
+                                                                         class="plugin-anchor"
+                                                                         href="#313-&#x8BA1;&#x7B97;&#x5668;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.1.3 &#x8BA1;&#x7B97;&#x5668;
+                                </h3>
+                                <p><img src="example/&#x8BA1;&#x7B97;&#x5668;.png" alt=""></p>
+                                <h3 id="314-&#x6C47;&#x7387;"><a name="314-&#x6C47;&#x7387;" class="plugin-anchor"
+                                                                 href="#314-&#x6C47;&#x7387;"><i class="fa fa-link"
+                                                                                                 aria-hidden="true"></i></a>3.1.4
+                                    &#x6C47;&#x7387;</h3>
+                                <p><img src="example/&#x6C47;&#x7387;.png" alt=""></p>
+                                <h3 id="315-&#x6362;&#x7B97;"><a name="315-&#x6362;&#x7B97;" class="plugin-anchor"
+                                                                 href="#315-&#x6362;&#x7B97;"><i class="fa fa-link"
+                                                                                                 aria-hidden="true"></i></a>3.1.5
+                                    &#x6362;&#x7B97;</h3>
+                                <p><img src="example/&#x6362;&#x7B97;.png" alt=""></p>
+                                <h3 id="316-&#x5386;&#x53F2;&#x8BB0;&#x5F55;"><a
+                                        name="316-&#x5386;&#x53F2;&#x8BB0;&#x5F55;" class="plugin-anchor"
+                                        href="#316-&#x5386;&#x53F2;&#x8BB0;&#x5F55;"><i class="fa fa-link"
+                                                                                        aria-hidden="true"></i></a>3.1.6
+                                    &#x5386;&#x53F2;&#x8BB0;&#x5F55;</h3>
+                                <p><img src="example/&#x5386;&#x53F2;&#x8BB0;&#x5F55;.png" alt=""></p>
+                                <h3 id="317-&#x65E5;&#x671F;"><a name="317-&#x65E5;&#x671F;" class="plugin-anchor"
+                                                                 href="#317-&#x65E5;&#x671F;"><i class="fa fa-link"
+                                                                                                 aria-hidden="true"></i></a>3.1.7
+                                    &#x65E5;&#x671F;</h3>
+                                <p><img src="example/&#x65E5;&#x671F;.png" alt=""></p>
+                                <h3 id="318-&#x7F16;&#x7801;&#x89E3;&#x7801;"><a
+                                        name="318-&#x7F16;&#x7801;&#x89E3;&#x7801;" class="plugin-anchor"
+                                        href="#318-&#x7F16;&#x7801;&#x89E3;&#x7801;"><i class="fa fa-link"
+                                                                                        aria-hidden="true"></i></a>3.1.8
+                                    &#x7F16;&#x7801;&#x89E3;&#x7801;</h3>
+                                <p><img src="example/&#x7F16;&#x7801;.png" alt=""></p>
+                                <h3 id="319-&#x4E8C;&#x7EF4;&#x7801;"><a name="319-&#x4E8C;&#x7EF4;&#x7801;"
+                                                                         class="plugin-anchor"
+                                                                         href="#319-&#x4E8C;&#x7EF4;&#x7801;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.1.9 &#x4E8C;&#x7EF4;&#x7801;
+                                </h3>
+                                <p><img src="example/&#x4E8C;&#x7EF4;&#x7801;.png" alt=""></p>
+                                <h3 id="3110-&#x622A;&#x56FE;"><a name="3110-&#x622A;&#x56FE;" class="plugin-anchor"
+                                                                  href="#3110-&#x622A;&#x56FE;"><i class="fa fa-link"
+                                                                                                   aria-hidden="true"></i></a>3.1.10
+                                    &#x622A;&#x56FE;</h3>
+                                <p><img src="example/&#x622A;&#x56FE;.png" alt=""></p>
+                                <h2 id="32-&#x63A5;&#x53E3;&#x8BBE;&#x8BA1;"><a
+                                        name="32-&#x63A5;&#x53E3;&#x8BBE;&#x8BA1;" class="plugin-anchor"
+                                        href="#32-&#x63A5;&#x53E3;&#x8BBE;&#x8BA1;"><i class="fa fa-link"
+                                                                                       aria-hidden="true"></i></a>3.2
+                                    &#x63A5;&#x53E3;&#x8BBE;&#x8BA1;</h2>
+                                <p>&#x53C2;&#x89C1;<a href="docs/index.html" target="_blank">Javadoc</a></p>
+                                <h2 id="33-&#x754C;&#x9762;&#x8BBE;&#x8BA1;"><a
+                                        name="33-&#x754C;&#x9762;&#x8BBE;&#x8BA1;" class="plugin-anchor"
+                                        href="#33-&#x754C;&#x9762;&#x8BBE;&#x8BA1;"><i class="fa fa-link"
+                                                                                       aria-hidden="true"></i></a>3.3
+                                    &#x754C;&#x9762;&#x8BBE;&#x8BA1;</h2>
+                                <h3 id="331-&#x542F;&#x52A8;&#x6B22;&#x8FCE;&#x754C;&#x9762;"><a
+                                        name="331-&#x542F;&#x52A8;&#x6B22;&#x8FCE;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#331-&#x542F;&#x52A8;&#x6B22;&#x8FCE;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.1 &#x542F;&#x52A8;&#x6B22;&#x8FCE;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/&#x542F;&#x52A8;&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x8BBE;&#x7F6E;&#x754C;&#x9762;&#x7B49;&#x5F85;&#x5149;&#x6807;&#x4E3A;Cursor.WAIT_CURSOR</li>
+                                    <li>&#x8FDB;&#x5EA6;&#x6761;JProgressBar&#x8BBE;&#x7F6E;&#x8FDB;&#x5EA6;&#x6761;&#x957F;&#x5EA6;&#x3002;</li>
+                                    <li>&#x9762;&#x677F;&#x5BB9;&#x5668;Container&#x52A0;&#x8F7D;&#x5DE5;&#x5177;&#x7BB1;&#x5C01;&#x9762;&#xFF0C;&#x8BBE;&#x7F6E;&#x5E03;&#x5C40;&#x3002;</li>
+                                    <li>&#x52A0;&#x8F7D;&#x5DE5;&#x5177;&#x7BB1;&#x56FE;&#x6807;&#xFF0C;&#x80CC;&#x666F;&#x5C01;&#x9762;&#x7B49;&#x4FE1;&#x606F;&#x3002;</li>
+                                    <li>&#x8BBE;&#x7F6E;&#x6B22;&#x8FCE;&#x754C;&#x9762;&#x4E3A;&#x5C4F;&#x5E55;&#x5C45;&#x4E2D;&#x663E;&#x793A;&#x3002;</li>
+                                </ul>
+                                <h3 id="332-&#x7A0B;&#x5E8F;&#x4E3B;&#x754C;&#x9762;"><a
+                                        name="332-&#x7A0B;&#x5E8F;&#x4E3B;&#x754C;&#x9762;" class="plugin-anchor"
+                                        href="#332-&#x7A0B;&#x5E8F;&#x4E3B;&#x754C;&#x9762;"><i class="fa fa-link"
+                                                                                                aria-hidden="true"></i></a>3.3.2
+                                    &#x7A0B;&#x5E8F;&#x4E3B;&#x754C;&#x9762;</h3>
+                                <p><img src="example/&#x4E3B;&#x754C;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x7EE7;&#x627F;JFrame&#x7C7B;&#xFF0C;&#x4E8B;&#x4EF6;&#x63A5;&#x53E3;&#x4E3A;ActionListener&#x3002;</li>
+                                    <li>&#x7A0B;&#x5E8F;&#x754C;&#x9762;&#x6DFB;&#x52A0;JPanel&#x6807;&#x7B7E;&#x9875;&#x5E03;&#x5C40;&#x4E3A;&#x5361;&#x7247;&#x5E03;&#x5C40;CardPanel&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x4E3B;&#x754C;&#x9762;&#x80CC;&#x666F;paintComponent
+                                        &#x3002;
+                                    </li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x4E3B;&#x7A0B;&#x5E8F;&#x8BBE;&#x7F6E;JFrame&#x754C;&#x9762;&#x7BA1;&#x7406;&#x5668;UIManager&#x4E2D;nimbus&#x98CE;&#x683C;&#x3002;</li>
+                                    <li>&#x6846;&#x67B6;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x52A0;&#x8F7D;&#x7A0B;&#x5E8F;&#x4E3B;&#x6846;&#x67B6;initializeFrame&#xFF0C;&#x6846;&#x67B6;&#x7C7B;&#x578B;&#x5C45;&#x4E2D;&#x663E;&#x793A;&#x3002;</li>
+                                    <li>&#x8BBE;&#x7F6E;&#x754C;&#x9762;&#x5B57;&#x4F53;Consolas&#xFF0C;&#x7EC4;&#x4EF6;&#x957F;&#x5EA6;&#xFF0C;&#x7EC4;&#x4EF6;&#x5BBD;&#x5EA6;&#x3002;</li>
+                                    <li>&#x754C;&#x9762;&#x7A97;&#x53E3;&#x5C5E;&#x6027;&#x4E3A;WindowConstants.EXIT_ON_CLOSE&#x3002;</li>
+                                </ul>
+                                <p>&#x83DC;&#x5355;&#x680F;&#x754C;&#x9762;&#xFF1A;</p>
+                                <ul>
+                                    <li>&#x8BBE;&#x7F6E;&#x83DC;&#x5355;&#x5DE5;&#x5177;&#x680F;&#x5B57;&#x4F53;font&#x4E3A;&#x201D;&#x5FAE;&#x8F6F;&#x96C5;&#x9ED1;&#x201D;&#x3002;</li>
+                                    <li>&#x8BBE;&#x7F6E;&#x83DC;&#x5355;&#x5DE5;&#x5177;&#x680F;&#x989C;&#x8272;RGB
+                                        (240, 255, 255)&#x3002;
+                                    </li>
+                                    <li>&#x8BBE;&#x7F6E;&#x83DC;&#x5355;&#x5DE5;&#x5177;&#x680F;&#x5927;&#x5C0F;dimensionStart&#xFF0C;dimenFunction&#xFF0C;dimensionAbout&#xFF1B;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x83DC;&#x5355;&#x680F;&#xFF1B;&#x6587;&#x4EF6;MenuStart&#x3001;&#x529F;&#x80FD;MenuFunction&#x3001;&#x5E2E;&#x52A9;MenuHelp&#x3002;</li>
+                                </ul>
+                                <p>&#x83DC;&#x5355;&#x680F;&#x5C42;&#x7EA7;&#xFF1A;</p>
+                                <ul>
+                                    <li>&#x6587;&#x4EF6;<ul>
+                                        <li>&#x622A;&#x56FE;</li>
+                                        <li>&#x9000;&#x51FA;</li>
+                                    </ul>
+                                    </li>
+                                    <li>&#x529F;&#x80FD;<ul>
+                                        <li>&#x8BA1;&#x7B97;&#x6362;&#x7B97;&#x5DE5;&#x5177;<ul>
+                                            <li>&#x79D1;&#x5B66;&#x8BA1;&#x7B97;&#x5668;</li>
+                                            <li>&#x7A0B;&#x5E8F;&#x5458;&#x8BA1;&#x7B97;&#x5668;</li>
+                                            <li>&#x6C47;&#x7387;&#x8BA1;&#x7B97;&#x5668;</li>
+                                            <li>&#x5355;&#x4F4D;&#x6362;&#x7B97;&#x5668;</li>
+                                            <li>&#x65E5;&#x671F;&#x8BA1;&#x7B97;&#x5668;</li>
+                                        </ul>
+                                        </li>
+                                        <li>&#x7F16;&#x7801;&#x89E3;&#x7801;&#x5DE5;&#x5177;<ul>
+                                            <li>Base64&#x7F16;&#x7801;/&#x89E3;&#x7801;</li>
+                                            <li>Unicode&#x4E2D;&#x6587;&#x4E92;&#x8F6C;</li>
+                                            <li>MD5&#x751F;&#x6210;&#x6821;&#x9A8C;</li>
+                                            <li>&#x6587;&#x5B57;/&#x6587;&#x4EF6;&#x7F16;&#x7801;&#x6279;&#x91CF;&#x8F6C;&#x6362;</li>
+                                        </ul>
+                                        </li>
+                                        <li>&#x4E8C;&#x7EF4;&#x7801;&#x751F;&#x6210;</li>
+                                    </ul>
+                                    </li>
+                                    <li>&#x5E2E;&#x52A9;<ul>
+                                        <li>&#x5173;&#x4E8E;</li>
+                                    </ul>
+                                    </li>
+                                </ul>
+                                <p>&#x6587;&#x4EF6;&#x83DC;&#x5355;&#x680F;&#xFF1A;</p>
+                                <ul>
+                                    <li>&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x83DC;&#x5355;&#xFF0C;&#x70B9;&#x51FB;&#x622A;&#x56FE;&#x529F;&#x80FD;&#x3002;</li>
+                                    <li>&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x83DC;&#x5355;&#xFF0C;&#x70B9;&#x51FB;&#x9000;&#x51FA;&#x83DC;&#x5355;menuItemExit&#xFF0C;&#x7A0B;&#x5E8F;&#x9000;&#x51FA;&#x3002;</li>
+                                </ul>
+                                <h3 id="333-&#x622A;&#x56FE;&#x753B;&#x56FE;&#x754C;&#x9762;"><a
+                                        name="333-&#x622A;&#x56FE;&#x753B;&#x56FE;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#333-&#x622A;&#x56FE;&#x753B;&#x56FE;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.3 &#x622A;&#x56FE;&#x753B;&#x56FE;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/&#x622A;&#x56FE;&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x7EE7;&#x627F;JFrame&#xFF1B;&#x622A;&#x56FE;&#x529F;&#x80FD;&#x6DFB;&#x52A0;&#x622A;&#x56FE;&#x7A97;&#x53E3;&#x4E8B;&#x4EF6;&#x76D1;&#x542C;WindowListener&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x622A;&#x56FE;&#x9762;&#x677F;SnapShot&#xFF0C;&#x8BBE;&#x7F6E;&#x622A;&#x56FE;&#x9762;&#x677F;&#x5927;&#x5C0F;&#x3001;&#x8BBE;&#x7F6E;&#x6807;&#x9898;&#x3001;&#x5C45;&#x4E2D;&#x663E;&#x793A;&#x3002;</li>
+                                    <li>&#x8BBE;&#x7F6E;&#x754C;&#x9762;&#x6309;&#x94AE;&#xFF1A;&#x5706;&#x5F62;&#x3001;&#x77E9;&#x5F62;&#x3001;&#x753B;&#x7B14;&#x3001;&#x5C0F;&#x3001;&#x4E2D;&#x3001;&#x5927;&#x3001;&#x989C;&#x8272;&#x3001;&#x4FDD;&#x5B58;&#x3001;&#x590D;&#x5236;&#x3002;</li>
+                                    <li>&#x754C;&#x9762;&#x5BB9;&#x5668;container&#x8BBE;&#x7F6E;&#x8FB9;&#x7F18;&#x5E03;&#x5C40;BorderLayout&#x3002;</li>
+                                </ul>
+                                <h3 id="334-&#x79D1;&#x5B66;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"><a
+                                        name="334-&#x79D1;&#x5B66;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#334-&#x79D1;&#x5B66;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.4 &#x79D1;&#x5B66;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/&#x4E3B;&#x754C;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;&#x3001;&#x5E03;&#x5C40;&#x3001;&#x5EFA;&#x7ACB;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;&#xFF0C;&#x6784;&#x9020;&#x8BA1;&#x7B97;&#x5668;&#x5E03;&#x5C40;ScientificUI&#x3002;</li>
+                                    <li>&#x8BBE;&#x7F6E;&#x4ECE;0~9&#x5404;&#x4E2A;&#x6570;&#x5B57;&#x952E;&#xFF1B;&#x5404;&#x4E2A;&#x4E09;&#x89D2;&#x51FD;&#x6570;&#x3001;&#x5DE6;&#x62EC;&#x53F7;&#x3001;&#x53F3;&#x62EC;&#x53F7;&#x3001;&#x53D6;&#x6A21;&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x6309;&#x94AE;&#x7EC4;&#xFF0C;&#x8BBE;&#x5B9A;&#x5B58;&#x50A8;&#x7ED3;&#x679C;&#xFF0C;&#x6DFB;&#x52A0;&#x5404;&#x4E2A;&#x6309;&#x94AE;&#x4E8B;&#x4EF6;&#x3002;&#x6DFB;&#x52A0;&#x62EC;&#x53F7;&#x4F18;&#x5148;&#x7EA7;&#x3002;</li>
+                                    <li>&#x53EF;&#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;&#x6570;&#x5B57;&#x7684;&#x4E00;&#x90E8;&#x5206;&#xFF0C;&#x53EF;&#x5224;&#x65AD;&#x524D;&#x4E00;&#x5B57;&#x7B26;&#x662F;&#x5426;&#x4E3A;&#x7A7A;&#x683C;&#x7B49;&#x3002;</li>
+                                </ul>
+                                <h3 id="335-&#x7A0B;&#x5E8F;&#x5458;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"><a
+                                        name="335-&#x7A0B;&#x5E8F;&#x5458;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#335-&#x7A0B;&#x5E8F;&#x5458;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.5 &#x7A0B;&#x5E8F;&#x5458;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;
+                                </h3>
+                                <p>
+                                    <img src="example/&#x7A0B;&#x5E8F;&#x5458;&#x8BA1;&#x7B97;&#x5668;&#x753B;&#x9762;.png"
+                                         alt=""></p>
+                                <p><img src="example/&#x6BD4;&#x7279;&#x952E;&#x76D8;&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x652F;&#x6301;&#x4E8C;&#x8FDB;&#x5236;&#x952E;&#x76D8;0&#x3001;1&#xFF1B;&#x5BF9;&#x6570;&#x503C;&#x8FDB;&#x884C;&#x8FDB;&#x5236;&#x8F6C;&#x6362;&#xFF0C;&#x4F4D;&#x8FD0;&#x7B97;&#x7B49;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;&#x3001;&#x5E03;&#x5C40;&#x3001;&#x5EFA;&#x7ACB;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;&#x3001;&#x521D;&#x59CB;&#x5316;UI&#x7A97;&#x53E3;&#x3002;</li>
+                                    <li>&#x6446;&#x653E;&#x63A7;&#x4EF6;&#x4F4D;&#x7F6E;&#x53CA;&#x8BBE;&#x5B9A;&#x57FA;&#x672C;&#x914D;&#x7F6E;ProgrammerUI&#x3001;&#x6DFB;&#x52A0;&#x6309;&#x94AE;&#x7EC4;buttonGroup&#x3002;</li>
+                                    <li>&#x8BBE;&#x5B9A;&#x4ECE;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x6240;&#x83B7;&#x53D6;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x663E;&#x793A;&#x5230;UI&#x4E0A;&#x5E76;&#x52A0;&#x8F7D;&#x5230;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x3002;</li>
+                                </ul>
+                                <h3 id="336-&#x6C47;&#x7387;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"><a
+                                        name="336-&#x6C47;&#x7387;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#336-&#x6C47;&#x7387;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.6 &#x6C47;&#x7387;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/&#x6C47;&#x7387;&#x8BA1;&#x7B97;&#x5668;&#x753B;&#x9762;.png"
+                                        alt=""></p>
+                                <ul>
+                                    <li>&#x6C47;&#x7387;&#x8F6C;&#x6362;&#xFF0C;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x5185;&#x7F6E;&#x6C47;&#x7387;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;&#x7F51;&#x4E0A;&#x83B7;&#x53D6;&#x6700;&#x65B0;&#x6C47;&#x7387;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;initCompoment&#x3001;&#x521D;&#x59CB;&#x5316;&#x5E03;&#x5C40;initUI&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x6587;&#x672C;&#x6846;textFieldSource&#x3001;&#x5151;&#x6362;&#x53CA;&#x9009;&#x62E9;&#x6C47;&#x7387;&#x6807;&#x7B7E;JLabel&#x3002;</li>
+                                    <li>&#x5EFA;&#x7ACB;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;createAction&#x3001;&#x6784;&#x9020;&#x6C47;&#x7387;&#x5151;&#x6362;&#x5E03;&#x5C40;ExchangeRateUI&#x3002;</li>
+                                    <li>&#x8BBE;&#x5B9A;&#x4ECE;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x6240;&#x83B7;&#x53D6;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x663E;&#x793A;&#x5230;UI&#x4E0A;&#x5E76;&#x52A0;&#x8F7D;&#x5230;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x3002;</li>
+                                </ul>
+                                <h3 id="337-&#x5355;&#x4F4D;&#x6362;&#x7B97;&#x5668;&#x754C;&#x9762;"><a
+                                        name="337-&#x5355;&#x4F4D;&#x6362;&#x7B97;&#x5668;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#337-&#x5355;&#x4F4D;&#x6362;&#x7B97;&#x5668;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.7 &#x5355;&#x4F4D;&#x6362;&#x7B97;&#x5668;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/&#x5355;&#x4F4D;&#x6362;&#x7B97;&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x6362;&#x7B97;&#x5668;&#xFF0C;&#x5404;&#x5355;&#x4F4D;&#x8FDB;&#x884C;&#x6362;&#x7B97;&#x5E76;&#x4FDD;&#x5B58;&#x7ED3;&#x679C;&#xFF0C;&#x652F;&#x6301;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x529F;&#x80FD;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x5E03;&#x5C40;&#x7C7B;&#x578B;&#xFF1B;&#x6E90;&#x6570;&#x503C;&#xFF1B;&#x6E90;&#x5355;&#x4F4D;&#xFF1B;&#x76EE;&#x6807;&#x6570;&#x503C;&#xFF1B;&#x6362;&#x7B97;&#x7C7B;&#x578B;&#xFF1B;&#x6362;&#x7B97;&#x5355;&#x4F4D;&#x3002;</li>
+                                    <li>&#x5EFA;&#x7ACB;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x6362;&#x7B97;&#x8BA1;&#x7B97;&#x5668;&#x7684;&#x57FA;&#x672C;&#x6784;&#x9020;ConversionUI&#x3002;</li>
+                                    <li>&#x8BBE;&#x5B9A;&#x4ECE;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x6240;&#x83B7;&#x53D6;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x663E;&#x793A;&#x5230;UI&#x4E0A;&#x5E76;&#x52A0;&#x8F7D;&#x5230;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;&#x3002;</li>
+                                </ul>
+                                <h3 id="338-&#x65E5;&#x671F;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"><a
+                                        name="338-&#x65E5;&#x671F;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#338-&#x65E5;&#x671F;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.8 &#x65E5;&#x671F;&#x8BA1;&#x7B97;&#x5668;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/&#x65E5;&#x671F;&#x95F4;&#x9694;&#x753B;&#x9762;.png" alt=""></p>
+                                <p><img src="example/&#x65E5;&#x671F;&#x589E;&#x51CF;&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x652F;&#x6301;&#x65E5;&#x671F;&#x95F4;&#x9694;&#x8BA1;&#x7B97;&#x53CA;&#x65E5;&#x671F;&#x589E;&#x51CF;&#x5929;&#x6570;&#x8BA1;&#x7B97;&#xFF0C;&#x663E;&#x793A;&#x603B;&#x5929;&#x6570;&#xFF0C;&#x5468;&#x671F;&#x65F6;&#x95F4;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;initCompoment&#x3001;&#x521D;&#x59CB;&#x5316;&#x5E03;&#x5C40;initUI&#x3002;</li>
+                                    <li>&#x5EFA;&#x7ACB;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;createAction&#x3001;&#x6784;&#x5EFA;&#x65E5;&#x671F;&#x8BA1;&#x7B97;&#x7684;UI&#x57FA;&#x672C;&#x6846;&#x67B6;&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x65E5;&#x671F;&#x8DDD;&#x79BB;&#x7C7B;&#xFF0C;&#x83B7;&#x5F97;&#x4E24;&#x4E2A;&#x65E5;&#x671F;&#x989D;&#x7684;&#x95F4;&#x9694;&#x65E5;&#x671F;&#x53CA;&#x603B;&#x5929;&#x6570;&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x65E5;&#x671F;&#x589E;&#x51CF;&#x7C7B;&#xFF0C;&#x4ECE;&#x4E00;&#x4E2A;&#x5DF2;&#x77E5;&#x65E5;&#x671F;&#x589E;&#x51CF;&#x4E00;&#x5B9A;&#x7684;&#x65E5;&#x671F;&#xFF0C;&#x6765;&#x83B7;&#x5F97;&#x76EE;&#x6807;&#x65E5;&#x671F;&#x3002;</li>
+                                </ul>
+                                <h3 id="339-base64&#x7F16;&#x7801;&#x89E3;&#x7801;&#x754C;&#x9762;"><a
+                                        name="339-base64&#x7F16;&#x7801;&#x89E3;&#x7801;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#339-base64&#x7F16;&#x7801;&#x89E3;&#x7801;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.9 Base64&#x7F16;&#x7801;/&#x89E3;&#x7801;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/Base64&#x7F16;&#x7801;&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>base64&#x89E3;&#x7801;&#x7684;&#x4E3B;&#x9762;&#x677F;&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;&#x7F16;&#x7801;&#x8FDB;&#x884C;base64&#x7F16;&#x7801;&#x4E0E;&#x89E3;&#x7801;&#x3002;</li>
+                                    <li>&#x91C7;&#x7528;&#x901A;&#x7528;&#x900F;&#x660E;Panel&#xFF0C;&#x6DFB;&#x52A0;&#x6309;&#x94AE;&#x7EC4;&#x5E76;&#x5EFA;&#x7ACB;&#x76D1;&#x542C;&#x4E8B;&#x4EF6;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;initCompoment&#x3001;&#x521D;&#x59CB;&#x5316;&#x5E03;&#x5C40;initUI&#x3002;</li>
+                                    <li>&#x6784;&#x9020;&#x7F16;&#x7801;&#x5668;&#x6846;&#x67B6;Base64UI&#x3002;</li>
+                                </ul>
+                                <h3 id="3310-unicode&#x4E2D;&#x6587;&#x4E92;&#x8F6C;&#x754C;&#x9762;"><a
+                                        name="3310-unicode&#x4E2D;&#x6587;&#x4E92;&#x8F6C;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#3310-unicode&#x4E2D;&#x6587;&#x4E92;&#x8F6C;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.10 Unicode&#x4E2D;&#x6587;&#x4E92;&#x8F6C;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/Unicode&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x7F16;&#x7801;&#x89E3;&#x7801;Unicode&#xFF0C;&#x652F;&#x6301;&#x4E2D;&#x6587;Unicode&#x4E92;&#x76F8;&#x8F6C;&#x6362;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;initCompoment&#x3001;&#x521D;&#x59CB;&#x5316;&#x5E03;&#x5C40;initUI&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x6EDA;&#x52A8;&#x9875;&#x9762;JScrollPane&#x3001;&#x6DFB;&#x52A0;&#x4E92;&#x8F6C;&#x6309;&#x94AE;JButton&#x3002;</li>
+                                    <li>&#x6784;&#x9020;Unicode&#x4E2D;&#x6587;&#x4E92;&#x8F6C;&#x6846;&#x67B6;UnicodeUI&#x3002;</li>
+                                </ul>
+                                <h3 id="3311-md5&#x751F;&#x6210;&#x6821;&#x9A8C;&#x754C;&#x9762;"><a
+                                        name="3311-md5&#x751F;&#x6210;&#x6821;&#x9A8C;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#3311-md5&#x751F;&#x6210;&#x6821;&#x9A8C;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.11 MD5&#x751F;&#x6210;&#x6821;&#x9A8C;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/MD5&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x6821;&#x9A8C;&#xFF0C;&#x652F;&#x6301;&#x6587;&#x4EF6;&#x6821;&#x9A8C;&#xFF0C;&#x4FE1;&#x606F;&#x6821;&#x9A8C;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;initCompoment&#x3001;&#x521D;&#x59CB;&#x5316;&#x5E03;&#x5C40;initUI&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x5E03;&#x5C40;&#xFF1A;&#x4E0A;&#x3001;&#x4E2D;&#x3001;&#x4E0B;&#x65B9;&#x6587;&#x672C;&#x6846;textField</li>
+                                    <li>&#x6784;&#x9020;MD5&#x6846;&#x67B6;MD5UI&#x3002;</li>
+                                </ul>
+                                <h3 id="3312-&#x6587;&#x5B57;&#x6587;&#x4EF6;&#x7F16;&#x7801;&#x6279;&#x91CF;&#x8F6C;&#x6362;&#x754C;&#x9762;">
+                                    <a name="3312-&#x6587;&#x5B57;&#x6587;&#x4EF6;&#x7F16;&#x7801;&#x6279;&#x91CF;&#x8F6C;&#x6362;&#x754C;&#x9762;"
+                                       class="plugin-anchor"
+                                       href="#3312-&#x6587;&#x5B57;&#x6587;&#x4EF6;&#x7F16;&#x7801;&#x6279;&#x91CF;&#x8F6C;&#x6362;&#x754C;&#x9762;"><i
+                                            class="fa fa-link" aria-hidden="true"></i></a>3.3.12 &#x6587;&#x5B57;/&#x6587;&#x4EF6;&#x7F16;&#x7801;&#x6279;&#x91CF;&#x8F6C;&#x6362;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/&#x7F16;&#x7801;&#x8F6C;&#x6362;&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x652F;&#x6301;&#x7B80;&#x4F53;&#x3001;&#x7E41;&#x4F53;&#x3001;&#x65E5;&#x8BED;&#x3001;utf-8&#x4E92;&#x76F8;&#x8F6C;&#x6362;&#x7F16;&#x7801;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;initCompoment&#x3001;&#x521D;&#x59CB;&#x5316;&#x5E03;&#x5C40;initUI&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x9009;&#x62E9;&#x6587;&#x4EF6;&#x3001;&#x8F6C;&#x6362;&#x6309;&#x94AE;&#xFF1B;&#x6DFB;&#x52A0;&#x8F6C;&#x6362;&#x3001;&#x7F16;&#x7801;&#x6807;&#x7B7E;JLabel&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x6210;&#x529F;&#x4FEE;&#x6539;&#x7684;&#x6D88;&#x606F;&#x6846;SuccessDialog&#x3001;&#x521D;&#x59CB;&#x5316;&#x6D88;&#x606F;&#x6846;&#x7A97;&#x53E3;&#x3002;</li>
+                                    <li>&#x6784;&#x9020;&#x6587;&#x5B57;&#x7F16;&#x7801;&#x8F6C;&#x6362;&#x6846;&#x67B6;LiteralCodeUI&#x3002;</li>
+                                </ul>
+                                <h3 id="3313-&#x4E8C;&#x7EF4;&#x7801;&#x751F;&#x6210;&#x754C;&#x9762;"><a
+                                        name="3313-&#x4E8C;&#x7EF4;&#x7801;&#x751F;&#x6210;&#x754C;&#x9762;"
+                                        class="plugin-anchor"
+                                        href="#3313-&#x4E8C;&#x7EF4;&#x7801;&#x751F;&#x6210;&#x754C;&#x9762;"><i
+                                        class="fa fa-link" aria-hidden="true"></i></a>3.3.13 &#x4E8C;&#x7EF4;&#x7801;&#x751F;&#x6210;&#x754C;&#x9762;
+                                </h3>
+                                <p><img src="example/&#x4E8C;&#x7EF4;&#x7801;&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x6DFB;&#x52A0;&#x663E;&#x793A;&#x5185;&#x5BB9;&#x3001;&#x7EA0;&#x9519;&#x7B49;&#x7EA7;&#x3001;&#x9009;&#x62E9;&#x5927;&#x5C0F;&#x751F;&#x6210;&#x4E8C;&#x7EF4;&#x7801;&#x3001;&#x622A;&#x56FE;&#x3001;&#x4FDD;&#x5B58;&#x5230;&#x7B49;&#x529F;&#x80FD;&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x6587;&#x4EF6;&#x9009;&#x62E9;&#x5668;JFileChooser&#x7EC4;&#x4EF6;&#xFF0C;&#x6DFB;&#x52A0;&#x751F;&#x6210;&#x3001;&#x4FDD;&#x5B58;&#x3001;&#x622A;&#x56FE;&#x6309;&#x94AE;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x7EC4;&#x4EF6;initCompoment&#x3001;&#x521D;&#x59CB;&#x5316;&#x5E03;&#x5C40;initUI&#x3002;</li>
+                                    <li>&#x652F;&#x6301;&#x4E8C;&#x7EF4;&#x7801;&#x751F;&#x6210;&#x4E0E;&#x7F16;&#x8F91;&#xFF0C;&#x52A0;&#x8F7D;&#x4E8C;&#x7EF4;&#x7801;&#x754C;&#x9762;QRCodeUI&#x3002;</li>
+                                </ul>
+                                <h3 id="3314-&#x5173;&#x4E8E;&#x754C;&#x9762;"><a
+                                        name="3314-&#x5173;&#x4E8E;&#x754C;&#x9762;" class="plugin-anchor"
+                                        href="#3314-&#x5173;&#x4E8E;&#x754C;&#x9762;"><i class="fa fa-link"
+                                                                                         aria-hidden="true"></i></a>3.3.14
+                                    &#x5173;&#x4E8E;&#x754C;&#x9762;</h3>
+                                <p><img src="example/&#x5173;&#x4E8E;&#x753B;&#x9762;.png" alt=""></p>
+                                <ul>
+                                    <li>&#x5173;&#x4E8E;&#x7A97;&#x53E3;&#xFF0C;&#x663E;&#x793A;&#x5F53;&#x524D;&#x7248;&#x672C;&#x53F7;&#x3002;</li>
+                                    <li>&#x521D;&#x59CB;&#x5316;&#x5173;&#x4E8E;&#x7A97;&#x53E3;AboutWindow&#xFF0C;&#x6DFB;&#x52A0;&#x5173;&#x4E8E;&#x9762;&#x677F;JPanel&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x6807;&#x7B7E;JLabel&#x3001;&#x5DE5;&#x5177;&#x7BB1;&#x5C5E;&#x6027;&#x3001;&#x7248;&#x672C;&#x3002;</li>
+                                    <li>&#x6DFB;&#x52A0;&#x80CC;&#x666F;&#x56FE;ImageIcon&#xFF0C;&#x5DE5;&#x5177;&#x7BB1;&#x56FE;&#x6807;lblIcon&#x3002;</li>
+                                </ul>
+                                <script type="text/javascript">var className = 'atoc';</script>
+
+                            </section>
+
+                        </div>
+                        <div class="search-results">
+                            <div class="has-results">
+
+                                <h1 class="search-results-title"><span class='search-results-count'></span> results
+                                    matching "<span class='search-query'></span>"</h1>
+                                <ul class="search-results-list"></ul>
+
+                            </div>
+                            <div class="no-results">
+
+                                <h1 class="search-results-title">No results matching "<span class='search-query'></span>"
+                                </h1>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <a href="2-需求分析.html#23-运行环境" class="navigation navigation-prev " aria-label="Previous page: 2.3 运行环境">
+            <i class="fa fa-angle-left"></i>
+        </a>
+
+
+        <a href="3-总体设计.html#31-类图设计" class="navigation navigation-next " aria-label="Next page: 3.1 类图设计">
+            <i class="fa fa-angle-right"></i>
+        </a>
+
+
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function () {
+            gitbook.page.hasChanged({
+                "page": {
+                    "title": "3 总体设计",
+                    "level": "1.4",
+                    "depth": 1,
+                    "next": {
+                        "title": "3.1 类图设计",
+                        "level": "1.4.1",
+                        "depth": 2,
+                        "anchor": "#31-类图设计",
+                        "path": "3-总体设计.md",
+                        "ref": "3-总体设计.md#31-类图设计",
+                        "articles": [{
+                            "title": "3.1.1 全局图",
+                            "level": "1.4.1.1",
+                            "depth": 3,
+                            "anchor": "#311-全局图",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#311-全局图",
+                            "articles": []
+                        }, {
+                            "title": "3.1.2 主界面UI",
+                            "level": "1.4.1.2",
+                            "depth": 3,
+                            "anchor": "#312-主界面ui",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#312-主界面ui",
+                            "articles": []
+                        }, {
+                            "title": "3.1.3 计算器",
+                            "level": "1.4.1.3",
+                            "depth": 3,
+                            "anchor": "#313-计算器",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#313-计算器",
+                            "articles": []
+                        }, {
+                            "title": "3.1.4 汇率",
+                            "level": "1.4.1.4",
+                            "depth": 3,
+                            "anchor": "#314-汇率",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#314-汇率",
+                            "articles": []
+                        }, {
+                            "title": "3.1.5 换算",
+                            "level": "1.4.1.5",
+                            "depth": 3,
+                            "anchor": "#315-换算",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#315-换算",
+                            "articles": []
+                        }, {
+                            "title": "3.1.6 历史记录",
+                            "level": "1.4.1.6",
+                            "depth": 3,
+                            "anchor": "#316-历史记录",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#316-历史记录",
+                            "articles": []
+                        }, {
+                            "title": "3.1.7 日期",
+                            "level": "1.4.1.7",
+                            "depth": 3,
+                            "anchor": "#317-日期",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#317-日期",
+                            "articles": []
+                        }, {
+                            "title": "3.1.8 编码解码",
+                            "level": "1.4.1.8",
+                            "depth": 3,
+                            "anchor": "#318-编码解码",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#318-编码解码",
+                            "articles": []
+                        }, {
+                            "title": "3.1.9 二维码",
+                            "level": "1.4.1.9",
+                            "depth": 3,
+                            "anchor": "#319-二维码",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#319-二维码",
+                            "articles": []
+                        }, {
+                            "title": "3.1.10 截图",
+                            "level": "1.4.1.10",
+                            "depth": 3,
+                            "anchor": "#3110-截图",
+                            "path": "3-总体设计.md",
+                            "ref": "3-总体设计.md#3110-截图",
+                            "articles": []
+                        }]
+                    },
+                    "previous": {
+                        "title": "2.3 运行环境",
+                        "level": "1.3.3",
+                        "depth": 2,
+                        "anchor": "#23-运行环境",
+                        "path": "2-需求分析.md",
+                        "ref": "2-需求分析.md#23-运行环境",
+                        "articles": []
+                    },
+                    "dir": "ltr"
+                },
+                "config": {
+                    "plugins": ["expandable-chapters-small", "anchors", "atoc", "livereload"],
+                    "styles": {
+                        "website": "styles/website.css",
+                        "pdf": "styles/pdf.css",
+                        "epub": "styles/epub.css",
+                        "mobi": "styles/mobi.css",
+                        "ebook": "styles/ebook.css",
+                        "print": "styles/print.css"
+                    },
+                    "pluginsConfig": {
+                        "livereload": {},
+                        "atoc": {"addClass": true, "className": "atoc"},
+                        "search": {},
+                        "lunr": {"maxIndexSize": 1000000, "ignoreSpecialCharacters": false},
+                        "fontsettings": {"theme": "white", "family": "sans", "size": 2},
+                        "highlight": {},
+                        "expandable-chapters-small": {},
+                        "sharing": {
+                            "facebook": false,
+                            "twitter": false,
+                            "google": false,
+                            "weibo": false,
+                            "instapaper": false,
+                            "vk": false,
+                            "all": []
+                        },
+                        "theme-default": {
+                            "styles": {
+                                "website": "styles/website.css",
+                                "pdf": "styles/pdf.css",
+                                "epub": "styles/epub.css",
+                                "mobi": "styles/mobi.css",
+                                "ebook": "styles/ebook.css",
+                                "print": "styles/print.css"
+                            }, "showLevel": false
+                        },
+                        "anchors": {}
+                    },
+                    "theme": "default",
+                    "author": "杨弘，徐祥亮，朱可欣",
+                    "pdf": {
+                        "pageBreaksBefore": "/",
+                        "headerTemplate": null,
+                        "paperSize": "a4",
+                        "margin": {"right": 62, "left": 62, "top": 36, "bottom": 36},
+                        "fontSize": 12,
+                        "fontFamily": "Arial",
+                        "footerTemplate": null,
+                        "chapterMark": "pagebreak",
+                        "pageNumbers": false
+                    },
+                    "structure": {
+                        "langs": "LANGS.md",
+                        "readme": "README.md",
+                        "glossary": "GLOSSARY.md",
+                        "summary": "SUMMARY.md"
+                    },
+                    "variables": {},
+                    "title": "Universal ToolBox 开发文档",
+                    "links": {
+                        "sharing": {
+                            "all": false,
+                            "facebook": false,
+                            "google": false,
+                            "twitter": false,
+                            "weibo": false
+                        },
+                        "sidebar": {
+                            "Github项目地址": "https://github.com/SkywalkerDarren/toolbox",
+                            "Gitlab项目地址": "https://gitlab.com/SkywalkerDarren/toolbox"
+                        }
+                    },
+                    "gitbook": "*",
+                    "description": "Universal ToolBox 开发文档",
+                    "extension": null
+                },
+                "file": {"path": "3-总体设计.md", "mtime": "2017-11-27T11:40:01.545Z", "type": "markdown"},
+                "gitbook": {"version": "3.2.3", "time": "2017-11-27T14:28:18.793Z"},
+                "basePath": ".",
+                "book": {"language": ""}
+            });
+        });
+    </script>
+</div>
+
+
+<script src="gitbook/gitbook.js"></script>
+<script src="gitbook/theme.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-atoc/atoc.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-search/search.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+
+
+<script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+
+
+</body>
+</html>
+
